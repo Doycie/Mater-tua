@@ -38,8 +38,14 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AssetManager.cs" />
+    <Compile Include="Camera2D.cs" />
+    <Compile Include="DrawingHelper.cs" />
+    <Compile Include="GameEnvironment.cs" />
+    <Compile Include="GameSettinsManager.cs" />
+    <Compile Include="GameStateManager.cs" />
+    <Compile Include="InputHelper.cs" />
+    <Compile Include="Mater-tua.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

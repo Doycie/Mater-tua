@@ -73,7 +73,7 @@ namespace Mater_tua
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Honeydew);
+            GraphicsDevice.Clear(Color.BlanchedAlmond);
 
             // TODO: Add your drawing code here
 

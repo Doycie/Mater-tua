@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 class Mater_tua
 {
-    GameEnvironment game = new GameEnvironment();
-  
+    static int Main()
+    {
+        GameEnvironment game = new GameEnvironment();
+        game.Run();
+        return 0;
+    }
 }

@@ -7,9 +7,7 @@ class Camera2D
 
     public void initCamera(float scale, Vector2 position)
     {
-
         _position = position;
-
         _scale = scale;
     }
 
@@ -18,5 +16,9 @@ class Camera2D
         Matrix mat = Matrix.CreateTranslation(_position.X, _position.Y, 0.0f) * Matrix.CreateScale(_scale);
 
         return mat;
+    }
+    public void move(Vector2 mov)
+    {
+        _position += mov;
     }
 }

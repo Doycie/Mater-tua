@@ -18,6 +18,10 @@ class GameEnvironment : Game
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
 
+    static public Camera2D getCamera()
+    {
+        return camera;
+    }
 
     public GameEnvironment()
     {
@@ -102,14 +106,14 @@ class GameEnvironment : Game
             FullScreen = !FullScreen;
         }
 
-        gameStateManager.HandleInput(inputHelper);
+        gameStateManager.handleInput(inputHelper);
     }
 
     protected override void Update(GameTime gameTime)
     {
 
         HandleInput();
-        gameStateManager.Update(gameTime);
+        gameStateManager.update(gameTime);
 
     }
 
@@ -117,7 +121,7 @@ class GameEnvironment : Game
     {
         GraphicsDevice.Clear(Color.Black);
         spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.getMatrix());
-        gameStateManager.Draw(gameTime, spriteBatch);
+        gameStateManager.draw(gameTime, spriteBatch);
         spriteBatch.End();
     }
 }

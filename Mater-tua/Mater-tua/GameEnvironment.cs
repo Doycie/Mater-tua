@@ -23,9 +23,16 @@ class GameEnvironment : Game
         return camera;
     }
 
+    static public AssetManager getAssetManager()
+    {
+        return assetManager;
+    }
     public GameEnvironment()
     {
         graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = "Content";
+
+        IsMouseVisible = true;
 
         inputHelper = new InputHelper();
         camera = new Camera2D();
@@ -35,6 +42,8 @@ class GameEnvironment : Game
         random = new Random();
         assetManager = new AssetManager(Content);
         gameSettingsManager = new GameSettingsManager();
+
+       
     }
     public bool FullScreen
     {
@@ -44,6 +53,9 @@ class GameEnvironment : Game
             ApplyResolutionSettings(value);
         }
     }
+
+  
+
     public void ApplyResolutionSettings(bool fullScreen = false)
     {
         if (!fullScreen)
@@ -92,6 +104,12 @@ class GameEnvironment : Game
 
         DrawingHelper.Initialize(this.GraphicsDevice);
         spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        screen = new Point(1440, 825);
+        windowSize = new Point(1024, 586);
+        FullScreen = false;
+
+        gameStateManager.changeGameState();
     }
 
     protected void HandleInput()

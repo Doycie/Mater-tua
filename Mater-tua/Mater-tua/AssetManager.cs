@@ -10,6 +10,7 @@ public class AssetManager
     public AssetManager(ContentManager content)
     {
         contentManager = content;
+     
     }
 
     public Texture2D GetSprite(string assetName)

@@ -137,7 +137,7 @@ class GameEnvironment : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Blue);
+        GraphicsDevice.Clear(Color.Aquamarine);
         spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.getMatrix());
         gameStateManager.draw(gameTime, spriteBatch);
         spriteBatch.End();

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 class Camera2D
 {
@@ -20,5 +21,10 @@ class Camera2D
     public void move(Vector2 mov)
     {
         _position += mov;
+    }
+
+    public void zoom(float v)
+    {
+        _scale = _scale + v;
     }
 }

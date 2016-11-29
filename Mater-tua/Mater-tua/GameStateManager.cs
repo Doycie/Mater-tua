@@ -11,36 +11,54 @@ interface GameState
 class PlayingState : GameState
 {
     protected Texture2D tex;
+    private float camSpeed = 4.0f;
+    private int previousScrollValue;
+    private MouseState _mouseState;
 
     public PlayingState ()
     {
         tex = GameEnvironment.getAssetManager().GetSprite("grass");
+        _mouseState = Mouse.GetState();
+
     }
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
        
         spriteBatch.Draw(tex, new Rectangle(0, 0, 256, 256), Color.White);
+
     }
 
     public void handleInput(InputHelper inputHelper)
     {
-        if(inputHelper.IsKeyDown(Keys.D))
+        _mouseState = Mouse.GetState();
+        if (inputHelper.IsKeyDown(Keys.D))
         {
-            GameEnvironment.getCamera().move(new Vector2(-2f, 0.0f));
+            GameEnvironment.getCamera().move(new Vector2(-camSpeed, 0.0f));
         }
        else if (inputHelper.IsKeyDown(Keys.A))
         {
-            GameEnvironment.getCamera().move(new Vector2(2f, 0.0f));
+            GameEnvironment.getCamera().move(new Vector2(camSpeed, 0.0f));
 
         }
         else if (inputHelper.IsKeyDown(Keys.W))
         {
-            GameEnvironment.getCamera().move(new Vector2(0.0f, 2f));
+            GameEnvironment.getCamera().move(new Vector2(0.0f, camSpeed));
         }
         else if (inputHelper.IsKeyDown(Keys.S))
         {
-            GameEnvironment.getCamera().move(new Vector2(0.0f, -2f));
+            GameEnvironment.getCamera().move(new Vector2(0.0f, -camSpeed));
         }
+
+
+        if (_mouseState.ScrollWheelValue < previousScrollValue)
+        {
+            GameEnvironment.getCamera().zoom(-.1f);
+        }
+        else if (_mouseState.ScrollWheelValue > previousScrollValue)
+        {
+            GameEnvironment.getCamera().zoom(0.1f);
+        }
+        previousScrollValue = _mouseState.ScrollWheelValue;
     }
 
     public void update(GameTime gameTime)

@@ -27,4 +27,5 @@ class Camera2D
     {
         _scale = _scale + v;
     }
+
 }

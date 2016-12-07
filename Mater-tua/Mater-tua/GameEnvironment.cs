@@ -40,7 +40,7 @@ class GameEnvironment : Game
         gameStateManager = new GameStateManager();
 
         random = new Random();
-        assetManager = new AssetManager(Content);
+        assetManager = new AssetManager(Content,graphics);
         gameSettingsManager = new GameSettingsManager();
 
        

@@ -2,15 +2,17 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework;
 
-public class AssetManager
+public  class AssetManager
 {
     protected ContentManager contentManager;
+    protected GraphicsDeviceManager graphicsDevice;
 
-    public AssetManager(ContentManager content)
+    public AssetManager(ContentManager content, GraphicsDeviceManager graphics)
     {
         contentManager = content;
-     
+        graphicsDevice = graphics;
     }
 
     public Texture2D GetSprite(string assetName)
@@ -21,6 +23,12 @@ public class AssetManager
         }
         return contentManager.Load<Texture2D>(assetName);
     }
+    public Texture2D GetTex(int w, int h)
+    {
+
+        return new Texture2D(graphicsDevice.GraphicsDevice, w, h);
+    }
+
 
     public void PlaySound(string assetName)
     {

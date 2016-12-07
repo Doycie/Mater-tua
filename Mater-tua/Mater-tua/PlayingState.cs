@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 class PlayingState : GameState
 {
@@ -9,19 +10,22 @@ class PlayingState : GameState
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
+    private CustomCursor cursor;
+    
 
     public PlayingState()
     {
-       
+
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init(128,128);
+        cursor = new CustomCursor();
 
     }
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-        
+        cursor.draw(spriteBatch);
 
     }
 
@@ -60,6 +64,6 @@ class PlayingState : GameState
 
     public void update(GameTime gameTime)
     {
-
+        cursor.Update(gameTime);
     }
 }

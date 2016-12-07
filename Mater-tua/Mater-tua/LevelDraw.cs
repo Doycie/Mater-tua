@@ -10,7 +10,7 @@ partial class Level
     public void draw(SpriteBatch s)
     {
 
-        GameEnvironment.getCamera().
+        GameEnvironment.getCamera();
         for (int i = 0; i < _mapWidth; i++)
         {
             for (int j = 0; j < _mapHeight; j++)

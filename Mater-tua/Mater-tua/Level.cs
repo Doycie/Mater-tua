@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 partial class Level
 {
     private int _mapWidth, _mapHeight;
-   private byte[,] _mapData;
+    private byte[,] _mapData;
     private Texture2D _tex;
     
 

@@ -10,18 +10,25 @@ partial class Level
     public void draw(SpriteBatch s)
     {
 
-        GameEnvironment.getCamera().
+        Rectangle bounds = GameEnvironment.getCamera().getView();
+        bounds.X -= 64;
+        bounds.Y -= 64;
+       // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
         for (int i = 0; i < _mapWidth; i++)
         {
             for (int j = 0; j < _mapHeight; j++)
             {
-
+              
+                if (bounds.Contains(i * 64, j * 64)) 
                 s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
             }
 
         }
-
-       // s.Draw(_tex, new Rectangle(0, 0,_mapWidth *64,_mapHeight*64), Color.White);
+        s.Draw(_tex, new Rectangle(128, 0, 64, 64), Color.Black);
+        s.Draw(_tex, new Rectangle(0, 0, 64, 64), Color.Black);
+        s.Draw(_tex, new Rectangle(512, 512, 64, 64), Color.Black);
+        s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
+        // s.Draw(_tex, new Rectangle(0, 0,_mapWidth *64,_mapHeight*64), Color.White);
     }
 
 

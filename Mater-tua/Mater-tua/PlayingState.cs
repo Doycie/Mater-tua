@@ -30,20 +30,20 @@ class PlayingState : GameState
         _mouseState = Mouse.GetState();
         if (inputHelper.IsKeyDown(Keys.D))
         {
-            GameEnvironment.getCamera().move(new Vector2(-_camSpeed, 0.0f));
+            GameEnvironment.getCamera().move(new Vector2(_camSpeed, 0.0f));
         }
         else if (inputHelper.IsKeyDown(Keys.A))
         {
-            GameEnvironment.getCamera().move(new Vector2(_camSpeed, 0.0f));
+            GameEnvironment.getCamera().move(new Vector2(-_camSpeed, 0.0f));
 
         }
         else if (inputHelper.IsKeyDown(Keys.W))
         {
-            GameEnvironment.getCamera().move(new Vector2(0.0f, _camSpeed));
+            GameEnvironment.getCamera().move(new Vector2(0.0f, -_camSpeed));
         }
         else if (inputHelper.IsKeyDown(Keys.S))
         {
-            GameEnvironment.getCamera().move(new Vector2(0.0f, -_camSpeed));
+            GameEnvironment.getCamera().move(new Vector2(0.0f, _camSpeed));
         }
 
 

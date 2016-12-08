@@ -91,9 +91,9 @@ class GameEnvironment : Game
 
         inputHelper.Scale = new Vector2((float)GraphicsDevice.Viewport.Width / screen.X,
                                         (float)GraphicsDevice.Viewport.Height / screen.Y);
-        inputHelper.Offset = new Vector2(viewport.X, viewport.Y);
+        //inputHelper.Offset = new Vector2(viewport.X, viewport.Y);
 
-        camera.initCamera(inputHelper.Scale.X, inputHelper.Offset);
+        camera.initCamera(inputHelper.Scale.X, Vector2.Zero, new Vector2(width,height));
         spriteScale = Matrix.CreateScale(inputHelper.Scale.X, inputHelper.Scale.Y, 1);
 
 

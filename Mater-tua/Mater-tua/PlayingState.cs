@@ -10,13 +10,11 @@ class PlayingState : GameState
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
-    private Vector2 mousePos;
-    private Texture2D _cursorTex;
-        
+    CustomCursor _customCursor;
 
     public PlayingState()
     {
-        _cursorTex = GameEnvironment.getAssetManager().GetSprite("CursorTest");
+        _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init(128,128);
@@ -25,19 +23,20 @@ class PlayingState : GameState
 
     public void update(GameTime gameTime)
     {
-        mousePos = new Vector2(_mouseState.X, _mouseState.Y);
-        Console.WriteLine(mousePos);
+       
+       // Console.WriteLine(mousePos);
     }
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-        spriteBatch.Draw(_cursorTex, mousePos, Color.White);
-       
+        _customCursor.draw(spriteBatch);
     }
 
     public void handleInput(InputHelper inputHelper)
     {
+        _customCursor.updateCursorPosition(inputHelper);
+        
         _mouseState = Mouse.GetState();
         if (inputHelper.IsKeyDown(Keys.D))
         {

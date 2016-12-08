@@ -33,6 +33,12 @@ class Camera2D
     }
     public Rectangle getView()
     {
-        return new Rectangle((int)(_position.X -( _origin.X/ _scale - _origin.X)), (int)(_position.Y - (_origin.Y / _scale - _origin.Y)),(int)((_position.X + _origin.X * 2)/_scale),(int) ((_position.Y +_origin.Y * 2) / _scale) );
+        int x = (int)(_position.X - (_origin.X / _scale - _origin.X));
+        int y = (int)(_position.Y - (_origin.Y / _scale - _origin.Y));
+        return new Rectangle(x,y,(int)((x + (_origin.X * 2 + _origin.X)/_scale)),(int) ((y + (_origin.Y * 2+ _origin.Y) / _scale) ));
+    }
+    public float getZoom()
+    {
+        return _scale;
     }
 }

@@ -38,6 +38,10 @@ public class InputHelper
     {
         get { return (new Vector2(currentMouseState.X, currentMouseState.Y) - offset) / scale; }
     }
+    public Vector2 realMousePosition
+    {
+        get { return (new Vector2(currentMouseState.X, currentMouseState.Y)); }
+    }
 
     public bool MouseLeftButtonPressed()
     {

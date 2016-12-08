@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 class PlayingState : GameState
 {
@@ -9,20 +10,30 @@ class PlayingState : GameState
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
+    private Vector2 mousePos;
+    private Texture2D _cursorTex;
+        
 
     public PlayingState()
     {
-       
+        _cursorTex = GameEnvironment.getAssetManager().GetSprite("CursorTest");
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init(128,128);
-
+        
     }
+
+    public void update(GameTime gameTime)
+    {
+        mousePos = new Vector2(_mouseState.X, _mouseState.Y);
+        Console.WriteLine(mousePos);
+    }
+
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-        
-
+        spriteBatch.Draw(_cursorTex, mousePos, Color.White);
+       
     }
 
     public void handleInput(InputHelper inputHelper)
@@ -58,8 +69,5 @@ class PlayingState : GameState
         _previousScrollValue = _mouseState.ScrollWheelValue;
     }
 
-    public void update(GameTime gameTime)
-    {
-
-    }
+    
 }

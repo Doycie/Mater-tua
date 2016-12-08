@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework;
+
 partial class Level
 {
     private int _mapWidth, _mapHeight;

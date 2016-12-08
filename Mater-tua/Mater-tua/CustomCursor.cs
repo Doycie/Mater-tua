@@ -1,28 +1,30 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System;
+﻿//using Microsoft.Xna.Framework.Graphics;
+//using Microsoft.Xna.Framework;
+//using System;
+//using Microsoft.Xna.Framework.Input;
 
-class CustomCursor
-{
-    private Texture2D _tex;
-    private Vector2 mousePos;
-    private InputHelper inputHelper;
+//class CustomCursor
+//{
+//    private Texture2D _tex;
+//    private Vector2 mousePos;
+//    private MouseState _mouseState;
+//    private PlayingState playingState;
+    
+//    public CustomCursor()
+//    {
+//        _tex = GameEnvironment.getAssetManager().GetSprite("CursorTest");
+//        _mouseState = Mouse.GetState();
+//    }
 
-    public CustomCursor()
-    {
-        inputHelper = new InputHelper();
-        _tex = GameEnvironment.getAssetManager().GetSprite("CursorTest");
-    }
+//    public void updateCursorPosition()
+//    {
+//        mousePos = new Vector2(_mouseState.X, _mouseState.Y);
+//        Console.WriteLine(_mouseState.X + _mouseState.Y);
+//    }
 
-    public void Update(GameTime gameTime)
-    {
-        mousePos = new Vector2(inputHelper.MousePosition.X, inputHelper.MousePosition.Y);
-        Console.WriteLine(inputHelper.MousePosition);
-    }
-
-    public void draw(SpriteBatch s)
-    {
-        s.Draw(_tex, new Vector2(0,0), Color.White);
-    }
-}
+//    public void draw(SpriteBatch s)
+//    {
+//        s.Draw(_tex, playingState.mousePos, Color.White);
+//    }
+//}
 

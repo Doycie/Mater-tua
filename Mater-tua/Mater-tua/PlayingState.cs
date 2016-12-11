@@ -6,7 +6,7 @@ using System;
 class PlayingState : GameState
 {
 
-    private float _camSpeed = 4.0f;
+    private Vector2 _camSpeed = new Vector2(4.0f,4.0f);
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
@@ -17,7 +17,7 @@ class PlayingState : GameState
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
         level = new Level();
-        level.init(128,128);
+        level.init("lvl.txt");
         
     }
 
@@ -33,27 +33,40 @@ class PlayingState : GameState
         _customCursor.draw(spriteBatch);
     }
 
-    public void handleInput(InputHelper inputHelper)
+    public void handleInput( InputHelper inputHelper)
     {
         _customCursor.updateCursorPosition(inputHelper);
         
         _mouseState = Mouse.GetState();
+
+
+        int x = 0;
+        int y = 0;
+
         if (inputHelper.IsKeyDown(Keys.D))
         {
-            GameEnvironment.getCamera().move(new Vector2(_camSpeed, 0.0f));
+            x++;
         }
-        else if (inputHelper.IsKeyDown(Keys.A))
+         if (inputHelper.IsKeyDown(Keys.A))
         {
-            GameEnvironment.getCamera().move(new Vector2(-_camSpeed, 0.0f));
+            x--;
 
         }
-        else if (inputHelper.IsKeyDown(Keys.W))
+         if (inputHelper.IsKeyDown(Keys.W))
         {
-            GameEnvironment.getCamera().move(new Vector2(0.0f, -_camSpeed));
+            y--;
         }
-        else if (inputHelper.IsKeyDown(Keys.S))
+         if (inputHelper.IsKeyDown(Keys.S))
         {
-            GameEnvironment.getCamera().move(new Vector2(0.0f, _camSpeed));
+            y++;
+        }
+
+        Vector2 mov = new Vector2(x, y);
+        if(mov!= Vector2.Zero)
+        {
+            mov.Normalize();
+            mov *= _camSpeed;
+            GameEnvironment.getCamera().move(Vector2.Normalize(mov) * _camSpeed);
         }
 
 

@@ -19,11 +19,18 @@ class CustomCursor
 
         _mousePos = new Vector2(input.realMousePosition.X / GameEnvironment.getCamera().getZoom() + GameEnvironment.getCamera().getView().X, input.realMousePosition.Y / GameEnvironment.getCamera().getZoom() + GameEnvironment.getCamera().getView().Y);
 
+       
+
     }
 
     public void draw(SpriteBatch s)
     {
         s.Draw(_tex, _mousePos, new Rectangle(0, 0, _tex.Width, _tex.Height), Color.White, 0.0f, new Vector2(_tex.Width / 2, _tex.Height / 2), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
+    }
+
+    public Vector2 getMousePos()
+    {
+        return _mousePos;
     }
 }
 

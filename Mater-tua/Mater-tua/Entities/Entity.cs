@@ -1,12 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using System;
 class Entity
 {
     Vector2 _position;
     Texture2D _tex;
     Point _tilePos;
     
+    public Vector2 getPosition()
+    {
+        return _position;
+    }
 
     public void init(Vector2 pos, Texture2D tex)
     {
@@ -28,7 +32,8 @@ class Entity
 
     public void draw(SpriteBatch s)
     {
-        s.Draw(_tex, new Rectangle((int)_position.X,(int)_position.Y,(int)_position.X + data.tSize(), (int)_position.Y+ data.tSize()), Color.White);
+      
+        s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y,  data.tSize(), data.tSize()), Color.White);
     }
 }
 

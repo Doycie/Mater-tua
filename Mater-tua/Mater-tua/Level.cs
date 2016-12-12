@@ -8,12 +8,14 @@ partial class Level
     private int _mapWidth, _mapHeight;
     private byte[,] _mapData;
     private Texture2D _tex;
-    private List<Entity> entities = new List<Entity>();
+
+    public List<Entity> entities = new List<Entity>();
 
     public Level()
     {
         
     }
+
 
     public void init(int mapWidth, int mapHeight )
     {
@@ -44,11 +46,14 @@ partial class Level
             }
             file.Close();
 
-        
+
         }
-        Entity e = new Entity();
-        e.init(new Vector2(0.0f, 0.0f), GameEnvironment.getAssetManager().GetSprite("grass"));
-        entities.Add(e);
+
+        for (int i = 0; i < 20;i++) {
+            Entity e = new Entity();
+            e.init(new Vector2(GameEnvironment.getRandom().Next(18) *  data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), GameEnvironment.getAssetManager().GetSprite("grass"));
+            entities.Add(e);
+        }
     }
 
 

@@ -18,6 +18,10 @@ class GameEnvironment : Game
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
 
+    static public Random getRandom()
+    {
+        return random;
+    }
     static public Camera2D getCamera()
     {
         return camera;
@@ -32,7 +36,7 @@ class GameEnvironment : Game
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
 
-        IsMouseVisible = true;
+       // IsMouseVisible = true;
 
         inputHelper = new InputHelper();
         camera = new Camera2D();

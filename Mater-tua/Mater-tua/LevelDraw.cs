@@ -20,7 +20,7 @@ partial class Level
             {
                 if (bounds.Contains(i * data.tSize(), j * data.tSize())) 
                 s.Draw(_tex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
-                // s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
+                //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
             }
 
         }

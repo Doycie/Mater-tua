@@ -51,7 +51,7 @@ partial class Level
 
         for (int i = 0; i < 20;i++) {
             Entity e = new Entity();
-            e.init(new Vector2(GameEnvironment.getRandom().Next(18) *  data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), GameEnvironment.getAssetManager().GetSprite("grass"));
+            e.init(new Vector2(GameEnvironment.getRandom().Next(18) *  data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), GameEnvironment.getAssetManager().GetSprite("birb"));
             entities.Add(e);
         }
     }

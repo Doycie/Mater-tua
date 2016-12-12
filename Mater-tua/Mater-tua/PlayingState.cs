@@ -30,7 +30,7 @@ class PlayingState : GameState
 
     public void update(GameTime gameTime)
     {
-       
+        level.update();
        // Console.WriteLine(mousePos);
     }
 
@@ -54,6 +54,18 @@ class PlayingState : GameState
         _mouseState = Mouse.GetState();
 
         _currentMousePos = _customCursor.getMousePos();
+
+
+        if (inputHelper.MouseRightButtonPressed())
+        {
+            if(_selectedEntities.Count > 0)
+            {
+                foreach (Entity e in _selectedEntities)
+                {
+                    e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                }
+            }
+        }
         if (!inputHelper.MouseLeftButtonDown())
         {
             if (_mouseReleased)

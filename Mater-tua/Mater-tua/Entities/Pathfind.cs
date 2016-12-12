@@ -18,7 +18,32 @@ public Node(Node parent, Point x, float f, float g, float h)
 }
 class Pathfind
 {
-    List<Point> findPath(Point start, Point end)
+    public List<Point> findPathSimple(Point start, Point end)
+    {
+        List<Point> path = new List<Point>();
+
+        Point a = start;
+        //path.Add(a);
+        while(a != end && !(path.Count >= 10))
+        {
+
+            if (a.X < end.X)
+                a.X++;
+            else if (a.X > end.X)
+                a.X--;
+
+            if (a.Y < end.Y)
+                a.Y++;
+            else if (a.Y > end.Y)
+                a.Y--;
+
+            
+            path.Add(a);
+        }
+
+        return path;
+    }
+    List<Point> findPathAStar(Point start, Point end)
     {
         List<Point> path = new List<Point>();
 

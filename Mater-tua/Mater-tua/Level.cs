@@ -36,6 +36,13 @@ partial class Level
         _mapHeight = data.tSize();
         _mapData = new byte[_mapWidth, _mapHeight];
         loadMap(mapPath);
+
+        for (int i = 0; i < 20; i++)
+        {
+            Unit e = new Unit();
+            e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
+            entities.Add((Entity)e);
+        }
     }
 
     //Load the map from the text file into the mapdata array
@@ -55,12 +62,6 @@ partial class Level
             file.Close();
 
 
-        }
-
-        for (int i = 0; i < 20;i++) {
-            EntityTemp e = new EntityTemp();
-            e.init(new Vector2(GameEnvironment.getRandom().Next(18) *  data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), GameEnvironment.getAssetManager().GetSprite("birb"));
-            entities.Add(e);
         }
     }
 

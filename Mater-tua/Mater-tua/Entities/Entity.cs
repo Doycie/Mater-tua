@@ -7,6 +7,7 @@ public class Entity
 
     protected Vector2 _position;
     protected int _layer;
+    
 
     public Entity(int layer = 0)
     {

@@ -24,13 +24,13 @@ public class SpriteEntity : Entity
         }
     }
 
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    public void Draw( SpriteBatch spriteBatch)
     {
         if (_sprite == null)
         {
             return;
         }
-        _sprite.Draw(spriteBatch, this.Position, _origin);
+        _sprite.Draw(spriteBatch, this.Position, _origin - _origin/ 2.0f);
     }
 
     public SpriteSheet Sprite

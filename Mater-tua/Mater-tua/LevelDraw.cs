@@ -36,9 +36,9 @@ partial class Level
         s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
 
         //Draw all the entities in the level list
-        foreach (EntityTemp e in entities)
+        foreach (Unit e in entities)
         {
-            e.draw(s);
+            e.Draw(s);
         }
 
     }

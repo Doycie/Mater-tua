@@ -5,12 +5,14 @@ using System.Collections.Generic;
 
 public class Unit : AnimatedEntity
 {
+    protected int _faction;
     protected int _hp;
     protected int _armor;
     protected float _productionTime;
     protected int _lumberCost;
     protected int _goldCost;
     protected float _moveSpeed;
+
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
 
@@ -25,6 +27,13 @@ public class Unit : AnimatedEntity
     {
 
     }
+
+    public void init(Vector2 pos, string tex)
+    {
+        _position = pos;
+        _sprite = new SpriteSheet(tex);
+    }
+
 
     public void Update(GameTime gameTime)
     {

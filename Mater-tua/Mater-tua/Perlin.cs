@@ -1,5 +1,6 @@
 ﻿using System;
 class Perlin
+    //Ik ga perlin niet uitleggen als je dat wil begrijpen google het maar
 {
     private float Noise(int x, int y)
     {

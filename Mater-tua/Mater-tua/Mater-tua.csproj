@@ -58,13 +58,22 @@
   <ItemGroup>
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Entities\AnimatedEntity.cs" />
+    <Compile Include="Entities\Units\ActualUnits\Grunt.cs" />
+    <Compile Include="Entities\Units\ActualUnits\Footman.cs" />
+    <Compile Include="Entities\Units\BasicMeleeUnit.cs" />
+    <Compile Include="Entities\Units\CombatUnit.cs" />
+    <Compile Include="Entities\Units\Unit.cs" />
+    <Compile Include="Entities\SpriteEntity.cs" />
+    <Compile Include="SpriteSheet.cs" />
     <Compile Include="CustomCursor.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DrawingHelper.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityTemp.cs" />
     <Compile Include="Entities\Pathfind.cs" />
     <Compile Include="GameEnvironment.cs" />
-    <Compile Include="GameSettinsManager.cs" />
+    <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />
@@ -104,6 +113,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Buildings\" />
+    <Folder Include="Entities\HUD\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

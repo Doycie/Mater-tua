@@ -4,10 +4,10 @@ partial class Level
 {
     public void update()
     {
-
-        foreach (Entity e in entities)
+        //Update all the entities in the level list
+        foreach (Unit e in entities)
         {
-            e.update();
+            e.Update();
         }
     }
 

@@ -34,6 +34,7 @@ partial class Level
         _tex = GameEnvironment.getAssetManager().GetSprite("dirt");
         _mapWidth = data.tSize();
         _mapHeight = data.tSize();
+        GameEnvironment.getCamera().SetMaxBounds(data.tSize() * data.tSize() + data.tSize(), data.tSize() * data.tSize() + data.tSize());
         _mapData = new byte[_mapWidth, _mapHeight];
         loadMap(mapPath);
 

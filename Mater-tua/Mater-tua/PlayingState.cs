@@ -149,14 +149,18 @@ class PlayingState : GameState
         {
             y++;
         }
-
+        Vector2 camspeedmultiplier = new Vector2(1.0f,1.0f);
+        if (inputHelper.IsKeyDown(Keys.LeftShift))
+        {
+            camspeedmultiplier = new Vector2(2.0f,2.0f);
+        }
         //Simple camera movement
         Vector2 mov = new Vector2(x, y);
         if (mov != Vector2.Zero)
         {
             mov.Normalize();
             mov *= _camSpeed;
-            GameEnvironment.getCamera().move(Vector2.Normalize(mov) * _camSpeed);
+            GameEnvironment.getCamera().move(Vector2.Normalize(mov) * _camSpeed * camspeedmultiplier);
         }
 
         //Zoomon scroll wheel

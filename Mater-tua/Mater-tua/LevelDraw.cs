@@ -14,7 +14,7 @@ partial class Level
         //Adjust the view slightly to see everything
         bounds.X -= data.tSize();
         bounds.Y -= data.tSize();
-        // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
+       // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
 
         //Draw all the tiles
         for (int i = 0; i < _mapWidth; i++)
@@ -34,7 +34,9 @@ partial class Level
         s.Draw(_tex, new Rectangle(0, 0, 64, 64), Color.Black);
         s.Draw(_tex, new Rectangle(512, 512, 64, 64), Color.Black);
         s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
+        s.Draw(_tex, new Rectangle(0, 1000, 2000, 6), Color.Red);
 
+        s.Draw(_tex, new Rectangle(0, 500, 4096, 6), Color.Blue);
         //Draw all the entities in the level list
         foreach (Unit e in entities)
         {

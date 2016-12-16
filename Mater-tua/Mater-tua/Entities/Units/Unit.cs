@@ -5,12 +5,13 @@ using System.Collections.Generic;
 
 public class Unit : AnimatedEntity
 {
+
     protected int _hp;
     protected int _armor;
     protected float _productionTime;
     protected int _lumberCost;
     protected int _goldCost;
-    protected float _moveSpeed;
+    protected float _moveSpeed =2.0f;
 
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
@@ -21,6 +22,8 @@ public class Unit : AnimatedEntity
     public enum faction { Orc, Human, Neutral }
     protected faction _faction;
 
+    protected Texture2D _tex;
+
     public Unit()
         : base()
     {
@@ -30,7 +33,7 @@ public class Unit : AnimatedEntity
     public void init(Vector2 pos, string tex)
     {
         _position = pos;
-        _sprite = new SpriteSheet(tex);
+        _tex = GameEnvironment.getAssetManager().GetSprite(tex);
     }
 
 
@@ -93,26 +96,24 @@ public class Unit : AnimatedEntity
         //Console.WriteLine(_path.Count);
         if (_path.Count > 0)
         {
-            if (_path[0].X < (int)(_position.X / data.tSize()))
+            if (_path[0].X * 64  < (_position.X ))
             {
-                _position.X -= 1.0f;
+                _position.X -= _moveSpeed;
             }
-            else if (_path[0].X > (int)_position.X / data.tSize())
+            else if (_path[0].X * 64 > (_position.X ))
             {
-                _position.X += 1.0f;
+                _position.X += _moveSpeed;
+            }
+            if (_path[0].Y * 64< (_position.Y ))
+            {
+                _position.Y -= _moveSpeed;
+            }
+            else if (_path[0].Y * 64> (_position.Y ))
+            {
+                _position.Y += _moveSpeed;
             }
 
-            if (_path[0].Y < (int)(_position.Y / data.tSize()))
-            {
-                _position.Y -= 1.0f;
-            }
-            else if (_path[0].Y > (int)_position.Y / data.tSize())
-            {
-                _position.Y += 1.0f;
-            }
-
-
-            if (new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()) == _path[0])
+            if (new Point((int)(_position.X  ), (int)(_position.Y)) == new Point( _path[0].X * 64, _path[0].Y * 64))
             {
                 _path.RemoveAt(0);
             }
@@ -120,18 +121,21 @@ public class Unit : AnimatedEntity
         }
     }
 
-    public void Move(Point target)
-    {
-        _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
-    }
-    private void move()
-    {
-        int x = (int)_position.X / data.tSize();
-        int y = (int)_position.Y / data.tSize();
-    }
     public void orderMove(Point target)
     {
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
+    }
+
+
+    public override void Draw(SpriteBatch s)
+    {
+        foreach (Point p in _path)
+        {
+            s.Draw(_tex, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
+        }
+
+        // Console.WriteLine("SAD");
+        s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);
     }
 }
 

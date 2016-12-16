@@ -24,7 +24,7 @@ public class SpriteEntity : Entity
         }
     }
 
-    public void Draw( SpriteBatch spriteBatch)
+    public virtual void Draw( SpriteBatch spriteBatch)
     {
         if (_sprite == null)
         {

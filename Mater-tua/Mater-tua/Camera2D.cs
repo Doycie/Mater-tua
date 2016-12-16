@@ -10,6 +10,8 @@ class Camera2D
     //Vector to hold the middle of the screen
     private Vector3 _origin;
 
+    private Point _maxBounds;
+
     //Initialize the camera on its proper position and set the origin
     public void initCamera(float scale, Vector2 position, Vector2 screenSize)
     {
@@ -27,19 +29,40 @@ class Camera2D
      
     }
 
+    internal void SetMaxBounds(int x, int y)
+    {
+        _maxBounds.X = x;
+        _maxBounds.Y = y;
+    }
+
     //Move the camera a desired vector
     public void move(Vector2 mov)
     {
+        int x = (int)(_position.X - (_origin.X / _scale - _origin.X));
+        int y = (int)(_position.Y - (_origin.Y / _scale - _origin.Y));
+
         //if (_position.X + mov.X > 0)
-            _position.X += mov.X;
+        if(x + mov.X > 0 && (int)(x + mov.X + (_origin.X * 2 / _scale)) < _maxBounds.X )
+        {
+            _position.X += mov.X ;
+        }
+        
         // if( _position.Y + mov.Y > 0)
-        _position.Y += mov.Y;
+        if (y + mov.Y > 0  && (int)(y + mov.Y + (_origin.Y * 2 / _scale)) < _maxBounds.Y)
+        {
+            _position.Y += mov.Y ;
+        }
     }
 
     //Zoom the camera a desired value but limited for performance and game breaking reasons
     public void zoom(float v)
     {
-       if(_scale + v > 0.25f)
+        int x = (int)(_position.X - (_origin.X / (_scale+v) - _origin.X));
+        int y = (int)(_position.Y - (_origin.Y / (_scale+v) - _origin.Y));
+
+
+        //TODO Only zoom when the camera is in bounds
+        if (_scale + v > 0.1f)
             _scale = _scale + v;
     }
 
@@ -49,7 +72,7 @@ class Camera2D
     {
         int x = (int)(_position.X - (_origin.X / _scale - _origin.X));
         int y = (int)(_position.Y - (_origin.Y / _scale - _origin.Y));
-        return new Rectangle(x,y,(int)(x + (_origin.X / _scale * 2 ) ),(int) (y + (_origin.Y /_scale * 2)));
+        return new Rectangle(x,y,(int)(x + (_origin.X * 2/ _scale  ) ),(int) (y + (_origin.Y * 2/_scale) ));
     }
 
     

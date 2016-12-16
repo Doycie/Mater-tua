@@ -58,13 +58,16 @@
   <ItemGroup>
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Entities\SpriteEntity.cs" />
+    <Compile Include="SpriteSheet.cs" />
     <Compile Include="CustomCursor.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DrawingHelper.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityTemp.cs" />
     <Compile Include="Entities\Pathfind.cs" />
     <Compile Include="GameEnvironment.cs" />
-    <Compile Include="GameSettinsManager.cs" />
+    <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />

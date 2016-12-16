@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class Unit : AnimatedEntity
 {
-    protected int _faction;
     protected int _hp;
     protected int _armor;
     protected float _productionTime;

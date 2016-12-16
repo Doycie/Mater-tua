@@ -5,24 +5,30 @@ using System.Collections.Generic;
 
 partial class Level
 {
+    //Hold information about the current level
     private int _mapWidth, _mapHeight;
     private byte[,] _mapData;
+
+    //Hold the dirt texture
     private Texture2D _tex;
 
+    //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public List<EntityTemp> entities = new List<EntityTemp>();
 
     public Level()
     {
-        
+
     }
 
-
+    //Init the leve based on the width and height and then generate it based on Perlin
     public void init(int mapWidth, int mapHeight )
     {
         _tex = GameEnvironment.getAssetManager().GetSprite("circle");
         generateMap(mapWidth, mapHeight);
   
     }
+
+    //Init the level based on a level text file
     public void init(string mapPath)
     {
         _tex = GameEnvironment.getAssetManager().GetSprite("dirt");
@@ -31,6 +37,8 @@ partial class Level
         _mapData = new byte[_mapWidth, _mapHeight];
         loadMap(mapPath);
     }
+
+    //Load the map from the text file into the mapdata array
     private void loadMap(string mapPath)
     {
         System.IO.StreamReader file = new System.IO.StreamReader(mapPath);
@@ -56,7 +64,7 @@ partial class Level
         }
     }
 
-
+    //Generate the map with Perlin
     private void generateMap(int w, int h)
     {
         _mapWidth = w;

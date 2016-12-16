@@ -5,12 +5,14 @@ public class DrawingHelper
 {
     protected static Texture2D pixel;
 
+    //Initialize the drawing helper with the current screen
     public static void Initialize(GraphicsDevice graphics)
     {
         pixel = new Texture2D(graphics, 1, 1);
         pixel.SetData(new[] { Color.White });
     }
 
+    //Simple function to draw a rectangle
     public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col)
     {
         int bw = 2; // Border width

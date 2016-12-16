@@ -33,7 +33,6 @@ class Entity
             {
                 _position.X += 1.0f;
             }
-
             if (_path[0].Y < (int)(_position.Y / data.tSize()))
             {
                 _position.Y -= 1.0f;
@@ -43,8 +42,7 @@ class Entity
                 _position.Y += 1.0f;
             }
 
-
-            if (new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()) == _path[0])
+            if (new Point((int)(_position.X / data.tSize() ) , (int)(_position.Y / data.tSize())) == _path[0])
             {
                 _path.RemoveAt(0);
             }
@@ -65,10 +63,10 @@ class Entity
 
     public void draw(SpriteBatch s)
     {
-      //foreach(Point p in _path)
-      //  {
-      //      s.Draw(_tex, new Rectangle((int)p.X * 64 , (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
-      //  }
+        foreach (Point p in _path)
+        {
+            s.Draw(_tex, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
+        }
         s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y,  data.tSize(), data.tSize()), Color.White);
     }
 }

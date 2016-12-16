@@ -11,9 +11,10 @@ partial class Level
     {
 
         Rectangle bounds = GameEnvironment.getCamera().getView();
+       // Console.WriteLine("X: " + bounds.X + " Y: " + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
         bounds.X -= data.tSize();
         bounds.Y -= data.tSize();
-       // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
+       
         for (int i = 0; i < _mapWidth; i++)
         {
             for (int j = 0; j < _mapHeight; j++)
@@ -34,7 +35,7 @@ partial class Level
         s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
 
 
-        foreach(Entity e in entities)
+        foreach (Entity e in entities)
         {
             e.draw(s);
         }

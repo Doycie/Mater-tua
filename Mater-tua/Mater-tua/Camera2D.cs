@@ -24,18 +24,27 @@ class Camera2D
     }
     public void move(Vector2 mov)
     {
-        _position += new Vector3(mov.X, mov.Y, 0.0f);
+
+        //if (_position.X + mov.X > 0)
+            _position.X += mov.X;
+       // if( _position.Y + mov.Y > 0)
+       
+            _position.Y += mov.Y;
+        
+
+        
     }
 
     public void zoom(float v)
     {
-        _scale = _scale + v;
+       if(_scale + v > 0.25f)
+            _scale = _scale + v;
     }
     public Rectangle getView()
     {
         int x = (int)(_position.X - (_origin.X / _scale - _origin.X));
         int y = (int)(_position.Y - (_origin.Y / _scale - _origin.Y));
-        return new Rectangle(x,y,(int)((x + (_origin.X * 2 + _origin.X)/_scale)),(int) ((y + (_origin.Y * 2+ _origin.Y) / _scale) ));
+        return new Rectangle(x,y,(int)(x + (_origin.X / _scale * 2 ) ),(int) (y + (_origin.Y /_scale * 2)));
     }
     public float getZoom()
     {

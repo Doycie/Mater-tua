@@ -34,7 +34,7 @@ partial class Level
         s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
 
 
-        foreach(Entity e in entities)
+        foreach(EntityTemp e in entities)
         {
             e.draw(s);
         }

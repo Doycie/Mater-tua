@@ -9,7 +9,7 @@ partial class Level
     private byte[,] _mapData;
     private Texture2D _tex;
 
-    public List<Entity> entities = new List<Entity>();
+    public List<EntityTemp> entities = new List<EntityTemp>();
 
     public Level()
     {
@@ -50,7 +50,7 @@ partial class Level
         }
 
         for (int i = 0; i < 20;i++) {
-            Entity e = new Entity();
+            EntityTemp e = new EntityTemp();
             e.init(new Vector2(GameEnvironment.getRandom().Next(18) *  data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), GameEnvironment.getAssetManager().GetSprite("birb"));
             entities.Add(e);
         }

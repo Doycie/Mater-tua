@@ -1,75 +1,125 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-class Entity
+
+public class Entity
 {
-    Vector2 _position;
-    Texture2D _tex;
-    Point _tilePos;
-    Pathfind pathfinder = new Pathfind();
-    List<Point> _path = new List<Point>();
 
-    public Vector2 getPosition()
+    protected Entity _parent;
+    protected Vector2 _position, _velocity;
+    protected string _id;
+    protected bool _visible;
+    protected int _layer;
+
+    public void init(int layer = 0, string id = "")
     {
-        return _position;
+        this._layer = layer;
+        this._id = id;
+        Reset();
     }
 
-    public void init(Vector2 pos, Texture2D tex)
+    public virtual void HandleInput(InputHelper inputHelper)
     {
-        _position = pos;
-        _tex = tex;
+
     }
 
-    public void update()
+    public virtual void Update(GameTime gameTime)
     {
-        //Console.WriteLine(_path.Count);
-        if(_path.Count > 0)
+        _position += _velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+    }
+
+    public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+
+    }
+
+    public virtual void Reset()
+    {
+        _visible = true;
+        _position = Vector2.Zero;
+        _velocity = Vector2.Zero;
+    }
+
+    public virtual Vector2 Position
+    {
+        get { return _position; }
+        set { _position = value; }
+    }
+
+    public virtual Vector2 Velocity
+    {
+        get { return _velocity; }
+        set { _velocity = value; }
+    }
+
+    public virtual int Layer
+    {
+        get { return _layer; }
+        set { _layer = value; }
+    }
+
+    public bool Visible
+    {
+        get { return _visible; }
+        set { _visible = value; }
+    }
+
+    public virtual Entity Parent
+    {
+        get { return _parent; }
+        set { _parent = value; }
+    }
+
+    public string Id
+    {
+        get { return _id; }
+    }
+
+    public virtual Vector2 GlobalPosition
+    {
+        get
         {
-            if(_path[0].X < (int)(_position.X / data.tSize()))
+            if(_parent != null)
             {
-                _position.X -= 1.0f;
-            }else if(_path[0].X > (int)_position.X / data.tSize())
-            {
-                _position.X += 1.0f;
+                return _parent.GlobalPosition + Position;
             }
-
-            if (_path[0].Y < (int)(_position.Y / data.tSize()))
+            else
             {
-                _position.Y -= 1.0f;
+                return Position;
             }
-            else if (_path[0].Y > (int)_position.Y / data.tSize())
-            {
-                _position.Y += 1.0f;
-            }
-
-
-            if (new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()) == _path[0])
-            {
-                _path.RemoveAt(0);
-            }
-
         }
     }
 
-    public void orderMove(Point target)
+    public Entity Root
     {
-        _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
+        get
+        {
+            if(_parent != null)
+            {
+                return _parent.Root;
+            }
+            else
+            {
+                return this;
+            }
+        }
     }
-    private void move()
+    /*
+    public Entity GameWorld
     {
-        int x = (int)_position.X / data.tSize();
-        int y = (int)_position.Y / data.tSize();
+        get
+        {
+            return Root as EntityList
+        }
+    } */
 
-    }
-
-    public void draw(SpriteBatch s)
+    public virtual Rectangle BoundingBox
     {
-      //foreach(Point p in _path)
-      //  {
-      //      s.Draw(_tex, new Rectangle((int)p.X * 64 , (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
-      //  }
-        s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y,  data.tSize(), data.tSize()), Color.White);
+        get
+        {
+            return new Rectangle((int)GlobalPosition.X, (int)GlobalPosition.Y, 0, 0);
+        }
     }
 }
+
 

@@ -16,7 +16,7 @@ public class SpriteEntity : Entity
     {
         if (assetName != "")
         {
-            _sprite = new global::SpriteSheet(assetName, sheetIndex);
+            _sprite = new SpriteSheet(assetName, sheetIndex);
         }
         else
         {
@@ -24,13 +24,13 @@ public class SpriteEntity : Entity
         }
     }
 
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    public void Draw( SpriteBatch spriteBatch)
     {
         if (_sprite == null)
         {
             return;
         }
-        _sprite.Draw(spriteBatch, this.Position, _origin);
+        _sprite.Draw(spriteBatch, this.Position, _origin - _origin/ 2.0f);
     }
 
     public SpriteSheet Sprite

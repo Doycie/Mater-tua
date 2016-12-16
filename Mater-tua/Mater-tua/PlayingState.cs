@@ -10,7 +10,7 @@ class PlayingState : GameState
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
-    private List<EntityTemp> _selectedEntities = new List<EntityTemp>();
+    private List<Entity> _selectedEntities = new List<Entity>();
     CustomCursor _customCursor;
     Vector2 _lastMousePos;
     Vector2 _currentMousePos;
@@ -44,9 +44,9 @@ class PlayingState : GameState
         if (_mouseReleased)
             spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
         if (_selectedEntities.Count > 0)
-            foreach (EntityTemp e in _selectedEntities)
+            foreach (Entity e in _selectedEntities)
             {
-                spriteBatch.Draw(_selectTex, new Rectangle((int)e.getPosition().X, (int)e.getPosition().Y, 64, 64), Color.White);
+                spriteBatch.Draw(_selectTex, new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), Color.White);
             }
     }
 
@@ -63,8 +63,9 @@ class PlayingState : GameState
         {
             if (_selectedEntities.Count > 0)
             {
-                foreach (EntityTemp e in _selectedEntities)
+                foreach (Unit e in _selectedEntities)
                 {
+                   
                     e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                 }
             }
@@ -76,8 +77,8 @@ class PlayingState : GameState
             if (_mouseReleased)
             {
                 Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
-                foreach (EntityTemp e in level.entities)
-                    if ((r.Contains(e.getPosition())))
+                foreach (Unit e in level.entities)
+                    if ((r.Contains(e.Position)))
                     {
                         _selectedEntities.Add(e);
                     }
@@ -104,9 +105,9 @@ class PlayingState : GameState
             Vector2 pos = _customCursor.getMousePos();
 
             bool clickedOnEntity = false;
-            foreach (EntityTemp e in level.entities)
+            foreach (Unit e in level.entities)
             {
-                if ((new Rectangle((int)e.getPosition().X, (int)e.getPosition().Y, 64, 64).Contains(pos)))
+                if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64).Contains(pos)))
                 {
                     clickedOnEntity = true;
                     if (inputHelper.IsKeyDown(Keys.LeftControl))

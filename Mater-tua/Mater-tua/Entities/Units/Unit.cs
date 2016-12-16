@@ -29,7 +29,7 @@ public class Unit : AnimatedEntity
     }
 
 
-    public void Update(GameTime gameTime)
+    public void Update()
     {
         this.UpdatePath();
     }
@@ -102,7 +102,7 @@ public class Unit : AnimatedEntity
         }
     }
 
-    public void OrderMove(Point target)
+    public void Move(Point target)
     {
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
     }
@@ -110,6 +110,10 @@ public class Unit : AnimatedEntity
     {
         int x = (int)_position.X / data.tSize();
         int y = (int)_position.Y / data.tSize();
+    }
+    public void orderMove(Point target)
+    {
+        _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
     }
 }
 

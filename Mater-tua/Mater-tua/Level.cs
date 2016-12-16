@@ -13,7 +13,7 @@ partial class Level
     private Texture2D _tex;
 
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
-    public List<EntityTemp> entities = new List<EntityTemp>();
+    public List<Entity> entities = new List<Entity>();
 
     public Level()
     {
@@ -41,7 +41,7 @@ partial class Level
         {
             Unit e = new Unit();
             e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
-            entities.Add((Entity)e);
+            entities.Add(e);
         }
     }
 

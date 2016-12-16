@@ -4,7 +4,14 @@ using System;
 using System.Collections.Generic;
 
 
-class Grunt
+class Grunt : BasicMeleeUnit
 {
+    public Grunt(Vector2 Position)
+        : base()
+    {
+        _faction = faction.Orc;
+        _position = Position;
+        _sprite = new SpriteSheet("birb");
+    }
 }
 

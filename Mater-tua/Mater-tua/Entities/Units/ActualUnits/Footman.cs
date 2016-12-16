@@ -8,6 +8,7 @@ class Footman : BasicMeleeUnit
     public Footman(Vector2 Position)
         : base()
     {
+        _faction = faction.Human;
         _position = Position;
         _sprite = new SpriteSheet("birb");
     }

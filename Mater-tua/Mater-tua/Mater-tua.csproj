@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Entities\AnimatedEntity.cs" />
+    <Compile Include="Entities\Units\Unit.cs" />
     <Compile Include="Entities\SpriteEntity.cs" />
     <Compile Include="SpriteSheet.cs" />
     <Compile Include="CustomCursor.cs" />
@@ -106,6 +108,10 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Buildings\" />
+    <Folder Include="Entities\HUD\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

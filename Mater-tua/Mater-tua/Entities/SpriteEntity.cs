@@ -16,7 +16,7 @@ public class SpriteEntity : Entity
     {
         if (assetName != "")
         {
-            _sprite = new global::SpriteSheet(assetName, sheetIndex);
+            _sprite = new SpriteSheet(assetName, sheetIndex);
         }
         else
         {

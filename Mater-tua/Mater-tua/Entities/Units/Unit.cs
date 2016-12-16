@@ -7,15 +7,21 @@ public class Unit : AnimatedEntity
 {
     protected int _hp;
     protected int _armor;
-    public enum armorType { Light, Heavy }
-    protected armorType _armorType;
     protected float _productionTime;
+    protected int _lumberCost;
+    protected int _goldCost;
     protected float _moveSpeed;
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
 
+    public enum armorType { Light, Heavy }
+    protected armorType _armorType;
+
+    public enum faction { Orc, Human, Neutral }
+    protected faction _faction;
 
     public Unit()
+        : base()
     {
 
     }
@@ -23,6 +29,16 @@ public class Unit : AnimatedEntity
     public void Update(GameTime gameTime)
     {
         this.UpdatePath();
+    }
+
+    public int LumberCost
+    {
+        get { return _lumberCost; }
+    }
+
+    public int GoldCost
+    {
+        get { return _goldCost; }
     }
 
     public int HitPoints
@@ -34,13 +50,16 @@ public class Unit : AnimatedEntity
     public int Armor
     {
         get { return _armor; }
-        set { _armor = value; }
     }
 
     public armorType ArmorType
     {
         get { return _armorType; }
-        set { _armorType = value; }
+    }
+
+    public faction Faction
+    {
+        get { return _faction; }
     }
 
     public float ProductionTime

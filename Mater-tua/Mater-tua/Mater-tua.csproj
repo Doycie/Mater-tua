@@ -59,6 +59,10 @@
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
+    <Compile Include="Entities\Units\ActualUnits\Grunt.cs" />
+    <Compile Include="Entities\Units\ActualUnits\Footman.cs" />
+    <Compile Include="Entities\Units\BasicMeleeUnit.cs" />
+    <Compile Include="Entities\Units\CombatUnit.cs" />
     <Compile Include="Entities\Units\Unit.cs" />
     <Compile Include="Entities\SpriteEntity.cs" />
     <Compile Include="SpriteSheet.cs" />

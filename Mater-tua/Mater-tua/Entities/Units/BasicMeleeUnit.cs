@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 
 class BasicMeleeUnit : CombatUnit
-{
+{//de basis voor de Footman & Grunt
+
     public BasicMeleeUnit()
         : base()
     {
@@ -16,6 +17,7 @@ class BasicMeleeUnit : CombatUnit
         _damage = 10;
         _damageType = damageType.Piercing;
         _productionTime = 600;
+        _range = 1; //melee range
         this.Reset();
     }
 

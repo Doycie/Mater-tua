@@ -7,7 +7,7 @@ using System.Collections.Generic;
 class CombatUnit : Unit
 {
     protected int _damage;
-    public enum damageType { Normal, Piercing, Siege }
+    public enum damageType { Normal, Piercing, Siege } // normal > light, Piercing > Heavy, Siege > Fortified (buildings)
     protected damageType _damageType;
     protected int _range;
 

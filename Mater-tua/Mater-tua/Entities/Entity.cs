@@ -11,7 +11,7 @@ public class Entity
     protected bool _visible;
     protected int _layer;
 
-    public void init(int layer = 0, string id = "")
+    public Entity(int layer = 0, string id = "")
     {
         this._layer = layer;
         this._id = id;

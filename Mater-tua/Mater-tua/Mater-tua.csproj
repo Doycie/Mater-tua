@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Entities\SpriteEntity.cs" />
     <Compile Include="SpriteSheet.cs" />
     <Compile Include="CustomCursor.cs" />
     <Compile Include="Data.cs" />

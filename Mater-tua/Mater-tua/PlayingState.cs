@@ -19,6 +19,7 @@ class PlayingState : GameState
     Texture2D _selectTex;
 
 
+
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -41,8 +42,9 @@ class PlayingState : GameState
 
    public  void drawHUD(SpriteBatch spriteBacth)
     {
-        _customCursor.draw(spriteBacth);
         _hudManager.draw(spriteBacth);
+        _customCursor.draw(spriteBacth);
+      
     }
 
     //Draw the level then the cursor and the slected entities 
@@ -52,11 +54,14 @@ class PlayingState : GameState
        
        
         if (_mouseReleased)
-            spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
+            DrawingHelper.DrawRectangle(new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), spriteBatch, Color.Red);
+
+        //spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
         if (_selectedEntities.Count > 0)
             foreach (Entity e in _selectedEntities)
             {
-                spriteBatch.Draw(_selectTex, new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), Color.White);
+                DrawingHelper.DrawRectangle(new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), spriteBatch, Color.Red);
+                //spriteBatch.Draw(_selectTex, new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), Color.White);
             }
     }
 
@@ -88,7 +93,7 @@ class PlayingState : GameState
             {
                 Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                 foreach (Unit e in level.entities)
-                    if ((r.Contains(e.Position)))
+                    if ((r.Contains(e.Center)))
                     {
                         _selectedEntities.Add(e);
                     }

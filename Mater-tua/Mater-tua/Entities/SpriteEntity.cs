@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 public class SpriteEntity : Entity
 {
     protected Texture2D _sprite;
-    protected Vector2 _origin;
 
     public SpriteEntity(string assetName, int layer = 0)
         : base(layer)
@@ -36,34 +35,17 @@ public class SpriteEntity : Entity
 
     public Vector2 Center
     {
-        get { return new Vector2(Width, Height) / 2; }
+        get { return new Vector2(_position.X + Width / 2, _position.Y + Height / 2); }
     }
 
     public int Width
     {
-        get { return _sprite.Width; }
+        get { return data.tSize(); }
     }
 
     public int Height
     {
-        get { return _sprite.Height; }
-    }
-
-
-    public Vector2 Origin
-    {
-        get { return _origin; }
-        set { _origin = value; }
-    }
-
-    public Rectangle BoundingBox
-    {
-        get
-        {
-            int left = (int)(Position.X - _origin.X);
-            int top = (int)(Position.Y - _origin.Y);
-            return new Rectangle(left, top, Width, Height);
-        }
+        get { return data.tSize(); }
     }
 
 }

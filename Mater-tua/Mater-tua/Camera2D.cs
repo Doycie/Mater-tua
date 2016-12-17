@@ -12,6 +12,8 @@ class Camera2D
     
     private Point _maxBounds;
 
+    private Vector2 _screenSize;
+
     //Initialize the camera on its proper position and set the origin
     public void initCamera(float scale, Vector2 position, Vector2 screenSize)
     {
@@ -20,8 +22,13 @@ class Camera2D
         //Console.WriteLine(scale);
        // Console.WriteLine(" x: " + screenSize.X /2f + " y: " + screenSize.Y/ 2f);
         _origin = new Vector3((screenSize.X ) / 2f , (screenSize.Y ) / 2f, 0.0f);
+        _screenSize = screenSize;
     }
 
+    public Vector2 getScreenSize()
+    {
+        return _screenSize;
+    }
     //Compute a matrix for the spritebatch based on all the variables
     public Matrix getMatrix()
     {

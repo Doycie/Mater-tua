@@ -12,11 +12,12 @@ public class Unit : AnimatedEntity
     protected int _lumberCost;
     protected int _goldCost;
     protected float _moveSpeed = 2.0f;
+    protected string _description;
 
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
 
-    public enum armorType { Light, Heavy }
+    public enum armorType { Light, Heavy, Fortified }
     protected armorType _armorType;
 
     public enum faction { Orc, Human, Neutral }
@@ -42,6 +43,10 @@ public class Unit : AnimatedEntity
         this.UpdatePath();
     }
 
+    public string Description
+    {
+        get { return _description; }
+    }
     public int LumberCost
     {
         get { return _lumberCost; }

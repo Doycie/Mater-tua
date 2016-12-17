@@ -74,6 +74,7 @@
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
+    <Compile Include="HudManager.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelDraw.cs" />

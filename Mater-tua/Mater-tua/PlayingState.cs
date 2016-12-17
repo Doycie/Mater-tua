@@ -12,6 +12,7 @@ class PlayingState : GameState
     private Level level;
     private List<Entity> _selectedEntities = new List<Entity>();
     CustomCursor _customCursor;
+    HudManager _hudManager;
     Vector2 _lastMousePos;
     Vector2 _currentMousePos;
     bool _mouseReleased;
@@ -22,6 +23,7 @@ class PlayingState : GameState
     public PlayingState()
     {
         _customCursor = new CustomCursor();
+        _hudManager = new HudManager();
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init("lvl.txt");
@@ -41,6 +43,7 @@ class PlayingState : GameState
     {
         level.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
+        _hudManager.draw(spriteBatch);
         if (_mouseReleased)
             spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
         if (_selectedEntities.Count > 0)

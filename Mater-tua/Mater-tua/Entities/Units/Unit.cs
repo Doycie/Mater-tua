@@ -16,7 +16,7 @@ public class Unit : AnimatedEntity
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
 
-    public enum armorType { Light, Heavy }
+    public enum armorType { Light, Heavy, Fortified }
     protected armorType _armorType;
 
     public enum faction { Orc, Human, Neutral }

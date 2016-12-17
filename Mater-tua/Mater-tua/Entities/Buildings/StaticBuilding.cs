@@ -10,15 +10,17 @@ using Microsoft.Xna.Framework.Graphics;
 class StaticBuilding : SpriteEntity
 {
     protected int _hp;
+    protected int _armor;
     protected float _BuildTime;
     protected int _lumberCost;
     protected int _goldCost;
     protected int[] _buildingSize;
     protected bool _ableToFire;
     protected bool _ableToProduce;
+    protected Unit.armorType _armorType = Unit.armorType.Fortified;
+    protected Unit.faction _faction;
+    protected CombatUnit.damageType _damageType;
 
-    public enum faction { Orc, Human, Neutral }
-    protected faction _faction;
 
     protected Texture2D _tex;
 
@@ -57,9 +59,24 @@ class StaticBuilding : SpriteEntity
         set { _hp = value; }
     }
 
-    public faction Faction
+    public int Armor
+    {
+        get { return _armor; }
+    }
+
+    public Unit.faction Faction
     {
         get { return _faction; }
+    }
+
+    public Unit.armorType ArmorType
+    {
+        get { return _armorType; }
+    }
+
+    public CombatUnit.damageType DamageType
+    {
+        get { return _damageType; }
     }
 
     public float BuildTime

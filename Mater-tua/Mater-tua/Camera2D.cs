@@ -9,7 +9,7 @@ class Camera2D
     private float _scale;
     //Vector to hold the middle of the screen
     private Vector3 _origin;
-
+    
     private Point _maxBounds;
 
     //Initialize the camera on its proper position and set the origin

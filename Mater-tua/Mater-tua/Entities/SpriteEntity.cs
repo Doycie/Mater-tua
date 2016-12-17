@@ -36,17 +36,17 @@ public class SpriteEntity : Entity
 
     public Vector2 Center
     {
-        get { return new Vector2(Width, Height) / 2; }
+        get { return new Vector2(_position.X + Width / 2, _position.Y + Height / 2); }
     }
 
     public int Width
     {
-        get { return _sprite.Width; }
+        get { return data.tSize(); }
     }
 
     public int Height
     {
-        get { return _sprite.Height; }
+        get { return data.tSize(); }
     }
 
 

@@ -12,6 +12,7 @@ class Grunt : BasicMeleeUnit
         _faction = faction.Orc;
         _position = Position;
         _sprite = GameEnvironment.getAssetManager().GetSprite("birb");
+        _description = "The first type of warriors that the Orc faction unlocks. They are trained in close combat and using an axe combined with a shield is their specialty.";
     }
 }
 

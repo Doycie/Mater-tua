@@ -11,7 +11,7 @@ class Footman : BasicMeleeUnit
     {
         _faction = faction.Human;
         _position = Position;
-        _sprite = new SpriteSheet("birb");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("birb2");
     }
 }
 

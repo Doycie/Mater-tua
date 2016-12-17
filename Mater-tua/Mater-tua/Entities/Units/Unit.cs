@@ -11,7 +11,7 @@ public class Unit : AnimatedEntity
     protected float _productionTime;
     protected int _lumberCost;
     protected int _goldCost;
-    protected float _moveSpeed =2.0f;
+    protected float _moveSpeed = 2.0f;
 
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
@@ -131,11 +131,11 @@ public class Unit : AnimatedEntity
     {
         foreach (Point p in _path)
         {
-            s.Draw(_tex, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
+            s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
         }
 
         // Console.WriteLine("SAD");
-        s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);
+        s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);
     }
 }
 

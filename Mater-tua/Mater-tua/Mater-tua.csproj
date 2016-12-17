@@ -65,7 +65,6 @@
     <Compile Include="Entities\Units\CombatUnit.cs" />
     <Compile Include="Entities\Units\Unit.cs" />
     <Compile Include="Entities\SpriteEntity.cs" />
-    <Compile Include="SpriteSheet.cs" />
     <Compile Include="CustomCursor.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DrawingHelper.cs" />

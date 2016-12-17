@@ -21,11 +21,11 @@ partial class Level
     }
 
     //Init the leve based on the width and height and then generate it based on Perlin
-    public void init(int mapWidth, int mapHeight )
+    public void init(int mapWidth, int mapHeight)
     {
         _tex = GameEnvironment.getAssetManager().GetSprite("circle");
         generateMap(mapWidth, mapHeight);
-  
+
     }
 
     //Init the level based on a level text file
@@ -40,9 +40,19 @@ partial class Level
 
         for (int i = 0; i < 20; i++)
         {
-            Unit e = new Unit();
-            e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
-            entities.Add(e);
+            if (i < 10)
+            {
+                Footman e = new Footman(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()));
+                entities.Add(e);
+            }
+            if (i >= 10)
+            {
+                Grunt e = new Grunt(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()));
+                entities.Add(e);
+            }
+            //Unit e = new Unit();
+            //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
+            //entities.Add(e);
         }
     }
 
@@ -80,7 +90,7 @@ partial class Level
         {
             for (int j = 0; j < _mapHeight; j++)
             {
-                 _mapData[i, j] = (byte)(255 * perlin.perlinNoise((float)i/_mapWidth*4, (float)j/_mapHeight*4));
+                _mapData[i, j] = (byte)(255 * perlin.perlinNoise((float)i / _mapWidth * 4, (float)j / _mapHeight * 4));
                 //Color c = getColor((byte)(255 * perlin.perlinNoise((float)i / _mapWidth, (float)j / _mapHeight)));
 
                 //for (int x = 0; x < 64; x++)
@@ -90,7 +100,7 @@ partial class Level
                 //        data[i*64+x +  (j*64 + y)*_mapWidth *64 ] = c;
                 //    }
                 //}
-               
+
             }
         }
         //_tex.SetData(data);

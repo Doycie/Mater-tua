@@ -8,15 +8,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class SpriteEntity : Entity
 {
-    protected SpriteSheet _sprite;
+    protected Texture2D _sprite;
     protected Vector2 _origin;
 
-    public SpriteEntity(string assetName, int layer = 0,  int sheetIndex = 0)
+    public SpriteEntity(string assetName, int layer = 0)
         : base(layer)
     {
         if (assetName != "")
         {
-            _sprite = new SpriteSheet(assetName, sheetIndex);
+            _sprite = GameEnvironment.getAssetManager().GetSprite(assetName); ;
         }
         else
         {
@@ -26,14 +26,10 @@ public class SpriteEntity : Entity
 
     public virtual void Draw( SpriteBatch spriteBatch)
     {
-        if (_sprite == null)
-        {
-            return;
-        }
-        _sprite.Draw(spriteBatch, this.Position, _origin - _origin/ 2.0f);
+
     }
 
-    public SpriteSheet Sprite
+    public Texture2D Sprite
     {
         get { return _sprite; }
     }

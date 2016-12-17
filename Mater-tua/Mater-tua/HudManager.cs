@@ -12,7 +12,7 @@ class HudManager
         
     public HudManager()
     {
-        _tex = GameEnvironment.getAssetManager().GetSprite("HUDsizeTest");
+        _tex = GameEnvironment.getAssetManager().GetSprite("WoodTextureTest");
     }
 
     public void draw(SpriteBatch spriteBatch)

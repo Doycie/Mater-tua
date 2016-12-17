@@ -35,23 +35,22 @@ class PlayingState : GameState
     public void update(GameTime gameTime)
     {
         level.update();
+        // GameEnvironment.getCamera().getScreenSize();
         // Console.WriteLine(mousePos);
     }
 
     //Special function to draw the HUD 
 
-   public  void drawHUD(SpriteBatch spriteBacth)
+    public void drawHUD(SpriteBatch spriteBacth)
     {
         _hudManager.draw(spriteBacth);
         _customCursor.draw(spriteBacth);
-      
     }
 
     //Draw the level then the cursor and the slected entities 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-       
        
         if (_mouseReleased)
             DrawingHelper.DrawRectangle(new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), spriteBatch, Color.Red);
@@ -68,11 +67,14 @@ class PlayingState : GameState
     //Handle the camera movement and the selecting units
     public void handleInput(InputHelper inputHelper)
     {
+
         _customCursor.updateCursorPosition(inputHelper);
         _mouseState = Mouse.GetState();
 
         _currentMousePos = _customCursor.getMousePos();
 
+
+        _hudManager.updateHandleInput(inputHelper);
         //Order a move on the selected entities
         if (inputHelper.MouseRightButtonPressed())
         {

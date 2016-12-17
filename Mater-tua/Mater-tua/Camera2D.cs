@@ -27,6 +27,7 @@ class Camera2D
 
     public Vector2 getScreenSize()
     {
+        //Console.WriteLine(_screenSize);
         return _screenSize;
     }
     //Compute a matrix for the spritebatch based on all the variables

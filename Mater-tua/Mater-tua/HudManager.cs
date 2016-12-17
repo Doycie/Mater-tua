@@ -29,10 +29,23 @@ class Button
     }
 
 }
+class HUD
+{
+    private List<Button> _buttons;
 
+    public void draw()
+    {
+        foreach (Button b in _buttons)
+        {
+            
+        }
+    }
+
+
+}
 class HudManager
 {
-    private List<Button> _buttons = new List<Button>();
+
 
     //Holds the texture for the HUD background, which is always the same while playing the game.
     private Texture2D _tex;
@@ -45,14 +58,15 @@ class HudManager
 
     public void draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_tex, new Vector2(0, 486), new Rectangle(0, 486, _tex.Width, _tex.Height), Color.White);
+        spriteBatch.Draw(_tex, new Rectangle(0, 486, _tex.Width, _tex.Height), Color.White);
+       // spriteBatch.Draw(_tex, new Vector2(0, 450), Color.White);
     }
 
     public void updateHandleInput(InputHelper inputHelper)
     {
         if (inputHelper.MouseLeftButtonPressed())
         {
-            foreach (Button b in _buttons)
+           // foreach (Button b in _buttons)
             {
                 //if (click(GameEnvironment.getCamera()))
                 //{

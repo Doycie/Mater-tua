@@ -9,6 +9,7 @@ interface GameState
     void update(GameTime gameTime);
     void draw(GameTime gameTime, SpriteBatch spriteBatch);
     void handleInput(InputHelper inputHelper);
+    void drawHUD(SpriteBatch spriteBacth);
 }
 
 
@@ -44,6 +45,14 @@ class GameStateManager : GameState
     {
         if (gameState != null)
             gameState.update(gameTime);
+    }
+
+    public void drawHUD(SpriteBatch spriteBatch)
+    {
+        if (gameState != null)
+        {
+            gameState.drawHUD(spriteBatch);
+        }
     }
 }
 

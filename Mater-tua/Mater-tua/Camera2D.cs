@@ -62,8 +62,8 @@ class Camera2D
 
 
         //TODO Only zoom when the camera is in bounds
-        if (_scale + v > 0.1f)
-            _scale = _scale + v;
+        //if (_scale + v > 0.1f)
+        //    _scale = _scale + v;
     }
 
     //Returns a rectangle properly calculated from the positon and the zoom

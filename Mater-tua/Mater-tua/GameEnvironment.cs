@@ -145,6 +145,9 @@ class GameEnvironment : Game
         spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, camera.getMatrix());
         gameStateManager.draw(gameTime, spriteBatch);
         spriteBatch.End();
+        spriteBatch.Begin();
+        gameStateManager.drawHUD(spriteBatch);
+        spriteBatch.End();
     }
 }
 

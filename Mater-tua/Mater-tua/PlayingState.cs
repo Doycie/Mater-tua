@@ -37,13 +37,20 @@ class PlayingState : GameState
         // Console.WriteLine(mousePos);
     }
 
+    //Special function to draw the HUD 
+
+   public  void drawHUD(SpriteBatch spriteBacth)
+    {
+        _customCursor.draw(spriteBacth);
+        _hudManager.draw(spriteBacth);
+    }
 
     //Draw the level then the cursor and the slected entities 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-        _customCursor.draw(spriteBatch);
-        _hudManager.draw(spriteBatch);
+       
+       
         if (_mouseReleased)
             spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
         if (_selectedEntities.Count > 0)

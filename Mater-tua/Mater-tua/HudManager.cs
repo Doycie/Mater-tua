@@ -17,7 +17,7 @@ class HudManager
 
     public void draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_tex, new Vector2(0 + GameEnvironment.getCamera().getView().X, 486 + GameEnvironment.getCamera().getView().Y), new Rectangle(0, 486, _tex.Width, _tex.Height), Color.White);
+        spriteBatch.Draw(_tex, new Vector2(0 , 486), new Rectangle(0, 486, _tex.Width, _tex.Height), Color.White);
     }
 
 }

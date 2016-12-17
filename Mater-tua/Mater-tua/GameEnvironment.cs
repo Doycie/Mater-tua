@@ -109,8 +109,8 @@ class GameEnvironment : Game
         DrawingHelper.Initialize(this.GraphicsDevice);
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        screen = new Point(1440, 825);
-        windowSize = new Point(1024, 586);
+        screen = new Point(1440, 810);
+        windowSize = new Point(1024, 576);
         FullScreen = false;
 
         gameStateManager.changeGameState();

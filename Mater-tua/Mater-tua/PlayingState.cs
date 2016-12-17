@@ -93,7 +93,7 @@ class PlayingState : GameState
             {
                 Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                 foreach (Unit e in level.entities)
-                    if ((r.Contains(e.Position)))
+                    if ((r.Contains(e.Center)))
                     {
                         _selectedEntities.Add(e);
                     }

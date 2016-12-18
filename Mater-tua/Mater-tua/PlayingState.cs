@@ -74,76 +74,81 @@ class PlayingState : GameState
         _currentMousePos = _customCursor.getMousePos();
 
 
-        _hudManager.updateHandleInput(inputHelper);
-        //Order a move on the selected entities
-        if (inputHelper.MouseRightButtonPressed())
+        _hudManager.updateHandleInput(inputHelper, _selectedEntities);
+
+        if (!_hudManager.HUDSize().Contains(inputHelper.realMousePosition))
         {
-            if (_selectedEntities.Count > 0)
+
+            //Order a move on the selected entities
+            if (inputHelper.MouseRightButtonPressed())
             {
-                foreach (Unit e in _selectedEntities)
+                if (_selectedEntities.Count > 0)
                 {
-                   
-                    e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                    foreach (Unit e in _selectedEntities)
+                    {
+
+                        e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                    }
                 }
             }
-        }
 
-        //Drag the selection box to include multiple entities
-        if (!inputHelper.MouseLeftButtonDown())
-        {
-            if (_mouseReleased)
+            //Drag the selection box to include multiple entities
+            if (!inputHelper.MouseLeftButtonDown())
             {
-                Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
-                foreach (Unit e in level.entities)
-                    if ((r.Contains(e.Center)))
-                    {
-                        _selectedEntities.Add(e);
-                    }
-            }
-            _mouseReleased = false;
-        }
-
-        //Check if the mouse is pressed for the selection
-        if (inputHelper.MouseLeftButtonDown())
-        {
-            if (_mouseReleased == false)
-            {
-                _mouseReleased = true;
-                _lastMousePos = _customCursor.getMousePos();
-            }
-
-
-        }
-
-        //One click on a unit to select/deselect them
-        if (inputHelper.MouseLeftButtonPressed())
-        {
-
-            Vector2 pos = _customCursor.getMousePos();
-
-            bool clickedOnEntity = false;
-            foreach (Unit e in level.entities)
-            {
-                if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64).Contains(pos)))
+                if (_mouseReleased)
                 {
-                    clickedOnEntity = true;
-                    if (inputHelper.IsKeyDown(Keys.LeftControl))
-                    {
-                        if (!_selectedEntities.Contains(e))
+                    Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
+                    foreach (Unit e in level.entities)
+                        if ((r.Contains(e.Center)))
                         {
                             _selectedEntities.Add(e);
                         }
-                    }
-                    else
+                }
+                _mouseReleased = false;
+            }
+
+            //Check if the mouse is pressed for the selection
+            if (inputHelper.MouseLeftButtonDown())
+            {
+                if (_mouseReleased == false)
+                {
+                    _mouseReleased = true;
+                    _lastMousePos = _customCursor.getMousePos();
+                }
+
+
+            }
+
+            //One click on a unit to select/deselect them
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+
+                Vector2 pos = _customCursor.getMousePos();
+
+                bool clickedOnEntity = false;
+                foreach (Unit e in level.entities)
+                {
+                    if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64).Contains(pos)))
                     {
-                        _selectedEntities.Clear();
-                        _selectedEntities.Add(e);
+                        clickedOnEntity = true;
+                        if (inputHelper.IsKeyDown(Keys.LeftControl))
+                        {
+                            if (!_selectedEntities.Contains(e))
+                            {
+                                _selectedEntities.Add(e);
+                            }
+                        }
+                        else
+                        {
+                            _selectedEntities.Clear();
+                            _selectedEntities.Add(e);
+                        }
                     }
                 }
-            }
-            if (!clickedOnEntity)
-            {
-                _selectedEntities.Clear();
+                if (!clickedOnEntity)
+                {
+                    _selectedEntities.Clear();
+                }
             }
         }
 
@@ -208,6 +213,9 @@ class PlayingState : GameState
             GameEnvironment.getCamera().zoom(0.04f);
         }
         _previousScrollValue = _mouseState.ScrollWheelValue;
+
+
+
     }
 
 

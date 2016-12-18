@@ -26,5 +26,28 @@ class BasicMeleeUnit : CombatUnit
         _hp = 60;
     }
 
+    public void setFaction(faction e)
+    {
+
+        
+        if(_faction != e)
+        {
+           
+            _faction = e;
+            if (_faction == faction.Human)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("birb2");
+            }
+            if (_faction == faction.Orc)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("birb");
+            }
+
+           
+        }
+
+        
+    }
+
 }
 

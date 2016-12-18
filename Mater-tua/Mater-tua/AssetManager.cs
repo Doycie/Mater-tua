@@ -55,7 +55,7 @@ public class AssetManager
         get { return contentManager; }
     }
     
-    public void RandomiseBGM()
+    public void RandomiseBGM() // Randomly selects one of the BGM tracks and plays it.
     {
         int trackNO = GameEnvironment.getRandom().Next(0, 3);
 

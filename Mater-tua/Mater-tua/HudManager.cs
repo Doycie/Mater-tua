@@ -98,7 +98,7 @@ class HudManager
 
     public void draw(SpriteBatch spriteBatch)
     {
-        for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X; i += _tex.Width)
+        for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X; i += _tex.Width) // repeats the HUD texture till edge of screen
             spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
 
         // spriteBatch.Draw(_tex, new Vector2(0, 450), Color.White);

@@ -48,7 +48,7 @@ class GameEnvironment : Game
         assetManager = new AssetManager(Content,graphics);
         gameSettingsManager = new GameSettingsManager();
 
-        this.playBGM();
+        assetManager.RandomiseBGM();
        
     }
     public bool FullScreen
@@ -60,13 +60,7 @@ class GameEnvironment : Game
         }
     }
 
-    protected void playBGM()
-    {
-        assetManager.RandomiseBGM();
-    }
-
-
-    public void ApplyResolutionSettings(bool fullScreen = false)
+       public void ApplyResolutionSettings(bool fullScreen = false)
     {
         if (!fullScreen)
         {
@@ -143,8 +137,8 @@ class GameEnvironment : Game
         HandleInput();
         gameStateManager.update(gameTime);
 
-        if (MediaPlayer.State == MediaState.Stopped)
-            this.playBGM();
+        if (MediaPlayer.State == MediaState.Stopped) 
+            assetManager.RandomiseBGM();
     }
 
     protected override void Draw(GameTime gameTime)

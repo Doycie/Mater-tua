@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 
 class Button
@@ -128,7 +129,7 @@ class HudManager
     {
         int j = _hud.update(inputHelper);
 
-        foreach (BasicMeleeUnit i in selectedEntities)
+        foreach (BasicMeleeUnit i in selectedEntities.OfType<BasicMeleeUnit>())
         {
             
             if (j > 0)

@@ -54,4 +54,23 @@ public class AssetManager
     {
         get { return contentManager; }
     }
+    
+    public void RandomiseBGM()
+    {
+        int trackNO = GameEnvironment.getRandom().Next(0, 3);
+
+        switch(trackNO)
+        {
+            default:
+                this.PlayMusic("Music/MaterTua_BGM_1", false);
+                break;
+            case 1:
+                this.PlayMusic("Music/MaterTua_BGM_1", false);
+                break;
+            case 2:
+                this.PlayMusic("Music/MaterTua_BGM_2", false);
+                break;
+        }
+    }
+    
 }

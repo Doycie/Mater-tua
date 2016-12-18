@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 class GameEnvironment : Game
 {
@@ -10,7 +11,7 @@ class GameEnvironment : Game
     protected InputHelper inputHelper;
     protected Point windowSize;
     protected Matrix spriteScale;
-
+    
     protected static Camera2D camera;
     protected static Point screen;
     protected static GameStateManager gameStateManager;
@@ -47,6 +48,7 @@ class GameEnvironment : Game
         assetManager = new AssetManager(Content,graphics);
         gameSettingsManager = new GameSettingsManager();
 
+        this.playBGM();
        
     }
     public bool FullScreen
@@ -58,7 +60,11 @@ class GameEnvironment : Game
         }
     }
 
-  
+    protected void playBGM()
+    {
+        assetManager.RandomiseBGM();
+    }
+
 
     public void ApplyResolutionSettings(bool fullScreen = false)
     {
@@ -137,6 +143,8 @@ class GameEnvironment : Game
         HandleInput();
         gameStateManager.update(gameTime);
 
+        if (MediaPlayer.State == MediaState.Stopped)
+            this.playBGM();
     }
 
     protected override void Draw(GameTime gameTime)

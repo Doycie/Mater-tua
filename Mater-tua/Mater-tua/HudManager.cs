@@ -8,30 +8,47 @@ class Button
     private Rectangle _position;
     private Texture2D _tex;
     private Texture2D _texPressed;
-    private bool pressed;
+    private bool _pressed;
 
+    public Rectangle getPosition()
+    {
+        return _position;
+    }
     public Button(Rectangle position, Texture2D tex, Texture2D texPressed)
     {
         _texPressed = texPressed;
         _position = position;
         _tex = tex;
     }
-
-    public bool click(Point p)
+    
+    public bool update(InputHelper inputHelper)
     {
-        //Console.WriteLine("ASDSADSAD");
-        if (_position.Contains(p))
+        _position.Y = (int) GameEnvironment.getCamera().getScreenSize().Y - 128;
+        bool ret = false;
+        if (_position.Contains(inputHelper.realMousePosition))
         {
-            //Console.WriteLine("CLICKED");
-            pressed = true;
-            return true;
+            if (!inputHelper.MouseLeftButtonDown() && _pressed)
+            {
+                ret = true;
+            }
+
+            if (inputHelper.MouseLeftButtonDown())
+            {
+                _pressed = true;
+            }else
+            {
+                _pressed = false;
+            }
         }
-        pressed = false;
-        return false;
+        else
+        {
+            _pressed = false;
+        }
+        return ret;
     }
     public void draw(SpriteBatch s)
     {
-        if(pressed)
+        if(_pressed)
             s.Draw(_texPressed, _position, Color.White);
         else
             s.Draw(_tex, _position, Color.White);
@@ -52,21 +69,20 @@ class HUD
         }
     }
 
-    public void update(InputHelper inputHelper)
+    public int update(InputHelper inputHelper)
     {
-
-       if (inputHelper.MouseLeftButtonPressed())
+        int i = 0;
+        foreach(Button b in _buttons)
         {
-           
-            foreach (Button b in _buttons)
+            i++;
+            if (b.update(inputHelper))
             {
-                // Console.WriteLine(new Point((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y));
-                if(b.click(new Point((int)inputHelper.realMousePosition.X, (int)inputHelper.realMousePosition.Y)))
-                {
-                   // Console.WriteLine("ASD");
-                }
+
+                return i;
+
             }
         }
+        return 0;
     }
 }
 
@@ -89,11 +105,13 @@ class HudManager
     //Holds the texture for the HUD background, which is always the same while playing the game.
     private Texture2D _tex;
     private HUD _hud = new HudUnit();
+    private Rectangle _hudSize;
 
     public HudManager()
     {
-      
+     
         _tex = GameEnvironment.getAssetManager().GetSprite("WoodTextureTest");
+        _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, 328 + 100, _tex.Height);
     }
 
     public void draw(SpriteBatch spriteBatch)
@@ -106,11 +124,36 @@ class HudManager
         _hud.draw(spriteBatch);
     }
 
-    public void updateHandleInput(InputHelper inputHelper)
+    public void updateHandleInput(InputHelper inputHelper, List<Entity> selectedEntities)
     {
-       
-        _hud.update(inputHelper);
+        int j = _hud.update(inputHelper);
 
+        foreach (BasicMeleeUnit i in selectedEntities)
+        {
+            
+            if (j > 0)
+            {
+                
+                if (j == 1)
+                {
+                   
+                    i.setFaction(Unit.faction.Human);
+                }
+                if (j == 2)
+                {
+                   
+                    i.setFaction(Unit.faction.Orc);
+                }
+                if (j == 3)
+                    i.setFaction(Unit.faction.Neutral);
+                
+            }
+        }
+    }
+
+    public  Rectangle HUDSize()
+    {
+        return _hudSize;
     }
 
 }

@@ -17,7 +17,7 @@ class PlayingState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
-
+    
 
 
     //Construct a new state and set the level and all the needed variables
@@ -165,6 +165,24 @@ class PlayingState : GameState
         if (inputHelper.IsKeyDown(Keys.S))
         {
             y++;
+        }
+
+        // Mouse moves camera, +/- 20 for ease of use
+        if (inputHelper.realMousePosition.Y <= 0 + 20)
+        {
+            y--;
+        }
+        if (inputHelper.realMousePosition.X <= 0 + 20)
+        {
+            x--;
+        }
+        if (inputHelper.realMousePosition.Y >= GameEnvironment.getCamera().getScreenSize().Y - 20)
+        {
+            y++;
+        }
+        if (inputHelper.realMousePosition.X >= GameEnvironment.getCamera().getScreenSize().X - 20)
+        {
+            x++;
         }
         Vector2 camspeedmultiplier = new Vector2(1.0f,1.0f);
         if (inputHelper.IsKeyDown(Keys.LeftShift))

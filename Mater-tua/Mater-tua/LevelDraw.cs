@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
@@ -38,7 +39,7 @@ partial class Level
 
         s.Draw(_tex, new Rectangle(0, 500, 4096, 6), Color.Blue);
         //Draw all the entities in the level list
-        foreach (Unit e in entities)
+        foreach (SpriteEntity e in entities)
         {
             e.Draw(s);
         }

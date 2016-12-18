@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 class PlayingState : GameState
@@ -57,9 +58,9 @@ class PlayingState : GameState
 
         //spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
         if (_selectedEntities.Count > 0)
-            foreach (Entity e in _selectedEntities)
+            foreach (SpriteEntity e in _selectedEntities)
             {
-                DrawingHelper.DrawRectangle(new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), spriteBatch, Color.Red);
+                DrawingHelper.DrawRectangle(new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()), spriteBatch, Color.Red);
                 //spriteBatch.Draw(_selectTex, new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), Color.White);
             }
     }
@@ -80,7 +81,7 @@ class PlayingState : GameState
         {
             if (_selectedEntities.Count > 0)
             {
-                foreach (Unit e in _selectedEntities)
+                foreach (Unit e in _selectedEntities.OfType<Unit>())
                 {
                    
                     e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
@@ -94,7 +95,7 @@ class PlayingState : GameState
             if (_mouseReleased)
             {
                 Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
-                foreach (Unit e in level.entities)
+                foreach (SpriteEntity e in level.entities)
                     if ((r.Contains(e.Center)))
                     {
                         _selectedEntities.Add(e);
@@ -122,7 +123,7 @@ class PlayingState : GameState
             Vector2 pos = _customCursor.getMousePos();
 
             bool clickedOnEntity = false;
-            foreach (Unit e in level.entities)
+            foreach (Unit e in level.entities.OfType<Unit>())
             {
                 if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64).Contains(pos)))
                 {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Unit : AnimatedEntity
 {
-
+    protected int _maxhp;
     protected int _hp;
     protected int _armor;
     protected float _productionTime;
@@ -55,6 +55,11 @@ public class Unit : AnimatedEntity
     public int GoldCost
     {
         get { return _goldCost; }
+    }
+
+    public int MaxHitPoints
+    {
+        get { return _maxhp; }
     }
 
     public int HitPoints

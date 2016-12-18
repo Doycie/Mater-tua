@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -54,6 +55,11 @@ partial class Level
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
         }
+        Farm orcFarm = new Farm(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), Unit.faction.Orc);
+        entities.Add(orcFarm);
+        Farm humanFarm = new Farm(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), Unit.faction.Human);
+        entities.Add(humanFarm);
+
     }
 
     //Load the map from the text file into the mapdata array

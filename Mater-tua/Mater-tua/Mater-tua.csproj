@@ -59,6 +59,7 @@
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
+    <Compile Include="Entities\Buildings\ActualBuildings\Farm.cs" />
     <Compile Include="Entities\Buildings\ProductionBuilding.cs" />
     <Compile Include="Entities\Buildings\StaticBuilding.cs" />
     <Compile Include="Entities\Units\ActualUnits\Grunt.cs" />

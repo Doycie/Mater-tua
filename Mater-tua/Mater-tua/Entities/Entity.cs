@@ -15,9 +15,19 @@ public class Entity
         Reset();
     }
 
+    public virtual void Update()
+    {
+
+    }
+    
     public virtual void Reset()
     {
         _position = Vector2.Zero;
+    }
+
+    public virtual void Draw(SpriteBatch spriteBatch)
+    {
+
     }
 
     public virtual Vector2 Position

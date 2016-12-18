@@ -9,38 +9,34 @@ using Microsoft.Xna.Framework.Graphics;
 
 class StaticBuilding : SpriteEntity
 {
+    protected int _maxhp;
     protected int _hp;
     protected int _armor;
-    protected float _BuildTime;
+    protected int _damage;
+    protected float _buildTime;
     protected int _lumberCost;
     protected int _goldCost;
-    protected int[] _buildingSize;
-    protected bool _ableToFire;
     protected bool _ableToProduce;
     protected Unit.armorType _armorType = Unit.armorType.Fortified;
     protected Unit.faction _faction;
     protected CombatUnit.damageType _damageType;
+    protected string _description;
 
 
     protected Texture2D _tex;
 
-    public StaticBuilding(string assetName, int layer = 0) : base(assetName, layer)
+    public StaticBuilding() : base("", 0)
     {
+    }
+
+    public string Description
+    {
+        get { return _description; }
     }
 
     public bool AbleToProduce
     {
         get { return _ableToProduce; }
-    }
-
-    public bool AbleToFire
-    {
-        get { return _ableToFire; }
-    }
-
-    public int[] BuildingSize
-    {
-        get { return _buildingSize; }
     }
 
     public int LumberCost
@@ -53,6 +49,10 @@ class StaticBuilding : SpriteEntity
         get { return _goldCost; }
     }
 
+    public int MaxHitPoints
+    {
+        get { return _maxhp; }
+    }
     public int HitPoints
     {
         get { return _hp; }
@@ -81,10 +81,9 @@ class StaticBuilding : SpriteEntity
 
     public float BuildTime
     {
-        get { return _BuildTime; }
-        set { _BuildTime = value; }
+        get { return _buildTime; }
+        set { _buildTime = value; }
     }
 
-    
 }
 

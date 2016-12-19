@@ -9,9 +9,10 @@ class Grunt : BasicMeleeUnit
     public Grunt(Vector2 Position)
         : base()
     {
+        _size = 1;
         _faction = faction.Orc;
         _position = Position;
-        _sprite = GameEnvironment.getAssetManager().GetSprite("birb");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Orc");
         _description = "The first type of warriors that the Orc faction unlocks. They are trained in close combat and using an axe combined with a shield is their specialty.";
     }
 }

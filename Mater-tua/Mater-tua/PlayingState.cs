@@ -17,7 +17,7 @@ class PlayingState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
-    
+
 
 
     //Construct a new state and set the level and all the needed variables
@@ -51,7 +51,7 @@ class PlayingState : GameState
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-       
+
         if (_mouseReleased)
             DrawingHelper.DrawRectangle(new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), spriteBatch, Color.Red);
 
@@ -79,15 +79,37 @@ class PlayingState : GameState
         if (!_hudManager.HUDSize().Contains(inputHelper.realMousePosition))
         {
 
-            //Order a move on the selected entities
+            //Make an order on th selected units
             if (inputHelper.MouseRightButtonPressed())
             {
                 if (_selectedEntities.Count > 0)
                 {
                     foreach (Unit e in _selectedEntities)
                     {
-
-                        e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                        if (e.Faction == Unit.faction.Human)
+                        {
+                            Point pos = new Point((int)_currentMousePos.X , (int)_currentMousePos.Y );
+                            bool attack = false;
+                            foreach (Unit g in level.entities)
+                            {
+                                if (g.Faction == Unit.faction.Orc)
+                                {
+                                   
+                                    if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, 64, 64).Contains(pos)))
+                                    {
+                                        Console.WriteLine("CHAARARRGGEEE   ");
+                                        attack = true;
+                                        (e as CombatUnit).orderAttack(g);
+                                        break;
+                                    }
+                                }
+                            }
+                            if (!attack)
+                            {
+                                e.removeTarget();
+                                e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                            }
+                        }
                     }
                 }
             }
@@ -189,10 +211,10 @@ class PlayingState : GameState
         {
             x++;
         }
-        Vector2 camspeedmultiplier = new Vector2(1.0f,1.0f);
+        Vector2 camspeedmultiplier = new Vector2(1.0f, 1.0f);
         if (inputHelper.IsKeyDown(Keys.LeftShift))
         {
-            camspeedmultiplier = new Vector2(2.0f,2.0f);
+            camspeedmultiplier = new Vector2(2.0f, 2.0f);
         }
         //Simple camera movement
         Vector2 mov = new Vector2(x, y);

@@ -45,6 +45,7 @@ public class AssetManager
     //Play music from file
     public void PlayMusic(string assetName, bool repeat = true)
     {
+        MediaPlayer.Volume = 0.2f;
         MediaPlayer.IsRepeating = repeat;
         MediaPlayer.Play(contentManager.Load<Song>(assetName));
     }

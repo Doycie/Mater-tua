@@ -111,7 +111,11 @@ class HudManager
     {
      
         _tex = GameEnvironment.getAssetManager().GetSprite("WoodTextureTest");
-        _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, 328 + 100, _tex.Height);
+        _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
+    }
+    public void resizeHUD()
+    {
+        _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
     }
 
     public void draw(SpriteBatch spriteBatch)
@@ -126,6 +130,7 @@ class HudManager
 
     public void updateHandleInput(InputHelper inputHelper, List<Entity> selectedEntities)
     {
+        resizeHUD();
         int j = _hud.update(inputHelper);
 
         foreach (BasicMeleeUnit i in selectedEntities)

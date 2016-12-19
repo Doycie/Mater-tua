@@ -42,12 +42,12 @@ partial class Level
         {
             if (i < 10)
             {
-                Footman e = new Footman(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()));
+                Footman e = new Footman(new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);
             }
             if (i >= 10)
             {
-                Grunt e = new Grunt(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()));
+                Grunt e = new Grunt(new Vector2((GameEnvironment.getRandom().Next(10)+10) * data.tSize(), (GameEnvironment.getRandom().Next(10)+10) * data.tSize()));
                 entities.Add(e);
             }
             //Unit e = new Unit();

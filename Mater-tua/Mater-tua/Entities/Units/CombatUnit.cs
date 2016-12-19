@@ -44,7 +44,7 @@ class CombatUnit : Unit
                 isAttacking--;
                 if (isAttacking <0)
                 {
-                    (_target as Unit).hurt(_damage);
+                    (_target as BuildingAndUnit).hurt(_damage);
                 }
             }
 
@@ -58,10 +58,10 @@ class CombatUnit : Unit
         base.Update();
     }
 
-    public void orderAttack(Unit e)
+    public void orderAttack(BuildingAndUnit e)
     {
         _target = e;
-        orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y /data.tSize()));
+        orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y / data.tSize()));
 
     }
     

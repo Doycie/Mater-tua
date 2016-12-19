@@ -96,11 +96,11 @@ class PlayingState : GameState
                         {
                             Point pos = new Point((int)_currentMousePos.X , (int)_currentMousePos.Y );
                             bool attack = false;
-                            foreach (Unit g in level.entities.OfType<Unit>())
+                            foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
                             {
                                 if (g.Faction == BuildingAndUnit.faction.Orc)
                                 {
-                                    if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, 64, 64).Contains(pos)))
+                                    if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * 64, g.Size * 64).Contains(pos)))
                                     {
                                         Console.WriteLine("CHAARARRGGEEE   ");
                                         attack = true;

@@ -10,6 +10,7 @@ class BasicMeleeUnit : CombatUnit
     public BasicMeleeUnit()
         : base()
     {
+        _maxhp = 60;
         _armor = 2;
         _armorType = armorType.Light;
         _goldCost = 400;
@@ -18,12 +19,13 @@ class BasicMeleeUnit : CombatUnit
         _damageType = damageType.Piercing;
         _productionTime = 600;
         _range = 1; //melee range
+        
         this.Reset();
     }
 
     public override void Reset()
     {
-        _hp = 60;
+        _hp = _maxhp;
     }
 
     public void setFaction(faction e)

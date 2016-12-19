@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 class ProductionBuilding : StaticBuilding
 {
-    public ProductionBuilding(string assetName, int layer = 0) : base(assetName, layer)
+    public ProductionBuilding(string assetName, int layer = 0) : base()
     {
-        base._BuildTime = 1000;
+        base._buildTime = 1000;
         base._faction = Unit.faction.Human;
         base._goldCost = 500;
         base._lumberCost = 500;

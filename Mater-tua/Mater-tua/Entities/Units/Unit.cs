@@ -31,6 +31,13 @@ public class Unit : AnimatedEntity
     {
 
     }
+    public void StopMove()
+    {
+        while (_path.Count > 1)
+        {
+            _path.RemoveAt(1);
+        }
+    }
 
     public void init(Vector2 pos, string tex)
     {
@@ -108,27 +115,27 @@ public class Unit : AnimatedEntity
 
     private void UpdatePath()
     {
-       // Console.WriteLine(_path.Count);
+        // Console.WriteLine(_path.Count);
         if (_path.Count > 0)
         {
-            if (_path[0].X * 64  < (_position.X ))
+            if (_path[0].X * 64 < (_position.X))
             {
                 _position.X -= _moveSpeed;
             }
-            else if (_path[0].X * 64 > (_position.X ))
+            else if (_path[0].X * 64 > (_position.X))
             {
                 _position.X += _moveSpeed;
             }
-            if (_path[0].Y * 64< (_position.Y ))
+            if (_path[0].Y * 64 < (_position.Y))
             {
                 _position.Y -= _moveSpeed;
             }
-            else if (_path[0].Y * 64> (_position.Y ))
+            else if (_path[0].Y * 64 > (_position.Y))
             {
                 _position.Y += _moveSpeed;
             }
 
-            if (new Point((int)(_position.X  ), (int)(_position.Y)) == new Point( _path[0].X * 64, _path[0].Y * 64))
+            if (new Point((int)(_position.X), (int)(_position.Y)) == new Point(_path[0].X * 64, _path[0].Y * 64))
             {
                 _path.RemoveAt(0);
             }
@@ -142,7 +149,7 @@ public class Unit : AnimatedEntity
 
     public void orderMove(Point target)
     {
-       
+
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
     }
 

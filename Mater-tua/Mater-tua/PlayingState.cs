@@ -20,6 +20,8 @@ class PlayingState : GameState
     Texture2D _selectTex;
 
 
+
+
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -90,11 +92,10 @@ class PlayingState : GameState
                         {
                             Point pos = new Point((int)_currentMousePos.X , (int)_currentMousePos.Y );
                             bool attack = false;
-                            foreach (Unit g in level.entities)
+                            foreach (Unit g in level.entities.OfType<Unit>())
                             {
                                 if (g.Faction == Unit.faction.Orc)
                                 {
-                                   
                                     if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, 64, 64).Contains(pos)))
                                     {
                                         Console.WriteLine("CHAARARRGGEEE   ");

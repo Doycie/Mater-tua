@@ -38,7 +38,7 @@ class GameEnvironment : Game
         Content.RootDirectory = "Content";
 
        // IsMouseVisible = true;
-
+        
         inputHelper = new InputHelper();
         camera = new Camera2D();
 

@@ -6,10 +6,7 @@ using System.Collections.Generic;
 
 class CombatUnit : Unit
 {
-    protected int _damage;
-    public enum damageType { Normal, Piercing, Siege } // normal > light, Piercing > Heavy, Siege > Fortified (buildings)
-    protected damageType _damageType;
-    protected int _range;
+
     protected int _attackCooldown;
     protected int isAttacking;
 
@@ -19,20 +16,6 @@ class CombatUnit : Unit
 
     }
 
-    public int Damage
-    {
-        get { return _damage; }
-    }
-
-    public damageType DamageType
-    {
-        get { return _damageType; }
-    }
-
-    public int Range
-    {
-        get { return _range; }
-    }
 
     public override void Draw(SpriteBatch s)
     {
@@ -61,7 +44,7 @@ class CombatUnit : Unit
                 isAttacking--;
                 if (isAttacking <0)
                 {
-                    (_target as Unit).hurt(_damage);
+                    (_target as BuildingAndUnit).hurt(_damage);
                 }
             }
 
@@ -75,10 +58,10 @@ class CombatUnit : Unit
         base.Update();
     }
 
-    public void orderAttack(Unit e)
+    public void orderAttack(BuildingAndUnit e)
     {
         _target = e;
-        orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y /data.tSize()));
+        orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y / data.tSize()));
 
     }
     

@@ -55,9 +55,11 @@ class Button
             s.Draw(_tex, _position, Color.White);
     }
 }
+
 class HUD
 {
     protected List<Button> _buttons;
+
     public HUD()
     {
 
@@ -99,9 +101,10 @@ class HudUnit : HUD
     }
 
 }
+
+
 class HudManager
 {
-
 
     //Holds the texture for the HUD background, which is always the same while playing the game.
     private Texture2D _tex;
@@ -110,7 +113,6 @@ class HudManager
 
     public HudManager()
     {
-     
         _tex = GameEnvironment.getAssetManager().GetSprite("WoodTextureTest");
         _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
     }
@@ -162,4 +164,40 @@ class HudManager
         return _hudSize;
     }
 
+}
+
+class MenuHUD
+{
+
+    private Texture2D _tex;
+    private HUD _hudmenu = new HudUnit();
+    private Rectangle _hudSize;
+
+
+    public MenuHUD()
+    {
+        _tex = GameEnvironment.getAssetManager().GetSprite("WoodTextureTest");
+        _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
+    }
+    public void resizeHUD()
+    {
+        _hudSize = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
+    }
+
+    public void draw(SpriteBatch spriteBatch)
+    {
+        for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X; i += _tex.Width) // repeats the HUD texture till edge of screen
+            spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
+
+        // spriteBatch.Draw(_tex, new Vector2(0, 450), Color.White);
+
+        _hudmenu.draw(spriteBatch);
+    }
+
+    public void updateHandleInput(InputHelper inputHelper, List<Entity> selectedEntities)
+    {
+        resizeHUD();
+        int j = _hudmenu.update(inputHelper);
+
+    }
 }

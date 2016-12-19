@@ -21,7 +21,7 @@ class PlayingState : GameState
 
     private bool menu = false;
 
-
+    
     public bool menuState()
     {
         return menu;
@@ -47,10 +47,10 @@ class PlayingState : GameState
 
     //Special function to draw the HUD 
 
-    public void drawHUD(SpriteBatch spriteBacth)
+    public void drawHUD(SpriteBatch spriteBatch)
     {
-        _hudManager.draw(spriteBacth);
-        _customCursor.draw(spriteBacth);
+        _hudManager.draw(spriteBatch);
+        _customCursor.draw(spriteBatch);
     }
 
     //Draw the level then the cursor and the slected entities 

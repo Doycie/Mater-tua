@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 class Farm : StaticBuilding
 {// de basis voor de orc/human farms
-    public Farm(Vector2 position, Unit.faction faction)
+    public Farm(Vector2 position, faction faction)
         : base()
     {
         _size = 2;
@@ -17,15 +17,16 @@ class Farm : StaticBuilding
         _goldCost = 400;
         _buildTime = 1000;
         _armor = 0;
+        _ableToProduce = false;
         this.Reset();
 
-        if (_faction == Unit.faction.Human)
+        if (_faction == faction.Human)
         {
             _description = "This is where food for the army is produced. You must produce enough food for all Units otherwise they will die off.";
             _sprite = GameEnvironment.getAssetManager().GetSprite("HumanFarm");
         }
 
-        if (_faction == Unit.faction.Orc)
+        if (_faction == faction.Orc)
         {
             _description = "Farms produce the grain and animals needed to keep the army well fed. You must produce enough food to supply all Orcs you control.";
             _sprite = GameEnvironment.getAssetManager().GetSprite("OrcFarm");

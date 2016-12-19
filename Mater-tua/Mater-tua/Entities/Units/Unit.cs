@@ -3,28 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-public class Unit : AnimatedEntity
+public class Unit : BuildingAndUnit
 {
-    protected Entity _target;
-    protected int _maxhp;
-    protected int _hp;
-    protected int _armor;
     protected float _productionTime;
-    protected int _lumberCost;
-    protected int _goldCost;
     protected float _moveSpeed = 2.0f;
-    protected string _description;
+
 
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
-
-    public enum armorType { Light, Heavy, Fortified }
-    protected armorType _armorType;
-
-    public enum faction { Orc, Human, Neutral }
-    protected faction _faction;
-
-    protected Texture2D _tex;
+    
 
     public Unit()
         : base()
@@ -42,58 +29,17 @@ public class Unit : AnimatedEntity
     public void init(Vector2 pos, string tex)
     {
         _position = pos;
-        _tex = GameEnvironment.getAssetManager().GetSprite(tex);
+        _sprite = GameEnvironment.getAssetManager().GetSprite(tex);
     }
 
-    public void hurt(int a)
-    {
-        _hp -= a;
-    }
-    public virtual void Update()
+
+    public override void Update()
     {
 
         this.UpdatePath();
     }
 
-    public string Description
-    {
-        get { return _description; }
-    }
-    public int LumberCost
-    {
-        get { return _lumberCost; }
-    }
 
-    public int GoldCost
-    {
-        get { return _goldCost; }
-    }
-
-    public int MaxHitPoints
-    {
-        get { return _maxhp; }
-    }
-
-    public int HitPoints
-    {
-        get { return _hp; }
-        set { _hp = value; }
-    }
-
-    public int Armor
-    {
-        get { return _armor; }
-    }
-
-    public armorType ArmorType
-    {
-        get { return _armorType; }
-    }
-
-    public faction Faction
-    {
-        get { return _faction; }
-    }
 
     public float ProductionTime
     {
@@ -141,10 +87,6 @@ public class Unit : AnimatedEntity
             }
 
         }
-    }
-    public void removeTarget()
-    {
-        _target = null;
     }
 
     public void orderMove(Point target)

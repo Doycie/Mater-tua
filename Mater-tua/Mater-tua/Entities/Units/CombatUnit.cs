@@ -6,10 +6,7 @@ using System.Collections.Generic;
 
 class CombatUnit : Unit
 {
-    protected int _damage;
-    public enum damageType { Normal, Piercing, Siege } // normal > light, Piercing > Heavy, Siege > Fortified (buildings)
-    protected damageType _damageType;
-    protected int _range;
+
     protected int _attackCooldown;
     protected int isAttacking;
 
@@ -19,20 +16,6 @@ class CombatUnit : Unit
 
     }
 
-    public int Damage
-    {
-        get { return _damage; }
-    }
-
-    public damageType DamageType
-    {
-        get { return _damageType; }
-    }
-
-    public int Range
-    {
-        get { return _range; }
-    }
 
     public override void Draw(SpriteBatch s)
     {

@@ -92,13 +92,13 @@ class PlayingState : GameState
                 {
                     foreach (Unit e in _selectedEntities.OfType<Unit>())
                     {
-                        if (e.Faction == Unit.faction.Human)
+                        if (e.Faction == BuildingAndUnit.faction.Human)
                         {
                             Point pos = new Point((int)_currentMousePos.X , (int)_currentMousePos.Y );
                             bool attack = false;
                             foreach (Unit g in level.entities.OfType<Unit>())
                             {
-                                if (g.Faction == Unit.faction.Orc)
+                                if (g.Faction == BuildingAndUnit.faction.Orc)
                                 {
                                     if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, 64, 64).Contains(pos)))
                                     {

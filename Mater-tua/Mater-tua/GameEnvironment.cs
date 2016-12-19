@@ -113,7 +113,7 @@ class GameEnvironment : Game
         windowSize = new Point(1024, 576);
         FullScreen = false;
 
-        gameStateManager.changeGameState();
+        gameStateManager.initGameState();
     }
 
     protected void HandleInput()

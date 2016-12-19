@@ -32,7 +32,7 @@ class MenuState : GameState
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        
+
     }
 
     public void handleInput(InputHelper inputHelper)
@@ -55,6 +55,7 @@ class MenuState : GameState
         {
             playingState = true && (menuState = false);
         }
-     
+
     }
+
 }

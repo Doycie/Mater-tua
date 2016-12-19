@@ -10,60 +10,84 @@ interface GameState
     void draw(GameTime gameTime, SpriteBatch spriteBatch);
     void handleInput(InputHelper inputHelper);
     void drawHUD(SpriteBatch spriteBatch);
+
 }
 
 class GameStateManager : GameState
 {
     //Hold the current gamestate object
-    public GameState gameState;
+    public PlayingState playingState;
+    public MenuState menuState;
 
-    public bool menuState;
-    public bool playingState;
+    bool menu;
 
-    //Method to change the current gamestate
-    public void changeGameState()
+    public GameStateManager()
     {
-        playingState = true;
-        if (menuState == true)
-        {
-            gameState = new MenuState();
-        }
-        else if (playingState == true)
-        {
-            gameState = new PlayingState();
-        }
+
 
     }
 
     //Draw the gamestate every loop
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        if (gameState != null)
+        if (!menu)
         {
-            gameState.draw(gameTime, spriteBatch);
+            playingState.draw(gameTime, spriteBatch);
+        }
+        else
+        {
+            menuState.draw(gameTime, spriteBatch);
         }
     }
 
     //Handle the input for the gamestate
     public void handleInput(InputHelper inputHelper)
     {
-        if (gameState != null)
-            gameState.handleInput(inputHelper);
+        if (!menu)
+        {
+            playingState.handleInput(inputHelper);
+        }
+        else
+        {
+            menuState.handleInput(inputHelper);
+        }
+
     }
 
     //Update the gamestate
     public void update(GameTime gameTime)
     {
-        if (gameState != null)
-            gameState.update(gameTime);
+        if (playingState.menuState())
+        {
+            menu = true;
+        }
+
+        if (!menu)
+        {
+            playingState.update(gameTime);
+        }
+        else
+        {
+            menuState.update(gameTime);
+        }
     }
+
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
-        if (gameState != null)
+        if (!menu)
         {
-            gameState.drawHUD(spriteBatch);
+            playingState.drawHUD(spriteBatch);
         }
+        {
+            menuState.drawHUD(spriteBatch);
+        }
+    }
+
+    public void initGameState()
+    {
+        playingState = new PlayingState();
+        menuState = new MenuState();
     }
 }
 

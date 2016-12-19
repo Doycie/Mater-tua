@@ -18,10 +18,14 @@ class PlayingState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
-    public bool menuState, playingState;
+
+    private bool menu = false;
 
 
-
+    public bool menuState()
+    {
+        return menu;
+    }
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -251,7 +255,7 @@ class PlayingState : GameState
 
         if( inputHelper.KeyPressed(Keys.Back))
         {
-            playingState = false && (menuState = true);
+            menu = true;
         }
 
     }

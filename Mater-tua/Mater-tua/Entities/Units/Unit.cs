@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Unit : AnimatedEntity
 {
+    protected Entity _target;
     protected int _maxhp;
     protected int _hp;
     protected int _armor;
@@ -37,9 +38,13 @@ public class Unit : AnimatedEntity
         _tex = GameEnvironment.getAssetManager().GetSprite(tex);
     }
 
-
-    public void Update()
+    public void hurt(int a)
     {
+        _hp -= a;
+    }
+    public virtual void Update()
+    {
+
         this.UpdatePath();
     }
 
@@ -103,7 +108,7 @@ public class Unit : AnimatedEntity
 
     private void UpdatePath()
     {
-        //Console.WriteLine(_path.Count);
+       // Console.WriteLine(_path.Count);
         if (_path.Count > 0)
         {
             if (_path[0].X * 64  < (_position.X ))
@@ -130,17 +135,14 @@ public class Unit : AnimatedEntity
 
         }
     }
-
-    public void StopMove()
+    public void removeTarget()
     {
-        while (_path.Count > 1)
-        {
-            _path.RemoveAt(1);
-        }
+        _target = null;
     }
 
     public void orderMove(Point target)
     {
+       
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
     }
 
@@ -155,5 +157,7 @@ public class Unit : AnimatedEntity
         // Console.WriteLine("SAD");
         s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);
     }
+
+
 }
 

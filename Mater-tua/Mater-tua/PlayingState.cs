@@ -18,7 +18,7 @@ class PlayingState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
-
+    public bool menuState, playingState;
 
     //Construct a new state and set the level and all the needed variables
     public PlayingState()

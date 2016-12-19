@@ -20,7 +20,6 @@ class PlayingState : GameState
     Texture2D _selectTex;
     
 
-
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -74,7 +73,6 @@ class PlayingState : GameState
         _mouseState = Mouse.GetState();
 
         _currentMousePos = _customCursor.getMousePos();
-
 
         _hudManager.updateHandleInput(inputHelper, _selectedEntities);
 
@@ -228,7 +226,10 @@ class PlayingState : GameState
         }
         _previousScrollValue = _mouseState.ScrollWheelValue;
 
-
+        if( inputHelper.KeyPressed(Keys.Back))
+        {
+            playingState = false && (menuState = true);
+        }
 
     }
 

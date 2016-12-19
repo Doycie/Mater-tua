@@ -9,19 +9,30 @@ interface GameState
     void update(GameTime gameTime);
     void draw(GameTime gameTime, SpriteBatch spriteBatch);
     void handleInput(InputHelper inputHelper);
-    void drawHUD(SpriteBatch spriteBacth);
+    void drawHUD(SpriteBatch spriteBatch);
 }
-
 
 class GameStateManager : GameState
 {
     //Hold the current gamestate object
-    GameState gameState;
+    public GameState gameState;
+
+    public bool menuState;
+    public bool playingState;
 
     //Method to change the current gamestate
     public void changeGameState()
     {
-        gameState = new PlayingState();
+        playingState = true;
+        if (menuState == true)
+        {
+            gameState = new MenuState();
+        }
+        else if (playingState == true)
+        {
+            gameState = new PlayingState();
+        }
+
     }
 
     //Draw the gamestate every loop

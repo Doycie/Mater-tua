@@ -65,6 +65,7 @@ class PlayingState : GameState
             }
     }
 
+    
     //Handle the camera movement and the selecting units
     public void handleInput(InputHelper inputHelper)
     {
@@ -89,6 +90,18 @@ class PlayingState : GameState
                     {
 
                         e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                    }
+                }
+            }
+
+            //Order a stop on the selected entities
+            if (inputHelper.KeyPressed(Keys.S))
+            {
+                if(_selectedEntities.Count > 0)
+                {
+                    foreach (Unit e in _selectedEntities.OfType<Unit>())
+                    {
+                        e.StopMove();
                     }
                 }
             }
@@ -156,19 +169,19 @@ class PlayingState : GameState
         int x = 0;
         int y = 0;
 
-        if (inputHelper.IsKeyDown(Keys.D))
+        if (inputHelper.IsKeyDown(Keys.Right))
         {
             x++;
         }
-        if (inputHelper.IsKeyDown(Keys.A))
+        if (inputHelper.IsKeyDown(Keys.Left))
         {
             x--;
         }
-        if (inputHelper.IsKeyDown(Keys.W))
+        if (inputHelper.IsKeyDown(Keys.Up))
         {
             y--;
         }
-        if (inputHelper.IsKeyDown(Keys.S))
+        if (inputHelper.IsKeyDown(Keys.Down))
         {
             y++;
         }

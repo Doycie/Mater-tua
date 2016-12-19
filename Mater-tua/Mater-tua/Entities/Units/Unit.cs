@@ -131,6 +131,14 @@ public class Unit : AnimatedEntity
         }
     }
 
+    public void StopMove()
+    {
+        while (_path.Count > 1)
+        {
+            _path.RemoveAt(1);
+        }
+    }
+
     public void orderMove(Point target)
     {
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);

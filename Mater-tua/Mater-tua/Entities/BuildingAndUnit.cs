@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 public class BuildingAndUnit : AnimatedEntity
 {
@@ -16,7 +17,7 @@ public class BuildingAndUnit : AnimatedEntity
     protected int _range;
     protected string _description;
     protected Entity _target;
-
+    protected Texture2D _healthbar;
 
     public enum armorType { Light, Heavy, Fortified }
     protected armorType _armorType;
@@ -30,7 +31,7 @@ public class BuildingAndUnit : AnimatedEntity
     public BuildingAndUnit()
         : base()
     {
-
+       _healthbar =  GameEnvironment.getAssetManager().GetSprite("healthbar");
     }
 
     public int Damage
@@ -103,6 +104,17 @@ public class BuildingAndUnit : AnimatedEntity
     public void removeTarget()
     {
         _target = null;
+    }
+
+    public void Healthbar(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, (int)_position.Y - 20, _size * data.tSize() - ((_size * data.tSize() / _maxhp) * (_maxhp - _hp) ), _size * data.tSize() / 10), Color.White);
+    }
+
+    public override void Draw( SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
+        Healthbar(spriteBatch);
     }
 }
 

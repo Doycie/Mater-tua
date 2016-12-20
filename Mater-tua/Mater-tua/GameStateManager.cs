@@ -41,7 +41,6 @@ class GameStateManager : GameState
             menuState.draw(gameTime, spriteBatch);
         }
 
-
     }
 
     //Handle the input for the gamestate
@@ -55,16 +54,13 @@ class GameStateManager : GameState
         {
             menuState.handleInput(inputHelper);
         }
-
-
+        
 
     }
 
     //Update the gamestate
     public void update(GameTime gameTime)
     {
-
-
 
         if (menuState.playingState())
         {
@@ -78,6 +74,7 @@ class GameStateManager : GameState
         }
         else menu = false;
 
+
         if (playing == true)
             menu = false;
         else if (menu == true)
@@ -86,6 +83,7 @@ class GameStateManager : GameState
             playing = true;
         else if (playing == false)
             menu = true;
+
 
         if (!menu)
         {
@@ -96,8 +94,7 @@ class GameStateManager : GameState
             menuState.update(gameTime);
         }
 
-
-
+        
     }
 
 
@@ -111,8 +108,7 @@ class GameStateManager : GameState
         {
             menuState.drawHUD(spriteBatch);
         }
-
-
+        
     }
 
     public void initGameState()

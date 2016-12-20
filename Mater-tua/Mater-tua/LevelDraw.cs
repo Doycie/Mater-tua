@@ -31,13 +31,13 @@ partial class Level
 
 
         //TESTiNG / DEBUGING PURPOSES
-        s.Draw(_tex, new Rectangle(128, 0, 64, 64), Color.Black);
-        s.Draw(_tex, new Rectangle(0, 0, 64, 64), Color.Black);
-        s.Draw(_tex, new Rectangle(512, 512, 64, 64), Color.Black);
-        s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
-        s.Draw(_tex, new Rectangle(0, 1000, 2000, 6), Color.Red);
+        //s.Draw(_tex, new Rectangle(128, 0, 64, 64), Color.Black);
+        //s.Draw(_tex, new Rectangle(0, 0, 64, 64), Color.Black);
+        //s.Draw(_tex, new Rectangle(512, 512, 64, 64), Color.Black);
+        //s.Draw(_tex, new Rectangle(0, 580, 1000, 6), Color.Black);
+        //s.Draw(_tex, new Rectangle(0, 1000, 2000, 6), Color.Red);
 
-        s.Draw(_tex, new Rectangle(0, 500, 4096, 6), Color.Blue);
+        //s.Draw(_tex, new Rectangle(0, 500, 4096, 6), Color.Blue);
         //Draw all the entities in the level list
         foreach (SpriteEntity e in entities)
         {

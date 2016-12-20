@@ -12,8 +12,14 @@ class MenuState : GameState
     Vector2 _lastMousePos;
     Vector2 _currentMousePos;
     bool _mouseReleased;
-    public bool menuState, playingState;
     MenuHUD _menuHUD;
+
+    private bool playing = false;
+
+    public bool playingState()
+    {
+        return playing;
+    }
 
     public MenuState()
     {
@@ -55,7 +61,7 @@ class MenuState : GameState
 
         if (inputHelper.KeyPressed(Keys.Enter))
         {
-            playingState = true && (menuState = false);
+            playing = true;
         }
 
     }

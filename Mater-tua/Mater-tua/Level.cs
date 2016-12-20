@@ -14,7 +14,7 @@ partial class Level
     private Texture2D _tex;
 
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
-    public List<Entity> entities = new List<Entity>();
+    public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
 
     public List<Entity> specialFX = new List<Entity>();
 
@@ -57,9 +57,9 @@ partial class Level
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
         }
-        Farm orcFarm = new Farm(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), BuildingAndUnit.faction.Orc);
+        Farm orcFarm = new Farm(new Vector2(5 * data.tSize(), 5 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcFarm);
-        Farm humanFarm = new Farm(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), BuildingAndUnit.faction.Human);
+        Farm humanFarm = new Farm(new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);
 
     }

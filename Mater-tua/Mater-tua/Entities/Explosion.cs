@@ -10,10 +10,11 @@ class Explosion : SpriteEntity
     protected int alivefor;
     protected int lifespam;
 
-    public Explosion(string assetName, Vector2 pos, int layer = 0) : base(assetName, layer)
+    public Explosion(string assetName, Vector2 pos, int size, int layer = 0) : base(assetName, layer)
     {
         _position = pos;
         lifespam = 180;
+        _size = size;
 
     }
     public override void Update()

@@ -145,18 +145,6 @@
 /processorParam:TextureFormat=Color
 /build:HumanFarm.png
 
-#begin OrcFarm.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:OrcFarm.jpg
-
 #begin Orc.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -204,4 +192,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Paladin.png
+
+#begin OrcFarm.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:OrcFarm.png
 

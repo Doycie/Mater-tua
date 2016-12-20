@@ -29,8 +29,9 @@ class CombatUnit : Unit
     {
 
         _attackCooldown--;
-        if (_target != null)
+        if (_target != null && (_target as BuildingAndUnit).HitPoints > 0)
         {
+
             //  Console.WriteLine("THE ENEMY IS SIGHTED " + calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) + " UNITS AWAY, AATTTTTTAACCCK!");
             if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize())
             {
@@ -47,14 +48,10 @@ class CombatUnit : Unit
                 {
                     if (isAttacking == 15)
                     {
-                        if ((_target as BuildingAndUnit).HitPoints < 0)
-                        {
-                            _target = null;
-                        }
-                        else
-                        {
+                       
+                     
                             (_target as BuildingAndUnit).hurt(_damage);
-                        }
+                        
                     }
                     isAttacking--;
                 }

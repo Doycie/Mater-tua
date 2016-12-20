@@ -71,7 +71,19 @@ class CombatUnit : Unit
     public void orderAttack(BuildingAndUnit e)
     {
         _target = e;
-        orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y / data.tSize()));
+    
+        if (typeof(SpriteEntity).IsAssignableFrom(e.GetType()))
+        {
+            if(e.Size >= 2)
+            {
+                orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y / data.tSize()));
+            }else
+            {
+                orderMove(new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y / data.tSize()));
+
+            }
+        }
+       
 
     }
 

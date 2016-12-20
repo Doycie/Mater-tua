@@ -28,7 +28,6 @@ partial class Level
     {
         _tex = GameEnvironment.getAssetManager().GetSprite("circle");
         generateMap(mapWidth, mapHeight);
-
     }
 
     //Init the level based on a level text file

@@ -79,6 +79,7 @@ class GameStateManager : GameState
         {
             playingState.drawHUD(spriteBatch);
         }
+        if (menu)
         {
             menuState.drawHUD(spriteBatch);
         }

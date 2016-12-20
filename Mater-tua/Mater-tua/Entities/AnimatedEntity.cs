@@ -9,6 +9,5 @@ public class AnimatedEntity : SpriteEntity
 	{
         //load the animations
 	}
-
     //methods for loading animation, playing/updating animation
 }

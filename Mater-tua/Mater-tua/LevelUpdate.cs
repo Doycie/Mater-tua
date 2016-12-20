@@ -15,7 +15,7 @@ partial class Level
                 entities[i].Update();
                 if ((entities[i] as BuildingAndUnit).HitPoints < 1)
                 {
-                    specialFX.Add(new Explosion("explosionSpriteSheet",entities[i].Position));
+                    specialFX.Add(new Explosion("explosionSpriteSheet",entities[i].Position,entities[i].Size));
                     entities.RemoveAt(i);
            
                 }

@@ -110,7 +110,7 @@ class GameEnvironment : Game
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
         screen = new Point(1440, 810);
-        windowSize = new Point(1024, 576);
+        windowSize = new Point(1600, 900);
         FullScreen = false;
 
         gameStateManager.initGameState();

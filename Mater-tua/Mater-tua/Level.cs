@@ -14,7 +14,7 @@ partial class Level
     private Texture2D _tex;
 
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
-    public List<Entity> entities = new List<Entity>();
+    public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
 
     public List<Entity> specialFX = new List<Entity>();
 

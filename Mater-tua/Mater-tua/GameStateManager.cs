@@ -54,7 +54,7 @@ class GameStateManager : GameState
         {
             menuState.handleInput(inputHelper);
         }
-        
+
 
     }
 

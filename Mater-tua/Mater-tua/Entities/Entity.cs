@@ -25,6 +25,7 @@ public class Entity
         _position = Vector2.Zero;
     }
 
+
     public virtual Vector2 Position
     {
         get { return _position; }

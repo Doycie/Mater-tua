@@ -138,6 +138,7 @@ class PlayingState : GameState
                 {
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                     foreach (SpriteEntity e in level.entities)
+                        if((e as BuildingAndUnit).Faction == BuildingAndUnit.faction.Human)
                         if ((r.Contains(e.Center)))
                         {
                             _selectedEntities.Add(e);

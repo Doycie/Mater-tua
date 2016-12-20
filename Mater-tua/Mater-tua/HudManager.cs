@@ -166,11 +166,24 @@ class HudManager
 
 }
 
+//BUTTONS FOR THE MENU
+class HudMenu : HUD
+{
+    public HudMenu()
+    {
+        _buttons = new List<Button>();
+        _buttons.Add(new Button(new Rectangle(32, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+        _buttons.Add(new Button(new Rectangle(168, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+        _buttons.Add(new Button(new Rectangle(296, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+        //_buttons.Add(new Button(new Rectangle(0,0, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+    }
+
+}
 class MenuHUD
 {
 
     private Texture2D _tex;
-    private HUD _hudmenu = new HudUnit();
+    private HUD _hudmenu = new HudMenu();
     private Rectangle _hudSize;
 
 

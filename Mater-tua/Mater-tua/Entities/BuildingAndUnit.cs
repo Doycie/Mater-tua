@@ -109,8 +109,13 @@ public class BuildingAndUnit : AnimatedEntity
 
     public void Healthbar(SpriteBatch spriteBatch)
     {
-        DrawingHelper.DrawRectangle(new Rectangle((int)_position.X-1, (int)_position.Y - 21, (int)_size * data.tSize() + 1,(int) data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
-        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, (int)_position.Y - 20, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)) , data.tSize() / 10), Color.White);
+        int y = (int)_position.Y;
+        if(y- 21 < 0)
+        {
+            y = 21;
+        }
+        DrawingHelper.DrawRectangle(new Rectangle((int)_position.X-1, y - 21 , (int)_size * data.tSize() + 1,(int) data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
+        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, y - 20, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)) , data.tSize() / 10), Color.White);
     }
 
     public override void Draw( SpriteBatch spriteBatch)

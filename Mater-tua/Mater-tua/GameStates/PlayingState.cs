@@ -21,7 +21,7 @@ class PlayingState : GameState
 
     private bool menu = false;
 
-    
+
     public bool menuState()
     {
         return menu;
@@ -70,7 +70,7 @@ class PlayingState : GameState
             }
     }
 
-    
+
     //Handle the camera movement and the selecting units
     public void handleInput(InputHelper inputHelper)
     {
@@ -86,43 +86,42 @@ class PlayingState : GameState
         {
 
             //Make an order on th selected units
-            if (inputHelper.MouseRightButtonPressed())
+            if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)
             {
-                if (_selectedEntities.Count > 0)
+
+                foreach (Unit e in _selectedEntities.OfType<Unit>())
                 {
-                    foreach (Unit e in _selectedEntities.OfType<Unit>())
+                    if (e.Faction == BuildingAndUnit.faction.Human)
                     {
-                        if (e.Faction == BuildingAndUnit.faction.Human)
+                        Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
+                        bool attack = false;
+                        foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
                         {
-                            Point pos = new Point((int)_currentMousePos.X , (int)_currentMousePos.Y );
-                            bool attack = false;
-                            foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
+                            if (g.Faction == BuildingAndUnit.faction.Orc)
                             {
-                                if (g.Faction == BuildingAndUnit.faction.Orc)
+                                if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * data.tSize(), g.Size * data.tSize()).Contains(pos)))
                                 {
-                                    if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * 64, g.Size * 64).Contains(pos)))
-                                    {
-                                        Console.WriteLine("CHAARARRGGEEE   ");
-                                        attack = true;
-                                        (e as CombatUnit).orderAttack(g);
-                                        break;
-                                    }
+                                    Console.WriteLine("CHAARARRGGEEE   ");
+                                    attack = true;
+                                    (e as CombatUnit).orderAttack(g);
+                                    break;
                                 }
                             }
-                            if (!attack)
-                            {
-                                e.removeTarget();
-                                e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
-                            }
+                        }
+                        if (!attack)
+                        {
+                            e.removeTarget();
+                            e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                         }
                     }
                 }
+
             }
 
             //Order a stop on the selected entities
             if (inputHelper.KeyPressed(Keys.S))
             {
-                if(_selectedEntities.Count > 0)
+                if (_selectedEntities.Count > 0)
                 {
                     foreach (Unit e in _selectedEntities.OfType<Unit>())
                     {
@@ -138,11 +137,11 @@ class PlayingState : GameState
                 {
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                     foreach (SpriteEntity e in level.entities)
-                        if((e as BuildingAndUnit).Faction == BuildingAndUnit.faction.Human)
-                        if ((r.Contains(e.Center)))
-                        {
-                            _selectedEntities.Add(e);
-                        }
+                        if ((e as BuildingAndUnit).Faction == BuildingAndUnit.faction.Human)
+                            if ((r.Contains(e.Center)))
+                            {
+                                _selectedEntities.Add(e);
+                            }
                 }
                 _mouseReleased = false;
             }
@@ -254,7 +253,7 @@ class PlayingState : GameState
         }
         _previousScrollValue = _mouseState.ScrollWheelValue;
 
-        if( inputHelper.KeyPressed(Keys.Back))
+        if (inputHelper.KeyPressed(Keys.Back))
         {
             menu = true;
         }

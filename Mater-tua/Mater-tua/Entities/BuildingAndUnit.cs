@@ -44,8 +44,6 @@ public class BuildingAndUnit : AnimatedEntity
         get { return _range; }
     }
 
-
-
     public void hurt(int a)
     {
         _hp -= a;
@@ -110,9 +108,9 @@ public class BuildingAndUnit : AnimatedEntity
     public void Healthbar(SpriteBatch spriteBatch)
     {
         int y = (int)_position.Y;
-        if(y- 21 < 0)
+        if(y- 8 < 0)
         {
-            y = 21;
+            y = 8;
         }
         DrawingHelper.DrawRectangle(new Rectangle((int)_position.X-1, y - 8 , (int)_size * data.tSize() + 1,(int) data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
         spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, y - 7, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)) , data.tSize() / 10), Color.White);

@@ -50,6 +50,7 @@ public class BuildingAndUnit : AnimatedEntity
     {
         _hp -= a;
         Console.WriteLine(_hp);
+        Console.WriteLine(_maxhp);
     }
 
     public string Description
@@ -109,7 +110,7 @@ public class BuildingAndUnit : AnimatedEntity
 
     public void Healthbar(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, (int)_position.Y - 20, _size * data.tSize() - (_size * data.tSize() / _maxhp) * (_maxhp - _hp) , data.tSize() / 10), Color.White);
+        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, (int)_position.Y - 20, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)) , data.tSize() / 10), Color.White);
     }
 
     public override void Draw( SpriteBatch spriteBatch)

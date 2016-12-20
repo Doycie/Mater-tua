@@ -16,7 +16,7 @@ public class BuildingAndUnit : AnimatedEntity
     protected int _goldCost;
     protected int _range;
     protected string _description;
-    protected Entity _target;
+    protected BuildingAndUnit _target;
     protected Texture2D _healthbar;
 
     public enum armorType { Light, Heavy, Fortified }
@@ -49,6 +49,7 @@ public class BuildingAndUnit : AnimatedEntity
     public void hurt(int a)
     {
         _hp -= a;
+        Console.WriteLine(_hp);
     }
 
     public string Description
@@ -96,7 +97,7 @@ public class BuildingAndUnit : AnimatedEntity
         get { return _damageType; }
     }
 
-    public Entity Target
+    public BuildingAndUnit Target
     {
         get { return _target; }
     }
@@ -108,7 +109,7 @@ public class BuildingAndUnit : AnimatedEntity
 
     public void Healthbar(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, (int)_position.Y - 20, _size * data.tSize() - ((_size * data.tSize() / _maxhp) * (_maxhp - _hp) ), _size * data.tSize() / 10), Color.White);
+        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, (int)_position.Y - 20, _size * data.tSize() - (_size * data.tSize() / _maxhp) * (_maxhp - _hp) , data.tSize() / 10), Color.White);
     }
 
     public override void Draw( SpriteBatch spriteBatch)

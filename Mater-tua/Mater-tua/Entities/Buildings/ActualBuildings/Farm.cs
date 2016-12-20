@@ -37,5 +37,10 @@ class Farm : StaticBuilding
     {
         _hp = _maxhp;
     }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+        base.Draw(spriteBatch);
+    }
 }
 

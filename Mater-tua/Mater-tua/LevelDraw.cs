@@ -43,6 +43,10 @@ partial class Level
         {
             e.Draw(s);
         }
+        foreach (SpriteEntity e in specialFX)
+        {
+            e.Draw(s);
+        }
 
     }
 

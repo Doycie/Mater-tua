@@ -16,6 +16,8 @@ partial class Level
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public List<Entity> entities = new List<Entity>();
 
+    public List<Entity> specialFX = new List<Entity>();
+
     public Level()
     {
 

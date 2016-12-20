@@ -45,7 +45,17 @@ class CombatUnit : Unit
                 //isAttacking--;
                 if (isAttacking > 0)
                 {
-                    if (isAttacking == 15) { (_target as BuildingAndUnit).hurt(_damage); }
+                    if (isAttacking == 15)
+                    {
+                        if ((_target as BuildingAndUnit).HitPoints < 0)
+                        {
+                            _target = null;
+                        }
+                        else
+                        {
+                            (_target as BuildingAndUnit).hurt(_damage);
+                        }
+                    }
                     isAttacking--;
                 }
             }

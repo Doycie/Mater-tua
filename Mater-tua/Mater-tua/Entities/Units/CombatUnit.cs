@@ -39,13 +39,13 @@ class CombatUnit : Unit
                 if (_attackCooldown < 0)
                 {
                     _attackCooldown = 60;
-                    isAttacking = 1;
+                    isAttacking = 30;
 
                 }
                 //isAttacking--;
                 if (isAttacking > 0)
                 {
-                    (_target as BuildingAndUnit).hurt(_damage);
+                    if (isAttacking == 15) { (_target as BuildingAndUnit).hurt(_damage); }
                     isAttacking--;
                 }
             }

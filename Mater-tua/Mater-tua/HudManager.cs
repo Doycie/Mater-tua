@@ -98,6 +98,8 @@ class HudUnit : HUD
         _buttons.Add(new Button(new Rectangle(32, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
         _buttons.Add(new Button(new Rectangle(168, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
         _buttons.Add(new Button(new Rectangle(296, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+        _buttons.Add(new Button(new Rectangle(437, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed")));
+        _buttons.Add(new Button(new Rectangle(605, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed")));
         //_buttons.Add(new Button(new Rectangle(0,0, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
     }
 
@@ -155,7 +157,16 @@ class HudManager
                 }
                 if (j == 3)
                     i.setFaction(Unit.faction.Neutral);
-                
+                if (j == 4)
+                {
+                    MediaPlayer.Volume -= (float)0.01;
+                    Console.WriteLine(MediaPlayer.Volume);
+                }
+                if (j == 5)
+                {
+                    MediaPlayer.Volume += (float)0.01;
+                    Console.WriteLine(MediaPlayer.Volume);
+                }
             }
         }
     }

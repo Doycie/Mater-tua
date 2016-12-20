@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
+
 class GameEnvironment : Game
 {
     protected GraphicsDeviceManager graphics;
@@ -48,8 +49,7 @@ class GameEnvironment : Game
         assetManager = new AssetManager(Content,graphics);
         gameSettingsManager = new GameSettingsManager();
 
-        assetManager.RandomiseBGM();
-       
+        assetManager.RandomiseBGM();     
     }
     public bool FullScreen
     {
@@ -67,6 +67,7 @@ class GameEnvironment : Game
             graphics.PreferredBackBufferWidth = windowSize.X;
             graphics.PreferredBackBufferHeight = windowSize.Y;
             graphics.IsFullScreen = false;
+            this.Window.Position = new Point(200, 0);
             graphics.ApplyChanges();
         }
         else

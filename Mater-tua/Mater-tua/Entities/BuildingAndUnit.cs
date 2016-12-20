@@ -50,7 +50,6 @@ public class BuildingAndUnit : AnimatedEntity
     {
         _hp -= a;
         Console.WriteLine(_hp);
-        Console.WriteLine(_maxhp);
     }
 
     public string Description

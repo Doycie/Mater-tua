@@ -85,9 +85,9 @@
     <Compile Include="LevelDraw.cs" />
     <Compile Include="LevelUpdate.cs" />
     <Compile Include="Mater-tua.cs" />
-    <Compile Include="MenuState.cs" />
+    <Compile Include="GameStates\MenuState.cs" />
     <Compile Include="Perlin.cs" />
-    <Compile Include="PlayingState.cs" />
+    <Compile Include="GameStates\PlayingState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

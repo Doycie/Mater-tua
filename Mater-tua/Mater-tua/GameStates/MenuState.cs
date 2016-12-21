@@ -13,13 +13,13 @@ class MenuState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     MenuHUD _menuHUD;
-
-    private bool playing = false;
+    
+    /*private bool playing = false;
 
     public bool playingState()
     {
         return playing;
-    }
+    }*/
 
     public MenuState()
     {
@@ -35,6 +35,7 @@ class MenuState : GameState
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
+        _menuHUD.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
     }
 
@@ -50,6 +51,8 @@ class MenuState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
+        _menuHUD.updateHandleInput(inputHelper);
+
         if (inputHelper.MouseLeftButtonDown())
         {
             if (_mouseReleased == false)
@@ -61,7 +64,7 @@ class MenuState : GameState
 
         if (inputHelper.KeyPressed(Keys.Enter))
         {
-            playing = true;
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
         }
 
     }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 class Button
 {
@@ -97,6 +98,8 @@ class HudUnit : HUD
         _buttons.Add(new Button(new Rectangle(32, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
         _buttons.Add(new Button(new Rectangle(168, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
         _buttons.Add(new Button(new Rectangle(296, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+        _buttons.Add(new Button(new Rectangle(432, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed")));
+        _buttons.Add(new Button(new Rectangle(470, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed")));
         //_buttons.Add(new Button(new Rectangle(0,0, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
     }
 
@@ -154,8 +157,18 @@ class HudManager
                 }
                 if (j == 3)
                     i.setFaction(Unit.faction.Neutral);
-                
+               
             }
+        }
+        if (j == 4)
+        {
+            MediaPlayer.Volume -= (float)0.01;
+            Console.WriteLine(MediaPlayer.Volume);
+        }
+        if (j == 5)
+        {
+            MediaPlayer.Volume += (float)0.01;
+            Console.WriteLine(MediaPlayer.Volume);
         }
     }
 
@@ -166,13 +179,26 @@ class HudManager
 
 }
 
+//BUTTONS FOR THE MENU
+class HudMenu : HUD
+{
+    public HudMenu()
+    {
+        _buttons = new List<Button>();
+        _buttons.Add(new Button(new Rectangle(32, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed")));
+        _buttons.Add(new Button(new Rectangle(168, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed")));
+       // _buttons.Add(new Button(new Rectangle(296, (int)GameEnvironment.getCamera().getScreenSize().Y - 128, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+        //_buttons.Add(new Button(new Rectangle(0,0, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed")));
+    }
+
+}
 class MenuHUD
 {
 
     private Texture2D _tex;
-    private HUD _hudmenu = new HudUnit();
+    private HUD _hudmenu = new HudMenu();
     private Rectangle _hudSize;
-
+    
 
     public MenuHUD()
     {
@@ -194,10 +220,23 @@ class MenuHUD
         _hudmenu.draw(spriteBatch);
     }
 
-    public void updateHandleInput(InputHelper inputHelper, List<Entity> selectedEntities)
+    public void updateHandleInput(InputHelper inputHelper)
     {
         resizeHUD();
         int j = _hudmenu.update(inputHelper);
+        if (j > 0)
+        {
 
+            if (j == 1)
+            {
+                MediaPlayer.Volume -= (float)0.01;
+                Console.WriteLine(MediaPlayer.Volume);
+            }
+            if (j == 2)
+            {
+                MediaPlayer.Volume += (float)0.01;
+                Console.WriteLine(MediaPlayer.Volume);
+            }
+        }
     }
 }

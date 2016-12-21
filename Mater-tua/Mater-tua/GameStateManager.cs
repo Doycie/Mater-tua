@@ -25,9 +25,7 @@ class GameStateManager : GameState
     public GameStateManager()
     {
 
-
     }
-
 
     //Draw the gamestate every loop
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)

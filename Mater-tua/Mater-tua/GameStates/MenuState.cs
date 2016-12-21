@@ -14,12 +14,12 @@ class MenuState : GameState
     bool _mouseReleased;
     MenuHUD _menuHUD;
     
-    private bool playing = false;
+    /*private bool playing = false;
 
     public bool playingState()
     {
         return playing;
-    }
+    }*/
 
     public MenuState()
     {
@@ -64,7 +64,7 @@ class MenuState : GameState
 
         if (inputHelper.KeyPressed(Keys.Enter))
         {
-            playing = true;
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
         }
 
     }

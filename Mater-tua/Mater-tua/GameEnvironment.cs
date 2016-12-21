@@ -15,7 +15,7 @@ class GameEnvironment : Game
     
     protected static Camera2D camera;
     protected static Point screen;
-    protected static GameStateManager gameStateManager;
+    public static GameStateManager gameStateManager;
     protected static Random random;
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;

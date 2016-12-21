@@ -255,7 +255,7 @@ class PlayingState : GameState
 
         if (inputHelper.KeyPressed(Keys.Back))
         {
-            menu = true;
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }
 
     }

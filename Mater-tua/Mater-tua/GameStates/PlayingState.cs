@@ -13,24 +13,18 @@ class PlayingState : GameState
     private Level level;
     private List<Entity> _selectedEntities = new List<Entity>();
     CustomCursor _customCursor;
-    HudManager _hudManager;
+    HUD _hud;
     Vector2 _lastMousePos;
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
 
-    private bool menu = false;
-
-
-    public bool menuState()
-    {
-        return menu;
-    }
+  
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
         _customCursor = new CustomCursor();
-        _hudManager = new HudManager();
+        _hud = new UnitHUD();
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init("lvl.txt");
@@ -49,7 +43,7 @@ class PlayingState : GameState
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
-        _hudManager.draw(spriteBatch);
+        _hud.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
     }
 
@@ -80,9 +74,9 @@ class PlayingState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-        _hudManager.updateHandleInput(inputHelper, _selectedEntities);
+        (_hud as UnitHUD).update(inputHelper, _selectedEntities);
 
-        if (!_hudManager.HUDSize().Contains(inputHelper.realMousePosition))
+        if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
         {
 
             //Make an order on th selected units

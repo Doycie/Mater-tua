@@ -79,7 +79,10 @@
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
-    <Compile Include="HudManager.cs" />
+    <Compile Include="HUD\Button.cs" />
+    <Compile Include="HUD\HUD.cs" />
+    <Compile Include="HUD\MenuHud.cs" />
+    <Compile Include="HUD\UnitHud.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelDraw.cs" />

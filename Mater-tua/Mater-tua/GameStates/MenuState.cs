@@ -12,7 +12,7 @@ class MenuState : GameState
     Vector2 _lastMousePos;
     Vector2 _currentMousePos;
     bool _mouseReleased;
-    MenuHUD _menuHUD;
+    HUD _hud;
     
     /*private bool playing = false;
 
@@ -25,7 +25,7 @@ class MenuState : GameState
     {
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
-        _menuHUD = new MenuHUD();
+        _hud = new MenuHud();
     }
 
     public void update(GameTime gameTime)
@@ -35,7 +35,7 @@ class MenuState : GameState
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
-        _menuHUD.draw(spriteBatch);
+        _hud.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
     }
 
@@ -51,7 +51,8 @@ class MenuState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-        _menuHUD.updateHandleInput(inputHelper);
+      if(  (_hud as MenuHud).update(inputHelper))
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
 
         if (inputHelper.MouseLeftButtonDown())
         {

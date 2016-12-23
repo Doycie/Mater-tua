@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.Media;
 
 class HUD
 {
-
     protected List<Button> _buttons;
     private Texture2D _tex;
     private Rectangle _hudSize;

@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 
 
-class UnitHUD : HUD
+class PlayingHUD : HUD
 {
-    public UnitHUD()
+    public PlayingHUD()
     {
         _buttons = new List<Button>();
         /* 1 */

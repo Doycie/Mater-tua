@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-class MenuState : GameState
+class PauseState : GameState
 {
     CustomCursor _customCursor;
     private MouseState _mouseState;
@@ -14,11 +14,11 @@ class MenuState : GameState
     bool _mouseReleased;
     HUD _hud;
 
-    public MenuState()
+    public PauseState()
     {
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
-        _hud = new MenuHud();
+        _hud = new PauseHud();
     }
 
     public void update(GameTime gameTime)
@@ -34,7 +34,7 @@ class MenuState : GameState
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-
+        
     }
 
     public void handleInput(InputHelper inputHelper)
@@ -44,7 +44,7 @@ class MenuState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-      if(  (_hud as MenuHud).update(inputHelper))
+        if ((_hud as PauseHud).update(inputHelper))
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
 
         if (inputHelper.MouseLeftButtonDown())
@@ -59,6 +59,10 @@ class MenuState : GameState
         if (inputHelper.KeyPressed(Keys.Enter))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
+        }
+        if (inputHelper.KeyPressed(Keys.Back))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }
 
     }

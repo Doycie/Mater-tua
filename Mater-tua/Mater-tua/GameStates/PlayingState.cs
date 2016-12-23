@@ -24,7 +24,7 @@ class PlayingState : GameState
     public PlayingState()
     {
         _customCursor = new CustomCursor();
-        _hud = new UnitHUD();
+        _hud = new PlayingHUD();
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init("lvl.txt");
@@ -74,7 +74,7 @@ class PlayingState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-        (_hud as UnitHUD).update(inputHelper, _selectedEntities);
+        (_hud as PlayingHUD).update(inputHelper, _selectedEntities);
 
         if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
         {
@@ -248,6 +248,10 @@ class PlayingState : GameState
         _previousScrollValue = _mouseState.ScrollWheelValue;
 
         if (inputHelper.KeyPressed(Keys.Back))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
+        }
+        if (inputHelper.KeyPressed(Keys.F1))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }

@@ -16,19 +16,15 @@ interface GameState
 class GameStateManager : GameState
 {
     //Hold the current gamestate object
-    public enum state { Playing, Menu }
+    public enum state { Playing, Menu, Pause }
     public state State;
     public PlayingState playingState;
     public MenuState menuState;
-
-
-    //bool menu;
-    //bool playing;
+    public PauseState pauseState;
 
     public GameStateManager()
     {
-        State = state.Playing;
-
+        State = state.Menu;
     }
 
     public state curState
@@ -48,16 +44,10 @@ class GameStateManager : GameState
             case state.Menu:
                 menuState.draw(gameTime, spriteBatch);
                 break;
+            case state.Pause:
+                playingState.draw(gameTime, spriteBatch);
+                break;
         }
-
-        /*if (!menu)
-        {
-            playingState.draw(gameTime, spriteBatch);
-        }
-        else
-        {
-            menuState.draw(gameTime, spriteBatch);
-        }*/
 
     }
 
@@ -72,15 +62,10 @@ class GameStateManager : GameState
             case state.Menu:
                 menuState.handleInput(inputHelper);
                 break;
-        }/*
-        if (!menu)
-        {
-            playingState.handleInput(inputHelper);
+            case state.Pause:
+                pauseState.handleInput(inputHelper);
+                break;
         }
-        else
-        {
-            menuState.handleInput(inputHelper);
-        }*/
 
 
     }
@@ -96,40 +81,10 @@ class GameStateManager : GameState
             case state.Menu:
                 menuState.update(gameTime);
                 break;
+            case state.Pause:
+                break;
         }
-        /*
-        if (menuState.playingState())
-        {
-            playing = true;
-        }
-        else playing = false;
-
-        if (playingState.menuState())
-        {
-            menu = true;
-        }
-        else menu = false;
-
-
-        if (playing == true)
-            menu = false;
-        else if (menu == true)
-            playing = false;
-        else if (menu == false)
-            playing = true;
-        else if (playing == false)
-            menu = true;
-
-
-        if (!menu)
-        {
-            playingState.update(gameTime);
-        }
-        else
-        {
-            menuState.update(gameTime);
-        }
-        */
+        
 
     }
 
@@ -144,22 +99,17 @@ class GameStateManager : GameState
             case state.Menu:
                 menuState.drawHUD(spriteBatch);
                 break;
-        }/*
-        if (!menu)
-        {
-            playingState.drawHUD(spriteBatch);
+            case state.Pause:
+                pauseState.drawHUD(spriteBatch);
+                break;
         }
-        if (menu)
-        {
-            menuState.drawHUD(spriteBatch);
-        }*/
-        
     }
 
     public void initGameState()
     {
         playingState = new PlayingState();
         menuState = new MenuState();
+        pauseState = new PauseState();
     }
 }
 

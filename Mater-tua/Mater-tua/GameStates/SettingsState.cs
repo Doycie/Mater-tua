@@ -2,10 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-class MenuState : GameState
+class SettingsState : GameState
 {
     CustomCursor _customCursor;
     private MouseState _mouseState;
@@ -15,12 +17,12 @@ class MenuState : GameState
     bool _mouseReleased;
     HUD _hud;
 
-    public MenuState()
+    public SettingsState()
     {
         _BGTex = GameEnvironment.getAssetManager().GetSprite("MenuBG");
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
-        _hud = new MenuHud();
+        _hud = new SettingsHud();
     }
 
     public void update(GameTime gameTime)
@@ -30,7 +32,7 @@ class MenuState : GameState
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
-        
+
         _hud.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
     }
@@ -47,7 +49,7 @@ class MenuState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-      if(  (_hud as MenuHud).update(inputHelper))
+        if ((_hud as SettingsHud).update(inputHelper))
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
 
         if (inputHelper.MouseLeftButtonDown())
@@ -65,5 +67,4 @@ class MenuState : GameState
         }
 
     }
-
 }

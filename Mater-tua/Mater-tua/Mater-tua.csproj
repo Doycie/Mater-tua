@@ -80,11 +80,13 @@
     <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="GameStates\PauseState.cs" />
+    <Compile Include="GameStates\SettingsState.cs" />
     <Compile Include="HUD\Button.cs" />
     <Compile Include="HUD\HUD.cs" />
     <Compile Include="HUD\MenuHud.cs" />
     <Compile Include="HUD\PauseHUD.cs" />
     <Compile Include="HUD\PlayingHud.cs" />
+    <Compile Include="HUD\SettingsHud.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelDraw.cs" />

@@ -43,10 +43,10 @@ class PlayingHUD : HUD
                     i.setFaction(Unit.faction.Neutral);
                 break;
             case 4:
-                MediaPlayer.Volume -= (float)0.01;
+                MediaPlayer.Volume -= (float)0.1;
                 break;
             case 5:
-                MediaPlayer.Volume += (float)0.01;
+                MediaPlayer.Volume += (float)0.1;
                 break;
         }
 

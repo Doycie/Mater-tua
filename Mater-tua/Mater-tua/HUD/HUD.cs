@@ -4,8 +4,6 @@ using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
-
-
 class HUD
 {
     protected List<Button> _buttons;
@@ -25,16 +23,16 @@ class HUD
 
     public Rectangle HUDSize()
     {
-        return new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height); ;
+        return new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
     }
-    public virtual void draw(SpriteBatch s)
+    public virtual void draw(SpriteBatch spriteBatch)
     {
         for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X; i += _tex.Width) // repeats the HUD texture till edge of screen
-            s.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
+            spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
 
         foreach (Button b in _buttons)
         {
-            b.draw(s);
+            b.draw(spriteBatch);
         }
     }
 

@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
-class MenuHud : HUD
-{
 
-    public MenuHud()
-    { //TODO: Fix position of the buttons
+class SettingsHud : HUD
+{
+    public SettingsHud()
+    {
         _buttons = new List<Button>();
         /* 1*/
         _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2), 192, 64), GameEnvironment.getAssetManager().GetSprite("playButton"), GameEnvironment.getAssetManager().GetSprite("playButtonPressed")));
         /* 2 */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 80, 192, 64), GameEnvironment.getAssetManager().GetSprite("settingsButton"), GameEnvironment.getAssetManager().GetSprite("settingsButtonPressed")));
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 80, 192, 64), GameEnvironment.getAssetManager().GetSprite("backButton"), GameEnvironment.getAssetManager().GetSprite("backButtonPressed")));
         /* 3 */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 160, 192, 64), GameEnvironment.getAssetManager().GetSprite("exitButton"), GameEnvironment.getAssetManager().GetSprite("exitButtonPressed")));
+         _buttons.Add(new Button(new Rectangle(450, 400, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed")));
+        /* 4 */
+        _buttons.Add(new Button(new Rectangle(400, 400, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed")));
 
     }
 
@@ -32,12 +37,14 @@ class MenuHud : HUD
                 GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
                 break;
             case 2:
-                GameEnvironment.gameStateManager.State = GameStateManager.state.Settings;
-                Console.WriteLine("Settings pressed");
+                Console.WriteLine("Back pressed");
+                GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
                 break;
             case 3:
-                //TODO: actually exit the game
-                Console.WriteLine("Exit button pressed");
+                MediaPlayer.Volume += (float)0.1;
+                break;
+            case 4:
+                MediaPlayer.Volume -= (float)0.1;
                 break;
         }
         return false;

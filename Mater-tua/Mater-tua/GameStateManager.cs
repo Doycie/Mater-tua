@@ -16,11 +16,12 @@ interface GameState
 class GameStateManager : GameState
 {
     //Hold the current gamestate object
-    public enum state { Playing, Menu, Pause }
+    public enum state { Playing, Menu, Pause, Settings }
     public state State;
     public PlayingState playingState;
     public MenuState menuState;
     public PauseState pauseState;
+    public SettingsState settingsState;
 
     public GameStateManager()
     {
@@ -47,6 +48,9 @@ class GameStateManager : GameState
             case state.Pause:
                 playingState.draw(gameTime, spriteBatch);
                 break;
+            case state.Settings:
+                settingsState.draw(gameTime, spriteBatch);
+                break;
         }
 
     }
@@ -65,6 +69,9 @@ class GameStateManager : GameState
             case state.Pause:
                 pauseState.handleInput(inputHelper);
                 break;
+            case state.Settings:
+                settingsState.handleInput(inputHelper);
+                break;
         }
 
 
@@ -82,6 +89,8 @@ class GameStateManager : GameState
                 menuState.update(gameTime);
                 break;
             case state.Pause:
+                break;
+            case state.Settings:
                 break;
         }
         
@@ -102,6 +111,9 @@ class GameStateManager : GameState
             case state.Pause:
                 pauseState.drawHUD(spriteBatch);
                 break;
+            case state.Settings:
+                settingsState.drawHUD(spriteBatch);
+                break;
         }
     }
 
@@ -110,6 +122,7 @@ class GameStateManager : GameState
         playingState = new PlayingState();
         menuState = new MenuState();
         pauseState = new PauseState();
+        settingsState = new SettingsState();
     }
 }
 

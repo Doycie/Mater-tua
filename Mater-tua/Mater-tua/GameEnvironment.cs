@@ -60,6 +60,8 @@ class GameEnvironment : Game
         }
     }
 
+   
+
        public void ApplyResolutionSettings(bool fullScreen = false)
     {
         if (!fullScreen)
@@ -140,6 +142,8 @@ class GameEnvironment : Game
 
         if (MediaPlayer.State == MediaState.Stopped) 
             assetManager.RandomiseBGM();
+
+       
     }
 
     protected override void Draw(GameTime gameTime)
@@ -152,5 +156,6 @@ class GameEnvironment : Game
         gameStateManager.drawHUD(spriteBatch);
         spriteBatch.End();
     }
+
 }
 

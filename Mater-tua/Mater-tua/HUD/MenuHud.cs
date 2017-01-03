@@ -47,6 +47,7 @@ class MenuHud : HUD
     {
         foreach (Button b in _buttons)
         {
+            //TODO sprite beweegt mee als in de playingstate de camera wordt bewogen
             b.draw(spriteBatch);
         }
     }

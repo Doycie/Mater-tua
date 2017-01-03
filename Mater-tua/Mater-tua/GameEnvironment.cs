@@ -37,8 +37,6 @@ class GameEnvironment : Game
     {
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-
-       // IsMouseVisible = true;
         
         inputHelper = new InputHelper();
         camera = new Camera2D();
@@ -59,8 +57,6 @@ class GameEnvironment : Game
             ApplyResolutionSettings(value);
         }
     }
-
-   
 
        public void ApplyResolutionSettings(bool fullScreen = false)
     {
@@ -103,7 +99,6 @@ class GameEnvironment : Game
         camera.initCamera(inputHelper.Scale.X, Vector2.Zero, new Vector2(width,height));
         spriteScale = Matrix.CreateScale(inputHelper.Scale.X, inputHelper.Scale.Y, 1);
 
-
     }
 
     protected override void LoadContent()
@@ -119,7 +114,7 @@ class GameEnvironment : Game
         gameStateManager.initGameState();
     }
 
-    protected void HandleInput()
+    void HandleInput()
     {
         inputHelper.Update();
         if (inputHelper.KeyPressed(Keys.Escape))

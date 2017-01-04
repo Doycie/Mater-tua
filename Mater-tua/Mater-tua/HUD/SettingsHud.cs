@@ -10,8 +10,13 @@ using Microsoft.Xna.Framework.Media;
 
 class SettingsHud : HUD
 {
+
+    private Texture2D _BGTex;
+
     public SettingsHud()
     {
+        _BGTex = GameEnvironment.getAssetManager().GetSprite("MenuBG");
+
         _buttons = new List<Button>();
         /* 1*/
         _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2), 192, 64), GameEnvironment.getAssetManager().GetSprite("playButton"), GameEnvironment.getAssetManager().GetSprite("playButtonPressed")));
@@ -52,6 +57,8 @@ class SettingsHud : HUD
 
     public override void draw(SpriteBatch spriteBatch)
     {
+        spriteBatch.Draw(_BGTex, new Rectangle(0, 0, (int)GameEnvironment.getCamera().getScreenSize().X, (int)GameEnvironment.getCamera().getScreenSize().Y), Color.White);
+
         foreach (Button b in _buttons)
         {
             b.draw(spriteBatch);

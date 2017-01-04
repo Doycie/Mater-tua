@@ -11,7 +11,6 @@ class SettingsState : GameState
 {
     CustomCursor _customCursor;
     private MouseState _mouseState;
-    private Texture2D _BGTex;
     Vector2 _lastMousePos;
     Vector2 _currentMousePos;
     bool _mouseReleased;
@@ -19,7 +18,6 @@ class SettingsState : GameState
 
     public SettingsState()
     {
-        _BGTex = GameEnvironment.getAssetManager().GetSprite("MenuBG");
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
         _hud = new SettingsHud();
@@ -39,7 +37,7 @@ class SettingsState : GameState
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_BGTex, new Rectangle(0, 0, (int)GameEnvironment.getCamera().getScreenSize().X, (int)GameEnvironment.getCamera().getScreenSize().Y), Color.White);
+      
     }
 
     public void handleInput(InputHelper inputHelper)

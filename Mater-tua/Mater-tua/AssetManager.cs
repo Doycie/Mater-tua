@@ -31,7 +31,6 @@ public class AssetManager
     //Make a new texture based on width and height
     public Texture2D GetTex(int w, int h)
     {
-
         return new Texture2D(graphicsDevice.GraphicsDevice, w, h);
     }
 

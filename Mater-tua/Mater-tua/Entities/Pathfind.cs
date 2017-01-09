@@ -53,7 +53,7 @@ class Pathfind
     }
 
     //NOT USED CODE Started working on Astar pathfinding algorithm
-    List<Point> findPathAStar(Point start, Point end)
+    List<Point> findPathAStar(Point start, Point end, byte[,] map)
     {
         List<Point> path = new List<Point>();
 

@@ -102,9 +102,6 @@ class PlayingState : GameState
                                 }
                             }
                         }
-                        //werk nog niet
-                        
-                        ///////////
                         if (!attack)
                         {
                             e.removeTarget();
@@ -112,7 +109,8 @@ class PlayingState : GameState
                         }
                     }
                 }
-                foreach (WorkerUnit q in level.entities.OfType<WorkerUnit>())
+                //make an order to a WorkerUnit
+                foreach (WorkerUnit q in _selectedEntities.OfType<WorkerUnit>())
                 {
                     Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                     foreach (Mine w in level.entities.OfType<Mine>())
@@ -290,7 +288,5 @@ class PlayingState : GameState
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }
-
     }
-
 }

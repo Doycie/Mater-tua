@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class SettingsState : GameState
+class PauseSettingsState : GameState
 {
     CustomCursor _customCursor;
     private MouseState _mouseState;
@@ -16,11 +16,11 @@ class SettingsState : GameState
     bool _mouseReleased;
     HUD _hud;
 
-    public SettingsState()
+    public PauseSettingsState()
     {
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
-        _hud = new SettingsHud();
+        _hud = new PauseSettingsHud();
     }
 
     public void update(GameTime gameTime)
@@ -30,14 +30,13 @@ class SettingsState : GameState
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
-
         _hud.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
     }
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-      
+
     }
 
     public void handleInput(InputHelper inputHelper)
@@ -47,7 +46,7 @@ class SettingsState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-        if ((_hud as SettingsHud).update(inputHelper))
+        if ((_hud as PauseSettingsHud).update(inputHelper))
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
 
         if (inputHelper.MouseLeftButtonDown())
@@ -61,7 +60,7 @@ class SettingsState : GameState
 
         if (inputHelper.KeyPressed(Keys.Back))
         {
-            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
 
     }

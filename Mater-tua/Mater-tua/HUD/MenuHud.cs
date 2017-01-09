@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Input;
 
 class MenuHud : HUD
 {
@@ -40,7 +41,7 @@ class MenuHud : HUD
                 Console.WriteLine("Settings pressed");
                 break;
             case 3:
-                //TODO: actually exit the game
+                GameEnvironment.exit();
                 Console.WriteLine("Exit button pressed");
                 break;
         }

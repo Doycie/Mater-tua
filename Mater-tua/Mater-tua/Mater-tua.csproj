@@ -83,12 +83,14 @@
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
+    <Compile Include="GameStates\PauseSettingsState.cs" />
     <Compile Include="GameStates\PauseState.cs" />
     <Compile Include="GameStates\SettingsState.cs" />
     <Compile Include="HUD\Button.cs" />
     <Compile Include="HUD\HUD.cs" />
     <Compile Include="HUD\MenuHud.cs" />
-    <Compile Include="HUD\PauseHUD.cs" />
+    <Compile Include="HUD\PauseHud.cs" />
+    <Compile Include="HUD\PauseSettingsHud.cs" />
     <Compile Include="HUD\PlayingHud.cs" />
     <Compile Include="HUD\SettingsHud.cs" />
     <Compile Include="InputHelper.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="GameStates\MenuState.cs" />
     <Compile Include="Perlin.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-partial class Level
+public partial class Level
 {
     //Hold information about the current level
     private int _mapWidth, _mapHeight;
@@ -44,12 +44,12 @@ partial class Level
         {
             if (i < 10)
             {
-                Footman e = new Footman(new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
+                Footman e = new Footman(this, new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);
             }
             if (i >= 10)
             {
-                Grunt e = new Grunt(new Vector2((GameEnvironment.getRandom().Next(10)+10) * data.tSize(), (GameEnvironment.getRandom().Next(10)+10) * data.tSize()));
+                Grunt e = new Grunt(this ,new Vector2((GameEnvironment.getRandom().Next(10)+10) * data.tSize(), (GameEnvironment.getRandom().Next(10)+10) * data.tSize()));
                 entities.Add(e);
             }
             //Unit e = new Unit();
@@ -65,9 +65,9 @@ partial class Level
         entities.Add(Mine);
         Townhall Townhall = new Townhall(new Vector2(384, 384), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
-        WorkerUnit Worker = new WorkerUnit(new Vector2(704, 192), BuildingAndUnit.faction.Human);
+        WorkerUnit Worker = new WorkerUnit(this, new Vector2(704, 192), BuildingAndUnit.faction.Human);
         entities.Add(Worker);
-        WorkerUnit Worker1 = new WorkerUnit(new Vector2(192, 704), BuildingAndUnit.faction.Human);
+        WorkerUnit Worker1 = new WorkerUnit(this ,new Vector2(192, 704), BuildingAndUnit.faction.Human);
         entities.Add(Worker1);
         Tree Tree1 = new Tree(new Vector2(512,64));
         entities.Add(Tree1);

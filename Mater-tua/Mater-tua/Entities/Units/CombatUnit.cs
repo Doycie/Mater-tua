@@ -10,8 +10,8 @@ class CombatUnit : Unit
     protected int _attackCooldown;
     protected int isAttacking;
 
-    public CombatUnit()
-        : base()
+    public CombatUnit(Level level)
+        : base(level)
     {
 
     }

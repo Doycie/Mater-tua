@@ -7,8 +7,8 @@ using System.Collections.Generic;
 class BasicMeleeUnit : CombatUnit
 {//de basis voor de Footman & Grunt
 
-    public BasicMeleeUnit()
-        : base()
+    public BasicMeleeUnit(Level level)
+        : base(level)
     {
         _maxhp = 60;
         _armor = 2;

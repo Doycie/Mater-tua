@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 
 class Button
@@ -13,7 +14,7 @@ class Button
     private Texture2D _texPressed;
     private bool _relative;
     private bool _pressed;
-
+  
     public Rectangle getPosition()
     {
         return _position;
@@ -33,6 +34,7 @@ class Button
         _position = position;
         _relative = relative;
     }
+    
 
     public bool update(InputHelper inputHelper)
     {
@@ -49,6 +51,7 @@ class Button
             if (inputHelper.MouseLeftButtonDown())
             {
                 _pressed = true;
+
             }
             else
             {

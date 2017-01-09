@@ -41,7 +41,7 @@ class SettingsHud : HUD
                 break;
             case 1:
                 Console.WriteLine("Fullscreen pressed");
-                GameEnvironment.graphics.ToggleFullScreen();
+                GameEnvironment.fullScreen(true);
                 break;
             case 2:
                 Console.WriteLine("Back pressed");

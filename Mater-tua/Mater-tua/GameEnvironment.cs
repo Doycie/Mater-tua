@@ -21,6 +21,12 @@ class GameEnvironment : Game
     protected static GameSettingsManager gameSettingsManager;
 
     static private bool exitGame = false;
+    static private bool setFullScreen = false;
+
+    static public void fullScreen(bool a)
+    {
+        setFullScreen = a;
+    }
 
     static public void exit()
     {
@@ -127,10 +133,12 @@ class GameEnvironment : Game
         {
             Exit();
         }
-        if (inputHelper.KeyPressed(Keys.F5))
+        if (inputHelper.KeyPressed(Keys.F5) || setFullScreen)
         {
+            setFullScreen = false;
             FullScreen = !FullScreen;
         }
+        
 
         gameStateManager.handleInput(inputHelper);
     }

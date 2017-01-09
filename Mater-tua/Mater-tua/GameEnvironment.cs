@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Media;
 
 class GameEnvironment : Game
 {
-    protected GraphicsDeviceManager graphics;
+    static public GraphicsDeviceManager graphics;
     protected SpriteBatch spriteBatch;
     protected InputHelper inputHelper;
     protected Point windowSize;

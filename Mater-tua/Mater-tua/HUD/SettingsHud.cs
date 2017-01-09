@@ -18,14 +18,16 @@ class SettingsHud : HUD
         _BGTex = GameEnvironment.getAssetManager().GetSprite("MenuBG");
 
         _buttons = new List<Button>();
-        /* 1*/
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2), 192, 64), GameEnvironment.getAssetManager().GetSprite("playButton"), GameEnvironment.getAssetManager().GetSprite("playButtonPressed")));
-        /* 2 */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2), (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 80, 192, 64), GameEnvironment.getAssetManager().GetSprite("backButton"), GameEnvironment.getAssetManager().GetSprite("backButtonPressed")));
-        /* 3 */
-         _buttons.Add(new Button(new Rectangle(450, 400, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed")));
-        /* 4 */
-        _buttons.Add(new Button(new Rectangle(400, 400, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed")));
+        /* 1 fullscreen*/
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("fullscreenButtonPressed")));
+        /* 2 back*/
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("backButton"), GameEnvironment.getAssetManager().GetSprite("backButtonPressed")));
+        /* 3 volume up */
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) + 32, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed")));
+        /* 4 volume down */
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 32, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed")));
+        /* 5 volume mute */
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeMute"), GameEnvironment.getAssetManager().GetSprite("VolumeMutePressed")));
 
     }
 
@@ -38,8 +40,8 @@ class SettingsHud : HUD
             case 0:
                 break;
             case 1:
-                Console.WriteLine("Play pressed");
-                GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
+                Console.WriteLine("Fullscreen pressed");
+                GameEnvironment.graphics.ToggleFullScreen();
                 break;
             case 2:
                 Console.WriteLine("Back pressed");
@@ -50,6 +52,9 @@ class SettingsHud : HUD
                 break;
             case 4:
                 MediaPlayer.Volume -= (float)0.1;
+                break;
+            case 5:
+                MediaPlayer.Volume = (float)0.0;
                 break;
         }
         return false;

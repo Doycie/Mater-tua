@@ -44,7 +44,7 @@ class PauseSettingsHud : HUD
                 break;
             case 2:
                 Console.WriteLine("Back pressed");
-                GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
+                GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
                 break;
             case 3:
                 MediaPlayer.Volume += (float)0.1;

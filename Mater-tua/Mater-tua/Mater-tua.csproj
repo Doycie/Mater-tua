@@ -101,6 +101,7 @@
     <Compile Include="GameStates\MenuState.cs" />
     <Compile Include="Perlin.cs" />
     <Compile Include="GameStates\PlayingState.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

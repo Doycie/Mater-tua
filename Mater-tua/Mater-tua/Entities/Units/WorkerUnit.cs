@@ -12,6 +12,7 @@ class WorkerUnit : Unit
     int _FirstTimeTree;
     int _TimerTree;
     int _Timer;
+    int _MineOrChop;
 
     public WorkerUnit(Vector2 Position, faction faction)
         : base()
@@ -32,6 +33,7 @@ class WorkerUnit : Unit
         _Timer = 60;
         _FirstTimeTree = 0;
         _TimerTree= 60;
+        _MineOrChop = 2;
     }
 
     public override void Reset()
@@ -42,14 +44,44 @@ class WorkerUnit : Unit
     public override void Update()
     {
         base.Update();
-        Mining();
-        
+        if (_MineOrChop == 0)
+        {
+            Mining();
+        }
+        else if (_MineOrChop == 1)
+        {
+            CuttingWood();
+        }
+    }
+
+
+    public void Order(int What, Vector2 PositionX, Vector2 PositionTownhall)
+    {
+        if (What == 0)
+        {
+            _MineOrChop = 0;
+            _MinePosition = PositionX;
+        }
+        else if (What == 1)
+        {
+            _MineOrChop = 1;
+            _TreePosition = PositionX;
+        }
+
+        _TownhallPosition = PositionTownhall;
+    }
+
+    public void OrderReset()
+    {
+        _FirstTime = 0;
+        _FirstTimeTree = 0;
+
     }
 
     private void Mining()
     {
-        _TownhallPosition = new Vector2(384, 384);
-        _MinePosition = new Vector2(64, 64);
+        //_TownhallPosition = new Vector2(384, 384);
+        //_MinePosition = new Vector2(64, 64);
 
         if (_position != _MinePosition && _position != _TownhallPosition && _FirstTime == 0)
         {
@@ -76,8 +108,8 @@ class WorkerUnit : Unit
 
     private void CuttingWood()
     {
-        _TownhallPosition = new Vector2(384, 384);
-        _TreePosition = new Vector2(64, 64); 
+        //_TownhallPosition = new Vector2(384, 384);
+        //_TreePosition = new Vector2(64, 64); 
         
 
         if (_position != _TreePosition && _position != _TownhallPosition && _FirstTimeTree == 0)

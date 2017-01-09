@@ -102,9 +102,19 @@ class PlayingState : GameState
                                 }
                             }
                         }
-
-                       
-
+                        //werk nog niet
+                        foreach (WorkerUnit q in level.entities.OfType<WorkerUnit>())
+                        {
+                            foreach (Mine w in level.entities.OfType<Mine>())
+                            {
+                                if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos)))
+                                {
+                                    q.Order(0, w.Position, new Vector2(384, 384));
+                                    break;
+                                }
+                            }
+                        }
+                        ///////////
                         if (!attack)
                         {
                             e.removeTarget();

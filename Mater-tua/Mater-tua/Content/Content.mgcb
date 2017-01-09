@@ -433,9 +433,3 @@
 /processorParam:TextureFormat=Color
 /build:VolumeMutePressed.png
 
-#begin ButtonSound.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:ButtonSound.wav
-

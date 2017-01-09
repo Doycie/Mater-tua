@@ -67,9 +67,14 @@ partial class Level
         entities.Add(Townhall);
         WorkerUnit Worker = new WorkerUnit(new Vector2(704, 192), BuildingAndUnit.faction.Human);
         entities.Add(Worker);
+        WorkerUnit Worker1 = new WorkerUnit(new Vector2(192, 704), BuildingAndUnit.faction.Human);
+        entities.Add(Worker1);
         Tree Tree1 = new Tree(new Vector2(512,64));
         entities.Add(Tree1);
+        Tree Tree2 = new Tree(new Vector2(64, 512));
+        entities.Add(Tree2);
 
+        Player Player = new Player();
 
     }
 

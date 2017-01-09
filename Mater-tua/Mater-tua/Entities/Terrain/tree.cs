@@ -15,6 +15,7 @@ class Tree : BuildingAndUnit
         _position = Position;
         _maxhp = 25000;
         this.Reset();
+        _faction = BuildingAndUnit.faction.Neutral;
     }
     public override void Reset()
     {

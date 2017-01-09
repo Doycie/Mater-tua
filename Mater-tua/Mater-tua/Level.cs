@@ -18,6 +18,8 @@ public partial class Level
 
     public List<Entity> specialFX = new List<Entity>();
 
+    public Player Player = new Player();
+
     public Level()
     {
 
@@ -128,6 +130,7 @@ public partial class Level
         //_tex.SetData(data);
 
     }
+
 
 
 }

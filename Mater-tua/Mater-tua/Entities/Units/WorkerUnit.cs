@@ -34,6 +34,7 @@ class WorkerUnit : Unit
         _FirstTimeTree = 0;
         _TimerTree= 60;
         _MineOrChop = 2;
+        _level = level;
     }
 
     public override void Reset()
@@ -99,7 +100,10 @@ class WorkerUnit : Unit
         }
         if (_position.X  == _TownhallPosition.X && _position.Y == _TownhallPosition.Y)
         {  
-                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));                        
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+            _level.Player.AddGold(10);
+            Console.WriteLine("Gold:" + _level.Player.Gold);
+
         } 
     }
 
@@ -122,9 +126,9 @@ class WorkerUnit : Unit
         }
         if (_position.X == _TownhallPosition.X && _position.Y == _TownhallPosition.Y )
         {
-            
+            _level.Player.AddWood(10);      
                 orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            
+            Console.WriteLine("Wood:" + _level.Player.Wood);
         }
     }
 

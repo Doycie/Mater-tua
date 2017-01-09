@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-class Player
+public class Player
 {
     private int _Wood;
     private int _Gold;

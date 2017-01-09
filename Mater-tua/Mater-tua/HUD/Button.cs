@@ -16,6 +16,12 @@ class Button
     {
         return _position;
     }
+
+
+    public void setPosition(Rectangle position)
+    {
+        _position = position;
+    }
     //A BUTTON DEFINED BY A POSITION RECTANCLE AND TEXTURES
     //THE Y COORDINATE IS THE OFFSET TO THE BOTTOM OF THE SCREEN
     public Button(Rectangle position, Texture2D tex, Texture2D texPressed)
@@ -54,7 +60,7 @@ class Button
     }
     public void draw(SpriteBatch s)
     {
-        Rectangle r = new Rectangle(_position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
+        Rectangle r = new Rectangle( _position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
         if (_pressed)
             s.Draw(_texPressed, r, Color.White);
         else

@@ -103,17 +103,7 @@ class PlayingState : GameState
                             }
                         }
                         //werk nog niet
-                        foreach (WorkerUnit q in level.entities.OfType<WorkerUnit>())
-                        {
-                            foreach (Mine w in level.entities.OfType<Mine>())
-                            {
-                                if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos)))
-                                {
-                                    q.Order(0, w.Position, new Vector2(384, 384));
-                                    break;
-                                }
-                            }
-                        }
+                        
                         ///////////
                         if (!attack)
                         {
@@ -121,6 +111,21 @@ class PlayingState : GameState
                             e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                         }
                     }
+                }
+                foreach (WorkerUnit q in level.entities.OfType<WorkerUnit>())
+                {
+                    Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
+                    foreach (Mine w in level.entities.OfType<Mine>())
+                    {
+                        foreach (Townhall r in level.entities.OfType<Townhall>())
+                        {
+                            if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+                            {
+                                q.Order(0, w.Position, r.Position);
+                                break;
+                            }
+                        }
+                    }                   
                 }
 
             }
@@ -133,6 +138,10 @@ class PlayingState : GameState
                     foreach (Unit e in _selectedEntities.OfType<Unit>())
                     {
                         e.StopMove();
+                    }
+                    foreach (WorkerUnit q in level.entities.OfType<WorkerUnit>())
+                    {
+                        q.OrderReset();
                     }
                 }
             }

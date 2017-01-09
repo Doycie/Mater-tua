@@ -44,6 +44,7 @@ class WorkerUnit : Unit
     public override void Update()
     {
         base.Update();
+
         if (_MineOrChop == 0)
         {
             Mining();
@@ -75,6 +76,7 @@ class WorkerUnit : Unit
     {
         _FirstTime = 0;
         _FirstTimeTree = 0;
+        _MineOrChop = 2;
 
     }
 

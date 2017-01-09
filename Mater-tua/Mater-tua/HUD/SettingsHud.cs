@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 class SettingsHud : HUD
 {
-
+    private bool updateButtonPosition = false;
     private Texture2D _BGTex;
 
     public SettingsHud()
@@ -18,6 +18,12 @@ class SettingsHud : HUD
         _BGTex = GameEnvironment.getAssetManager().GetSprite("MenuBG");
 
         _buttons = new List<Button>();
+        initButtons();
+    }
+
+    private void initButtons()
+    {
+        _buttons.Clear();
         /* 1 fullscreen*/
         _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) - 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("fullscreenButtonPressed")));
         /* 2 back*/
@@ -35,13 +41,21 @@ class SettingsHud : HUD
     {
         int j = base.update(inputHelper);
 
+        if (updateButtonPosition)
+        {
+            initButtons();
+            updateButtonPosition = false;
+        }
+
         switch (j)
         {
             case 0:
                 break;
             case 1:
-                Console.WriteLine("Fullscreen pressed");
                 GameEnvironment.fullScreen(true);
+                Console.WriteLine("Fullscreen pressed");
+                updateButtonPosition = true;
+                
                 break;
             case 2:
                 Console.WriteLine("Back pressed");

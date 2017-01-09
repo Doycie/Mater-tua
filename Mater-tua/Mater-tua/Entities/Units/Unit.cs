@@ -7,10 +7,12 @@ public class Unit : BuildingAndUnit
 {
     protected float _productionTime;
     protected float _moveSpeed = 2.0f;
-
+   // protected Level _thelevel;
 
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
+
+
     
 
     public Unit()
@@ -28,6 +30,8 @@ public class Unit : BuildingAndUnit
 
     public void init(Vector2 pos, string tex)
     {
+        
+        //_level = level;
         _position = pos;
         _sprite = GameEnvironment.getAssetManager().GetSprite(tex);
     }

@@ -98,10 +98,8 @@ class WorkerUnit : Unit
             _Timer--;
         }
         if (_position.X  == _TownhallPosition.X && _position.Y == _TownhallPosition.Y)
-        {
-                
-                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));               
-                              
+        {  
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));                        
         } 
     }
 

@@ -121,11 +121,24 @@ class PlayingState : GameState
                         {
                             if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                             {
+                                q.OrderReset();
                                 q.Order(0, w.Position, r.Position);
                                 break;
                             }
                         }
-                    }                   
+                    }
+                    foreach (Tree n in level.entities.OfType<Tree>())
+                    {
+                        foreach (Townhall r in level.entities.OfType<Townhall>())
+                        {
+                            if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                            {
+                                q.OrderReset();
+                                q.Order(1, n.Position, r.Position);
+                                break;
+                            }
+                        }
+                    }
                 }
 
             }

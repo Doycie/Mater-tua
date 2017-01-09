@@ -29,7 +29,7 @@ class CustomCursor
     //Draw the cursor
     public void draw(SpriteBatch s)
     {
-        s.Draw(_tex, _mousePosScreen, new Rectangle(0, 0, _tex.Width, _tex.Height), Color.White, 0.0f, new Vector2(_tex.Width / 2, _tex.Height / 2), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
+        s.Draw(_tex, _mousePosScreen, new Rectangle(0, 0, _tex.Width, _tex.Height), Color.White, 0.0f, new Vector2(_tex.Width / 5, _tex.Height / 5), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
     }
 
     //Get the mouseposition in the game world

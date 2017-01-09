@@ -53,6 +53,8 @@ class GameEnvironment : Game
         inputHelper = new InputHelper();
         camera = new Camera2D();
 
+        IsMouseVisible = true;
+
         gameStateManager = new GameStateManager();
 
         random = new Random();

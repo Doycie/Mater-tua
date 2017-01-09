@@ -20,6 +20,12 @@ class GameEnvironment : Game
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
 
+    static private bool exitGame = false;
+
+    static public void exit()
+    {
+        exitGame = true;
+    }
     static public Random getRandom()
     {
         return random;
@@ -131,14 +137,17 @@ class GameEnvironment : Game
 
     protected override void Update(GameTime gameTime)
     {
-
+        
         HandleInput();
         gameStateManager.update(gameTime);
 
         if (MediaPlayer.State == MediaState.Stopped) 
             assetManager.RandomiseBGM();
 
-       
+        if (exitGame)
+        {
+            Exit();
+        }
     }
 
     protected override void Draw(GameTime gameTime)

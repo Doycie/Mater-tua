@@ -102,6 +102,9 @@ class PlayingState : GameState
                                 }
                             }
                         }
+
+                       
+
                         if (!attack)
                         {
                             e.removeTarget();

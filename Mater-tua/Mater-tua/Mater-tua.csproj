@@ -60,6 +60,8 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Farm.cs" />
+    <Compile Include="Entities\Buildings\ActualBuildings\Mine.cs" />
+    <Compile Include="Entities\Buildings\ActualBuildings\Townhall.cs" />
     <Compile Include="Entities\Buildings\ProductionBuilding.cs" />
     <Compile Include="Entities\Buildings\StaticBuilding.cs" />
     <Compile Include="Entities\BuildingAndUnit.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityTemp.cs" />
     <Compile Include="Entities\Pathfind.cs" />
+    <Compile Include="Entities\Units\WorkerUnit.cs" />
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />

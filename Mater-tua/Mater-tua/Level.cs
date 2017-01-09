@@ -39,7 +39,7 @@ partial class Level
         GameEnvironment.getCamera().SetMaxBounds(data.tSize() * data.tSize() + data.tSize(), data.tSize() * data.tSize() + data.tSize());
         _mapData = new byte[_mapWidth, _mapHeight];
         loadMap(mapPath);
-
+        
         for (int i = 0; i < 20; i++)
         {
             if (i < 10)
@@ -60,6 +60,14 @@ partial class Level
         entities.Add(orcFarm);
         Farm humanFarm = new Farm(new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);
+        
+        Mine Mine = new Mine(new Vector2(64, 64), BuildingAndUnit.faction.Human);
+        entities.Add(Mine);
+        Townhall Townhall = new Townhall(new Vector2(384, 384), BuildingAndUnit.faction.Human);
+        entities.Add(Townhall);
+        WorkerUnit Worker = new WorkerUnit(new Vector2(704, 192), BuildingAndUnit.faction.Human);
+        entities.Add(Worker);
+
 
     }
 

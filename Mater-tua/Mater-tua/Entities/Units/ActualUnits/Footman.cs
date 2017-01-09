@@ -6,8 +6,8 @@ using System.Collections.Generic;
 class Footman : BasicMeleeUnit
 {//basic melee unit van de Humans
 
-    public Footman(Vector2 Position)
-        : base()
+    public Footman(Level level,Vector2 Position)
+        : base(level)
     {
         _faction = faction.Human;
         _position = Position;

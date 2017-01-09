@@ -14,8 +14,8 @@ class WorkerUnit : Unit
     int _Timer;
     int _MineOrChop;
 
-    public WorkerUnit(Vector2 Position, faction faction)
-        : base()
+    public WorkerUnit(Level level, Vector2 Position, faction faction)
+        : base(level)
     {
         _sprite = GameEnvironment.getAssetManager().GetSprite("Human");
         _maxhp = 40;

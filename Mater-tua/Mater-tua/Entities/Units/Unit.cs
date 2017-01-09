@@ -7,7 +7,7 @@ public class Unit : BuildingAndUnit
 {
     protected float _productionTime;
     protected float _moveSpeed = 2.0f;
-   // protected Level _thelevel;
+    protected Level _level;
 
     protected List<Point> _path = new List<Point>();
     Pathfind pathfinder = new Pathfind();
@@ -15,10 +15,10 @@ public class Unit : BuildingAndUnit
 
     
 
-    public Unit()
+    public Unit(Level level)
         : base()
     {
-
+        _level = level;
     }
     public void StopMove()
     {

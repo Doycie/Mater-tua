@@ -15,11 +15,11 @@ class PauseHud : HUD
 
         _buttons = new List<Button>();
         /* 1 resume game*/
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 160, 192, 64), GameEnvironment.getAssetManager().GetSprite("resumeGameButton"), GameEnvironment.getAssetManager().GetSprite("resumeGameButtonPressed")));
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 160, 192, 64), GameEnvironment.getAssetManager().GetSprite("resumeGameButton"), GameEnvironment.getAssetManager().GetSprite("resumeGameButtonPressed"),false));
         /* 2 settings*/
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("settingsButton"), GameEnvironment.getAssetManager().GetSprite("settingsButtonPressed")));
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("settingsButton"), GameEnvironment.getAssetManager().GetSprite("settingsButtonPressed"),false));
         /* 3 quit to menu */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("quitToMenuButton"), GameEnvironment.getAssetManager().GetSprite("quitToMenuButtonPressed")));
+        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("quitToMenuButton"), GameEnvironment.getAssetManager().GetSprite("quitToMenuButtonPressed"),false));
     }
 
     public new bool update(InputHelper inputHelper)

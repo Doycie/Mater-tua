@@ -103,7 +103,7 @@ class WorkerUnit : Unit
             _FirstTime = 1;
         }
 
-        if (_position.X == _MinePosition.X && _position.Y == _MinePosition.Y)
+        if (_position == _MinePosition)
         {
             if (_Timer == 0)
             {
@@ -112,7 +112,7 @@ class WorkerUnit : Unit
             }
             _Timer--;
         }
-        if (_position.X  == _TownhallPosition.X && _position.Y == _TownhallPosition.Y)
+        if (_position == _TownhallPosition)
         {  
                 orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
             _level.Player.AddGold(10);
@@ -129,7 +129,7 @@ class WorkerUnit : Unit
             _FirstTimeTree = 1;
         }
 
-        if (_position.X == _TreePosition.X && _position.Y == _TreePosition.Y)
+        if (_position == _TreePosition)
         {
             if (_TimerTree == 0)
             {
@@ -138,7 +138,7 @@ class WorkerUnit : Unit
             }
             _TimerTree--;
         }
-        if (_position.X == _TownhallPosition.X && _position.Y == _TownhallPosition.Y )
+        if (_position == _TownhallPosition)
         {
             _level.Player.AddWood(10);      
                 orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));

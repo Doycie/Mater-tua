@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 class Mine : StaticBuilding
 {
-    public Mine(Vector2 position, faction faction)
-        : base()
+    public Mine(Level level, Vector2 position, faction faction)
+        : base(level)
     {
         _size = 2;
         _position = position;

@@ -5,14 +5,15 @@ using System.Collections.Generic;
 
 class WorkerUnit : Unit
 {
-    Vector2 _TownhallPosition;
-    Vector2 _MinePosition;
-    Vector2 _TreePosition;
-    int _FirstTime;
-    int _FirstTimeTree;
-    int _TimerTree;
-    int _Timer;
-    int _MineOrChop;
+    private Vector2 _TownhallPosition;
+    private Vector2 _MinePosition;
+    private Vector2 _TreePosition;
+    private Vector2 _TargetPosition;
+    private int _FirstTime;
+    private int _FirstTimeTree;
+    private int _TimerTree;
+    private int _Timer;
+    private int _OrderLevel;
 
     public WorkerUnit(Level level, Vector2 Position, faction faction)
         : base(level)
@@ -33,7 +34,7 @@ class WorkerUnit : Unit
         _Timer = 60;
         _FirstTimeTree = 0;
         _TimerTree= 60;
-        _MineOrChop = 2;
+        _OrderLevel = -1;
         _level = level;
     }
 
@@ -46,13 +47,17 @@ class WorkerUnit : Unit
     {
         base.Update();
 
-        if (_MineOrChop == 0)
+        if (_OrderLevel == 0)
         {
             Mining();
         }
-        else if (_MineOrChop == 1)
+        else if (_OrderLevel == 1)
         {
             CuttingWood();
+        }
+        else if (_OrderLevel == 2)
+        {
+            Build();
         }
     }
 
@@ -61,13 +66,18 @@ class WorkerUnit : Unit
     {
         if (What == 0)
         {
-            _MineOrChop = 0;
+            _OrderLevel = 0;
             _MinePosition = PositionTarget;
         }
         else if (What == 1)
         {
-            _MineOrChop = 1;
+            _OrderLevel = 1;
             _TreePosition = PositionTarget;
+        }
+        else if (What == 2)
+        {
+            _OrderLevel = 2;
+            _TargetPosition = PositionTarget;
         }
 
         _TownhallPosition = PositionTownhall;
@@ -77,7 +87,7 @@ class WorkerUnit : Unit
     {
         _FirstTime = 0;
         _FirstTimeTree = 0;
-        _MineOrChop = 2;
+        _OrderLevel = -1;
 
     }
 
@@ -132,6 +142,11 @@ class WorkerUnit : Unit
         }
     }
 
+    private void Build()
+    {
+        
 
+
+    }
 
 }

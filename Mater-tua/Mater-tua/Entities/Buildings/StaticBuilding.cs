@@ -13,12 +13,12 @@ class StaticBuilding : BuildingAndUnit
     protected float _buildTime;
 
     protected bool _ableToProduce;
- 
 
+    protected Level _level;
 
-    public StaticBuilding() : base()
+    public StaticBuilding(Level level) : base()
     {
-
+        _level = level;
     }
 
 

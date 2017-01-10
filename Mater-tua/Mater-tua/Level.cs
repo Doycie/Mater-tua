@@ -58,14 +58,14 @@ public partial class Level
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
         }
-        Farm orcFarm = new Farm(new Vector2(5 * data.tSize(), 5 * data.tSize()), BuildingAndUnit.faction.Orc);
+        Farm orcFarm = new Farm(this, new Vector2(5 * data.tSize(), 5 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcFarm);
-        Farm humanFarm = new Farm(new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
+        Farm humanFarm = new Farm(this, new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);
         
-        Mine Mine = new Mine(new Vector2(64, 64), BuildingAndUnit.faction.Human);
+        Mine Mine = new Mine(this, new Vector2(64, 64), BuildingAndUnit.faction.Human);
         entities.Add(Mine);
-        Townhall Townhall = new Townhall(new Vector2(384, 384), BuildingAndUnit.faction.Human);
+        Townhall Townhall = new Townhall(this, new Vector2(384, 384), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
         WorkerUnit Worker = new WorkerUnit(this, new Vector2(704, 192), BuildingAndUnit.faction.Human);
         entities.Add(Worker);

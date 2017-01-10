@@ -10,6 +10,7 @@ class Minimap
 {
 
     private Texture2D _minimap;
+    // private Texture2D _mapborder; ??
 
     private int _size;
 
@@ -21,14 +22,15 @@ class Minimap
         Color[] data = new Color[_size * _size];
 
         for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+
+
+      //  _mapborder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/placeholderborder"); ?????
         _minimap.SetData(data);
-
     }
-
     public void draw(SpriteBatch s)
     {
-        s.Draw(_minimap, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - _size, (int)GameEnvironment.getCamera().getScreenSize().Y - _size, _size, _size), Color.White);
-
+        s.Draw(_minimap, new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X - _size,(int) GameEnvironment.getCamera().getScreenSize().Y-_size, _size, _size), Color.White);
+       // s.Draw(_mapborder, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - _mapborder.Width, (int)GameEnvironment.getCamera().getScreenSize().Y - _mapborder.Height, 256, 256)); ??
     }
 
     public void update(Level level)
@@ -37,37 +39,20 @@ class Minimap
 
         for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
 
-        foreach (BuildingAndUnit e in level.entities)
+        foreach (Entity e in level.entities)
         {
-            Color c = Color.White;
-            if (e.Faction == BuildingAndUnit.faction.Human)
+            for(int i = 0; i < 4; i++)
             {
-                c = Color.Blue;
+                int a = (int)(e.Position.X / 64)  *4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
+                a += i % 2;
+                a += i / 2 * 256;
+                if( !(a <0 || a > 256*256 - 1)) 
+                data[a] = Color.Blue; 
             }
-            else if (e.Faction == BuildingAndUnit.faction.Orc)
-            {
-                c = Color.Red;
-            }
-            else
-            {
-                c = Color.SandyBrown;
-            }
-            int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
-
-            for (int i = 0; i < 4; i++)
-            {
-                int b = a;
-                b += i % 2;
-                b += i / 2 * 256;
-
-                if (!(b < 0 || b > 256 * 256 - 1))
-
-                    data[b] = c;
-            }
-
+          
 
         }
-
+            
 
 
         _minimap.SetData(data);

@@ -77,18 +77,22 @@ class PlayingState : GameState
         _currentMousePos = _customCursor.getMousePos();
 
         (_hud as PlayingHUD).update(inputHelper, _selectedEntities, level);
+        
 
         if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
         {
-
-            //Make an order on th selected units
+            
+            //Make an order on the selected units
             if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)
             {
-
+                bool PlayedBattleCry = false;
                 foreach (Unit e in _selectedEntities.OfType<Unit>())
                 {
                     if (e.Faction == BuildingAndUnit.faction.Human)
                     {
+                        
+                        if (PlayedBattleCry == false)
+                            { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
                         foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
@@ -107,6 +111,7 @@ class PlayingState : GameState
                         }
                         if (!attack)
                         {
+
                             e.removeTarget();
                             e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                         }

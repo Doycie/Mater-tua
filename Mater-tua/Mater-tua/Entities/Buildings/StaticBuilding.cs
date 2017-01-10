@@ -33,5 +33,11 @@ class StaticBuilding : BuildingAndUnit
         set { _buildTime = value; }
     }
 
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+        base.Draw(spriteBatch);
+        Healthbar(spriteBatch);
+    }
+
 }
 

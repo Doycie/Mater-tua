@@ -51,7 +51,7 @@ class Button
             if (inputHelper.MouseLeftButtonDown())
             {
                 _pressed = true;
-
+                GameEnvironment.getAssetManager().PlaySoundEffect("ButtonTap");
             }
             else
             {

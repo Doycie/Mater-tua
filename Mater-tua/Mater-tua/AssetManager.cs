@@ -59,8 +59,9 @@ public class AssetManager
     {
         get { return contentManager; }
     }
-    
-    public void RandomiseBGM() // Randomly selects one of the BGM tracks and plays it.
+
+    // Randomly selects one of the BGM tracks and plays it.
+    public void RandomiseBGM() 
     {
         int trackNO = GameEnvironment.getRandom().Next(0, 3);
 
@@ -78,4 +79,12 @@ public class AssetManager
         }
     }
     
+    public SpriteFont getFont(string fontName)
+    {
+        if (fontName == "")
+        {
+            return null;
+        }
+        return contentManager.Load<SpriteFont>(fontName);
+    }
 }

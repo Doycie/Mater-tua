@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 public class SpriteEntity : Entity
@@ -24,7 +19,7 @@ public class SpriteEntity : Entity
         }
     }
 
-    public virtual void Draw( SpriteBatch spriteBatch)
+    public virtual void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
     }
@@ -53,6 +48,4 @@ public class SpriteEntity : Entity
     {
         get { return _size * data.tSize(); }
     }
-
 }
-

@@ -2,25 +2,23 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-class PlayingState : GameState
+internal class PlayingState : GameState
 {
     private Vector2 _camSpeed = new Vector2(4.0f, 4.0f);
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
     private List<Entity> _selectedEntities = new List<Entity>();
-    CustomCursor _customCursor;
-    HUD _hud;
-    Vector2 _lastMousePos;
-    Vector2 _currentMousePos;
-    bool _mouseReleased;
-    Texture2D _selectTex;
+    private CustomCursor _customCursor;
+    private HUD _hud;
+    private Vector2 _lastMousePos;
+    private Vector2 _currentMousePos;
+    private bool _mouseReleased;
+    private Texture2D _selectTex;
 
-
-  
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -30,7 +28,6 @@ class PlayingState : GameState
         level = new Level();
         level.init("lvl.txt");
         _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
-
     }
 
     //Update the level
@@ -41,7 +38,7 @@ class PlayingState : GameState
         // Console.WriteLine(mousePos);
     }
 
-    //Special function to draw the HUD 
+    //Special function to draw the HUD
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
@@ -49,7 +46,7 @@ class PlayingState : GameState
         _customCursor.draw(spriteBatch);
     }
 
-    //Draw the level then the cursor and the slected entities 
+    //Draw the level then the cursor and the slected entities
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
@@ -66,22 +63,18 @@ class PlayingState : GameState
             }
     }
 
-
     //Handle the camera movement and the selecting units
     public void handleInput(InputHelper inputHelper)
     {
-
         _customCursor.updateCursorPosition(inputHelper);
         _mouseState = Mouse.GetState();
 
         _currentMousePos = _customCursor.getMousePos();
 
         (_hud as PlayingHUD).update(inputHelper, _selectedEntities, level);
-        
 
         if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
         {
-            
             //Make an order on the selected units
             if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)
             {
@@ -90,9 +83,8 @@ class PlayingState : GameState
                 {
                     if (e.Faction == BuildingAndUnit.faction.Human)
                     {
-                        
                         if (PlayedBattleCry == false)
-                            { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; }
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
                         foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
@@ -104,14 +96,13 @@ class PlayingState : GameState
                                     Console.WriteLine("CHAARARRGGEEE   ");
                                     attack = true;
                                     (e as CombatUnit).orderAttack(g);
-                                   
+
                                     break;
                                 }
                             }
                         }
                         if (!attack)
                         {
-
                             e.removeTarget();
                             e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                         }
@@ -146,7 +137,6 @@ class PlayingState : GameState
                         }
                     }
                 }
-
             }
 
             //Order a stop on the selected entities
@@ -189,14 +179,11 @@ class PlayingState : GameState
                     _mouseReleased = true;
                     _lastMousePos = _customCursor.getMousePos();
                 }
-
-
             }
 
             //One click on a unit to select/deselect them
             if (inputHelper.MouseLeftButtonPressed())
             {
-
                 Vector2 pos = _customCursor.getMousePos();
 
                 bool clickedOnEntity = false;

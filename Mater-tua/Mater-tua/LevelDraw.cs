@@ -1,9 +1,6 @@
-﻿using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Runtime.CompilerServices;
 
 partial class Level
 {
@@ -15,7 +12,7 @@ partial class Level
         //Adjust the view slightly to see everything
         bounds.X -= data.tSize();
         bounds.Y -= data.tSize();
-       // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
+        // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
 
         //Draw all the tiles
         for (int i = 0; i < _mapWidth; i++)
@@ -26,9 +23,7 @@ partial class Level
                     s.Draw(_tex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
                 //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
             }
-
         }
-
 
         //TESTiNG / DEBUGING PURPOSES
         //s.Draw(_tex, new Rectangle(128, 0, 64, 64), Color.Black);
@@ -47,7 +42,6 @@ partial class Level
         {
             e.Draw(s);
         }
-
     }
 
     //Method for colloring a perlin map based on height of a byte NOT USED CODE
@@ -77,6 +71,5 @@ partial class Level
             return Color.White;
         else
             return Color.Black;
-
     }
 }

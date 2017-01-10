@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
+using System.Collections.Generic;
 
-class HUD
+internal class HUD
 {
     protected List<Button> _buttons;
     protected List<Resources> _resources;
@@ -26,6 +24,7 @@ class HUD
     {
         return new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
     }
+
     public virtual void draw(SpriteBatch spriteBatch)
     {
         for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width) // repeats the HUD texture till edge of screen
@@ -53,7 +52,7 @@ class HUD
                 return i;
             }
         }
-        
+
         return 0;
     }
 }

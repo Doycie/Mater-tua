@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-class Tree : BuildingAndUnit
+internal class Tree : BuildingAndUnit
 {
     public Tree(Vector2 Position)
         : base()
@@ -17,6 +12,7 @@ class Tree : BuildingAndUnit
         this.Reset();
         _faction = BuildingAndUnit.faction.Neutral;
     }
+
     public override void Reset()
     {
         _hp = _maxhp;
@@ -26,6 +22,4 @@ class Tree : BuildingAndUnit
     {
         base.Draw(spriteBatch);
     }
-
 }
-

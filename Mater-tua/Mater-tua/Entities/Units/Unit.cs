@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 public class Unit : BuildingAndUnit
@@ -10,16 +9,14 @@ public class Unit : BuildingAndUnit
     protected Level _level;
 
     protected List<Point> _path = new List<Point>();
-    Pathfind pathfinder = new Pathfind();
-
-
-    
+    private Pathfind pathfinder = new Pathfind();
 
     public Unit(Level level)
         : base()
     {
         _level = level;
     }
+
     public void StopMove()
     {
         while (_path.Count > 1)
@@ -30,20 +27,15 @@ public class Unit : BuildingAndUnit
 
     public void init(Vector2 pos, string tex)
     {
-        
         //_level = level;
         _position = pos;
         _sprite = GameEnvironment.getAssetManager().GetSprite(tex);
     }
 
-
     public override void Update()
     {
-
         this.UpdatePath();
     }
-
-
 
     public float ProductionTime
     {
@@ -89,31 +81,25 @@ public class Unit : BuildingAndUnit
             {
                 _path.RemoveAt(0);
             }
-
         }
     }
 
     public void orderMove(Point target)
     {
-
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
     }
-
 
     public override void Draw(SpriteBatch s)
     {
         base.Draw(s);
         Healthbar(s);
-    
-    /*foreach (Point p in _path)
-    {
-        s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
+
+        /*foreach (Point p in _path)
+        {
+            s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
+        }
+
+        // Console.WriteLine("SAD");
+        s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);*/
     }
-
-    // Console.WriteLine("SAD");
-    s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);*/
 }
-
-
-}
-

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-class Townhall : StaticBuilding
+internal class Townhall : StaticBuilding
 {
     public Townhall(Level level, Vector2 position, faction faction)
         : base(level)
@@ -41,4 +36,3 @@ class Townhall : StaticBuilding
         _level.entities.Add(Worker);
     }
 }
-

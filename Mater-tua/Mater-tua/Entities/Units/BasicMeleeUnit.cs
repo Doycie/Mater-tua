@@ -1,12 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-
-
-class BasicMeleeUnit : CombatUnit
+﻿internal class BasicMeleeUnit : CombatUnit
 {//de basis voor de Footman & Grunt
-
     public BasicMeleeUnit(Level level)
         : base(level)
     {
@@ -19,7 +12,7 @@ class BasicMeleeUnit : CombatUnit
         _damageType = damageType.Piercing;
         _productionTime = 600;
         _range = 1; //melee range
-        
+
         this.Reset();
     }
 
@@ -30,11 +23,8 @@ class BasicMeleeUnit : CombatUnit
 
     public void setFaction(faction e)
     {
-
-        
-        if(_faction != e)
+        if (_faction != e)
         {
-           
             _faction = e;
             if (_faction == faction.Human)
             {
@@ -44,12 +34,6 @@ class BasicMeleeUnit : CombatUnit
             {
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Orc");
             }
-
-           
         }
-
-        
     }
-
 }
-

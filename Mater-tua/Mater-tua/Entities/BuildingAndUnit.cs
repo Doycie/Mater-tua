@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class BuildingAndUnit : AnimatedEntity
 {
@@ -20,18 +16,21 @@ public class BuildingAndUnit : AnimatedEntity
     protected Texture2D _healthbar;
 
     public enum armorType { Light, Heavy, Fortified }
+
     protected armorType _armorType;
 
     public enum faction { Orc, Human, Neutral }
+
     protected faction _faction;
 
     public enum damageType { Normal, Piercing, Siege } // normal > light, Piercing > Heavy, Siege > Fortified (buildings)
+
     protected damageType _damageType;
 
     public BuildingAndUnit()
         : base()
     {
-       _healthbar =  GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
+        _healthbar = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
     }
 
     public int Damage
@@ -54,6 +53,7 @@ public class BuildingAndUnit : AnimatedEntity
     {
         get { return _description; }
     }
+
     public int LumberCost
     {
         get { return _lumberCost; }
@@ -108,19 +108,17 @@ public class BuildingAndUnit : AnimatedEntity
     public void Healthbar(SpriteBatch spriteBatch)
     {
         int y = (int)_position.Y;
-        if(y- 8 < 0)
+        if (y - 8 < 0)
         {
             y = 8;
         }
-        DrawingHelper.DrawRectangle(new Rectangle((int)_position.X-1, y - 8 , (int)_size * data.tSize() + 1,(int) data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
-        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, y - 7, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)) , data.tSize() / 10), Color.White);
+        DrawingHelper.DrawRectangle(new Rectangle((int)_position.X - 1, y - 8, (int)_size * data.tSize() + 1, (int)data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
+        spriteBatch.Draw(_healthbar, new Rectangle((int)_position.X, y - 7, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)), data.tSize() / 10), Color.White);
     }
 
-    public override void Draw( SpriteBatch spriteBatch)
+    public override void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
         //Healthbar(spriteBatch);
     }
-
 }
-

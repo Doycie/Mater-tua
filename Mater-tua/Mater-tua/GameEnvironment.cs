@@ -1,19 +1,18 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using System;
 
-
-class GameEnvironment : Game
+internal class GameEnvironment : Game
 {
     static public GraphicsDeviceManager graphics;
     protected SpriteBatch spriteBatch;
     protected InputHelper inputHelper;
     protected Point windowSize;
     protected Matrix spriteScale;
-    
+
     protected static Camera2D camera;
     protected static Point screen;
     public static GameStateManager gameStateManager;
@@ -33,10 +32,12 @@ class GameEnvironment : Game
     {
         exitGame = true;
     }
+
     static public Random getRandom()
     {
         return random;
     }
+
     static public Camera2D getCamera()
     {
         return camera;
@@ -46,24 +47,26 @@ class GameEnvironment : Game
     {
         return assetManager;
     }
+
     public GameEnvironment()
     {
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        
+
         inputHelper = new InputHelper();
         camera = new Camera2D();
 
         gameStateManager = new GameStateManager();
 
         random = new Random();
-        assetManager = new AssetManager(Content,graphics);
+        assetManager = new AssetManager(Content, graphics);
         gameSettingsManager = new GameSettingsManager();
 
         assetManager.RandomiseBGM();
         MediaPlayer.Volume = 1;
         SoundEffect.MasterVolume = 1;
     }
+
     public bool FullScreen
     {
         get { return graphics.IsFullScreen; }
@@ -73,7 +76,7 @@ class GameEnvironment : Game
         }
     }
 
-       public void ApplyResolutionSettings(bool fullScreen = false)
+    public void ApplyResolutionSettings(bool fullScreen = false)
     {
         if (!fullScreen)
         {
@@ -111,14 +114,12 @@ class GameEnvironment : Game
                                         (float)GraphicsDevice.Viewport.Height / screen.Y);
         //inputHelper.Offset = new Vector2(viewport.X, viewport.Y);
 
-        camera.initCamera(inputHelper.Scale.X, Vector2.Zero, new Vector2(width,height));
+        camera.initCamera(inputHelper.Scale.X, Vector2.Zero, new Vector2(width, height));
         spriteScale = Matrix.CreateScale(inputHelper.Scale.X, inputHelper.Scale.Y, 1);
-
     }
 
     protected override void LoadContent()
     {
-
         DrawingHelper.Initialize(this.GraphicsDevice);
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -129,7 +130,7 @@ class GameEnvironment : Game
         gameStateManager.initGameState();
     }
 
-    void HandleInput()
+    private void HandleInput()
     {
         inputHelper.Update();
         if (inputHelper.KeyPressed(Keys.Escape))
@@ -141,18 +142,16 @@ class GameEnvironment : Game
             setFullScreen = false;
             FullScreen = !FullScreen;
         }
-        
 
         gameStateManager.handleInput(inputHelper);
     }
 
     protected override void Update(GameTime gameTime)
     {
-        
         HandleInput();
         gameStateManager.update(gameTime);
 
-        if (MediaPlayer.State == MediaState.Stopped) 
+        if (MediaPlayer.State == MediaState.Stopped)
             assetManager.RandomiseBGM();
 
         if (exitGame)
@@ -172,4 +171,3 @@ class GameEnvironment : Game
         spriteBatch.End();
     }
 }
-

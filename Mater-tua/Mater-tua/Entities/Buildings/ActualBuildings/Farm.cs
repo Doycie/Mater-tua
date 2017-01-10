@@ -1,17 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 
-
-class Farm : StaticBuilding
+internal class Farm : StaticBuilding
 {// de basis voor de orc/human farms
     private int _Timer;
 
     public Farm(Level level, Vector2 position, faction faction)
         : base(level)
     {
-        
         _size = 2;
         _position = position;
         _faction = faction;
@@ -77,6 +73,4 @@ class Farm : StaticBuilding
             _Timer--;
         }
     }
-
 }
-

@@ -1,6 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework;
-
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 public class InputHelper
 {
@@ -38,6 +37,7 @@ public class InputHelper
     {
         get { return (new Vector2(currentMouseState.X, currentMouseState.Y) - offset) / scale; }
     }
+
     public Vector2 realMousePosition
     {
         get { return (new Vector2(currentMouseState.X, currentMouseState.Y)); }

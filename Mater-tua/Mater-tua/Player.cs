@@ -1,17 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-
-public class Player
+﻿public class Player
 {
     static private int _Wood;
     static private int _Gold;
     static private int _Food;
 
     public Player()
-    { 
-            
+    {
     }
 
     static public int Wood
@@ -23,6 +17,7 @@ public class Player
     {
         get { return _Gold; }
     }
+
     static public int Food
     {
         get { return _Food; }
@@ -32,6 +27,7 @@ public class Player
     {
         _Wood = _Wood + Amount;
     }
+
     public void AddGold(int Amount)
     {
         _Gold = _Gold + Amount;
@@ -41,6 +37,4 @@ public class Player
     {
         _Food = _Food + Amount;
     }
-
 }
-

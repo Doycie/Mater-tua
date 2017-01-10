@@ -15,8 +15,6 @@ public class DrawingHelper
     //Simple function to draw a rectangle
     public static void DrawRectangle(Rectangle r, SpriteBatch spriteBatch, Color col, int bw = 2)
     {
-
-
         spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, bw, r.Height), col); // Left
         spriteBatch.Draw(pixel, new Rectangle(r.Right, r.Top, bw, r.Height), col); // Right
         spriteBatch.Draw(pixel, new Rectangle(r.Left, r.Top, r.Width, bw), col); // Top

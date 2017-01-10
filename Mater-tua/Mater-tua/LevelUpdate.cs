@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using System;
+
 partial class Level
 {
     public void update()
@@ -7,29 +7,23 @@ partial class Level
         //Update all the entities in the level list
         for (int i = entities.Count() - 1; i >= 0; i--)
         {
-
-
             if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
             {
-                
                 entities[i].Update();
                 if ((entities[i] as BuildingAndUnit).HitPoints < 1)
                 {
                     GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allah");
-                    specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet",entities[i].Position,entities[i].Size));
+                    specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
                     entities.RemoveAt(i);
-           
                 }
             }
         }
 
-
-        for(int i = specialFX.Count() -1; i>= 0; i--)
+        for (int i = specialFX.Count() - 1; i >= 0; i--)
         {
             specialFX[i].Update();
             if (specialFX[i] is Explosion)
             {
-                
                 if ((specialFX[i] as Explosion).remove())
                 {
                     {
@@ -38,6 +32,5 @@ partial class Level
                 }
             }
         }
-
     }
 }

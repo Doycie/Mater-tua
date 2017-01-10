@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-class ProductionBuilding : StaticBuilding
+﻿internal class ProductionBuilding : StaticBuilding
 {
     public ProductionBuilding(Level level, string assetName, int layer = 0) : base(level)
     {
@@ -16,4 +9,3 @@ class ProductionBuilding : StaticBuilding
         base._hp = 1000;
     }
 }
-

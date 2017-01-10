@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
-
-class StaticBuilding : BuildingAndUnit
+internal class StaticBuilding : BuildingAndUnit
 {
-
     protected float _buildTime;
 
     protected bool _ableToProduce;
@@ -20,7 +12,6 @@ class StaticBuilding : BuildingAndUnit
     {
         _level = level;
     }
-
 
     public bool AbleToProduce
     {
@@ -38,6 +29,4 @@ class StaticBuilding : BuildingAndUnit
         base.Draw(spriteBatch);
         Healthbar(spriteBatch);
     }
-
 }
-

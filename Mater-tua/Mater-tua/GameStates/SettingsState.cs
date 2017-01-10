@@ -1,20 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-class SettingsState : GameState
+internal class SettingsState : GameState
 {
-    CustomCursor _customCursor;
+    private CustomCursor _customCursor;
     private MouseState _mouseState;
-    Vector2 _lastMousePos;
-    Vector2 _currentMousePos;
-    bool _mouseReleased;
-    HUD _hud;
+    private Vector2 _lastMousePos;
+    private Vector2 _currentMousePos;
+    private bool _mouseReleased;
+    private HUD _hud;
 
     public SettingsState()
     {
@@ -25,19 +20,16 @@ class SettingsState : GameState
 
     public void update(GameTime gameTime)
     {
-
     }
 
     public void drawHUD(SpriteBatch spriteBatch)
     {
-
         _hud.draw(spriteBatch);
         _customCursor.draw(spriteBatch);
     }
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-      
     }
 
     public void handleInput(InputHelper inputHelper)
@@ -63,6 +55,5 @@ class SettingsState : GameState
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }
-
     }
 }

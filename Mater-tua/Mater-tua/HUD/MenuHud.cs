@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
-class MenuHud : HUD
+internal class MenuHud : HUD
 {
     private Texture2D _BGTex;
-
 
     public MenuHud()
     {
@@ -17,12 +13,11 @@ class MenuHud : HUD
         //TODO: Fix position of the buttons
         _buttons = new List<Button>();
         /* 1 play*/
-        _buttons.Add(new Button(new Rectangle(96, - 40, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButtonPressed"),true));
+        _buttons.Add(new Button(new Rectangle(96, -40, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButtonPressed"), true));
         /* 2 settings*/
-        _buttons.Add(new Button(new Rectangle(96, -104 , 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButtonPressed"),true));
+        _buttons.Add(new Button(new Rectangle(96, -104, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButtonPressed"), true));
         /* 3 exit*/
-        _buttons.Add(new Button(new Rectangle(96, -168, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButtonPressed"),true));
-
+        _buttons.Add(new Button(new Rectangle(96, -168, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButtonPressed"), true));
     }
 
     public new bool update(InputHelper inputHelper)
@@ -33,14 +28,17 @@ class MenuHud : HUD
         {
             case 0:
                 break;
+
             case 1:
                 Console.WriteLine("Play pressed");
                 GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
                 break;
+
             case 2:
                 GameEnvironment.gameStateManager.State = GameStateManager.state.Settings;
                 Console.WriteLine("Settings pressed");
                 break;
+
             case 3:
                 GameEnvironment.exit();
                 Console.WriteLine("Exit button pressed");

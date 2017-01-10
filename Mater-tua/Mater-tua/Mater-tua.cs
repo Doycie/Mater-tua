@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-class MaterTua
+﻿internal class MaterTua
 {
-    static int Main()
+    private static int Main()
     {
-
         GameEnvironment game = new GameEnvironment();
         game.Run();
         return 0;

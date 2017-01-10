@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-class CustomCursor
+internal class CustomCursor
 {
     //Holds the position and the current texture
     private Texture2D _tex;
+
     private Vector2 _mousePosWorld;
     private Vector2 _mousePosScreen;
 
@@ -19,11 +18,9 @@ class CustomCursor
     //Gets the mouse position in the game world from the camera
     public void updateCursorPosition(InputHelper input)
     {
-        
-        _mousePosScreen = new Vector2(input.realMousePosition.X , input.realMousePosition.Y );
+        _mousePosScreen = new Vector2(input.realMousePosition.X, input.realMousePosition.Y);
         //Old mousepos from camera
         _mousePosWorld = new Vector2(input.realMousePosition.X / GameEnvironment.getCamera().getZoom() + GameEnvironment.getCamera().getView().X, input.realMousePosition.Y / GameEnvironment.getCamera().getZoom() + GameEnvironment.getCamera().getView().Y);
-
     }
 
     //Draw the cursor
@@ -38,4 +35,3 @@ class CustomCursor
         return _mousePosWorld;
     }
 }
-

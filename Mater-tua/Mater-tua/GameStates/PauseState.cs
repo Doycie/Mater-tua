@@ -1,18 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Linq;
-using System.Collections.Generic;
 
-class PauseState : GameState
+internal class PauseState : GameState
 {
-    CustomCursor _customCursor;
+    private CustomCursor _customCursor;
     private MouseState _mouseState;
-    Vector2 _lastMousePos;
-    Vector2 _currentMousePos;
-    bool _mouseReleased;
-    HUD _hud;
+    private Vector2 _lastMousePos;
+    private Vector2 _currentMousePos;
+    private bool _mouseReleased;
+    private HUD _hud;
 
     public PauseState()
     {
@@ -23,7 +20,6 @@ class PauseState : GameState
 
     public void update(GameTime gameTime)
     {
-
     }
 
     public void drawHUD(SpriteBatch spriteBatch)
@@ -34,7 +30,6 @@ class PauseState : GameState
 
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
-        
     }
 
     public void handleInput(InputHelper inputHelper)
@@ -64,7 +59,5 @@ class PauseState : GameState
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }
-
     }
-
 }

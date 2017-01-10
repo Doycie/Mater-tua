@@ -1,15 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
-class EntityTemp
+internal class EntityTemp
 {
-    Vector2 _position;
-    Texture2D _tex;
-    Point _tilePos;
-    Pathfind pathfinder = new Pathfind();
-    List<Point> _path = new List<Point>();
+    private Vector2 _position;
+    private Texture2D _tex;
+    private Point _tilePos;
+    private Pathfind pathfinder = new Pathfind();
+    private List<Point> _path = new List<Point>();
 
     public Vector2 getPosition()
     {
@@ -25,12 +24,13 @@ class EntityTemp
     public void update()
     {
         //Console.WriteLine(_path.Count);
-        if(_path.Count > 0)
+        if (_path.Count > 0)
         {
-            if(_path[0].X < (int)(_position.X / data.tSize()))
+            if (_path[0].X < (int)(_position.X / data.tSize()))
             {
                 _position.X -= 1.0f;
-            }else if(_path[0].X > (int)_position.X / data.tSize())
+            }
+            else if (_path[0].X > (int)_position.X / data.tSize())
             {
                 _position.X += 1.0f;
             }
@@ -44,12 +44,10 @@ class EntityTemp
                 _position.Y += 1.0f;
             }
 
-
             if (new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()) == _path[0])
             {
                 _path.RemoveAt(0);
             }
-
         }
     }
 
@@ -57,20 +55,19 @@ class EntityTemp
     {
         _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
     }
+
     private void move()
     {
         int x = (int)_position.X / data.tSize();
         int y = (int)_position.Y / data.tSize();
-
     }
 
     public void draw(SpriteBatch s)
     {
-      //foreach(Point p in _path)
-      //  {
-      //      s.Draw(_tex, new Rectangle((int)p.X * 64 , (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
-      //  }
-        s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y,  data.tSize(), data.tSize()), Color.White);
+        //foreach(Point p in _path)
+        //  {
+        //      s.Draw(_tex, new Rectangle((int)p.X * 64 , (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
+        //  }
+        s.Draw(_tex, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);
     }
 }
-

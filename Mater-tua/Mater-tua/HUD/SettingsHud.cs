@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
+using System;
+using System.Collections.Generic;
 
-
-class SettingsHud : HUD
+internal class SettingsHud : HUD
 {
     private bool updateButtonPosition = false;
     private Texture2D _BGTex;
@@ -26,16 +22,15 @@ class SettingsHud : HUD
     {
         _buttons.Clear();
         /* 1 fullscreen*/
-        _buttons.Add(new Button(new Rectangle(96, - 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButtonPressed"),true));
+        _buttons.Add(new Button(new Rectangle(96, -32, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButtonPressed"), true));
         /* 2 back*/
-        _buttons.Add(new Button(new Rectangle( 96, - 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButtonPressed"),true));
+        _buttons.Add(new Button(new Rectangle(96, -96, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButtonPressed"), true));
         /* 3 volume up */
-        _buttons.Add(new Button(new Rectangle( -32, - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"),true));
+        _buttons.Add(new Button(new Rectangle(-32, -160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"), true));
         /* 4 volume down */
-        _buttons.Add(new Button(new Rectangle(32, - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"),true));
+        _buttons.Add(new Button(new Rectangle(32, -160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"), true));
         /* 5 volume mute */
-        _buttons.Add(new Button(new Rectangle( 96,  - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMute"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMutePressed"),true));
-
+        _buttons.Add(new Button(new Rectangle(96, -160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMute"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMutePressed"), true));
     }
 
     public new bool update(InputHelper inputHelper)
@@ -52,16 +47,19 @@ class SettingsHud : HUD
         {
             case 0:
                 break;
+
             case 1:
                 GameEnvironment.fullScreen(true);
                 Console.WriteLine("Fullscreen pressed");
-               // updateButtonPosition = true;
-                
+                // updateButtonPosition = true;
+
                 break;
+
             case 2:
                 Console.WriteLine("Back pressed");
                 GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
                 break;
+
             case 3:
                 MediaPlayer.Volume += (float)0.1;
                 try
@@ -73,6 +71,7 @@ class SettingsHud : HUD
                     SoundEffect.MasterVolume = 1;
                 }
                 break;
+
             case 4:
                 MediaPlayer.Volume -= (float)0.1;
                 try
@@ -84,6 +83,7 @@ class SettingsHud : HUD
                     SoundEffect.MasterVolume = 0;
                 }
                 break;
+
             case 5:
                 MediaPlayer.Volume = (float)0.0;
                 SoundEffect.MasterVolume = (float)0.0;

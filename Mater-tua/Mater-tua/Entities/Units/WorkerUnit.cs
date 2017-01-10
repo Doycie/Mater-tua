@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 
-class WorkerUnit : Unit
+internal class WorkerUnit : Unit
 {
     private Vector2 _TownhallPosition;
     private Vector2 _MinePosition;
@@ -35,7 +33,7 @@ class WorkerUnit : Unit
         _FirstTime = 0;
         _Timer = 60;
         _FirstTimeTree = 0;
-        _TimerTree= 60;
+        _TimerTree = 60;
         _OrderLevel = -1;
         _level = level;
     }
@@ -62,7 +60,6 @@ class WorkerUnit : Unit
             Build(_BuildLevel, _TargetPosition, _done);
         }
     }
-
 
     public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
     {
@@ -92,7 +89,6 @@ class WorkerUnit : Unit
         _FirstTime = 0;
         _FirstTimeTree = 0;
         _OrderLevel = -1;
-
     }
 
     private void Mining()
@@ -113,12 +109,11 @@ class WorkerUnit : Unit
             _Timer--;
         }
         if (_position == _TownhallPosition)
-        {  
-                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+        {
+            orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
             _level.Player.AddGold(10);
             Console.WriteLine("Gold:" + Player.Gold);
-
-        } 
+        }
     }
 
     private void CuttingWood()
@@ -140,8 +135,8 @@ class WorkerUnit : Unit
         }
         if (_position == _TownhallPosition)
         {
-            _level.Player.AddWood(10);      
-                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+            _level.Player.AddWood(10);
+            orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
             Console.WriteLine("Wood:" + Player.Wood);
         }
     }
@@ -161,13 +156,8 @@ class WorkerUnit : Unit
                 }
                 if (BuildLevel == 1)
                 {
-
                 }
             }
-
         }
-
-
     }
-
 }

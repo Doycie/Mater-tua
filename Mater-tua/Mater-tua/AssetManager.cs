@@ -1,8 +1,8 @@
-﻿using Microsoft.Xna.Framework.Audio;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 //Class that is used to load new  textures and sounds
@@ -11,16 +11,16 @@ public class AssetManager
 {
     protected ContentManager contentManager;
     protected GraphicsDeviceManager graphicsDevice;
-    List<SoundEffect> soundEffects;
-    GameTime gameTime = new GameTime();
-    float timeSinceLastSound = 0f;
+    private List<SoundEffect> soundEffects;
+    private GameTime gameTime = new GameTime();
+    private float timeSinceLastSound = 0f;
 
     //Setup the AssetManager
     public AssetManager(ContentManager content, GraphicsDeviceManager graphics)
     {
         contentManager = content;
         graphicsDevice = graphics;
-        soundEffects = new List<SoundEffect>(); 
+        soundEffects = new List<SoundEffect>();
     }
 
     //Get a texture from file
@@ -40,13 +40,11 @@ public class AssetManager
     }
 
     //Play sounds from file
-    public void PlaySoundEffect (string assetName)
+    public void PlaySoundEffect(string assetName)
     {
-       
         SoundEffect snd = Content.Load<SoundEffect>(assetName);
-       
-         snd.Play();
-          
+
+        snd.Play();
     }
 
     //Play music from file
@@ -64,24 +62,26 @@ public class AssetManager
     }
 
     // Randomly selects one of the BGM tracks and plays it.
-    public void RandomiseBGM() 
+    public void RandomiseBGM()
     {
         int trackNO = GameEnvironment.getRandom().Next(0, 3);
 
-        switch(trackNO)
+        switch (trackNO)
         {
             default:
                 this.PlayMusic("Sounds/Music/MaterTua_BGM_1", false);
                 break;
+
             case 1:
                 this.PlayMusic("Sounds/Music/MaterTua_BGM_1", false);
                 break;
+
             case 2:
                 this.PlayMusic("Sounds/Music/MaterTua_BGM_2", false);
                 break;
         }
     }
-    
+
     public SpriteFont getFont(string fontName)
     {
         if (fontName == "")

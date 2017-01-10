@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-class Barracks : StaticBuilding
+internal class Barracks : StaticBuilding
 {
     private int _unitLevel;
 
@@ -66,7 +63,4 @@ class Barracks : StaticBuilding
             }
         }
     }
-
-
 }
-    

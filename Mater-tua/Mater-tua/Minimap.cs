@@ -39,25 +39,41 @@ class Minimap
 
         for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
 
-        foreach (Entity e in level.entities)
+        foreach (BuildingAndUnit e in level.entities)
         {
-            for(int i = 0; i < 4; i++)
+            Color c = Color.White;
+            if (e.Faction == BuildingAndUnit.faction.Human)
             {
-                int a = (int)(e.Position.X / 64)  *4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
-                a += i % 2;
-                a += i / 2 * 256;
-                if( !(a <0 || a > 256*256 - 1)) 
-                data[a] = Color.Blue; 
+                c = Color.Blue;
             }
-          
+            else if (e.Faction == BuildingAndUnit.faction.Orc)
+            {
+                c = Color.Red;
+            }
+            else
+            {
+                c = Color.SandyBrown;
+            }
+            int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
+
+            for (int i = 0; i < 4; i++)
+            {
+                int b = a;
+                b += i % 2;
+                b += i / 2 * 256;
+
+                if (!(b < 0 || b > 256 * 256 - 1))
+
+                    data[b] = c;
+            }
+
 
         }
-            
+
 
 
         _minimap.SetData(data);
     }
 
 }
-
 

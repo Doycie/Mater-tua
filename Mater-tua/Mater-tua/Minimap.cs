@@ -10,6 +10,7 @@ class Minimap
 {
 
     private Texture2D _minimap;
+    // private Texture2D _mapborder; ??
 
     private int _size;
 
@@ -21,14 +22,15 @@ class Minimap
         Color[] data = new Color[_size * _size];
 
         for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+
+
+      //  _mapborder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/placeholderborder"); ?????
         _minimap.SetData(data);
-
     }
-
     public void draw(SpriteBatch s)
     {
         s.Draw(_minimap, new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X - _size,(int) GameEnvironment.getCamera().getScreenSize().Y-_size, _size, _size), Color.White);
-
+       // s.Draw(_mapborder, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - _mapborder.Width, (int)GameEnvironment.getCamera().getScreenSize().Y - _mapborder.Height, 256, 256)); ??
     }
 
     public void update(Level level)

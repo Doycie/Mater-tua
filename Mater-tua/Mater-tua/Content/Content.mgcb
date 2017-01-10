@@ -541,3 +541,21 @@
 /processorParam:Quality=Best
 /build:Sounds/Soundeffects/SwordDraw.mp3
 
+#begin Sounds/Soundeffects/BattleCry.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/BattleCry.mp3
+
+#begin Sounds/Soundeffects/GruntBattleCry.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/GruntBattleCry.mp3
+
+#begin Sounds/Soundeffects/Allah.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/Allah.mp3
+

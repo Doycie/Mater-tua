@@ -22,7 +22,7 @@ class Townhall : StaticBuilding
         _ableToProduce = true;
         this.Reset();
         _description = "This the main base of operation";
-        _sprite = GameEnvironment.getAssetManager().GetSprite("birb2");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/birb2");
     }
 
     public override void Reset()

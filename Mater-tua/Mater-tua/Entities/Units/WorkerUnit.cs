@@ -20,7 +20,7 @@ class WorkerUnit : Unit
     public WorkerUnit(Level level, Vector2 Position, faction faction)
         : base(level)
     {
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Human");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Human");
         _maxhp = 40;
         _armor = 0;
         _armorType = armorType.Light;

@@ -72,13 +72,13 @@ public class AssetManager
         switch(trackNO)
         {
             default:
-                this.PlayMusic("Music/MaterTua_BGM_1", false);
+                this.PlayMusic("Sounds/Music/MaterTua_BGM_1", false);
                 break;
             case 1:
-                this.PlayMusic("Music/MaterTua_BGM_1", false);
+                this.PlayMusic("Sounds/Music/MaterTua_BGM_1", false);
                 break;
             case 2:
-                this.PlayMusic("Music/MaterTua_BGM_2", false);
+                this.PlayMusic("Sounds/Music/MaterTua_BGM_2", false);
                 break;
         }
     }

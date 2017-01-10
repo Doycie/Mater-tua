@@ -15,7 +15,7 @@ class SettingsHud : HUD
 
     public SettingsHud()
     {
-        _BGTex = GameEnvironment.getAssetManager().GetSprite("MenuBG");
+        _BGTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/MenuBG");
 
         _buttons = new List<Button>();
         initButtons();
@@ -25,15 +25,15 @@ class SettingsHud : HUD
     {
         _buttons.Clear();
         /* 1 fullscreen*/
-        _buttons.Add(new Button(new Rectangle(96, - 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("fullscreenButtonPressed"),true));
+        _buttons.Add(new Button(new Rectangle(96, - 32, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButtonPressed"),true));
         /* 2 back*/
-        _buttons.Add(new Button(new Rectangle( 96, - 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("backButton"), GameEnvironment.getAssetManager().GetSprite("backButtonPressed"),true));
+        _buttons.Add(new Button(new Rectangle( 96, - 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButtonPressed"),true));
         /* 3 volume up */
-        _buttons.Add(new Button(new Rectangle( -32, - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed"),true));
+        _buttons.Add(new Button(new Rectangle( -32, - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"),true));
         /* 4 volume down */
-        _buttons.Add(new Button(new Rectangle(32, - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed"),true));
+        _buttons.Add(new Button(new Rectangle(32, - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"),true));
         /* 5 volume mute */
-        _buttons.Add(new Button(new Rectangle( 96,  - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeMute"), GameEnvironment.getAssetManager().GetSprite("VolumeMutePressed"),true));
+        _buttons.Add(new Button(new Rectangle( 96,  - 160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMute"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMutePressed"),true));
 
     }
 

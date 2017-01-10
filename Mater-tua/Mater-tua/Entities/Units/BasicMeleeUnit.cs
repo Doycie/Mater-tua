@@ -38,11 +38,11 @@ class BasicMeleeUnit : CombatUnit
             _faction = e;
             if (_faction == faction.Human)
             {
-                _sprite = GameEnvironment.getAssetManager().GetSprite("Human");
+                _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Human");
             }
             if (_faction == faction.Orc)
             {
-                _sprite = GameEnvironment.getAssetManager().GetSprite("Orc");
+                _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Orc");
             }
 
            

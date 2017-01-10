@@ -37,7 +37,7 @@ public partial class Level
     //Init the level based on a level text file
     public void init(string mapPath)
     {
-        _tex = GameEnvironment.getAssetManager().GetSprite("dirt");
+        _tex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/dirt");
         _mapWidth = data.tSize();
         _mapHeight = data.tSize();
         GameEnvironment.getCamera().SetMaxBounds(data.tSize() * data.tSize() + data.tSize(), data.tSize() * data.tSize() + data.tSize());

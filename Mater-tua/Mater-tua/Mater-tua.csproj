@@ -92,6 +92,7 @@
     <Compile Include="HUD\PauseHud.cs" />
     <Compile Include="HUD\PauseSettingsHud.cs" />
     <Compile Include="HUD\PlayingHud.cs" />
+    <Compile Include="HUD\Resources.cs" />
     <Compile Include="HUD\SettingsHud.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />

@@ -12,7 +12,7 @@ partial class Level
                 entities[i].Update();
                 if ((entities[i] as BuildingAndUnit).HitPoints < 1)
                 {
-                    GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allah");
+                    GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/DieSound");
                     specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
                     entities.RemoveAt(i);
                 }

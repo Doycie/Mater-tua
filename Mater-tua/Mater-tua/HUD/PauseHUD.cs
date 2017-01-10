@@ -37,7 +37,6 @@ class PauseHud : HUD
             case 2:
                 Console.WriteLine("Settings button pressed");
                 GameEnvironment.gameStateManager.State = GameStateManager.state.PauseSettings;
-                //TODO: fix this shit
                 break;
             case 3:
                 Console.WriteLine("quit to menu button pressed");

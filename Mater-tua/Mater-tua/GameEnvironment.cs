@@ -60,7 +60,9 @@ class GameEnvironment : Game
         assetManager = new AssetManager(Content,graphics);
         gameSettingsManager = new GameSettingsManager();
 
-        assetManager.RandomiseBGM();     
+        assetManager.RandomiseBGM();
+        MediaPlayer.Volume = 1;
+        SoundEffect.MasterVolume = 1;
     }
     public bool FullScreen
     {

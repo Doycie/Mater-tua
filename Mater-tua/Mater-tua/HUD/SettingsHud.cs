@@ -72,7 +72,6 @@ class SettingsHud : HUD
                 {
                     SoundEffect.MasterVolume = 1;
                 }
-                Console.WriteLine(SoundEffect.MasterVolume);
                 break;
             case 4:
                 MediaPlayer.Volume -= (float)0.1;
@@ -84,7 +83,6 @@ class SettingsHud : HUD
                 {
                     SoundEffect.MasterVolume = 0;
                 }
-                Console.WriteLine(SoundEffect.MasterVolume);
                 break;
             case 5:
                 MediaPlayer.Volume = (float)0.0;

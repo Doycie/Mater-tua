@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
-
+using Microsoft.Xna.Framework.Graphics;
 
 class PlayingHUD : HUD
 {
+    private Minimap _minimap;
     public PlayingHUD()
     {
+        _minimap = new Minimap(256);
         _buttons = new List<Button>();
         _resources = new List<Resources>();
         /* 1 */
@@ -25,10 +27,18 @@ class PlayingHUD : HUD
         _resources.Add(new Resources(2));
         _resources.Add(new Resources(3));
     }
+    public override void draw(SpriteBatch s)
+    {
+        base.draw(s);
 
-    public void update(InputHelper inputHelper, List<Entity> selectedEntities)
+        _minimap.draw(s);
+
+    }
+    public void update(InputHelper inputHelper, List<Entity> selectedEntities, Level level)
     {
         int j = base.update(inputHelper);
+
+        _minimap.update(level);
 
         switch (j)
         {

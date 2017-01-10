@@ -18,7 +18,7 @@ class PlayingState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
-    private Resources _resources;
+
 
   
     //Construct a new state and set the level and all the needed variables
@@ -76,7 +76,7 @@ class PlayingState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-        (_hud as PlayingHUD).update(inputHelper, _selectedEntities);
+        (_hud as PlayingHUD).update(inputHelper, _selectedEntities, level);
 
         if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
         {

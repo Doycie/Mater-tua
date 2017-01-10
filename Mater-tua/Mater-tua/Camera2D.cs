@@ -44,7 +44,7 @@ class Camera2D
     }
 
     //Move the camera a desired vector
-    public void move(Vector2 mov)
+    public void move(Vector2 mov) 
     {
         int x = (int)(_position.X - (_origin.X / _scale - _origin.X));
         int y = (int)(_position.Y - (_origin.Y / _scale - _origin.Y));
@@ -52,7 +52,7 @@ class Camera2D
         //if (_position.X + mov.X > 0)
         if(x + mov.X > 0 && (int)(x + mov.X + (_origin.X * 2 / _scale)) < _maxBounds.X )
         {
-            _position.X += mov.X ;
+            _position.X += mov.X ; 
         }
         
         // if( _position.Y + mov.Y > 0)

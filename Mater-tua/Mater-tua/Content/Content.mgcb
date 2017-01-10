@@ -511,3 +511,9 @@
 /processorParam:Quality=Best
 /build:ButtonTap.wav
 
+#begin AttackKill.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:AttackKill.wav
+

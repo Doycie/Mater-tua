@@ -11,7 +11,7 @@ class Tree : BuildingAndUnit
     public Tree(Vector2 Position)
         : base()
     {
-        _sprite = GameEnvironment.getAssetManager().GetSprite("tree");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/tree");
         _position = Position;
         _maxhp = 25000;
         this.Reset();

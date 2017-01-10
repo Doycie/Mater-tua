@@ -31,7 +31,7 @@ public class BuildingAndUnit : AnimatedEntity
     public BuildingAndUnit()
         : base()
     {
-       _healthbar =  GameEnvironment.getAssetManager().GetSprite("healthbar");
+       _healthbar =  GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
     }
 
     public int Damage

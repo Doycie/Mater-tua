@@ -29,7 +29,7 @@ class PlayingState : GameState
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init("lvl.txt");
-        _selectTex = GameEnvironment.getAssetManager().GetSprite("selectbox");
+        _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
 
     }
 

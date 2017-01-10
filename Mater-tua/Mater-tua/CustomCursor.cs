@@ -13,7 +13,7 @@ class CustomCursor
     //Load the standard mouse texture
     public CustomCursor()
     {
-        _tex = GameEnvironment.getAssetManager().GetSprite("CursorTest");
+        _tex = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/CursorTest");
     }
 
     //Gets the mouse position in the game world from the camera

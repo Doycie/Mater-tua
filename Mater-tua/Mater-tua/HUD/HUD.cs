@@ -13,7 +13,7 @@ class HUD
 
     public HUD()
     {
-        _tex = GameEnvironment.getAssetManager().GetSprite("WoodTextureTest");
+        _tex = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/WoodTextureTest");
         resizeHUD();
     }
 

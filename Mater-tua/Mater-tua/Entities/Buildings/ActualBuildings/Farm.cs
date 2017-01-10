@@ -6,8 +6,10 @@ using System.Collections.Generic;
 
 class Farm : StaticBuilding
 {// de basis voor de orc/human farms
-    public Farm(Vector2 position, faction faction)
-        : base()
+    private int _Timer;
+
+    public Farm(Level level, Vector2 position, faction faction)
+        : base(level)
     {
         _size = 2;
         _position = position;
@@ -19,6 +21,7 @@ class Farm : StaticBuilding
         _armor = 0;
         _ableToProduce = false;
         this.Reset();
+        _Timer = 120;
 
         if (_faction == faction.Human)
         {
@@ -42,5 +45,33 @@ class Farm : StaticBuilding
     {
         base.Draw(spriteBatch);
     }
+
+    public override void Update()
+    {
+        base.Update();
+        FoodCreate();
+        if ((float)_maxhp / (float)_hp > 2.0f)
+        {
+            if (_faction == faction.Orc)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("OrcFarmConstruction");
+            }
+        }
+    }
+
+    private void FoodCreate()
+    {
+        if (_faction == faction.Human)
+        {
+            if (_Timer == 0)
+            {
+                _level.Player.AddFood(1);
+                Console.WriteLine("Food:" + _level.Player.Food);
+                _Timer = 120;
+            }
+            _Timer--;
+        }
+    }
+
 }
 

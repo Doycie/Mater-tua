@@ -6,11 +6,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 
+
 class Button
 {
     private Rectangle _position;
     private Texture2D _tex;
     private Texture2D _texPressed;
+    private bool _relative;
     private bool _pressed;
   
     public Rectangle getPosition()
@@ -25,18 +27,19 @@ class Button
     }
     //A BUTTON DEFINED BY A POSITION RECTANCLE AND TEXTURES
     //THE Y COORDINATE IS THE OFFSET TO THE BOTTOM OF THE SCREEN
-    public Button(Rectangle position, Texture2D tex, Texture2D texPressed)
+    public Button(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative)
     {
         _texPressed = texPressed;
         _tex = tex;
         _position = position;
+        _relative = relative;
     }
     
 
     public bool update(InputHelper inputHelper)
     {
 
-        Rectangle r = new Rectangle(_position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
+        Rectangle r = realButtonPos();
         bool ret = false;
         if (r.Contains(inputHelper.realMousePosition))
         {
@@ -61,9 +64,16 @@ class Button
         }
         return ret;
     }
+    protected Rectangle realButtonPos()
+    {
+        if(_relative)
+        return new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X/ 2 - _position.X, (int)GameEnvironment.getCamera().getScreenSize().Y / 2 - _position.Y, _position.Width, _position.Height);
+        else
+        return new Rectangle(_position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
+    }
     public void draw(SpriteBatch s)
     {
-        Rectangle r = new Rectangle( _position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
+        Rectangle r = realButtonPos();
         if (_pressed)
             s.Draw(_texPressed, r, Color.White);
         else

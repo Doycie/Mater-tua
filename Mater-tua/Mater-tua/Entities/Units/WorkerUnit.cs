@@ -5,17 +5,20 @@ using System.Collections.Generic;
 
 class WorkerUnit : Unit
 {
-    Vector2 _TownhallPosition;
-    Vector2 _MinePosition;
-    Vector2 _TreePosition;
-    int _FirstTime;
-    int _FirstTimeTree;
-    int _TimerTree;
-    int _Timer;
-    int _MineOrChop;
+    private Vector2 _TownhallPosition;
+    private Vector2 _MinePosition;
+    private Vector2 _TreePosition;
+    private Vector2 _TargetPosition;
+    private int _FirstTime;
+    private int _FirstTimeTree;
+    private int _TimerTree;
+    private int _Timer;
+    private int _OrderLevel;
+    private int _BuildLevel;
+    private bool _done;
 
-    public WorkerUnit(Vector2 Position, faction faction)
-        : base()
+    public WorkerUnit(Level level, Vector2 Position, faction faction)
+        : base(level)
     {
         _sprite = GameEnvironment.getAssetManager().GetSprite("Human");
         _maxhp = 40;
@@ -33,7 +36,8 @@ class WorkerUnit : Unit
         _Timer = 60;
         _FirstTimeTree = 0;
         _TimerTree= 60;
-        _MineOrChop = 2;
+        _OrderLevel = -1;
+        _level = level;
     }
 
     public override void Reset()
@@ -45,28 +49,39 @@ class WorkerUnit : Unit
     {
         base.Update();
 
-        if (_MineOrChop == 0)
+        if (_OrderLevel == 0)
         {
             Mining();
         }
-        else if (_MineOrChop == 1)
+        else if (_OrderLevel == 1)
         {
             CuttingWood();
+        }
+        else if (_OrderLevel == 2)
+        {
+            Build(_BuildLevel, _TargetPosition, _done);
         }
     }
 
 
-    public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall)
+    public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
     {
         if (What == 0)
         {
-            _MineOrChop = 0;
+            _OrderLevel = 0;
             _MinePosition = PositionTarget;
         }
         else if (What == 1)
         {
-            _MineOrChop = 1;
+            _OrderLevel = 1;
             _TreePosition = PositionTarget;
+        }
+        else if (What == 2)
+        {
+            _OrderLevel = 2;
+            _TargetPosition = PositionTarget;
+            _BuildLevel = BuildLevel;
+            _done = false;
         }
 
         _TownhallPosition = PositionTownhall;
@@ -76,7 +91,7 @@ class WorkerUnit : Unit
     {
         _FirstTime = 0;
         _FirstTimeTree = 0;
-        _MineOrChop = 2;
+        _OrderLevel = -1;
 
     }
 
@@ -98,10 +113,11 @@ class WorkerUnit : Unit
             _Timer--;
         }
         if (_position.X  == _TownhallPosition.X && _position.Y == _TownhallPosition.Y)
-        {
-                
-                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));               
-                              
+        {  
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+            _level.Player.AddGold(10);
+            Console.WriteLine("Gold:" + _level.Player.Gold);
+
         } 
     }
 
@@ -124,12 +140,34 @@ class WorkerUnit : Unit
         }
         if (_position.X == _TownhallPosition.X && _position.Y == _TownhallPosition.Y )
         {
-            
+            _level.Player.AddWood(10);      
                 orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            
+            Console.WriteLine("Wood:" + _level.Player.Wood);
         }
     }
 
+    private void Build(int BuildLevel, Vector2 TargetPosition, bool done)
+    {
+        if (done != true)
+        {
+            orderMove(new Point((int)TargetPosition.X / data.tSize(), (int)TargetPosition.Y / data.tSize()));
+            if (_position == TargetPosition)
+            {
+                if (BuildLevel == 0)
+                {
+                    Farm farm = new Farm(_level, TargetPosition, BuildingAndUnit.faction.Human);
+                    _level.entities.Add(farm);
+                    _done = true;
+                }
+                if (BuildLevel == 1)
+                {
 
+                }
+            }
+
+        }
+
+
+    }
 
 }

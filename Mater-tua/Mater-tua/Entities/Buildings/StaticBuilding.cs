@@ -13,12 +13,12 @@ class StaticBuilding : BuildingAndUnit
     protected float _buildTime;
 
     protected bool _ableToProduce;
- 
 
+    protected Level _level;
 
-    public StaticBuilding() : base()
+    public StaticBuilding(Level level) : base()
     {
-
+        _level = level;
     }
 
 
@@ -31,6 +31,12 @@ class StaticBuilding : BuildingAndUnit
     {
         get { return _buildTime; }
         set { _buildTime = value; }
+    }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+        base.Draw(spriteBatch);
+        Healthbar(spriteBatch);
     }
 
 }

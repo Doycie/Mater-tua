@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 class Townhall : StaticBuilding
 {
-    public Townhall(Vector2 position, faction faction)
-        : base()
+    public Townhall(Level level, Vector2 position, faction faction)
+        : base(level)
     {
         _size = 2;
         _position = position;

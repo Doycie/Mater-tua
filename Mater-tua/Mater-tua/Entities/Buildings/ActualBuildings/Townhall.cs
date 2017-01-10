@@ -19,7 +19,7 @@ class Townhall : StaticBuilding
         _goldCost = 400;
         _buildTime = 1000;
         _armor = 0;
-        _ableToProduce = false;
+        _ableToProduce = true;
         this.Reset();
         _description = "This the main base of operation";
         _sprite = GameEnvironment.getAssetManager().GetSprite("birb2");
@@ -33,6 +33,12 @@ class Townhall : StaticBuilding
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
+    }
+
+    private void ProduceWorkerUnit(Vector2 TownhallPosition)
+    {
+        WorkerUnit Worker = new WorkerUnit(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y), _faction);
+        _level.entities.Add(Worker);
     }
 }
 

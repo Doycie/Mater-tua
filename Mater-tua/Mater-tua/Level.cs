@@ -58,7 +58,7 @@ public partial class Level
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
         }
-        Farm orcFarm = new Farm(this, new Vector2(5 * data.tSize(), 5 * data.tSize()), BuildingAndUnit.faction.Orc);
+        Farm orcFarm = new Farm(this, new Vector2(10 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcFarm);
         Farm humanFarm = new Farm(this, new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);

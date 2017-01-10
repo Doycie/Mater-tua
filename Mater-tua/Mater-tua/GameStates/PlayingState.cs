@@ -111,6 +111,7 @@ class PlayingState : GameState
                         }
                         if (!attack)
                         {
+
                             e.removeTarget();
                             e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                         }

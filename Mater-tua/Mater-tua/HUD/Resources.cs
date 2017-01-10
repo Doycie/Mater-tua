@@ -29,7 +29,6 @@ class Resources
         _resourceNumber = number;
     }
 
-
     public void draw(SpriteBatch s)
     {
         switch (getNumber())

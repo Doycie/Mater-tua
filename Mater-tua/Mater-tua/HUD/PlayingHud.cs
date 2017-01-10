@@ -9,6 +9,7 @@ class PlayingHUD : HUD
     public PlayingHUD()
     {
         _buttons = new List<Button>();
+        _resources = new List<Resources>();
         /* 1 */
         _buttons.Add(new Button(new Rectangle(32, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Button"), GameEnvironment.getAssetManager().GetSprite("ButtonPressed"),false));
         /* 2 */
@@ -20,6 +21,7 @@ class PlayingHUD : HUD
         /* 5 */
         _buttons.Add(new Button(new Rectangle(432, 57, 40, 40), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed"),false));
 
+        _resources.Add(new Resources(1, GameEnvironment.getAssetManager().GetSprite("foodSprite")));
     }
 
     public void update(InputHelper inputHelper, List<Entity> selectedEntities)

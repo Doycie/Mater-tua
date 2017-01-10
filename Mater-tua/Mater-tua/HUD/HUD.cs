@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Media;
 class HUD
 {
     protected List<Button> _buttons;
+    protected List<Resources> _resources;
     private Texture2D _tex;
     private Rectangle _hudSize;
 
@@ -33,6 +34,11 @@ class HUD
         foreach (Button b in _buttons)
         {
             b.draw(spriteBatch);
+        }
+
+        foreach (Resources r in _resources)
+        {
+            r.draw(spriteBatch);
         }
     }
 

@@ -10,8 +10,7 @@ class Resources
 {
     private int _resourceNumber;
     private Texture2D _resourceTex;
-    private int _foodCount;
-
+    
     public int getNumber()
     {
         return _resourceNumber;
@@ -26,5 +25,13 @@ class Resources
     {
         _resourceTex = resourceTex;
         _resourceNumber = number;
+    }
+
+    public void draw(SpriteBatch s)
+    {
+       if (getNumber() == 1)
+        {
+            s.Draw(_resourceTex, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2, (int)GameEnvironment.getCamera().getScreenSize().Y - 100, 30, 30), Color.White);
+        }
     }
 }

@@ -42,7 +42,7 @@ public class AssetManager
     //Play sounds from file
     public void PlaySoundEffect (string assetName)
     {
-        
+       
         SoundEffect snd = Content.Load<SoundEffect>(assetName);
        
          snd.Play();

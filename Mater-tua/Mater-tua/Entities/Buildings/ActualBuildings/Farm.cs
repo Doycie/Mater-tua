@@ -50,7 +50,13 @@ class Farm : StaticBuilding
     {
         base.Update();
         FoodCreate();
-
+        if ((float)_maxhp / (float)_hp > 2.0f)
+        {
+            if (_faction == faction.Orc)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("OrcFarmConstruction");
+            }
+        }
     }
 
     private void FoodCreate()

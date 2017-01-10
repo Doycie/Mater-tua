@@ -31,7 +31,7 @@ class CombatUnit : Unit
         _path.Clear();
         if (_attackCooldown < 0)
         {
-            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/AttackKill");
+            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordClash");
             _attackCooldown = 60;
             isAttacking = 30;
 

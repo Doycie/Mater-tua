@@ -100,7 +100,7 @@ class PlayingState : GameState
                                     Console.WriteLine("CHAARARRGGEEE   ");
                                     attack = true;
                                     (e as CombatUnit).orderAttack(g);
-                                    GameEnvironment.getAssetManager().PlaySoundEffect("AttackKill");
+                                   
                                     break;
                                 }
                             }

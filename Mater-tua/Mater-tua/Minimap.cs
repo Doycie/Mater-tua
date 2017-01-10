@@ -13,6 +13,7 @@ class Minimap
 
     private int _size;
 
+
     public Minimap(int size)
     {
         _size = size;
@@ -22,12 +23,11 @@ class Minimap
         for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
         _minimap.SetData(data);
 
-
     }
 
     public void draw(SpriteBatch s)
     {
-        s.Draw(_minimap, new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X - _size -32,(int) GameEnvironment.getCamera().getScreenSize().Y-_size - 32, _size, _size), Color.White);
+        s.Draw(_minimap, new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X - _size,(int) GameEnvironment.getCamera().getScreenSize().Y-_size, _size, _size), Color.White);
 
     }
 
@@ -44,8 +44,8 @@ class Minimap
                 int a = (int)(e.Position.X / 64)  *4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
                 a += i % 2;
                 a += i / 2 * 256;
-                if( !(a <0 || a > 256*256 - 1))
-                data[a] = Color.Blue;
+                if( !(a <0 || a > 256*256 - 1)) 
+                data[a] = Color.Blue; 
             }
           
 

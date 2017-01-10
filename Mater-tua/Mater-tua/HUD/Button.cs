@@ -67,7 +67,7 @@ class Button
     protected Rectangle realButtonPos()
     {
         if(_relative)
-        return new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X/ 2 - _position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
+        return new Rectangle((int) GameEnvironment.getCamera().getScreenSize().X/ 2 - _position.X, (int)GameEnvironment.getCamera().getScreenSize().Y / 2 - _position.Y, _position.Width, _position.Height);
         else
         return new Rectangle(_position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
     }

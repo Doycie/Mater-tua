@@ -18,15 +18,15 @@ class PauseSettingsHud : HUD
 
         _buttons = new List<Button>();
         /* 1 fullscreen*/
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 160, 192, 64), GameEnvironment.getAssetManager().GetSprite("fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("fullscreenButtonPressed"),false));
+        _buttons.Add(new Button(new Rectangle(96, 160, 192, 64), GameEnvironment.getAssetManager().GetSprite("fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("fullscreenButtonPressed"),true));
         /* 2 back*/
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("backButton"), GameEnvironment.getAssetManager().GetSprite("backButtonPressed"),false));
+        _buttons.Add(new Button(new Rectangle(96, 96, 192, 64), GameEnvironment.getAssetManager().GetSprite("backButton"), GameEnvironment.getAssetManager().GetSprite("backButtonPressed"),true));
         /* 3 volume up */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) + 32, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 32, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed"),false));
+        _buttons.Add(new Button(new Rectangle(-32, 32, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeUp"), GameEnvironment.getAssetManager().GetSprite("VolumeUpPressed"),true));
         /* 4 volume down */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 32, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 32, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed"),false));
+        _buttons.Add(new Button(new Rectangle(32, 32, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeDown"), GameEnvironment.getAssetManager().GetSprite("VolumeDownPressed"),true));
         /* 5 volume mute */
-        _buttons.Add(new Button(new Rectangle((int)(GameEnvironment.getCamera().getScreenSize().X / 2) - 96, (int)(GameEnvironment.getCamera().getScreenSize().Y / 2) + 32, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeMute"), GameEnvironment.getAssetManager().GetSprite("VolumeMutePressed"),false));
+        _buttons.Add(new Button(new Rectangle(96, 32, 64, 64), GameEnvironment.getAssetManager().GetSprite("VolumeMute"), GameEnvironment.getAssetManager().GetSprite("VolumeMutePressed"),true));
 
     }
 

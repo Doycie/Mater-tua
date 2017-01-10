@@ -282,6 +282,7 @@ class PlayingState : GameState
 
         if (inputHelper.KeyPressed(Keys.Back))
         {
+            _selectedEntities.Clear();
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
         if (inputHelper.KeyPressed(Keys.F1))

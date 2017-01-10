@@ -481,9 +481,15 @@
 /processorParam:TextureFormat=Color
 /build:quitToMenuButtonPressed.png
 
-#begin SoundEffects/ButtonSound.wav
+#begin Effects/ButtonSound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundEffects/ButtonSound.wav
+/build:Effects/ButtonSound.wav
+
+#begin ButtonClick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ButtonClick.wav
 

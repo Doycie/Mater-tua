@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 //Class that is used to load new  textures and sounds
 
@@ -10,12 +11,16 @@ public class AssetManager
 {
     protected ContentManager contentManager;
     protected GraphicsDeviceManager graphicsDevice;
+    List<SoundEffect> soundEffects;
+
+
 
     //Setup the AssetManager
     public AssetManager(ContentManager content, GraphicsDeviceManager graphics)
     {
         contentManager = content;
         graphicsDevice = graphics;
+        soundEffects = new List<SoundEffect>(); 
     }
 
     //Get a texture from file
@@ -37,8 +42,8 @@ public class AssetManager
     //Play sounds from file
     public void PlayButtonSound ()
     {
-        SoundEffect Buttonsnd = contentManager.Load<SoundEffect>("ButtonSound");
-        Buttonsnd.Play();
+        soundEffects.Add(Content.Load<SoundEffect>("ButtonClick"));
+        soundEffects[0].Play();
     }
 
     //Play music from file

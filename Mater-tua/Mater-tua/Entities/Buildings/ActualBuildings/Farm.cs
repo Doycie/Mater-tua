@@ -71,7 +71,7 @@ class Farm : StaticBuilding
             if (_Timer == 0)
             {
                 _level.Player.AddFood(1);
-                Console.WriteLine("Food:" + Player.Food);
+                //Console.WriteLine("Food:" + Player.Food);
                 _Timer = 120;
             }
             _Timer--;

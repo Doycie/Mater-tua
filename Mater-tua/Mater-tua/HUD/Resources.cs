@@ -29,12 +29,6 @@ class Resources
         _resourceNumber = number;
     }
 
-    public void update()
-    {
-        wood = _level.Player.Wood;
-        gold = _level.Player.Gold;
-        food = _level.Player.Food;
-    }
 
     public void draw(SpriteBatch s)
     {
@@ -44,15 +38,15 @@ class Resources
                 break;
             case 1: /* wood */
                 s.Draw(GameEnvironment.getAssetManager().GetSprite("foodSprite"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2, (int)GameEnvironment.getCamera().getScreenSize().Y - 100, 30, 30), Color.White);
-                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Wood: " + wood, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 + 35, (int)GameEnvironment.getCamera().getScreenSize().Y - 100), Color.Red);
+                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Wood: " + Player.Wood, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 + 35, (int)GameEnvironment.getCamera().getScreenSize().Y - 100), Color.Red);
                 break;
             case 2: /* gold */
                 s.Draw(GameEnvironment.getAssetManager().GetSprite("foodSprite"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2, (int)GameEnvironment.getCamera().getScreenSize().Y - 70, 30, 30), Color.White);
-                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Gold: " + gold, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 + 35, (int)GameEnvironment.getCamera().getScreenSize().Y - 70), Color.Red);
+                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Gold: " + Player.Gold, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 + 35, (int)GameEnvironment.getCamera().getScreenSize().Y - 70), Color.Red);
                 break;
             case 3: /* food */
                 s.Draw(GameEnvironment.getAssetManager().GetSprite("foodSprite"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2, (int)GameEnvironment.getCamera().getScreenSize().Y - 40, 30, 30), Color.White);
-                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Food: " + food, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 + 35, (int)GameEnvironment.getCamera().getScreenSize().Y - 40), Color.Red);
+                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Food: " + Player.Food, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 + 35, (int)GameEnvironment.getCamera().getScreenSize().Y - 40), Color.Red);
                 break;
         }
     }

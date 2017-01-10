@@ -5,25 +5,25 @@ using System.Collections.Generic;
 
 public class Player
 {
-    private int _Wood;
-    private int _Gold;
-    private int _Food;
+    static private int _Wood;
+    static private int _Gold;
+    static private int _Food;
 
     public Player()
     { 
             
     }
 
-    public int Wood
+    static public int Wood
     {
         get { return _Wood; }
     }
 
-    public int Gold
+    static public int Gold
     {
         get { return _Gold; }
     }
-    public int Food
+    static public int Food
     {
         get { return _Food; }
     }

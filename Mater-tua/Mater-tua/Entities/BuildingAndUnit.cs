@@ -119,7 +119,7 @@ public class BuildingAndUnit : AnimatedEntity
     public override void Draw( SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
-        Healthbar(spriteBatch);
+        //Healthbar(spriteBatch);
     }
 
 }

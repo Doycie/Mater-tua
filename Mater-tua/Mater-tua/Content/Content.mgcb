@@ -481,18 +481,6 @@
 /processorParam:TextureFormat=Color
 /build:foodSprite.png
 
-#begin ../../../../../../Pictures/Warcraft/done/OrcFarm.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../../../../Pictures/Warcraft/done/OrcFarm.png
-
 #begin OrcFarm.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
-
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -43,11 +42,11 @@ public class AssetManager
     //Play sounds from file
     public void PlaySoundEffect (string assetName)
     {
-        timeSinceLastSound += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        
         SoundEffect snd = Content.Load<SoundEffect>(assetName);
-        if (timeSinceLastSound == 0)
-        { snd.Play();
-          timeSinceLastSound = -1;} 
+       
+         snd.Play();
+          
     }
 
     //Play music from file

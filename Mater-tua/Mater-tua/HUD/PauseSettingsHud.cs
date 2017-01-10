@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 
 class PauseSettingsHud : HUD
@@ -48,12 +49,31 @@ class PauseSettingsHud : HUD
                 break;
             case 3:
                 MediaPlayer.Volume += (float)0.1;
+                try
+                {
+                    SoundEffect.MasterVolume += (float)0.1;
+                }
+                catch
+                {
+                    SoundEffect.MasterVolume = 1;
+                }
+                Console.WriteLine(SoundEffect.MasterVolume);
                 break;
             case 4:
                 MediaPlayer.Volume -= (float)0.1;
+                try
+                {
+                    SoundEffect.MasterVolume -= (float)0.1;
+                }
+                catch
+                {
+                    SoundEffect.MasterVolume = 0;
+                }
+                Console.WriteLine(SoundEffect.MasterVolume);
                 break;
             case 5:
                 MediaPlayer.Volume = (float)0.0;
+                SoundEffect.MasterVolume = (float)0.0;
                 break;
         }
         return false;

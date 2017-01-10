@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 class PlayingHUD : HUD
@@ -58,9 +59,27 @@ class PlayingHUD : HUD
                 break;
             case 4:
                 MediaPlayer.Volume -= (float)0.1;
+                try
+                {
+                    SoundEffect.MasterVolume -= (float)0.1;
+                }
+                catch
+                {
+                    SoundEffect.MasterVolume = 0;
+                }
+                Console.WriteLine(SoundEffect.MasterVolume);
                 break;
             case 5:
                 MediaPlayer.Volume += (float)0.1;
+                try
+                {
+                    SoundEffect.MasterVolume += (float)0.1;
+                }
+                catch
+                {
+                    SoundEffect.MasterVolume = 1;
+                }
+                Console.WriteLine(SoundEffect.MasterVolume);
                 break;
         }
 

@@ -41,7 +41,7 @@ class Minimap
         {
             for(int i = 0; i < 4; i++)
             {
-                int a = (int)(e.Position.X / 256)*4  + (((int)e.Position.Y / 256) * 64 * 4) ;
+                int a = (int)(e.Position.X / 64)  *4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
                 a += i % 2;
                 a += i / 2 * 256;
                 if( !(a <0 || a > 256*256 - 1))

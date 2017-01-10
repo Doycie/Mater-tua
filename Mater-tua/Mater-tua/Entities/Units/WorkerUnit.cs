@@ -14,6 +14,8 @@ class WorkerUnit : Unit
     private int _TimerTree;
     private int _Timer;
     private int _OrderLevel;
+    private int _BuildLevel;
+    private bool _done;
 
     public WorkerUnit(Level level, Vector2 Position, faction faction)
         : base(level)
@@ -57,12 +59,12 @@ class WorkerUnit : Unit
         }
         else if (_OrderLevel == 2)
         {
-            Build();
+            Build(_BuildLevel, _TargetPosition, _done);
         }
     }
 
 
-    public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall)
+    public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
     {
         if (What == 0)
         {
@@ -78,6 +80,8 @@ class WorkerUnit : Unit
         {
             _OrderLevel = 2;
             _TargetPosition = PositionTarget;
+            _BuildLevel = BuildLevel;
+            _done = false;
         }
 
         _TownhallPosition = PositionTownhall;
@@ -142,9 +146,26 @@ class WorkerUnit : Unit
         }
     }
 
-    private void Build()
+    private void Build(int BuildLevel, Vector2 TargetPosition, bool done)
     {
-        
+        if (done != true)
+        {
+            orderMove(new Point((int)TargetPosition.X / data.tSize(), (int)TargetPosition.Y / data.tSize()));
+            if (_position == TargetPosition)
+            {
+                if (BuildLevel == 0)
+                {
+                    Farm farm = new Farm(_level, TargetPosition, BuildingAndUnit.faction.Human);
+                    _level.entities.Add(farm);
+                    _done = true;
+                }
+                if (BuildLevel == 1)
+                {
+
+                }
+            }
+
+        }
 
 
     }

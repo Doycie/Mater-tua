@@ -35,10 +35,10 @@ public class AssetManager
     }
 
     //Play sounds from file
-    public void PlaySound(string assetName)
+    public void PlayButtonSound ()
     {
-        SoundEffect snd = contentManager.Load<SoundEffect>(assetName);
-        snd.Play();
+        SoundEffect Buttonsnd = contentManager.Load<SoundEffect>("ButtonSound");
+        Buttonsnd.Play();
     }
 
     //Play music from file

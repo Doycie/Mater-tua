@@ -122,6 +122,7 @@ internal class WorkerUnit : Unit
         {
             orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
             _FirstTimeTree = 1;
+            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Boom");
         }
 
         if (_position == _TreePosition)

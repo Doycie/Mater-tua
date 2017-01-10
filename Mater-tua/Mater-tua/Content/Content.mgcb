@@ -559,3 +559,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Soundeffects/Allah.mp3
 
+#begin Sounds/Soundeffects/Boom.wma
+/importer:WmaImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/Boom.wma
+

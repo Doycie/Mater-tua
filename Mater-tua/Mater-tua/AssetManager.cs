@@ -42,7 +42,7 @@ public class AssetManager
     //Play sounds from file
     public void PlayButtonSound ()
     {
-        soundEffects.Add(Content.Load<SoundEffect>("ButtonClick"));
+        soundEffects.Add(Content.Load<SoundEffect>("ButtonTap"));
         soundEffects[0].Play();
     }
 

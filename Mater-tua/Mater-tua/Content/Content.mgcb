@@ -505,3 +505,9 @@
 /processorParam:TextureFormat=Color
 /build:OrcFarmConstruction.png
 
+#begin ButtonTap.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ButtonTap.wav
+

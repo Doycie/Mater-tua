@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-class Mater_tua
+class MaterTua
 {
     static int Main()
     {

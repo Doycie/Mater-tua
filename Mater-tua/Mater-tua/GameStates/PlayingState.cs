@@ -18,6 +18,7 @@ class PlayingState : GameState
     Vector2 _currentMousePos;
     bool _mouseReleased;
     Texture2D _selectTex;
+    private Resources _resources;
 
   
     //Construct a new state and set the level and all the needed variables
@@ -29,6 +30,7 @@ class PlayingState : GameState
         level = new Level();
         level.init("lvl.txt");
         _selectTex = GameEnvironment.getAssetManager().GetSprite("selectbox");
+
     }
 
     //Update the level
@@ -98,7 +100,7 @@ class PlayingState : GameState
                                     Console.WriteLine("CHAARARRGGEEE   ");
                                     attack = true;
                                     (e as CombatUnit).orderAttack(g);
-                                    GameEnvironment.getAssetManager().PlaySoundEffect("AttackKill");
+                                   
                                     break;
                                 }
                             }

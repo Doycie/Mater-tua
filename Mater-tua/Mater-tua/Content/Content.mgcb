@@ -529,3 +529,9 @@
 /processorParam:TextureFormat=Color
 /build:Mine.png
 
+#begin Warcraft Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Warcraft Font.spritefont
+

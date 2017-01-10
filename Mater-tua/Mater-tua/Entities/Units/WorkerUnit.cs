@@ -116,7 +116,7 @@ class WorkerUnit : Unit
         {  
                 orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
             _level.Player.AddGold(10);
-            Console.WriteLine("Gold:" + _level.Player.Gold);
+            Console.WriteLine("Gold:" + Player.Gold);
 
         } 
     }
@@ -142,7 +142,7 @@ class WorkerUnit : Unit
         {
             _level.Player.AddWood(10);      
                 orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            Console.WriteLine("Wood:" + _level.Player.Wood);
+            Console.WriteLine("Wood:" + Player.Wood);
         }
     }
 

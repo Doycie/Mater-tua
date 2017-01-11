@@ -379,18 +379,6 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/OrcFarmConstruction.png
 
-#begin Sprites/Buildings/HumanFarm.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Buildings/HumanFarm.png
-
 #begin Sprites/Buildings/Mine.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -588,4 +576,28 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/Soundeffects/ProducingOrcSound.wav
+
+#begin Sprites/Buildings/HumanFarm.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Buildings/HumanFarm.png
+
+#begin Sprites/Units/Peon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Units/Peon.png
 

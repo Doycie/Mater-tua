@@ -31,6 +31,7 @@ internal class GameEnvironment : Game
     static public void exit()
     {
         exitGame = true;
+        assetManager.Content.Unload();
     }
 
     static public Random getRandom()

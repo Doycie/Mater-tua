@@ -571,3 +571,9 @@
 /processorParam:Quality=Best
 /build:Sounds/Soundeffects/DieSound.mp3
 
+#begin Sounds/Soundeffects/BuildingDemolitionSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/BuildingDemolitionSound.wav
+

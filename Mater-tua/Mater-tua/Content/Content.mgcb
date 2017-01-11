@@ -577,3 +577,15 @@
 /processorParam:Quality=Best
 /build:Sounds/Soundeffects/BuildingDemolitionSound.wav
 
+#begin Sounds/Soundeffects/ProducingHumanSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/ProducingHumanSound.wav
+
+#begin Sounds/Soundeffects/ProducingOrcSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/ProducingOrcSound.wav
+

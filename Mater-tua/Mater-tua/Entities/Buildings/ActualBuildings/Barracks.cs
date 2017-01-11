@@ -53,11 +53,13 @@ internal class Barracks : StaticBuilding
         {
             if (_faction == faction.Orc)
             {
+                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/ProducingOrcSound");
                 Grunt grunt = new Grunt(_level, new Vector2(_position.X - 64, _position.Y));
                 _level.entities.Add(grunt);
             }
             if (_faction == faction.Human)
             {
+                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/ProducingHumanSound");
                 Footman footman = new Footman(_level, new Vector2(_position.X - 64, _position.Y));
                 _level.entities.Add(footman);
             }

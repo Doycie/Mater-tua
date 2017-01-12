@@ -625,3 +625,15 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/HUD/healthbar33.png
 
+#begin Sounds/Soundeffects/BattleCry2.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/BattleCry2.mp3
+
+#begin Sounds/Soundeffects/SwordClashHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/SwordClashHit.wav
+

@@ -6,6 +6,8 @@ internal class CombatUnit : Unit
 {
     protected int _attackCooldown;
     protected int isAttacking;
+    private bool PlayedAttackSound1 = false;
+    private bool playedAttackSound2 = true;
 
     public CombatUnit(Level level)
         : base(level)
@@ -21,11 +23,16 @@ internal class CombatUnit : Unit
 
     private void doattack()
     {
+        bool PlayedAttackSound = false;
         //Console.WriteLine("ENGAGING FIST TO MOUTH COMBAT WITH THE ENEMY");
         _path.Clear();
         if (_attackCooldown < 0)
         {
-            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw");
+
+            if (PlayedAttackSound1 == false && playedAttackSound2 == true && PlayedAttackSound == false)
+            {GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
+            if (playedAttackSound2 == false && PlayedAttackSound1 == true && PlayedAttackSound == false)
+            { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordClashHit"); PlayedAttackSound1 = false; playedAttackSound2 = true; PlayedAttackSound = true; }
             _attackCooldown = 60;
             isAttacking = 30;
         }

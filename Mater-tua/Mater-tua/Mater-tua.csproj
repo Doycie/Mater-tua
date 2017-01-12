@@ -67,6 +67,7 @@
     <Compile Include="Entities\Buildings\StaticBuilding.cs" />
     <Compile Include="Entities\BuildingAndUnit.cs" />
     <Compile Include="Entities\Explosion.cs" />
+    <Compile Include="Entities\Terrain\Stone.cs" />
     <Compile Include="Entities\Terrain\Tree.cs" />
     <Compile Include="Entities\Units\ActualUnits\Grunt.cs" />
     <Compile Include="Entities\Units\ActualUnits\Footman.cs" />

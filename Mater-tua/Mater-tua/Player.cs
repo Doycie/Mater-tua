@@ -7,9 +7,9 @@ using System.Linq;
 
 public class Player
 {
-    static private int _Wood;
-    static private int _Gold;
-    static private int _Food;
+    private int _Wood;
+    private int _Gold;
+    private int _Food;
     static private int _AmountFarms;
     static private int _TempFarms;
 
@@ -36,17 +36,17 @@ public class Player
         _Food = _AmountFarms * 6 + 10;
     }
 
-    static public int Wood
+     public int Wood
     {
         get { return _Wood; }
     }
 
-    static public int Gold
+     public int Gold
     {
         get { return _Gold; }
     }
 
-    static public int Food
+     public int Food
     {
         get { return _Food; }
     }

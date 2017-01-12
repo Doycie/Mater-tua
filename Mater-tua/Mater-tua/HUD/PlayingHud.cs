@@ -10,11 +10,12 @@ internal class PlayingHud : HUD
 {
     private Minimap _minimap;
     protected List<Entity> hudUnits;
+    private Level _level;
     
 
-    public PlayingHud()
+    public PlayingHud(Level level)
     {
-        
+        _level = level;
         _minimap = new Minimap(256);
         _buttons = new List<Button>();
         _resources = new List<Resources>();
@@ -42,9 +43,9 @@ internal class PlayingHud : HUD
         _buttons.Add(new Button(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
         _buttons.Add(new Button(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
 
-        _resources.Add(new Resources(1));
-        _resources.Add(new Resources(2));
-        _resources.Add(new Resources(3));
+        _resources.Add(new Resources(1, _level));
+        _resources.Add(new Resources(2, _level));
+        _resources.Add(new Resources(3, _level));
     }
 
     public override void draw(SpriteBatch s)

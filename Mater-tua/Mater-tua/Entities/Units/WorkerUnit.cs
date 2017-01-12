@@ -17,6 +17,7 @@ internal class WorkerUnit : Unit
     private bool _done;
     private int _FirstTimeTreasure;
     private int _TimerTreasure;
+    private Tree _tree;
 
     public WorkerUnit(Level level)
         : base(level)
@@ -66,7 +67,7 @@ internal class WorkerUnit : Unit
         }       
     }
 
-    public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
+    public void Order(Tree t, int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
     {
         if (What == 0)
         {
@@ -77,6 +78,7 @@ internal class WorkerUnit : Unit
         {
             _OrderLevel = 1;
             _TreePosition = PositionTarget;
+            _tree = t;
         }
         else if (What == 2)
         {
@@ -122,34 +124,47 @@ internal class WorkerUnit : Unit
         {
             orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
             _level.Player.AddGold(10);
-            Console.WriteLine("Gold:" + Player.Gold);
+            Console.WriteLine("Gold:" + _level.Player.Gold);
         }
     }
 
     private void CuttingWood()
     {
-        if (_position != _TreePosition && _position != _TownhallPosition && _FirstTimeTree == 0)
+        if (_tree.TreeAmount > 0)
         {
-            orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            _FirstTimeTree = 1;
-            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Boom");
-        }
-
-        if (_position == _TreePosition)
-        {
-            if (_TimerTree == 0)
+            if (_position != _TreePosition && _position != _TownhallPosition && _FirstTimeTree == 0)
             {
-                orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                _TimerTree = 60;
+                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                _FirstTimeTree = 1;
+                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Boom");
             }
-            _TimerTree--;
+
+            if (_position == _TreePosition)
+            {
+                if (_TimerTree == 0)
+                {
+                    orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                    _TimerTree = 60;
+                    _tree.TreeUseage();
+                }
+                _TimerTree--;
+            }
+            if (_position == _TownhallPosition)
+            {
+                _level.Player.AddWood(10);
+                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                Console.WriteLine("Wood:" + _level.Player.Wood);
+            }
+            
         }
-        if (_position == _TownhallPosition)
-        {
-            _level.Player.AddWood(10);
-            orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            Console.WriteLine("Wood:" + Player.Wood);
-        }
+        else if (_tree.TreeAmount == 0)
+            {
+                if (_position == _TownhallPosition)
+                {
+                    _level.Player.AddWood(10);
+                    orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                }
+            }
     }
     private void OpenChest()
     {
@@ -172,7 +187,7 @@ internal class WorkerUnit : Unit
         {
             _level.Player.AddGold(100);
             orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
-            Console.WriteLine("Gold:" + Player.Gold);
+            Console.WriteLine("Gold:" + _level.Player.Gold);
         }
     }
 

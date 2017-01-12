@@ -20,8 +20,16 @@ partial class Level
                 }
                 if ((entities[i] as BuildingAndUnit).HitPoints < 1)
                 {
-                    specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
-                    entities.RemoveAt(i);
+                    if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
+                    {
+                        entities.RemoveAt(i);
+                    }
+                    else if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
+                    {
+                        specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
+                        entities.RemoveAt(i);
+                    }
+
                 } 
             }
         }

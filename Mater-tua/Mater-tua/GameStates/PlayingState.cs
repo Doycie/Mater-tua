@@ -27,9 +27,10 @@ internal class PlayingState : GameState
     public PlayingState()
     {
         _customCursor = new CustomCursor();
-        _hud = new PlayingHud();
+        
         _mouseState = Mouse.GetState();
         level = new Level();
+        _hud = new PlayingHud(level);
         level.init("lvl.txt");
         _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
     }
@@ -135,7 +136,7 @@ internal class PlayingState : GameState
                                 if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                                 {
                                     q.OrderReset();
-                                    q.Order(0, w.Position, r.Position);
+                                    q.Order(new Tree(new Vector2(64, 512)),0, w.Position, r.Position);
                                     break;
                                 }
                             }
@@ -147,7 +148,7 @@ internal class PlayingState : GameState
                                 if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
                                 {
                                     q.OrderReset();
-                                    q.Order(1, n.Position, r.Position);
+                                    q.Order(n, 1, n.Position, r.Position);
                                     break;
                                 }
                             }
@@ -159,7 +160,7 @@ internal class PlayingState : GameState
                                 if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
                                 {
                                     q.OrderReset();
-                                    q.Order(3, n.Position, r.Position);
+                                    q.Order(new Tree(new Vector2(64, 512)),3, n.Position, r.Position);
                                     break;
                                 }
                             }

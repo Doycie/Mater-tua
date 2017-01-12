@@ -29,6 +29,8 @@ internal class HUD
     {
         for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width) // repeats the HUD texture till edge of screen
             spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
+        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width ; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
+            spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - 2 * _tex.Height, _tex.Width, _tex.Height), Color.White);
 
         foreach (Button b in _buttons)
         {

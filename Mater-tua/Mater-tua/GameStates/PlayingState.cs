@@ -23,7 +23,7 @@ internal class PlayingState : GameState
     public PlayingState()
     {
         _customCursor = new CustomCursor();
-        _hud = new PlayingHUD();
+        _hud = new PlayingHud();
         _mouseState = Mouse.GetState();
         level = new Level();
         level.init("lvl.txt");
@@ -36,6 +36,8 @@ internal class PlayingState : GameState
         level.update();
         // GameEnvironment.getCamera().getScreenSize();
         // Console.WriteLine(mousePos);
+
+        
     }
 
     //Special function to draw the HUD
@@ -68,10 +70,11 @@ internal class PlayingState : GameState
     {
         _customCursor.updateCursorPosition(inputHelper);
         _mouseState = Mouse.GetState();
-
         _currentMousePos = _customCursor.getMousePos();
 
-        (_hud as PlayingHUD).update(inputHelper, _selectedEntities, level);
+
+        (_hud as PlayingHud).update(inputHelper, _selectedEntities, level);
+
 
         if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
         {

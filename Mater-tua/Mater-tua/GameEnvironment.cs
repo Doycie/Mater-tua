@@ -141,10 +141,9 @@ internal class GameEnvironment : Game
         {
             Exit();
         }
-        if (inputHelper.KeyPressed(Keys.F5) || setFullScreen)
+        if (inputHelper.KeyPressed(Keys.F5))
         {
-            setFullScreen = false;
-            FullScreen = !FullScreen;
+            GameEnvironment.graphics.ToggleFullScreen();
         }
 
         gameStateManager.handleInput(inputHelper);

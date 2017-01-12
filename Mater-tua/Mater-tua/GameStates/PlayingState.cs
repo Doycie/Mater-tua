@@ -20,13 +20,17 @@ internal class PlayingState : GameState
     private Texture2D _selectTex;
     private bool PlayedBattleCry2 = true;
     private bool PlayedBattleCry1 = false;
+    private bool PlayedConfirmation1 = false;
+    private bool PlayedConfirmation2 = true;
+
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
         _customCursor = new CustomCursor();
-        _hud = new PlayingHud();
+        
         _mouseState = Mouse.GetState();
         level = new Level();
+        _hud = new PlayingHud(level);
         level.init("lvl.txt");
         _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
     }
@@ -83,14 +87,15 @@ internal class PlayingState : GameState
             if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)
             {
                 bool PlayedBattleCry = false;
+                bool PlayedConfirmation = false;
                 foreach (Unit e in _selectedEntities.OfType<Unit>())
                 {
                     if (e.Faction == BuildingAndUnit.faction.Human)
                     {
-                        if (PlayedBattleCry == false && PlayedBattleCry1 == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
-                        if (PlayedBattleCry == false && PlayedBattleCry2 == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
+                        if (PlayedConfirmation == false && PlayedConfirmation1 == false)
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes"); PlayedConfirmation = true; PlayedConfirmation1 = true; PlayedConfirmation2 = false; }
+                        if (PlayedConfirmation == false && PlayedConfirmation2 == false)
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allright"); PlayedConfirmation = true; PlayedConfirmation2 = true; PlayedConfirmation1= false; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
                         foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
@@ -99,6 +104,10 @@ internal class PlayingState : GameState
                             {
                                 if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * data.tSize(), g.Size * data.tSize()).Contains(pos)))
                                 {
+                                    if (PlayedBattleCry == false && PlayedBattleCry1 == false)
+                                    { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
+                                    if (PlayedBattleCry == false && PlayedBattleCry2 == false)
+                                    { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
                                     Console.WriteLine("CHAARARRGGEEE   ");
                                     attack = true;
                                     (e as CombatUnit).orderAttack(g);
@@ -117,28 +126,43 @@ internal class PlayingState : GameState
                 //make an order to a WorkerUnit
                 foreach (WorkerUnit q in _selectedEntities.OfType<WorkerUnit>())
                 {
-                    Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
-                    foreach (Mine w in level.entities.OfType<Mine>())
+                    if (q.Faction == BuildingAndUnit.faction.Human)
                     {
-                        foreach (Townhall r in level.entities.OfType<Townhall>())
+                        Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
+                        foreach (Mine w in level.entities.OfType<Mine>())
                         {
-                            if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+                            foreach (Townhall r in level.entities.OfType<Townhall>())
                             {
-                                q.OrderReset();
-                                q.Order(0, w.Position, r.Position);
-                                break;
+                                if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+                                {
+                                    q.OrderReset();
+                                    q.Order(new Tree(new Vector2(64, 512)),0, w.Position, r.Position);
+                                    break;
+                                }
                             }
                         }
-                    }
-                    foreach (Tree n in level.entities.OfType<Tree>())
-                    {
-                        foreach (Townhall r in level.entities.OfType<Townhall>())
+                        foreach (Tree n in level.entities.OfType<Tree>())
                         {
-                            if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                            foreach (Townhall r in level.entities.OfType<Townhall>())
                             {
-                                q.OrderReset();
-                                q.Order(1, n.Position, r.Position);
-                                break;
+                                if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                {
+                                    q.OrderReset();
+                                    q.Order(n, 1, n.Position, r.Position);
+                                    break;
+                                }
+                            }
+                        }
+                        foreach (TreasureChest n in level.entities.OfType<TreasureChest>())
+                        {
+                            foreach (Townhall r in level.entities.OfType<Townhall>())
+                            {
+                                if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                {
+                                    q.OrderReset();
+                                    q.Order(new Tree(new Vector2(64, 512)),3, n.Position, r.Position);
+                                    break;
+                                }
                             }
                         }
                     }

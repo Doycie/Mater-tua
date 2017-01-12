@@ -22,15 +22,15 @@ internal class SettingsHud : HUD
     {
         _buttons.Clear();
         /* 1 fullscreen*/
-        _buttons.Add(new Button(new Rectangle(96, -32, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(96, -40, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/fullscreenButtonPressed"), true));
         /* 2 back*/
-        _buttons.Add(new Button(new Rectangle(96, -96, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(96, -104, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/backButtonPressed"), true));
         /* 3 volume up */
-        _buttons.Add(new Button(new Rectangle(-32, -160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"), true));
+        _buttons.Add(new Button(new Rectangle(-32, -168, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"), true));
         /* 4 volume down */
-        _buttons.Add(new Button(new Rectangle(32, -160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"), true));
+        _buttons.Add(new Button(new Rectangle(32, -168, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"), true));
         /* 5 volume mute */
-        _buttons.Add(new Button(new Rectangle(96, -160, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMute"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMutePressed"), true));
+        _buttons.Add(new Button(new Rectangle(96, -168, 64, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMute"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeMutePressed"), true));
     }
 
     public new bool update(InputHelper inputHelper)
@@ -49,7 +49,7 @@ internal class SettingsHud : HUD
                 break;
 
             case 1:
-                GameEnvironment.fullScreen(true);
+                GameEnvironment.graphics.ToggleFullScreen();
                 Console.WriteLine("Fullscreen pressed");
                 // updateButtonPosition = true;
 

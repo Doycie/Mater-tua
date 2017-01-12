@@ -32,7 +32,16 @@ internal class Townhall : StaticBuilding
 
     private void ProduceWorkerUnit(Vector2 TownhallPosition)
     {
-        WorkerUnit Worker = new WorkerUnit(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y), _faction);
-        _level.entities.Add(Worker);
+        if (_faction == faction.Orc)
+        {
+            Peon peon = new Peon(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y));
+            _level.entities.Add(peon);
+        }
+        if (_faction == faction.Human)
+        {
+            Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y));
+            _level.entities.Add(peasant);
+           
+        }
     }
 }

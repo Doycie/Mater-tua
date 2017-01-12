@@ -5,6 +5,7 @@ internal class WorkerUnit : Unit
 {
     private Vector2 _TownhallPosition;
     private Vector2 _MinePosition;
+    private Vector2 _TreasurePosition;
     private Vector2 _TreePosition;
     private Vector2 _TargetPosition;
     private int _FirstTime;
@@ -14,11 +15,13 @@ internal class WorkerUnit : Unit
     private int _OrderLevel;
     private int _BuildLevel;
     private bool _done;
+    private int _FirstTimeTreasure;
+    private int _TimerTreasure;
+    private Tree _tree;
 
-    public WorkerUnit(Level level, Vector2 Position, faction faction)
+    public WorkerUnit(Level level)
         : base(level)
     {
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Peon");
         _maxhp = 40;
         _armor = 0;
         _armorType = armorType.Light;
@@ -28,7 +31,6 @@ internal class WorkerUnit : Unit
         _damageType = damageType.Piercing;
         _productionTime = 750;
         _range = 1;
-        _position = Position;
         Reset();
         _FirstTime = 0;
         _Timer = 60;
@@ -58,10 +60,14 @@ internal class WorkerUnit : Unit
         else if (_OrderLevel == 2)
         {
             Build(_BuildLevel, _TargetPosition, _done);
-        }        
+        } 
+        else if (_OrderLevel == 3)
+        {
+            OpenChest();
+        }       
     }
 
-    public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
+    public void Order(Tree t, int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
     {
         if (What == 0)
         {
@@ -72,6 +78,7 @@ internal class WorkerUnit : Unit
         {
             _OrderLevel = 1;
             _TreePosition = PositionTarget;
+            _tree = t;
         }
         else if (What == 2)
         {
@@ -79,6 +86,11 @@ internal class WorkerUnit : Unit
             _TargetPosition = PositionTarget;
             _BuildLevel = BuildLevel;
             _done = false;
+        }
+        else if (What == 3)
+        {
+            _OrderLevel = 3;
+            _TreasurePosition = PositionTarget;
         }
 
         _TownhallPosition = PositionTownhall;
@@ -112,33 +124,70 @@ internal class WorkerUnit : Unit
         {
             orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
             _level.Player.AddGold(10);
-            Console.WriteLine("Gold:" + Player.Gold);
+            Console.WriteLine("Gold:" + _level.Player.Gold);
         }
     }
 
     private void CuttingWood()
     {
-        if (_position != _TreePosition && _position != _TownhallPosition && _FirstTimeTree == 0)
+        if (_tree.TreeAmount > 0)
         {
-            orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            _FirstTimeTree = 1;
-            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Boom");
-        }
+            if (_position != _TreePosition && _position != _TownhallPosition && _FirstTimeTree == 0)
+            {
+                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                _FirstTimeTree = 1;
+                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Boom");
+            }
 
-        if (_position == _TreePosition)
+            if (_position == _TreePosition)
+            {
+                if (_TimerTree == 0)
+                {
+                    orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                    _TimerTree = 60;
+                    _tree.TreeUseage();
+                }
+                _TimerTree--;
+            }
+            if (_position == _TownhallPosition)
+            {
+                _level.Player.AddWood(10);
+                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                Console.WriteLine("Wood:" + _level.Player.Wood);
+            }
+            
+        }
+        else if (_tree.TreeAmount == 0)
+            {
+                if (_position == _TownhallPosition)
+                {
+                    _level.Player.AddWood(10);
+                    orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                }
+            }
+    }
+    private void OpenChest()
+    {
+        if (_position != _TreasurePosition && _position != _TownhallPosition && _FirstTimeTreasure == 0)
         {
-            if (_TimerTree == 0)
+            orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+            _FirstTimeTreasure = 1;
+            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
+        }
+        if (_position == _TreasurePosition)
+        {
+            if (_TimerTreasure == 0)
             {
                 orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                _TimerTree = 60;
+                _TimerTreasure = 60;
             }
-            _TimerTree--;
+            _TimerTreasure--;
         }
-        if (_position == _TownhallPosition)
+        if (_position == _TreasurePosition)
         {
-            _level.Player.AddWood(10);
-            orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-            Console.WriteLine("Wood:" + Player.Wood);
+            _level.Player.AddGold(100);
+            orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+            Console.WriteLine("Gold:" + _level.Player.Gold);
         }
     }
 
@@ -151,7 +200,7 @@ internal class WorkerUnit : Unit
             {
                 if (BuildLevel == 0)
                 {
-                    Farm farm = new Farm(_level, TargetPosition, BuildingAndUnit.faction.Human);
+                    Farm farm = new Farm(_level, TargetPosition, _faction);
                     _level.entities.Add(farm);
                     _done = true;
                 }

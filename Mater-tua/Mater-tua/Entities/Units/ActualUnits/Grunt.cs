@@ -5,7 +5,6 @@ internal class Grunt : BasicMeleeUnit
     public Grunt(Level level, Vector2 Position)
         : base(level)
     {
-        _size = 1;
         _faction = faction.Orc;
         _position = Position;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Orc");

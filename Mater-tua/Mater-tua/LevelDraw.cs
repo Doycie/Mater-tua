@@ -23,9 +23,9 @@ partial class Level
 
                 {
                     if(_mapData[i,j ] == 0)
-                    s.Draw(_tex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
+                    s.Draw(_dirtTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
                     else
-                        s.Draw(_tex, new Vector2(i * data.tSize(), j * data.tSize()), Color.Black);
+                        s.Draw(_waterTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
                     //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
 
                 }

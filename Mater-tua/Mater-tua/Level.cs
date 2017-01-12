@@ -10,7 +10,8 @@ public partial class Level
     public byte[,] _mapData;
 
     //Hold the dirt texture
-    private Texture2D _tex;
+    private Texture2D _dirtTex;
+    private Texture2D _waterTex;
 
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
@@ -26,14 +27,16 @@ public partial class Level
     //Init the leve based on the width and height and then generate it based on Perlin
     public void init(int mapWidth, int mapHeight)
     {
-        _tex = GameEnvironment.getAssetManager().GetSprite("circle");
+     
+        _dirtTex = GameEnvironment.getAssetManager().GetSprite("circle");
         generateMap(mapWidth, mapHeight);
     }
 
     //Init the level based on a level text file
     public void init(string mapPath)
     {
-        _tex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/dirt");
+        _waterTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/water");
+        _dirtTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/dirt");
         _mapWidth = data.tSize();
         _mapHeight = data.tSize();
         GameEnvironment.getCamera().SetMaxBounds(data.tSize() * data.tSize() + data.tSize(), data.tSize() * data.tSize() + data.tSize());

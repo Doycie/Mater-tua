@@ -64,7 +64,7 @@ public class AssetManager
     // Randomly selects one of the BGM tracks and plays it.
     public void RandomiseBGM()
     {
-        int trackNO = GameEnvironment.getRandom().Next(0, 3);
+        int trackNO = GameEnvironment.getRandom().Next(0, 1);
 
         switch (trackNO)
         {
@@ -73,12 +73,9 @@ public class AssetManager
                 break;
 
             case 1:
-                this.PlayMusic("Sounds/Music/MaterTua_BGM_1", false);
-                break;
-
-            case 2:
                 this.PlayMusic("Sounds/Music/MaterTua_BGM_2", false);
                 break;
+
         }
     }
 

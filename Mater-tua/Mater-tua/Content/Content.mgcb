@@ -637,7 +637,7 @@
 /processorParam:Quality=Best
 /build:Sounds/Soundeffects/SwordClashHit.wav
 
-#begin Sprites/Buildings/Boulder.png
+#begin Sprites/HUD/gold.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -647,5 +647,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Buildings/Boulder.png
+/build:Sprites/HUD/gold.png
+
+#begin Sprites/HUD/wood.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/HUD/wood.png
 

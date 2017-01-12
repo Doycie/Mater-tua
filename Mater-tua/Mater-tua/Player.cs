@@ -10,23 +10,30 @@ public class Player
     static private int _Wood;
     static private int _Gold;
     static private int _Food;
-    private int _FarmCount;
+    static private int _AmountFarms;
+    static private int _TempFarms;
+
     private Level _level;
 
     public Player(Level level)
     {
         _level = level;
+
         foreach (Farm e in _level.entities.OfType<Farm>())
         {
-            _FarmCount++;
+            if (e.Faction == BuildingAndUnit.faction.Orc)
+            {
+                _AmountFarms += 1;
+            }
         }
 
-        
+
     }
 
     public void Update()
     {
         FoodUpdate();
+        _Food = _AmountFarms * 10;
     }
 
     static public int Wood
@@ -61,26 +68,29 @@ public class Player
 
     private void FoodUpdate()
     {
-        int i = 0;
         foreach (Farm e in _level.entities.OfType<Farm>())
         {
-            i++;
+            if (e.Faction == BuildingAndUnit.faction.Orc)
+            {
+                _TempFarms += 1;
+            }
         }
 
-        if (i < _FarmCount)
+        if (_TempFarms < _AmountFarms)
         {
-            while (i < _FarmCount)
+            while (_TempFarms < _AmountFarms)
             {
-                _FarmCount++;
+                _AmountFarms -= 1;
+            }
+
+        }
+        else if (_TempFarms > _AmountFarms)
+        {
+            while (_TempFarms > _AmountFarms)
+            {
+                _AmountFarms += 1;
             }
         }
-        else if (i > _FarmCount)
-        {
-            while (i > _FarmCount)
-            {
-                _FarmCount--;
-            }
-        }
-        _Food = _FarmCount * 10;
+        _TempFarms = 0;
     }
 }

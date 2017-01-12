@@ -40,6 +40,6 @@ partial class Level
             }
         }
 
-       // Player.Update();
+        Player.Update();
     }
 }

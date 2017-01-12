@@ -15,6 +15,8 @@ internal class WorkerUnit : Unit
     private int _OrderLevel;
     private int _BuildLevel;
     private bool _done;
+    private int _FirstTimeTreasure;
+    private int _TimerTreasure;
 
     public WorkerUnit(Level level)
         : base(level)
@@ -151,10 +153,20 @@ internal class WorkerUnit : Unit
     }
     private void OpenChest()
     {
-        if (_position != _TreasurePosition && _position != _TownhallPosition)
+        if (_position != _TreasurePosition && _position != _TownhallPosition && _FirstTimeTreasure == 0)
         {
             orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+            _FirstTimeTreasure = 1;
             GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
+        }
+        if (_position == _TreasurePosition)
+        {
+            if (_TimerTreasure == 0)
+            {
+                orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                _TimerTreasure = 60;
+            }
+            _TimerTreasure--;
         }
         if (_position == _TreasurePosition)
         {

@@ -21,6 +21,12 @@ public class Player
             _FarmCount++;
         }
 
+        
+    }
+
+    public void Update()
+    {
+        FoodUpdate();
     }
 
     static public int Wood
@@ -63,17 +69,18 @@ public class Player
 
         if (i < _FarmCount)
         {
-            while (i <= _FarmCount)
+            while (i < _FarmCount)
             {
                 _FarmCount++;
             }
         }
         else if (i > _FarmCount)
         {
-            while (i >= _FarmCount)
+            while (i > _FarmCount)
             {
                 _FarmCount--;
             }
         }
+        _Food = _FarmCount * 10;
     }
 }

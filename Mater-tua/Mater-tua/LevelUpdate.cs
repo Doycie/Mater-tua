@@ -39,5 +39,7 @@ partial class Level
                 }
             }
         }
+
+       // Player.Update();
     }
 }

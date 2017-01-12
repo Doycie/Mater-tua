@@ -17,11 +17,13 @@ public partial class Level
 
     public List<Entity> specialFX = new List<Entity>();
 
-    public  Player Player;
+    public Player Player;
 
     public Level()
     {
     }
+
+    
 
     //Init the leve based on the width and height and then generate it based on Perlin
     public void init(int mapWidth, int mapHeight)
@@ -56,6 +58,7 @@ public partial class Level
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
         }
+        Player = new Player(this);
         Farm orcFarm = new Farm(this, new Vector2(10 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcFarm);
         Farm humanFarm = new Farm(this, new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
@@ -74,7 +77,7 @@ public partial class Level
         Tree Tree2 = new Tree(new Vector2(64, 512));
         entities.Add(Tree2);
 
-        Player Player = new Player(this);
+        
     }
 
     //Load the map from the text file into the mapdata array

@@ -14,6 +14,7 @@ internal class PlayingHud : HUD
         _minimap = new Minimap(256);
         _buttons = new List<Button>();
         _resources = new List<Resources>();
+
         ///* 1 */
         //_buttons.Add(new Button(new Rectangle(32, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
         ///* 2 */

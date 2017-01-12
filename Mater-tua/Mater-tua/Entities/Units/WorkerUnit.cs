@@ -185,7 +185,7 @@ internal class WorkerUnit : Unit
             {
                 if (BuildLevel == 0)
                 {
-                    Farm farm = new Farm(_level, TargetPosition, BuildingAndUnit.faction.Human);
+                    Farm farm = new Farm(_level, TargetPosition, _faction);
                     _level.entities.Add(farm);
                     _done = true;
                 }

@@ -41,6 +41,7 @@ internal class Townhall : StaticBuilding
         {
             Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y));
             _level.entities.Add(peasant);
+           
         }
     }
 }

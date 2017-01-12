@@ -66,9 +66,9 @@ public partial class Level
         entities.Add(Mine);
         Townhall Townhall = new Townhall(this, new Vector2(384, 384), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
-        WorkerUnit Worker = new WorkerUnit(this, new Vector2(704, 192), BuildingAndUnit.faction.Human);
+        Peasant Worker = new Peasant(this, new Vector2(704, 192));
         entities.Add(Worker);
-        WorkerUnit Worker1 = new WorkerUnit(this, new Vector2(192, 704), BuildingAndUnit.faction.Human);
+        Peon Worker1 = new Peon(this, new Vector2(192, 704));
         entities.Add(Worker1);
         Tree Tree1 = new Tree(this,new Vector2(512, 64));
         entities.Add(Tree1);

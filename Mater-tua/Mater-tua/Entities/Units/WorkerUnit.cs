@@ -38,6 +38,7 @@ internal class WorkerUnit : Unit
         _TimerTree = 60;
         _OrderLevel = -1;
         _level = level;
+ 
     }
 
     public override void Reset()

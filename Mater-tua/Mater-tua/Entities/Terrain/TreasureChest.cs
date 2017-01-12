@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 partial class TreasureChest : BuildingAndUnit
 {
-    public TreasureChest(Vector2 Position)
-        : base()
+    public TreasureChest(Level level, Vector2 Position)
+        : base(level)
     {
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/TreasureChest");
         _position = Position;

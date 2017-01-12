@@ -6,8 +6,8 @@ internal class Tree : BuildingAndUnit
 
     private int _TreeAmount;
 
-    public Tree(Vector2 Position)
-        : base()
+    public Tree(Level level,Vector2 Position)
+        : base(level)
     {
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/tree");
         _position = Position;

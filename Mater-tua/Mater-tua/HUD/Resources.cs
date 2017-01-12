@@ -32,12 +32,12 @@ internal class Resources
                 break;
 
             case 1: /* gold */
-                s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/foodSprite"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 330, 10, 30, 30), Color.White);
+                s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/gold"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 330, 10, 30, 30), Color.White);
                 s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Gold: " + Player.Gold, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X - 300, 10), Color.Red);
                 break;
 
             case 2: /* wood */
-                s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/foodSprite"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 220, 10, 30, 30), Color.White);
+                s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/wood"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 220, 10, 30, 30), Color.White);
                 s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Wood: " + Player.Wood, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X - 190, 10), Color.Red);
                 break;
 

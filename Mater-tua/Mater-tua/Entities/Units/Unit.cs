@@ -6,15 +6,15 @@ public class Unit : BuildingAndUnit
 {
     protected float _productionTime;
     protected float _moveSpeed = 2.0f;
-    protected Level _level;
+
 
     protected List<Point> _path = new List<Point>();
     private Pathfind pathfinder = new Pathfind();
 
     public Unit(Level level)
-        : base()
+        : base(level)
     {
-        _level = level;
+        
     }
 
     public void StopMove()
@@ -60,33 +60,34 @@ public class Unit : BuildingAndUnit
         // Console.WriteLine(_path.Count);
         if (_path.Count > 0)
         {
-            if (_path[0].X * 64 < (_position.X))
+            int last = _path.Count - 1;
+            if (_path[last].X * 64 < (_position.X))
             {
                 _position.X -= _moveSpeed;
             }
-            else if (_path[0].X * 64 > (_position.X))
+            else if (_path[last].X * 64 > (_position.X))
             {
                 _position.X += _moveSpeed;
             }
-            if (_path[0].Y * 64 < (_position.Y))
+            if (_path[last].Y * 64 < (_position.Y))
             {
                 _position.Y -= _moveSpeed;
             }
-            else if (_path[0].Y * 64 > (_position.Y))
+            else if (_path[last].Y * 64 > (_position.Y))
             {
                 _position.Y += _moveSpeed;
             }
 
-            if (new Point((int)(_position.X), (int)(_position.Y)) == new Point(_path[0].X * 64, _path[0].Y * 64))
+            if (new Point((int)(_position.X), (int)(_position.Y)) == new Point(_path[last].X * 64, _path[last].Y * 64))
             {
-                _path.RemoveAt(0);
+                _path.RemoveAt(last);
             }
         }
     }
 
     public void orderMove(Point target)
     {
-        _path = pathfinder.findPathSimple(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target);
+        _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target,_level._mapData);
     }
 
     public override void Draw(SpriteBatch s)
@@ -94,12 +95,14 @@ public class Unit : BuildingAndUnit
         base.Draw(s);
         Healthbar(s);
 
-        /*foreach (Point p in _path)
-        {
-            s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Blue);
-        }
+        pathfinder.draw(s);
+
+       //foreach (Point p in _path)
+       // {
+       //     s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Yellow);
+       // }
 
         // Console.WriteLine("SAD");
-        s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);*/
+       // s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);*/
     }
 }

@@ -7,7 +7,7 @@ public partial class Level
     //Hold information about the current level
     private int _mapWidth, _mapHeight;
 
-    private byte[,] _mapData;
+    public byte[,] _mapData;
 
     //Hold the dirt texture
     private Texture2D _tex;
@@ -22,8 +22,6 @@ public partial class Level
     public Level()
     {
     }
-
-    
 
     //Init the leve based on the width and height and then generate it based on Perlin
     public void init(int mapWidth, int mapHeight)
@@ -72,12 +70,10 @@ public partial class Level
         entities.Add(Worker);
         WorkerUnit Worker1 = new WorkerUnit(this, new Vector2(192, 704), BuildingAndUnit.faction.Human);
         entities.Add(Worker1);
-        Tree Tree1 = new Tree(new Vector2(512, 64));
+        Tree Tree1 = new Tree(this,new Vector2(512, 64));
         entities.Add(Tree1);
-        Tree Tree2 = new Tree(new Vector2(64, 512));
+        Tree Tree2 = new Tree(this,new Vector2(64, 512));
         entities.Add(Tree2);
-
-        
     }
 
     //Load the map from the text file into the mapdata array
@@ -86,12 +82,20 @@ public partial class Level
         System.IO.StreamReader file = new System.IO.StreamReader(mapPath);
         if (file != null)
         {
-            for (int i = 0; i < _mapWidth; i++)
+            for (int i = 0; i < _mapHeight; i++)
             {
-                for (int j = 0; j < _mapHeight; j++)
+                //char[] c = new char[1];
+                //file.Read(c,0,1);
+                string a = file.ReadLine();
+                //_mapData[j, i] =(byte)( (byte)c[0] - (byte)48);
+                int x = 0;
+                foreach (char c in a)
                 {
-                    file.Read();
-                    _mapData[i, j] = (byte)file.Read();
+                   
+                    _mapData[x, i] = (byte)((byte)c - (byte)48);
+                    x++;
+                    if (x == 64)
+                        break;
                 }
             }
             file.Close();

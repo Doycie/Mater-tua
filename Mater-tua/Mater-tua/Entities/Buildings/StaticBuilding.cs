@@ -6,11 +6,11 @@ internal class StaticBuilding : BuildingAndUnit
 
     protected bool _ableToProduce;
 
-    protected Level _level;
+ 
 
-    public StaticBuilding(Level level) : base()
+    public StaticBuilding(Level level) : base(level)
     {
-        _level = level;
+      
     }
 
     public bool AbleToProduce

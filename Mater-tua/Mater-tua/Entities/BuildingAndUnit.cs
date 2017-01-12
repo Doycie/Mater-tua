@@ -14,6 +14,7 @@ public class BuildingAndUnit : AnimatedEntity
     protected string _description;
     protected BuildingAndUnit _target;
     protected Texture2D _healthbar;
+    protected Level _level;
 
     public enum armorType { Light, Heavy, Fortified }
 
@@ -27,9 +28,10 @@ public class BuildingAndUnit : AnimatedEntity
 
     protected damageType _damageType;
 
-    public BuildingAndUnit()
+    public BuildingAndUnit(Level level)
         : base()
     {
+        _level = level;
         //_healthbar = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
     }
 

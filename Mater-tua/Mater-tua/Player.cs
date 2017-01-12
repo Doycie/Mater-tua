@@ -1,11 +1,26 @@
-﻿public class Player
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Player
 {
     static private int _Wood;
     static private int _Gold;
     static private int _Food;
+    private int _FarmCount;
+    private Level _level;
 
-    public Player()
+    public Player(Level level)
     {
+        _level = level;
+        foreach (Farm e in _level.entities.OfType<Farm>())
+        {
+            _FarmCount++;
+        }
+
     }
 
     static public int Wood
@@ -36,5 +51,29 @@
     public void AddFood(int Amount)
     {
         _Food = _Food + Amount;
+    }
+
+    private void FoodUpdate()
+    {
+        int i = 0;
+        foreach (Farm e in _level.entities.OfType<Farm>())
+        {
+            i++;
+        }
+
+        if (i < _FarmCount)
+        {
+            while (i <= _FarmCount)
+            {
+                _FarmCount++;
+            }
+        }
+        else if (i > _FarmCount)
+        {
+            while (i >= _FarmCount)
+            {
+                _FarmCount--;
+            }
+        }
     }
 }

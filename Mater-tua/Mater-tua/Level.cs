@@ -17,7 +17,7 @@ public partial class Level
 
     public List<Entity> specialFX = new List<Entity>();
 
-    public Player Player = new Player();
+    public  Player Player;
 
     public Level()
     {
@@ -74,7 +74,7 @@ public partial class Level
         Tree Tree2 = new Tree(new Vector2(64, 512));
         entities.Add(Tree2);
 
-        Player Player = new Player();
+        Player Player = new Player(this);
     }
 
     //Load the map from the text file into the mapdata array

@@ -18,7 +18,7 @@ internal class Farm : StaticBuilding
         _armor = 0;
         _ableToProduce = false;
         this.Reset();
-        _Timer = 120;
+        
 
         if (_faction == faction.Human)
         {
@@ -31,6 +31,8 @@ internal class Farm : StaticBuilding
             _description = "Farms produce the grain and animals needed to keep the army well fed. You must produce enough food to supply all Orcs you control.";
             _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcFarm");
         }
+
+        FoodCreate();
     }
 
     public override void Reset()
@@ -46,7 +48,7 @@ internal class Farm : StaticBuilding
     public override void Update()
     {
         base.Update();
-        FoodCreate();
+        //FoodCreate();
         if ((float)_maxhp / (float)_hp > 2.0f)
         {
             if (_faction == faction.Orc)
@@ -63,14 +65,12 @@ internal class Farm : StaticBuilding
     private void FoodCreate()
     {
         if (_faction == faction.Human)
-        {
-            if (_Timer == 0)
-            {
-                _level.Player.AddFood(1);
+        { 
+                _level.Player.AddFood(10);
                 //Console.WriteLine("Food:" + Player.Food);
-                _Timer = 120;
-            }
-            _Timer--;
+                
+            
+            
         }
     }
 }

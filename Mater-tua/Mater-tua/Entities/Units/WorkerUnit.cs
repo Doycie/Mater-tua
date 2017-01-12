@@ -15,10 +15,9 @@ internal class WorkerUnit : Unit
     private int _BuildLevel;
     private bool _done;
 
-    public WorkerUnit(Level level, Vector2 Position, faction faction)
+    public WorkerUnit(Level level)
         : base(level)
     {
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Peon");
         _maxhp = 40;
         _armor = 0;
         _armorType = armorType.Light;
@@ -28,7 +27,6 @@ internal class WorkerUnit : Unit
         _damageType = damageType.Piercing;
         _productionTime = 750;
         _range = 1;
-        _position = Position;
         Reset();
         _FirstTime = 0;
         _Timer = 60;

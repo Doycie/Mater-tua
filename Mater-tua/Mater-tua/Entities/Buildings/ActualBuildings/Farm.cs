@@ -32,7 +32,7 @@ internal class Farm : StaticBuilding
             _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcFarm");
         }
 
-        FoodCreate();
+        //FoodCreate();
     }
 
     public override void Reset()

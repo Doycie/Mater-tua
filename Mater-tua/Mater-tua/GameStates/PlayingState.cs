@@ -18,7 +18,8 @@ internal class PlayingState : GameState
     private Vector2 _currentMousePos;
     private bool _mouseReleased;
     private Texture2D _selectTex;
-
+    private bool PlayedBattleCry2 = true;
+    private bool PlayedBattleCry1 = false;
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -86,8 +87,10 @@ internal class PlayingState : GameState
                 {
                     if (e.Faction == BuildingAndUnit.faction.Human)
                     {
-                        if (PlayedBattleCry == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; }
+                        if (PlayedBattleCry == false && PlayedBattleCry1 == false)
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
+                        if (PlayedBattleCry == false && PlayedBattleCry2 == false)
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
                         foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())

@@ -76,8 +76,8 @@ public partial class Level
         entities.Add(Tree1);
         Tree Tree2 = new Tree(new Vector2(64, 512));
         entities.Add(Tree2);
-
-        
+        Stone Stone1 = new Stone(new Vector2(234, 252));
+        entities.Add(Stone1);
     }
 
     //Load the map from the text file into the mapdata array

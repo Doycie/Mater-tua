@@ -23,7 +23,7 @@ internal class Farm : StaticBuilding
         if (_faction == faction.Human)
         {
             _description = "This is where food for the army is produced. You must produce enough food for all Units otherwise they will die off.";
-            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanFarmConstruction");
+            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanFarm");
         }
 
         if (_faction == faction.Orc)

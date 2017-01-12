@@ -49,7 +49,7 @@ internal class SettingsHud : HUD
                 break;
 
             case 1:
-                GameEnvironment.fullScreen(true);
+                GameEnvironment.graphics.ToggleFullScreen();
                 Console.WriteLine("Fullscreen pressed");
                 // updateButtonPosition = true;
 

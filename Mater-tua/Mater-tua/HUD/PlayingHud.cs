@@ -4,13 +4,17 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 internal class PlayingHud : HUD
 {
     private Minimap _minimap;
+    protected List<Entity> hudUnits;
+    
 
     public PlayingHud()
     {
+        
         _minimap = new Minimap(256);
         _buttons = new List<Button>();
         _resources = new List<Resources>();
@@ -36,6 +40,11 @@ internal class PlayingHud : HUD
         base.draw(s);
 
         _minimap.draw(s);
+        //foreach (BasicMeleeUnit q in hudUnits.OfType<BasicMeleeUnit>())
+            
+        
+
+
     }
 
     public void update(InputHelper inputHelper, List<Entity> selectedEntities, Level level)
@@ -43,6 +52,7 @@ internal class PlayingHud : HUD
         int j = base.update(inputHelper);
 
         _minimap.update(level);
+        hudUnits = selectedEntities;
 
         switch (j)
         {

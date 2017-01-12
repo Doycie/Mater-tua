@@ -80,6 +80,9 @@ public partial class Level
         entities.Add(Stone1);
         Stone Stone2 = new Stone(new Vector2(555, 999));
         entities.Add(Stone2);
+        TreasureChest Chest1 = new TreasureChest(new Vector2(1222, 999));
+        entities.Add(Chest1);
+
     }
 
     //Load the map from the text file into the mapdata array

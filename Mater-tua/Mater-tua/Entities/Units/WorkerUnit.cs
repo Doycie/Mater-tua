@@ -5,6 +5,7 @@ internal class WorkerUnit : Unit
 {
     private Vector2 _TownhallPosition;
     private Vector2 _MinePosition;
+    private Vector2 _TreasurePosition;
     private Vector2 _TreePosition;
     private Vector2 _TargetPosition;
     private int _FirstTime;
@@ -14,6 +15,8 @@ internal class WorkerUnit : Unit
     private int _OrderLevel;
     private int _BuildLevel;
     private bool _done;
+    private int _FirstTimeTreasure;
+    private int _TimerTreasure;
 
     public WorkerUnit(Level level)
         : base(level)
@@ -56,7 +59,11 @@ internal class WorkerUnit : Unit
         else if (_OrderLevel == 2)
         {
             Build(_BuildLevel, _TargetPosition, _done);
-        }        
+        } 
+        else if (_OrderLevel == 3)
+        {
+            OpenChest();
+        }       
     }
 
     public void Order(int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
@@ -77,6 +84,11 @@ internal class WorkerUnit : Unit
             _TargetPosition = PositionTarget;
             _BuildLevel = BuildLevel;
             _done = false;
+        }
+        else if (What == 3)
+        {
+            _OrderLevel = 3;
+            _TreasurePosition = PositionTarget;
         }
 
         _TownhallPosition = PositionTownhall;
@@ -137,6 +149,30 @@ internal class WorkerUnit : Unit
             _level.Player.AddWood(10);
             orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
             Console.WriteLine("Wood:" + Player.Wood);
+        }
+    }
+    private void OpenChest()
+    {
+        if (_position != _TreasurePosition && _position != _TownhallPosition && _FirstTimeTreasure == 0)
+        {
+            orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+            _FirstTimeTreasure = 1;
+            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
+        }
+        if (_position == _TreasurePosition)
+        {
+            if (_TimerTreasure == 0)
+            {
+                orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                _TimerTreasure = 60;
+            }
+            _TimerTreasure--;
+        }
+        if (_position == _TreasurePosition)
+        {
+            _level.Player.AddGold(100);
+            orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+            Console.WriteLine("Gold:" + Player.Gold);
         }
     }
 

@@ -144,6 +144,18 @@ internal class PlayingState : GameState
                                 }
                             }
                         }
+                        foreach (TreasureChest n in level.entities.OfType<TreasureChest>())
+                        {
+                            foreach (Townhall r in level.entities.OfType<Townhall>())
+                            {
+                                if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                {
+                                    q.OrderReset();
+                                    q.Order(3, n.Position, r.Position);
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
             }

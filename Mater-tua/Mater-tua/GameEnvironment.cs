@@ -31,7 +31,7 @@ internal class GameEnvironment : Game
     static public void exit()
     {
         
-        assetManager.Content.Dispose();
+        
         assetManager.Content.Unload();
         exitGame = true;
         

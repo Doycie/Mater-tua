@@ -49,7 +49,7 @@ internal class Farm : StaticBuilding
     {
         base.Update();
         //FoodCreate();
-        if ((float)_maxhp / (float)_hp > 2.0f)
+        if ((float)_hp / (float)_maxhp < 1.0f / 3.0f)
         {
             if (_faction == faction.Orc)
             {

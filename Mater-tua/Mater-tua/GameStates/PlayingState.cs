@@ -20,6 +20,9 @@ internal class PlayingState : GameState
     private Texture2D _selectTex;
     private bool PlayedBattleCry2 = true;
     private bool PlayedBattleCry1 = false;
+    private bool PlayedConfirmation1 = false;
+    private bool PlayedConfirmation2 = true;
+
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -83,14 +86,15 @@ internal class PlayingState : GameState
             if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)
             {
                 bool PlayedBattleCry = false;
+                bool PlayedConfirmation = false;
                 foreach (Unit e in _selectedEntities.OfType<Unit>())
                 {
                     if (e.Faction == BuildingAndUnit.faction.Human)
                     {
-                        if (PlayedBattleCry == false && PlayedBattleCry1 == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
-                        if (PlayedBattleCry == false && PlayedBattleCry2 == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
+                        if (PlayedConfirmation == false && PlayedConfirmation1 == false)
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes"); PlayedConfirmation = true; PlayedConfirmation1 = true; PlayedConfirmation2 = false; }
+                        if (PlayedConfirmation == false && PlayedConfirmation2 == false)
+                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allright"); PlayedConfirmation = true; PlayedConfirmation2 = true; PlayedConfirmation1= false; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
                         foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
@@ -99,6 +103,10 @@ internal class PlayingState : GameState
                             {
                                 if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * data.tSize(), g.Size * data.tSize()).Contains(pos)))
                                 {
+                                    if (PlayedBattleCry == false && PlayedBattleCry1 == false)
+                                    { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
+                                    if (PlayedBattleCry == false && PlayedBattleCry2 == false)
+                                    { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
                                     Console.WriteLine("CHAARARRGGEEE   ");
                                     attack = true;
                                     (e as CombatUnit).orderAttack(g);

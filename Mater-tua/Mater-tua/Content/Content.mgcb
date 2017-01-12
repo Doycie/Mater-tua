@@ -703,3 +703,15 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/TreasureChest.jpg
 
+#begin Sounds/Soundeffects/Yes.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/Yes.wav
+
+#begin Sounds/Soundeffects/Allright.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/Allright.wav
+

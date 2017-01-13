@@ -98,21 +98,24 @@ internal class PlayingState : GameState
                         { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allright"); PlayedConfirmation = true; PlayedConfirmation2 = true; PlayedConfirmation1= false; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
-                        foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
+                        if (e is CombatUnit)
                         {
-                            if (g.Faction == BuildingAndUnit.faction.Orc)
+                            foreach (BuildingAndUnit g in level.entities.OfType<BuildingAndUnit>())
                             {
-                                if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * data.tSize(), g.Size * data.tSize()).Contains(pos)))
+                                if (g.Faction == BuildingAndUnit.faction.Orc)
                                 {
-                                    if (PlayedBattleCry == false && PlayedBattleCry1 == false)
-                                    { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
-                                    if (PlayedBattleCry == false && PlayedBattleCry2 == false)
-                                    { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
-                                    Console.WriteLine("CHAARARRGGEEE   ");
-                                    attack = true;
-                                    (e as CombatUnit).orderAttack(g);
+                                    if ((new Rectangle((int)g.Position.X, (int)g.Position.Y, g.Size * data.tSize(), g.Size * data.tSize()).Contains(pos)))
+                                    {
+                                        if (PlayedBattleCry == false && PlayedBattleCry1 == false)
+                                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry"); PlayedBattleCry = true; PlayedBattleCry1 = true; PlayedBattleCry2 = false; }
+                                        if (PlayedBattleCry == false && PlayedBattleCry2 == false)
+                                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BattleCry2"); PlayedBattleCry = true; PlayedBattleCry2 = true; PlayedBattleCry1 = false; }
+                                        Console.WriteLine("CHAARARRGGEEE   ");
+                                        attack = true;
+                                        (e as CombatUnit).orderAttack(g);
 
-                                    break;
+                                        break;
+                                    }
                                 }
                             }
                         }

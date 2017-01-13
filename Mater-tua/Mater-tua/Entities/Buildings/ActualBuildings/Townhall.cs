@@ -6,7 +6,7 @@ internal class Townhall : StaticBuilding
     public Townhall(Level level, Vector2 position, faction faction)
         : base(level)
     {
-        _size = 2;
+        _size = 3;
         _position = position;
         _faction = faction;
         _maxhp = 25000;
@@ -17,7 +17,7 @@ internal class Townhall : StaticBuilding
         _ableToProduce = true;
         this.Reset();
         _description = "This the main base of operation";
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/birb2");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHallConstruction");
     }
 
     public override void Reset()

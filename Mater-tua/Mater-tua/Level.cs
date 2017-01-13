@@ -67,9 +67,9 @@ public partial class Level
 
         Mine Mine = new Mine(this, new Vector2(64, 64), BuildingAndUnit.faction.Neutral);
         entities.Add(Mine);
-        Townhall Townhall = new Townhall(this, new Vector2(384, 384), BuildingAndUnit.faction.Human);
+        Townhall Townhall = new Townhall(this, new Vector2(320, 384), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
-        Peasant Worker = new Peasant(this, new Vector2(704, 192));
+        Peasant Worker = new Peasant(this, new Vector2(768, 192));
         entities.Add(Worker);
         Peon Worker1 = new Peon(this, new Vector2(192, 704));
         entities.Add(Worker1);

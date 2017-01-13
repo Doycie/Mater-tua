@@ -68,32 +68,35 @@ internal class WorkerUnit : Unit
         }       
     }
 
-    public void Order(Tree t, int What, Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
-    {
-        if (What == 0)
-        {
-            _OrderLevel = 0;
-            _MinePosition = PositionTarget;
-        }
-        else if (What == 1)
-        {
-            _OrderLevel = 1;
-            _TreePosition = PositionTarget;
-            _tree = t;
-        }
-        else if (What == 2)
-        {
-            _OrderLevel = 2;
-            _TargetPosition = PositionTarget;
-            _BuildLevel = BuildLevel;
-            _done = false;
-        }
-        else if (What == 3)
-        {
-            _OrderLevel = 3;
-            _TreasurePosition = PositionTarget;
-        }
+    
 
+    public void MineOrder(Vector2 PositionTarget, Vector2 PositionTownhall)
+    {
+        _OrderLevel = 0;
+        _MinePosition = PositionTarget;
+        _TownhallPosition = PositionTownhall;
+    }
+
+    public void CutWoodOrder(Tree t, Vector2 PositionTarget, Vector2 PositionTownhall )
+    {
+        _OrderLevel = 1;
+        _TreePosition = PositionTarget;
+        _tree = t;
+        _TownhallPosition = PositionTownhall;
+    }
+
+    public void BuildOrder(Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
+    {
+        _OrderLevel = 2;
+        _TargetPosition = PositionTarget;
+        _BuildLevel = BuildLevel;
+        _done = false;
+    }
+
+    public void TreasureOrder(Vector2 PositionTarget, Vector2 PositionTownhall)
+    {
+        _OrderLevel = 3;
+        _TreasurePosition = PositionTarget;
         _TownhallPosition = PositionTownhall;
     }
 

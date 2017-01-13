@@ -188,10 +188,11 @@ internal class WorkerUnit : Unit
                 {
                     orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
                     _TimerTreasure = 60;
+                    _treasure.TreasureUseage();
                 }
                 _TimerTreasure--;
             }
-            if (_position == _TreasurePosition)
+            if (_position == _TownhallPosition)
             {
                 _level.Player.AddGold(100);
                 orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
@@ -203,7 +204,7 @@ internal class WorkerUnit : Unit
             if (_position == _TownhallPosition)
             {
                 _level.Player.AddGold(100);
-                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+                orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
             }
         }
     }

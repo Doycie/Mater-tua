@@ -20,7 +20,7 @@ partial class Level
                 }
                 if ((entities[i] as BuildingAndUnit).HitPoints < 1)
                 {
-                    if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
+                    if (typeof(Tree).IsAssignableFrom(entities[i].GetType()) || typeof(TreasureChest).IsAssignableFrom(entities[i].GetType()))
                     {
                         entities.RemoveAt(i);
                     }

@@ -10,7 +10,7 @@ partial class TreasureChest : BuildingAndUnit
     {
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/TreasureChest");
         _position = Position;
-        _maxhp = 100;
+        _maxhp = 1;
         this.Reset();
         _faction = BuildingAndUnit.faction.Neutral;
         _TreasureAmount = 1;
@@ -25,7 +25,7 @@ partial class TreasureChest : BuildingAndUnit
     public void TreasureUseage()
     {
         _TreasureAmount -= 1;
-        _hp -= 100;
+        _hp -= 1;
     }
     public override void Reset()
     {

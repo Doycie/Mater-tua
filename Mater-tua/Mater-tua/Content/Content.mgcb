@@ -739,7 +739,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Tiles/water.png
 
-#begin Sprites/Buildings/TownHallConstruction.png
+#begin Sprites\Buildings\HumanTownHallConstruction.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -749,5 +749,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Buildings/TownHallConstruction.png
+/build:Sprites\Buildings\HumanTownHallConstruction.png
 

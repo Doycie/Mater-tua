@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 partial class TreasureChest : BuildingAndUnit
 {
+    private int _TreasureAmount;
+
     public TreasureChest(Level level, Vector2 Position)
         : base(level)
     {
@@ -11,11 +13,23 @@ partial class TreasureChest : BuildingAndUnit
         _maxhp = 100;
         this.Reset();
         _faction = BuildingAndUnit.faction.Neutral;
+        _TreasureAmount = 1;
     }
 
+    public int TreasureAmount
+    {
+
+        get { return _TreasureAmount; }
+    }
+
+    public void TreasureUseage()
+    {
+        _TreasureAmount -= 1;
+        _hp -= 100;
+    }
     public override void Reset()
     {
-        _hp = _maxhp;
+        _hp = 1;
     }
 
     public override void Draw(SpriteBatch spriteBatch)

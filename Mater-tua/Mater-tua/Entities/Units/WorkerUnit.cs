@@ -18,6 +18,7 @@ internal class WorkerUnit : Unit
     private int _FirstTimeTreasure;
     private int _TimerTreasure;
     private Tree _tree;
+    private TreasureChest _treasure;
 
     public WorkerUnit(Level level)
         : base(level)
@@ -93,8 +94,9 @@ internal class WorkerUnit : Unit
         _done = false;
     }
 
-    public void TreasureOrder(Vector2 PositionTarget, Vector2 PositionTownhall)
+    public void TreasureOrder(TreasureChest T, Vector2 PositionTarget, Vector2 PositionTownhall)
     {
+        _treasure = T;
         _OrderLevel = 3;
         _TreasurePosition = PositionTarget;
         _TownhallPosition = PositionTownhall;
@@ -172,26 +174,37 @@ internal class WorkerUnit : Unit
     }
     private void OpenChest()
     {
-        if (_position != _TreasurePosition && _position != _TownhallPosition && _FirstTimeTreasure == 0)
+        if (_treasure.TreasureAmount > 0)
         {
-            orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
-            _FirstTimeTreasure = 1;
-            GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
-        }
-        if (_position == _TreasurePosition)
-        {
-            if (_TimerTreasure == 0)
+            if (_position != _TreasurePosition && _position != _TownhallPosition && _FirstTimeTreasure == 0)
             {
-                orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                _TimerTreasure = 60;
+                orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+                _FirstTimeTreasure = 1;
+                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
             }
-            _TimerTreasure--;
+            if (_position == _TreasurePosition)
+            {
+                if (_TimerTreasure == 0)
+                {
+                    orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                    _TimerTreasure = 60;
+                }
+                _TimerTreasure--;
+            }
+            if (_position == _TreasurePosition)
+            {
+                _level.Player.AddGold(100);
+                orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
+                Console.WriteLine("Gold:" + _level.Player.Gold);
+            }
         }
-        if (_position == _TreasurePosition)
+        else if (_treasure.TreasureAmount == 0)
         {
-            _level.Player.AddGold(100);
-            orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
-            Console.WriteLine("Gold:" + _level.Player.Gold);
+            if (_position == _TownhallPosition)
+            {
+                _level.Player.AddGold(100);
+                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
+            }
         }
     }
 

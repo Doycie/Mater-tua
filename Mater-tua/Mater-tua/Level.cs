@@ -77,6 +77,8 @@ public partial class Level
         entities.Add(Tree1);
         Tree Tree2 = new Tree(this,new Vector2(64, 512));
         entities.Add(Tree2);
+        TreasureChest Chest1 = new TreasureChest(this, new Vector2(1000, 1000));
+        entities.Add(Chest1);
     }
 
     //Load the map from the text file into the mapdata array

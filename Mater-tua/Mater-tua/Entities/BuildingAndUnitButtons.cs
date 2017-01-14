@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 
 
-public partial class BuildingAndUnitButtons
+public partial class BuildingAndUnit : AnimatedEntity
 {
     //Booleans to check if a button should be loaded
-    bool _attackButton = false;
-    bool _moveButton = false;
-    bool _stopButton = false;
-    bool _patrolButton = false;
-    bool _holdPositionButton = false;
+    protected bool _attackButton = false;
+    protected bool _moveButton = false;
+    protected bool _stopButton = false;
+    protected bool _patrolButton = false;
+    protected bool _holdPositionButton = false;
 }
 

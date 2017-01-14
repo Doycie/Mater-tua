@@ -12,6 +12,7 @@
         _damageType = damageType.Piercing;
         _productionTime = 600;
         _range = 1; //melee range
+        _attackButton = true;
 
         this.Reset();
     }

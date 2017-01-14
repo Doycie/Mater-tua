@@ -94,6 +94,8 @@
     <Compile Include="GameStates\PauseState.cs" />
     <Compile Include="GameStates\SettingsState.cs" />
     <Compile Include="HUD\Button.cs" />
+    <Compile Include="HUD\Buttons\PlayingButtons\AttackButton.cs" />
+    <Compile Include="HUD\PlayingButton.cs" />
     <Compile Include="HUD\HUD.cs" />
     <Compile Include="HUD\MenuHud.cs" />
     <Compile Include="HUD\PauseHud.cs" />

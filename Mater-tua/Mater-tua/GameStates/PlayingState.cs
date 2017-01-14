@@ -30,7 +30,7 @@ internal class PlayingState : GameState
         
         _mouseState = Mouse.GetState();
         level = new Level();
-        _hud = new PlayingHud(level);
+        _hud = new PlayingHud(level,_selectedEntities);
         level.init("lvl.txt");
         _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
     }

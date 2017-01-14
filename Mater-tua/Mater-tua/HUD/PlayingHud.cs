@@ -11,6 +11,7 @@ internal class PlayingHud : HUD
     private Minimap _minimap;
     protected List<Entity> hudUnits;
     private Level _level;
+    private Texture2D _minimapBorder;
     
 
     public PlayingHud(Level level)
@@ -20,6 +21,7 @@ internal class PlayingHud : HUD
         _buttons = new List<Button>();
         _resources = new List<Resources>();
 
+        _minimapBorder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/Border");
         ///* 1 */
         //_buttons.Add(new Button(new Rectangle(32, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
         ///* 2 */
@@ -52,7 +54,9 @@ internal class PlayingHud : HUD
     {
         base.draw(s);
 
+
         _minimap.draw(s);
+        s.Draw(_minimapBorder, new Vector2(0, GameEnvironment.getCamera().getScreenSize().Y - 300), Color.White);
         //foreach (BasicMeleeUnit q in hudUnits.OfType<BasicMeleeUnit>())
             
         

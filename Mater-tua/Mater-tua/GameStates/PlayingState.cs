@@ -45,6 +45,11 @@ internal class PlayingState : GameState
         
     }
 
+    public List<Entity> SelectedEntities
+    {
+        get { return _selectedEntities; }
+    }
+
     //Special function to draw the HUD
 
     public void drawHUD(SpriteBatch spriteBatch)

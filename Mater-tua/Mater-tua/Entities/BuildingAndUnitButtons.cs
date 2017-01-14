@@ -11,5 +11,8 @@ public partial class BuildingAndUnit : AnimatedEntity
     protected bool _stopButton = false;
     protected bool _patrolButton = false;
     protected bool _holdPositionButton = false;
+    protected bool _mineGoldButton = false;
+    protected bool _cutWoodButton = false;
+    protected bool _buildBuildingButton = false;
 }
 

@@ -39,6 +39,11 @@ internal class WorkerUnit : Unit
         _TimerTree = 60;
         _OrderLevel = -1;
         _level = level;
+        _moveButton = true;
+        _stopButton = true;
+        _mineGoldButton = true;
+        _cutWoodButton = true;
+        _buildBuildingButton = true;
  
     }
 

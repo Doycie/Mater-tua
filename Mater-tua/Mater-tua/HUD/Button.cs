@@ -11,8 +11,8 @@ internal class Button
     private Rectangle _position;
     private Texture2D _tex;
     private Texture2D _texPressed;
-    private bool _relative;
-    private bool _pressed;
+    protected bool _relative;
+    protected bool _pressed;
 
     public Rectangle getPosition()
     {
@@ -34,7 +34,7 @@ internal class Button
         _relative = relative;
     }
 
-    public bool update(InputHelper inputHelper)
+    public virtual bool update(InputHelper inputHelper)
     {
         Rectangle r = realButtonPos();
         bool ret = false;
@@ -70,7 +70,7 @@ internal class Button
             return new Rectangle(_position.X, (int)GameEnvironment.getCamera().getScreenSize().Y - _position.Y, _position.Width, _position.Height);
     }
 
-    public void draw(SpriteBatch s)
+    public virtual void draw(SpriteBatch s)
     {
         Rectangle r = realButtonPos();
         if (_pressed)

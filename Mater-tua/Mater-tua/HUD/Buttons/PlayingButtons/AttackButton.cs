@@ -13,5 +13,14 @@ class AttackButton : PlayingButton
     {
 
     }
+
+    public bool update(InputHelper inputHelper)
+    {
+        if (entityList[0] != null)
+        {
+            _visible = entityList[0]._AttackButton;
+        }
+        base.update(inputHelper);
+    }
 }
 

@@ -14,5 +14,12 @@ public partial class BuildingAndUnit : AnimatedEntity
     protected bool _mineGoldButton = false;
     protected bool _cutWoodButton = false;
     protected bool _buildBuildingButton = false;
+
+    public bool _AttackButton
+    {
+        get { return _attackButton; }
+    }
+
+
 }
 

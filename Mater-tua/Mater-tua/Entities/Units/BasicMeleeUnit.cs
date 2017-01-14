@@ -13,6 +13,10 @@
         _productionTime = 600;
         _range = 1; //melee range
         _attackButton = true;
+        _moveButton = true;
+        _stopButton = true;
+        _patrolButton = true;
+        _holdPositionButton = true;
 
         this.Reset();
     }

@@ -61,6 +61,8 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Barracks.cs" />
+    <Compile Include="Entities\Buildings\ActualBuildings\Gate.cs" />
+    <Compile Include="Entities\Buildings\ActualBuildings\Wall.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Farm.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Mine.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Townhall.cs" />

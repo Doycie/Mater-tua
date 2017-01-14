@@ -8,6 +8,8 @@ internal class Farm : StaticBuilding
     public Farm(Level level, Vector2 position, faction faction)
         : base(level)
     {
+        _EnemycanWalktrough = true;
+        _Friendcanwalktrough = true;
         _size = 2;
         _position = position;
         _faction = faction;

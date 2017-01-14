@@ -8,6 +8,8 @@ internal class Barracks : StaticBuilding
     public Barracks(Level level, Vector2 position, faction faction)
         : base(level)
     {
+        _EnemycanWalktrough = false;
+        _Friendcanwalktrough = false;
         _size = 2;
         _position = position;
         _faction = faction;

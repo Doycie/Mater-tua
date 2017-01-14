@@ -6,6 +6,8 @@ internal class Townhall : StaticBuilding
     public Townhall(Level level, Vector2 position, faction faction)
         : base(level)
     {
+        _EnemycanWalktrough = false;
+        _Friendcanwalktrough = true;
         _size = 3;
         _position = position;
         _faction = faction;

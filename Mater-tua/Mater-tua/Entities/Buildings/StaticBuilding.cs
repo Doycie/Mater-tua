@@ -5,8 +5,9 @@ internal class StaticBuilding : BuildingAndUnit
     protected float _buildTime;
 
     protected bool _ableToProduce;
+    protected bool _Friendcanwalktrough;
+    protected bool _EnemycanWalktrough;
 
- 
 
     public StaticBuilding(Level level) : base(level)
     {

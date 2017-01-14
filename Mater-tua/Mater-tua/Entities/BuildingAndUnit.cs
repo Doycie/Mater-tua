@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-public class BuildingAndUnit : AnimatedEntity
+public partial class BuildingAndUnit : AnimatedEntity
 {
     protected int _maxhp;
     protected int _hp;

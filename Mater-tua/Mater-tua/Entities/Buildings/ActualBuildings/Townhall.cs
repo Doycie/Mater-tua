@@ -19,7 +19,7 @@ internal class Townhall : StaticBuilding
         _ableToProduce = true;
         this.Reset();
         _description = "This the main base of operation";
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHallConstruction");
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHall");
     }
 
     public override void Reset()

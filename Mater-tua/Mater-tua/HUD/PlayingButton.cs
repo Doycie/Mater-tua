@@ -8,10 +8,10 @@ using System.Linq;
 
 class PlayingButton : Button
 {
-    protected List<Entity> entityList;
+    protected List<BuildingAndUnit> entityList;
     public bool _visible = false;
 
-    public PlayingButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<Entity> list)
+    public PlayingButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<BuildingAndUnit> list)
         : base (position,tex,texPressed,relative)
     {
         entityList = list;

@@ -9,13 +9,13 @@ using System.Linq;
 internal class PlayingHud : HUD
 {
     private Minimap _minimap;
-    protected List<Entity> hudUnits;
+    protected List<BuildingAndUnit> hudUnits;
     private Level _level;
     private Texture2D _minimapBorder;
-    protected List<Entity> entityList;
+    protected List<BuildingAndUnit> entityList;
     
 
-    public PlayingHud(Level level, List<Entity> list)
+    public PlayingHud(Level level, List<BuildingAndUnit> list)
     {
         entityList = list;
         _level = level;
@@ -66,7 +66,7 @@ internal class PlayingHud : HUD
 
     }
 
-    public void update(InputHelper inputHelper, List<Entity> selectedEntities, Level level)
+    public void update(InputHelper inputHelper, List<BuildingAndUnit> selectedEntities, Level level)
     {
         int j = base.update(inputHelper);
 

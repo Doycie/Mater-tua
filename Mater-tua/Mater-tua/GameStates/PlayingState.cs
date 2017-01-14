@@ -11,7 +11,7 @@ internal class PlayingState : GameState
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
-    private List<Entity> _selectedEntities = new List<Entity>();
+    private List<BuildingAndUnit> _selectedEntities = new List<BuildingAndUnit>();
     private CustomCursor _customCursor;
     private HUD _hud;
     private Vector2 _lastMousePos;
@@ -45,10 +45,6 @@ internal class PlayingState : GameState
         
     }
 
-    public List<Entity> SelectedEntities
-    {
-        get { return _selectedEntities; }
-    }
 
     //Special function to draw the HUD
 
@@ -203,7 +199,7 @@ internal class PlayingState : GameState
                         if ((e as BuildingAndUnit).Faction == BuildingAndUnit.faction.Human)
                             if ((r.Contains(e.Center)))
                             {
-                                _selectedEntities.Add(e);
+                                _selectedEntities.Add((e as BuildingAndUnit));
                             }
                 }
                 _mouseReleased = false;
@@ -234,13 +230,13 @@ internal class PlayingState : GameState
                         {
                             if (!_selectedEntities.Contains(e))
                             {
-                                _selectedEntities.Add(e);
+                                _selectedEntities.Add((e as BuildingAndUnit));
                             }
                         }
                         else
                         {
                             _selectedEntities.Clear();
-                            _selectedEntities.Add(e);
+                            _selectedEntities.Add((e as BuildingAndUnit));
                         }
                     }
                 }

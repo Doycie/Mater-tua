@@ -8,19 +8,20 @@ using System.Linq;
 
 class AttackButton : PlayingButton
 {
-    public AttackButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<Entity> list)
+    public AttackButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<BuildingAndUnit> list)
         : base(position, tex, texPressed, relative, list)
     {
 
     }
 
-    public bool update(InputHelper inputHelper)
+    public override bool update(InputHelper inputHelper)
     {
         if (entityList[0] != null)
         {
-            _visible = entityList[0]._AttackButton;
+            _visible = entityList[0].AttackButton;
         }
         base.update(inputHelper);
+        return false;
     }
 }
 

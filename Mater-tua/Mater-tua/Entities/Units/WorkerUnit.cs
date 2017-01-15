@@ -18,6 +18,7 @@ internal class WorkerUnit : Unit
     private int _FirstTimeTreasure;
     private int _TimerTreasure;
     private Tree _tree;
+    private Mine _mine;
     private TreasureChest _treasure;
 
     public WorkerUnit(Level level)
@@ -76,11 +77,12 @@ internal class WorkerUnit : Unit
 
     
 
-    public void MineOrder(Vector2 PositionTarget, Vector2 PositionTownhall)
+    public void MineOrder(Mine m, Vector2 PositionTarget, Vector2 PositionTownhall)
     {
         _OrderLevel = 0;
         _MinePosition = PositionTarget;
         _TownhallPosition = PositionTownhall;
+        _mine = m;
     }
 
     public void CutWoodOrder(Tree t, Vector2 PositionTarget, Vector2 PositionTownhall )
@@ -116,26 +118,38 @@ internal class WorkerUnit : Unit
 
     private void Mining()
     {
-        if (_position != _MinePosition && _position != _TownhallPosition && _FirstTime == 0)
+        if (_mine.MineAmount > 0)
         {
-            orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
-            _FirstTime = 1;
-        }
-
-        if (_position == _MinePosition)
-        {
-            if (_Timer == 0)
+            if (_position != _MinePosition && _position != _TownhallPosition && _FirstTime == 0)
             {
-                orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                _Timer = 60;
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+                _FirstTime = 1;
             }
-            _Timer--;
+
+            if (_position == _MinePosition)
+            {
+                if (_Timer == 0)
+                {
+                    orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                    _Timer = 60;
+                    _mine.MineUseage();
+                }
+                _Timer--;
+            }
+            if (_position == _TownhallPosition)
+            {
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+                _level.Player.AddGold(100);
+                Console.WriteLine("Gold:" + _level.Player.Gold);
+            }
         }
-        if (_position == _TownhallPosition)
+        else if (_mine.MineAmount == 0)
         {
-            orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
-            _level.Player.AddGold(10);
-            Console.WriteLine("Gold:" + _level.Player.Gold);
+            if (_position == _TownhallPosition)
+            {
+                _level.Player.AddGold(100);
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+            }
         }
     }
 

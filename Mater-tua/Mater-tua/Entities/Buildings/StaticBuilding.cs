@@ -28,6 +28,6 @@ internal class StaticBuilding : BuildingAndUnit
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
-        Healthbar(spriteBatch);
+        //Healthbar(spriteBatch);
     }
 }

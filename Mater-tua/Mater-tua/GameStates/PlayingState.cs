@@ -140,7 +140,7 @@ internal class PlayingState : GameState
                                 if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                                 {
                                     q.OrderReset();
-                                    q.MineOrder(w.Position, r.Position);
+                                    q.MineOrder(w, w.Position, r.Position);
                                     break;
                                 }
                             }

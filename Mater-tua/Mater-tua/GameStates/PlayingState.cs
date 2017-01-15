@@ -114,7 +114,7 @@ internal class PlayingState : GameState
                                         Console.WriteLine("CHAARARRGGEEE   ");
                                         attack = true;
                                         (e as CombatUnit).orderAttack(g);
-
+                                        (g as CombatUnit).Defend(e);
                                         break;
                                     }
                                 }

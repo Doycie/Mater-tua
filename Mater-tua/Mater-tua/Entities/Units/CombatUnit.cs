@@ -4,8 +4,10 @@ using System;
 
 internal class CombatUnit : Unit
 {
+    protected int _defendCooldown;
     protected int _attackCooldown;
     protected int isAttacking;
+    protected int isAttackingBack;
     private bool PlayedAttackSound1 = false;
     private bool playedAttackSound2 = true;
 
@@ -19,6 +21,25 @@ internal class CombatUnit : Unit
         //s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), new Color(1.0f, isAttacking/60.0f == 0 ? 1.0f: isAttacking/ 60.0f , isAttacking / 60.0f==0 ? isAttacking /60.0f:1.0f, 1.0f));
         base.Draw(s);
         s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
+    }
+
+    private void dodefend()
+    {
+        bool PlayedDefendSound = false;
+        Console.WriteLine("me kill you");
+        if(_defendCooldown < 0)
+        {
+            _defendCooldown = 60;
+            isAttackingBack = 30;
+        }
+        if (isAttackingBack > 0)
+        {
+            if(isAttackingBack == 15)
+            {
+                (_target as BuildingAndUnit).hurt(_damage);
+            }
+            isAttackingBack--;
+        }
     }
 
     private void doattack()
@@ -49,6 +70,7 @@ internal class CombatUnit : Unit
 
     public override void Update()
     {
+        _defendCooldown--;
         _attackCooldown--;
         if (_target != null && (_target as BuildingAndUnit).HitPoints > 0)
         {
@@ -76,6 +98,10 @@ internal class CombatUnit : Unit
         base.Update();
     }
 
+    public void Defend(BuildingAndUnit e)
+    {
+        _target = e;
+    }
     public void orderAttack(BuildingAndUnit e)
     {
         _target = e;

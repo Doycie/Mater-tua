@@ -87,7 +87,7 @@ public class Unit : BuildingAndUnit
 
     public void orderMove(Point target)
     {
-        _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target,_level._mapData);
+        _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target,_level._mapData,_level);
     }
 
     public override void Draw(SpriteBatch s)

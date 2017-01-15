@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 public enum NodeState { Untested, Open, Closed }
 
@@ -57,7 +59,7 @@ internal class Node
    
 
     //NOT USED CODE Started working on Astar pathfinding algorithm
-    public List<Point> findPathAStar(Point start, Point end, byte[,] map)
+    public List<Point> findPathAStar(Point start, Point end, byte[,] map,Level level)
     { 
           List<Node> openList = new List<Node>();
      List<Node> closedList = new List<Node>();
@@ -99,12 +101,32 @@ internal class Node
             {
                 for (int k = -1; k < 2; k++)
                 {
-                    if (!(loc.X + i < 0 || loc.Y + k < 0))
+                    if (!(loc.X + i < 0 || loc.Y + k < 0 || loc.X + i > 64 || loc.Y +k >64))
                     {
                         if (!(i == 0 && k == 0))
                         {
                             if (map[loc.X + i, loc.Y + k] == 0)
                             {
+                                bool skip = false;
+                                foreach (BuildingAndUnit e in level.entities.OfType<BuildingAndUnit>()) {
+                                    int x = (int)e.Position.X / 64;
+                                    int y = (int)e.Position.Y / 64;
+                                    for (int xx = 0; xx < e.Size;xx++)
+                                    {
+                                        for(int yy = 0; yy < e.Size; yy++)
+                                        {
+                                            if (x + xx == loc.X + i && y + yy == loc.Y + k)
+                                            {
+                                                skip = true;
+                                            }
+                                        }
+                                    }
+                                        
+                                }
+                                if (skip)
+                                {
+                                    continue;
+                                }
                                 int eg = 0;
                                 if (!(k == 0 || i == 0))
                                     eg += 6;

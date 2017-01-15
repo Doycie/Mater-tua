@@ -135,6 +135,7 @@ internal class PlayingState : GameState
                         Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         foreach (Mine w in level.entities.OfType<Mine>())
                         {
+                            
                             foreach (Townhall r in level.entities.OfType<Townhall>())
                             {
                                 if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))

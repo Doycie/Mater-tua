@@ -115,7 +115,7 @@ internal class Node
                                     {
                                         for(int yy = 0; yy < e.Size; yy++)
                                         {
-                                            if (x + xx == loc.X + i && y + yy == loc.Y + k)
+                                            if ((x + xx == loc.X + i && y + yy == loc.Y + k )&& !( loc.X+i == end.X && loc.Y +k == end.Y))
                                             {
                                                 skip = true;
                                             }

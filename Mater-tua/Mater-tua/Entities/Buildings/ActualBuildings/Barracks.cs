@@ -24,7 +24,7 @@ internal class Barracks : StaticBuilding
         if (_faction == faction.Human)
         {
             _description = "This is where units that can fight be produced.";
-            _sprite = GameEnvironment.getAssetManager().GetSprite("");
+            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanBarracksConstruction");
         }
 
         if (_faction == faction.Orc)

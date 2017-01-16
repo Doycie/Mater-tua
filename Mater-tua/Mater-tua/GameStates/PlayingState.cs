@@ -37,15 +37,13 @@ internal class PlayingState : GameState
 
     //Update the level
     public void update(GameTime gameTime)
-    {
-        level.update();
+    {       
         // GameEnvironment.getCamera().getScreenSize();
         // Console.WriteLine(mousePos);
-
-        
+        level.update();
     }
-
-
+                    
+                    
     //Special function to draw the HUD
 
     public void drawHUD(SpriteBatch spriteBatch)
@@ -114,8 +112,8 @@ internal class PlayingState : GameState
                                         Console.WriteLine("CHAARARRGGEEE   ");
                                         attack = true;
                                         (e as CombatUnit).orderAttack(g);
-                                        if(g is CombatUnit)
-                                        (g as CombatUnit).Defend(e);
+                                       //if(g is CombatUnit)
+                                       //(g as CombatUnit).Defend(e);
                                         break;
                                     }
                                 }

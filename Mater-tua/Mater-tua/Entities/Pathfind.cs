@@ -112,26 +112,27 @@ internal class Node
                         {
                             if (map[loc.X + i, loc.Y + k] == 0)
                             {
-                                //bool skip = false;
-                                //foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>()) {
-                                //    int x = (int)e.Position.X / 64;
-                                //    int y = (int)e.Position.Y / 64;
-                                //    for (int xx = 0; xx < e.Size;xx++)
-                                //    {
-                                //        for(int yy = 0; yy < e.Size; yy++)
-                                //        {
-                                //            if ((x + xx == loc.X + i && y + yy == loc.Y + k )&& !( loc.X+i == end.X && loc.Y +k == end.Y))
-                                //            {
-                                //                skip = true;
-                                //            }
-                                //        }
-                                //    }
-                                        
-                                //}
-                                //if (skip)
-                                //{
-                                //    continue;
-                                //}
+                                bool skip = false;
+                                foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
+                                {
+                                    int x = (int)e.Position.X / 64;
+                                    int y = (int)e.Position.Y / 64;
+                                    for (int xx = 0; xx < e.Size; xx++)
+                                    {
+                                        for (int yy = 0; yy < e.Size; yy++)
+                                        {
+                                            if ((x + xx == loc.X + i && y + yy == loc.Y + k) && !(loc.X + i == end.X && loc.Y + k == end.Y))
+                                            {
+                                                skip = true;
+                                            }
+                                        }
+                                    }
+
+                                }
+                                if (skip)
+                                {
+                                    continue;
+                                }
                                 int eg = 0;
                                 if (!(k == 0 || i == 0))
                                     eg += 6;
@@ -202,17 +203,17 @@ internal class Node
 
     public void draw(SpriteBatch s)
     {
-        foreach (var e in openList)
-        {
-            s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox"), new Rectangle(e._x.X * 64 + 1, e._x.Y * 64 + 1, 64 - 2, 64 - 2), Color.White);
-        }
-        foreach (var e in closedList)
-        {
-            s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox"), new Rectangle(e._x.X * 64, e._x.Y * 64, 64, 64), Color.Blue);
-            s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "F: " + e._f, new Vector2(e._x.X * 64 + 5, e._x.Y * 64 + 5), Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
-            s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "G: " + e._g, new Vector2(e._x.X * 64 + 5, e._x.Y * 64 + 23), Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
-            s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "H: " + e._h, new Vector2(e._x.X * 64 + 5, e._x.Y * 64 + 40), Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
-        }
+        //foreach (var e in openList)
+        //{
+        //    s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox"), new Rectangle(e._x.X * 64 + 1, e._x.Y * 64 + 1, 64 - 2, 64 - 2), Color.White);
+        //}
+        //foreach (var e in closedList)
+        //{
+        //    s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox"), new Rectangle(e._x.X * 64, e._x.Y * 64, 64, 64), Color.Blue);
+        //    s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "F: " + e._f, new Vector2(e._x.X * 64 + 5, e._x.Y * 64 + 5), Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+        //    s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "G: " + e._g, new Vector2(e._x.X * 64 + 5, e._x.Y * 64 + 23), Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+        //    s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "H: " + e._h, new Vector2(e._x.X * 64 + 5, e._x.Y * 64 + 40), Color.White, 0.0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0.0f);
+        //}
     }
 
     //Simple method for the H value only pythagoras for now

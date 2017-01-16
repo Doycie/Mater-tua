@@ -18,13 +18,40 @@ internal class Townhall : StaticBuilding
         _armor = 0;
         _ableToProduce = true;
         this.Reset();
-        _description = "This the main base of operation";
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHall");
+        if (_faction == faction.Human)
+        {
+            _description = "This is the main building of the Human Alliance. Each settlement can only have one Town hall. It can rebuild if it is destroyed through battle.";
+            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHall");
+        }
+
+        if (_faction == faction.Orc)
+        {
+            _description = "This is the main building of the Orcish army. Each encampment can only have one town hall, but it can be replaced if it is destroyed in battle.";
+            _sprite = GameEnvironment.getAssetManager().GetSprite("");
+        }
+
     }
 
     public override void Reset()
     {
         _hp = _maxhp;
+    }
+    public override void Update()
+    {
+        base.Update();
+        //FoodCreate();
+        if ((float)_hp / (float)_maxhp < 1.0f / 3.0f)
+        {
+
+            if (_faction == faction.Human)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHallConstruction");
+            }
+            if (_faction == faction.Orc)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("");
+            }
+        }
     }
 
     public override void Draw(SpriteBatch spriteBatch)
@@ -44,7 +71,7 @@ internal class Townhall : StaticBuilding
         {
             Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y));
             _level.entities.Add(peasant);
-           
+
         }
     }
 }

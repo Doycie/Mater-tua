@@ -24,12 +24,12 @@ internal class Barracks : StaticBuilding
         if (_faction == faction.Human)
         {
             _description = "This is where units that can fight be produced.";
-            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanBarracksConstruction");
+            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanBarracks");
         }
 
         if (_faction == faction.Orc)
         {
-            _description = "Here is where the units are produced to fight";
+            _description = "This is where the units are produced to fight";
             _sprite = GameEnvironment.getAssetManager().GetSprite("");
         }
     }
@@ -44,10 +44,23 @@ internal class Barracks : StaticBuilding
         base.Draw(spriteBatch);
         Healthbar(spriteBatch);
     }
-
     public override void Update()
     {
         base.Update();
+       
+        if ((float)_hp / (float)_maxhp < 1.0f / 3.0f)
+        {
+
+            if (_faction == faction.Human)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanBarracksConstruction");
+            }
+
+            if (_faction == faction.Orc)
+            {
+                _sprite = GameEnvironment.getAssetManager().GetSprite("");
+            }
+        }
     }
 
     private void ProduceUnit()

@@ -60,9 +60,20 @@ internal class PlayingHud : HUD
         _minimap.draw(s);
         s.Draw(_minimapBorder, new Vector2(0, GameEnvironment.getCamera().getScreenSize().Y - 300), Color.White);
         //foreach (BasicMeleeUnit q in hudUnits.OfType<BasicMeleeUnit>())
-            
-        
 
+        if (hudUnits != null)
+        {
+            int i = 0;
+            foreach (BuildingAndUnit e in hudUnits.OfType<BuildingAndUnit>())
+            {
+               
+                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 300 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
+                s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 300 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
+                i++;
+                if (i > 8)
+                    break;
+            }
+        }
 
     }
 

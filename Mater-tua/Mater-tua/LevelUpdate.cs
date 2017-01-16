@@ -37,6 +37,7 @@ partial class Level
                 {
                     if (typeof(Tree).IsAssignableFrom(entities[i].GetType()) || typeof(TreasureChest).IsAssignableFrom(entities[i].GetType()))
                     {
+                        specialFX.Add(new Explosion("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size));
                         entities.RemoveAt(i);
                     }
                     else if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))

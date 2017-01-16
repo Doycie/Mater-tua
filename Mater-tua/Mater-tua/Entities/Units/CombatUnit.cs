@@ -4,6 +4,10 @@ using System;
 
 internal class CombatUnit : Unit
 {
+    protected double agrorange;
+    protected Vector2 _enemyDistance;
+    protected Vector2 _minagroRange;
+    protected Vector2 _maxagroRange;
     protected int _defendCooldown;
     protected int _attackCooldown;
     protected int isAttacking;
@@ -100,9 +104,15 @@ internal class CombatUnit : Unit
 
     public void Defend(BuildingAndUnit e)
     {
-        _target = e;
+        agrorange = Math.Sqrt(Math.Pow(_position.X - e.Position.X, 2) * Math.Pow(_position.Y- e.Position.Y, 2));
+
+        if (agrorange < 400)
+        {
+            orderAttack(e);    
+        }
     }
-    public virtual void orderAttack(BuildingAndUnit e)
+
+    public void orderAttack(BuildingAndUnit e)
     {
         _target = e;
 

@@ -27,10 +27,15 @@ internal class Node
 //Class that contains all the pathfinding methods
  class Pathfind
 {
+
+ 
+
     //Method that returns a very simple path in the form of a list of points.
     //Only goes directly to its target, and no further then 10 tiles
     public List<Point> findPathSimple(Point start, Point end)
     {
+
+
         //Variable for the path
         List<Point> path = new List<Point>();
 
@@ -60,10 +65,10 @@ internal class Node
 
     //NOT USED CODE Started working on Astar pathfinding algorithm
     public List<Point> findPathAStar(Point start, Point end, byte[,] map,Level level)
-    { 
-          List<Node> openList = new List<Node>();
-     List<Node> closedList = new List<Node>();
-    List<Point> path = new List<Point>();
+    {
+        List<Node> openList = new List<Node>();
+        List<Node> closedList = new List<Node>();
+        List<Point> path = new List<Point>();
 
         openList.Clear();
         closedList.Clear();
@@ -108,20 +113,21 @@ internal class Node
                             if (map[loc.X + i, loc.Y + k] == 0)
                             {
                                 bool skip = false;
-                                foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>()) {
+                                foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
+                                {
                                     int x = (int)e.Position.X / 64;
                                     int y = (int)e.Position.Y / 64;
-                                    for (int xx = 0; xx < e.Size;xx++)
+                                    for (int xx = 0; xx < e.Size; xx++)
                                     {
-                                        for(int yy = 0; yy < e.Size; yy++)
+                                        for (int yy = 0; yy < e.Size; yy++)
                                         {
-                                            if ((x + xx == loc.X + i && y + yy == loc.Y + k )&& !( loc.X+i == end.X && loc.Y +k == end.Y))
+                                            if ((x + xx == loc.X + i && y + yy == loc.Y + k) && !(loc.X + i == end.X && loc.Y + k == end.Y))
                                             {
                                                 skip = true;
                                             }
                                         }
                                     }
-                                        
+
                                 }
                                 if (skip)
                                 {
@@ -157,6 +163,7 @@ internal class Node
                             return path;
                         }
                     }
+                    return path;
                 }
             }
             foreach (var child in children)

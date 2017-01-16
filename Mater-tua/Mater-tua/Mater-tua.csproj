@@ -80,6 +80,8 @@
     <Compile Include="Entities\Units\ActualUnits\Footman.cs" />
     <Compile Include="Entities\Units\BasicMeleeUnit.cs" />
     <Compile Include="Entities\Units\CombatUnit.cs" />
+    <Compile Include="Entities\Projectiles\Projectile.cs" />
+    <Compile Include="Entities\Units\RangedUnit.cs" />
     <Compile Include="Entities\Units\Unit.cs" />
     <Compile Include="Entities\SpriteEntity.cs" />
     <Compile Include="CustomCursor.cs" />

@@ -2,44 +2,48 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-internal class CombatUnit : Unit
+
+class RangedUnit : CombatUnit
 {
-    protected int _defendCooldown;
-    protected int _attackCooldown;
+
     protected int isAttacking;
     protected int isAttackingBack;
     private bool PlayedAttackSound1 = false;
     private bool playedAttackSound2 = true;
 
-    public CombatUnit(Level level)
+    public RangedUnit(Level level, Vector2 Position)
         : base(level)
     {
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Birb2");
+        _maxhp = 40;
+        _armor = 0;
+        _armorType = armorType.Light;
+        _goldCost = 400;
+        _lumberCost = 0;
+        _damage = 10;
+        _damageType = damageType.Piercing;
+        _productionTime = 750;
+        _range = 1;
+        Reset();
+        _level = level;
+        _position = Position;
+        _range = 1;
+        _attackButton = true;
+        _moveButton = true;
+        _stopButton = true;
+        _patrolButton = true;
+        _holdPositionButton = true;
+
+    }
+
+    public override void Reset()
+    {
+        _hp = _maxhp;
     }
 
     public override void Draw(SpriteBatch s)
     {
-        //s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), new Color(1.0f, isAttacking/60.0f == 0 ? 1.0f: isAttacking/ 60.0f , isAttacking / 60.0f==0 ? isAttacking /60.0f:1.0f, 1.0f));
         base.Draw(s);
-        s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
-    }
-
-    private void dodefend()
-    {
-        bool PlayedDefendSound = false;
-        Console.WriteLine("me kill you");
-        if(_defendCooldown < 0)
-        {
-            _defendCooldown = 60;
-            isAttackingBack = 30;
-        }
-        if (isAttackingBack > 0)
-        {
-            if(isAttackingBack == 15)
-            {
-                (_target as BuildingAndUnit).hurt(_damage);
-            }
-            isAttackingBack--;
-        }
     }
 
     private void doattack()
@@ -51,7 +55,7 @@ internal class CombatUnit : Unit
         {
 
             if (PlayedAttackSound1 == false && playedAttackSound2 == true && PlayedAttackSound == false)
-            {GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
+            { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
             if (playedAttackSound2 == false && PlayedAttackSound1 == true && PlayedAttackSound == false)
             { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordClashHit"); PlayedAttackSound1 = false; playedAttackSound2 = true; PlayedAttackSound = true; }
             _attackCooldown = 60;
@@ -98,11 +102,8 @@ internal class CombatUnit : Unit
         base.Update();
     }
 
-    public void Defend(BuildingAndUnit e)
-    {
-        _target = e;
-    }
-    public virtual void orderAttack(BuildingAndUnit e)
+
+    public override void orderAttack(BuildingAndUnit e)
     {
         _target = e;
 
@@ -130,3 +131,4 @@ internal class CombatUnit : Unit
         return Math.Sqrt(Math.Pow(x.X - y.X, 2) + Math.Pow(x.Y - y.Y, 2));
     }
 }
+

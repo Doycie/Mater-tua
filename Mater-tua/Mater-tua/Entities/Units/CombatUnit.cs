@@ -112,7 +112,7 @@ internal class CombatUnit : Unit
         }
     }
 
-    public void orderAttack(BuildingAndUnit e)
+    public virtual void orderAttack(BuildingAndUnit e)
     {
         _target = e;
 

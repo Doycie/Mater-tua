@@ -93,7 +93,7 @@ public class Unit : BuildingAndUnit
     public override void Draw(SpriteBatch s)
     {
         base.Draw(s);
-        Healthbar(s);
+        //Healthbar(s);
 
         pathfinder.draw(s);
 

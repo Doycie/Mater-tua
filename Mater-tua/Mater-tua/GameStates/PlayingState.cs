@@ -31,7 +31,7 @@ internal class PlayingState : GameState
         _mouseState = Mouse.GetState();
         level = new Level();
         _hud = new PlayingHud(level,_selectedEntities);
-        level.init("lvl.txt");
+         level.init("lvl.txt");
         _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
     }
 
@@ -112,8 +112,8 @@ internal class PlayingState : GameState
                                         Console.WriteLine("CHAARARRGGEEE   ");
                                         attack = true;
                                         (e as CombatUnit).orderAttack(g);
-                                       //if(g is CombatUnit)
-                                       //(g as CombatUnit).Defend(e);
+                                        //if(g is CombatUnit)
+                                        //(g as CombatUnit).Defend(e);
                                         break;
                                     }
                                 }

@@ -27,24 +27,24 @@ internal class CombatUnit : Unit
         s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
     }
 
-    private void dodefend()
-    {
-        bool PlayedDefendSound = false;
-        Console.WriteLine("me kill you");
-        if(_defendCooldown < 0)
-        {
-            _defendCooldown = 60;
-            isAttackingBack = 30;
-        }
-        if (isAttackingBack > 0)
-        {
-            if(isAttackingBack == 15)
-            {
-                (_target as BuildingAndUnit).hurt(_damage);
-            }
-            isAttackingBack--;
-        }
-    }
+    //private void dodefend()
+    //{
+    //    bool PlayedDefendSound = false;
+    //    Console.WriteLine("me kill you");
+    //    if(_defendCooldown < 0)
+    //    {
+    //        _defendCooldown = 60;
+    //        isAttackingBack = 30;
+    //    }
+    //    if (isAttackingBack > 0)
+    //    {
+    //        if(isAttackingBack == 15)
+    //        {
+    //            (_target as BuildingAndUnit).hurt(_damage);
+    //        }
+    //        isAttackingBack--;
+    //    }
+    //}
 
     private void doattack()
     {

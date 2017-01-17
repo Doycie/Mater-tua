@@ -59,13 +59,13 @@ class RangedUnit : CombatUnit
             { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
             if (playedAttackSound2 == false && PlayedAttackSound1 == true && PlayedAttackSound == false)
             { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordClashHit"); PlayedAttackSound1 = false; playedAttackSound2 = true; PlayedAttackSound = true; }
-            _attackCooldown = 60;
-            isAttacking = 30;
+            _attackCooldown = 120;
+            isAttacking = 60;
         }
         //isAttacking--;
         if (isAttacking > 0)
         {
-            if (isAttacking == 15)
+            if (isAttacking == 30)
             {
                 Projectile projectile = new Projectile(_level, _target, this);
                 _level.Projectiles.Add(projectile);

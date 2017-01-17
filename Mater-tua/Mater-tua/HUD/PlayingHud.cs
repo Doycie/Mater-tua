@@ -13,7 +13,6 @@ internal class PlayingHud : HUD
     private Level _level;
     private Texture2D _minimapBorder;
     protected List<BuildingAndUnit> entityList;
-    private BuildingAndUnit _buildingAndUnit;
     
 
     public PlayingHud(Level level, List<BuildingAndUnit> list)
@@ -26,27 +25,30 @@ internal class PlayingHud : HUD
         _resources = new List<Resources>();
 
         _minimapBorder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/Border");
-        ///* 1 */
-        //_buttons.Add(new Button(new Rectangle(32, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
-        ///* 2 */
-        //_buttons.Add(new Button(new Rectangle(168, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
-        ///* 3 */
-        //_buttons.Add(new Button(new Rectangle(296, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
-        ///* 4 */
-        //_buttons.Add(new Button(new Rectangle(432, 114, 40, 40), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"), false));
-        ///* 5 */
-        //_buttons.Add(new Button(new Rectangle(432, 57, 40, 40), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"), false));
+
+        /* 0 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 4 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 8 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 1 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 5 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 9 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 2 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 6 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 10 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 3 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 7 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 11 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
 
         _resources.Add(new Resources(1, _level));
@@ -86,13 +88,14 @@ internal class PlayingHud : HUD
         _minimap.update(level);
         hudUnits = selectedEntities;
 
-        if (hudUnits.Count > 2)
+        foreach (WorkerUnit q in hudUnits.OfType<WorkerUnit>())
         {
-            _playingButtons[0]._visible = true;
+            _playingButtons[1]._visible = true;
         }
 
 
-        switch(j)
+
+        switch (j)
         {
             default:
                 

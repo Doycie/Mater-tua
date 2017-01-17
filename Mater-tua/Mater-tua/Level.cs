@@ -75,7 +75,7 @@ public partial class Level
         entities.Add(barracks);
         Peasant Worker = new Peasant(this, new Vector2(768, 192));
         entities.Add(Worker);
-        Peon Worker1 = new Peon(this, new Vector2(192, 704));
+        Peon Worker1 = new Peon(this, new Vector2(304, 1016));
         entities.Add(Worker1);
         
         TreasureChest Chest1 = new TreasureChest(this, new Vector2(5 * data.tSize(), 2 * data.tSize()));

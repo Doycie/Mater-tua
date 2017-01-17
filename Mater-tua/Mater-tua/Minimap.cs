@@ -30,18 +30,42 @@ internal class Minimap
     {
         Color[] data = new Color[_size * _size];
 
-        for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+        for (int i = 0; i < data.Length; ++i) data[i] = Color.Peru;
 
         foreach (BuildingAndUnit e in level.entities)
         {
             Color c = Color.White;
-            if (e.Faction == BuildingAndUnit.faction.Human)
+            if (e.Faction == BuildingAndUnit.faction.Human &&(e.EntityType == BuildingAndUnit.entityType.Combat))
             {
                 c = Color.Blue;
             }
-            else if (e.Faction == BuildingAndUnit.faction.Orc)
+            else if (e.Faction == BuildingAndUnit.faction.Human && (e.EntityType == BuildingAndUnit.entityType.Building))
+            {
+                c = Color.LightGray;
+            }
+            else if (e.Faction == BuildingAndUnit.faction.Human && (e.EntityType == BuildingAndUnit.entityType.Worker))
+            {
+                c = Color.CadetBlue;
+            }
+            else if (e.Faction == BuildingAndUnit.faction.Orc &&(e.EntityType == BuildingAndUnit.entityType.Combat))
             {
                 c = Color.Red;
+            }
+            else if (e.Faction == BuildingAndUnit.faction.Orc && (e.EntityType == BuildingAndUnit.entityType.Building))
+            {
+                c = Color.Black;
+            }
+            else if (e.Faction == BuildingAndUnit.faction.Orc && (e.EntityType == BuildingAndUnit.entityType.Worker))
+            {
+                c = Color.MediumVioletRed;
+            }
+            else if(e.ResourceType == BuildingAndUnit.resourceType.Gold)
+            {
+                c = Color.Gold;
+            }
+            else if (e.ResourceType == BuildingAndUnit.resourceType.Wood)
+            {
+                c = Color.ForestGreen;
             }
             else
             {

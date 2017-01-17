@@ -28,6 +28,14 @@ public partial class BuildingAndUnit : AnimatedEntity
 
     protected damageType _damageType;
 
+    public enum entityType { Combat, Worker, Building }
+
+    protected entityType _entityType;
+
+    public enum resourceType { Gold, Wood }
+
+    protected resourceType _resourceType;
+
     public BuildingAndUnit(Level level)
         : base()
     {
@@ -90,6 +98,16 @@ public partial class BuildingAndUnit : AnimatedEntity
     public faction Faction
     {
         get { return _faction; }
+    }
+
+    public entityType EntityType
+    {
+        get { return _entityType; }
+    }
+
+    public resourceType ResourceType
+    {
+        get { return _resourceType; }
     }
 
     public damageType DamageType

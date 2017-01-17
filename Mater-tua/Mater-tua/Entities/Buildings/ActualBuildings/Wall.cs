@@ -5,6 +5,7 @@ internal class Wall : StaticBuilding
 {
     public Wall(Level level, Vector2 position, faction faction) : base(level)
     {
+        _entityType = entityType.Building;
         _EnemycanWalktrough = false;
         _Friendcanwalktrough = false;
         _size = 2;

@@ -5,9 +5,11 @@ internal class Barracks : StaticBuilding
 {
     private int _unitLevel;
 
+
     public Barracks(Level level, Vector2 position, faction faction)
         : base(level)
     {
+        _entityType = entityType.Building;
         _EnemycanWalktrough = false;
         _Friendcanwalktrough = false;
         _size = 2;

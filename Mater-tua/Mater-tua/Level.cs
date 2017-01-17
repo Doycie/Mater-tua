@@ -52,11 +52,11 @@ public partial class Level
                 Footman e = new Footman(this, new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);
             }
-            if (i >= 10)
+            /*if (i >= 10)
             {
                 Grunt e = new Grunt(this, new Vector2((GameEnvironment.getRandom().Next(10) + 10) * data.tSize(), (GameEnvironment.getRandom().Next(10) + 10) * data.tSize()));
                 entities.Add(e);
-            }
+            }*/
             //Unit e = new Unit();
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
@@ -86,7 +86,7 @@ public partial class Level
         Tree Tree2 = new Tree(this,new Vector2(512, 64));
         entities.Add(Tree2);
 
-        RangedUnit rangeUnit = new RangedUnit(this, new Vector2(5 * data.tSize(), 20 * data.tSize()), BuildingAndUnit.faction.Human);
+        RangedUnit rangeUnit = new RangedUnit(this, new Vector2(5 * data.tSize(), 10 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(rangeUnit);
        // Projectile projectile = new Projectile(this, Mine, Tree2);
        // Projectiles.Add(projectile);

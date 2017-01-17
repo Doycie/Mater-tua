@@ -47,7 +47,7 @@ class RangedUnit : CombatUnit
         base.Draw(s);
     }
 
-    private void doattack()
+    public override void doattack()
     {
         bool PlayedAttackSound = false;
         //Console.WriteLine("ENGAGING FIST TO MOUTH COMBAT WITH THE ENEMY");

@@ -46,7 +46,7 @@ internal class CombatUnit : Unit
     //    }
     //}
 
-    private void doattack()
+    public virtual void doattack()
     {
         bool PlayedAttackSound = false;
         //Console.WriteLine("ENGAGING FIST TO MOUTH COMBAT WITH THE ENEMY");

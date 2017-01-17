@@ -76,10 +76,11 @@ public class Projectile : SpriteEntity
     private void Move()
     {
 
-        if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y))  < 10)
+        if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y))  < 5)
         {
-            DamageEnmey();
             _level.Projectiles.Remove(this);
+            DamageEnemey();
+            
         }
         else
         {
@@ -87,7 +88,7 @@ public class Projectile : SpriteEntity
         }
     }
 
-    private void DamageEnmey()
+    private void DamageEnemey()
     {
         _target.hurt(10);
     }

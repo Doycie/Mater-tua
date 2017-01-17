@@ -7,13 +7,15 @@ partial class Level
     {
         foreach (CombatUnit e in entities.OfType<CombatUnit>())
         {
-            foreach (CombatUnit g in entities.OfType<CombatUnit>())
+            if (e.Faction == CombatUnit.faction.Human)
             {
-                if (g.Faction == CombatUnit.faction.Orc)
+                foreach (CombatUnit g in entities.OfType<CombatUnit>())
                 {
-                    if (e.Faction == CombatUnit.faction.Human)
+                    if (g.Faction == CombatUnit.faction.Orc)
                     {
+
                         (g as CombatUnit).Defend(e);
+
                     }
                 }
             }

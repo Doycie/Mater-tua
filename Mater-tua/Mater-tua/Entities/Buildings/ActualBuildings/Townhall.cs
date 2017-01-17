@@ -57,7 +57,7 @@ internal class Townhall : StaticBuilding
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
-        Healthbar(spriteBatch);
+        //Healthbar(spriteBatch);
     }
 
     private void ProduceWorkerUnit(Vector2 TownhallPosition)

@@ -19,6 +19,7 @@ class RangedUnit : CombatUnit
         _maxhp = 40;
         _armor = 0;
         _armorType = armorType.Light;
+        _entityType = entityType.Combat;
         _goldCost = 400;
         _lumberCost = 0;
         _damage = 10;

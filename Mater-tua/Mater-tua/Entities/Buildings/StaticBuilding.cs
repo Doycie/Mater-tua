@@ -3,7 +3,6 @@
 internal class StaticBuilding : BuildingAndUnit
 {
     protected float _buildTime;
-
     protected bool _ableToProduce;
     protected bool _Friendcanwalktrough;
     protected bool _EnemycanWalktrough;
@@ -11,7 +10,7 @@ internal class StaticBuilding : BuildingAndUnit
 
     public StaticBuilding(Level level) : base(level)
     {
-      
+        _entityType = entityType.Building;
     }
 
     public bool AbleToProduce

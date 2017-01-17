@@ -8,7 +8,6 @@ internal class Farm : StaticBuilding
     public Farm(Level level, Vector2 position, faction faction)
         : base(level)
     {
-        _entityType = entityType.Building;
         _EnemycanWalktrough = true;
         _Friendcanwalktrough = true;
         _size = 2;

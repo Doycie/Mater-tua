@@ -5,7 +5,6 @@ internal class Gate : StaticBuilding
 {
     public Gate(Level level, Vector2 position, faction faction) : base(level)
     {
-        _entityType = entityType.Building;
         _EnemycanWalktrough = false;
         _Friendcanwalktrough = true;
         _size = 2;

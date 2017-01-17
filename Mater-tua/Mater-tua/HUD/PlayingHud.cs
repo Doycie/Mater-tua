@@ -73,10 +73,10 @@ internal class PlayingHud : HUD
             foreach (BuildingAndUnit e in hudUnits.OfType<BuildingAndUnit>())
             {
                
-                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 300 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
-                s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 300 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
+                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
+                s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
                 i++;
-                if (i > 8)
+                if (i > 9)
                     break;
             }
         }

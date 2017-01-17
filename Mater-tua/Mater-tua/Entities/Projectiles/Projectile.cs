@@ -78,12 +78,18 @@ public class Projectile : SpriteEntity
 
         if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y))  < 10)
         {
-
+            DamageEnmey();
+            _level.Projectiles.Remove(this);
         }
         else
         {
             _position = _position + _velocity * 5f;
         }
+    }
+
+    private void DamageEnmey()
+    {
+        _target.hurt(10);
     }
 
     private double calculateH(Point x, Point y)

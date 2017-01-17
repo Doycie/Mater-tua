@@ -11,9 +11,10 @@ class RangedUnit : CombatUnit
     private bool PlayedAttackSound1 = false;
     private bool playedAttackSound2 = true;
 
-    public RangedUnit(Level level, Vector2 Position)
+    public RangedUnit(Level level, Vector2 Position, faction faction)
         : base(level)
     {
+        _faction = faction;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Birb2");
         _maxhp = 40;
         _armor = 0;
@@ -23,7 +24,7 @@ class RangedUnit : CombatUnit
         _damage = 10;
         _damageType = damageType.Piercing;
         _productionTime = 750;
-        _range = 1;
+        _range = 3;
         Reset();
         _level = level;
         _position = Position;
@@ -66,7 +67,8 @@ class RangedUnit : CombatUnit
         {
             if (isAttacking == 15)
             {
-                (_target as BuildingAndUnit).hurt(_damage);
+                Projectile projectile = new Projectile(_level, _target, this);
+                _level.Projectiles.Add(projectile);
             }
             isAttacking--;
         }
@@ -80,16 +82,20 @@ class RangedUnit : CombatUnit
         {
             if (_target.Size >= 2)
             {
-                if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y + 68)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y + 68)) < data.tSize())
+                if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() * _range ||
+                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y)) < data.tSize() * _range ||
+                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y + 68)) < data.tSize() * _range ||
+                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y + 68)) < data.tSize() * _range)
+                {
+                    StopMove();
                     doattack();
+                }
             }
             else
             //  Console.WriteLine("THE ENEMY IS SIGHTED " + calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) + " UNITS AWAY, AATTTTTTAACCCK!");
-            if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize())
+            if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() * _range)
             {
+                StopMove();
                 doattack();
             }
         }

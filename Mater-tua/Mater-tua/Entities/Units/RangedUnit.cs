@@ -11,9 +11,10 @@ class RangedUnit : CombatUnit
     private bool PlayedAttackSound1 = false;
     private bool playedAttackSound2 = true;
 
-    public RangedUnit(Level level, Vector2 Position)
+    public RangedUnit(Level level, Vector2 Position, faction faction)
         : base(level)
     {
+        _faction = faction;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Birb2");
         _maxhp = 40;
         _armor = 0;
@@ -23,11 +24,10 @@ class RangedUnit : CombatUnit
         _damage = 10;
         _damageType = damageType.Piercing;
         _productionTime = 750;
-        _range = 1;
+        _range = 3;
         Reset();
         _level = level;
         _position = Position;
-        _range = 1;
         _attackButton = true;
         _moveButton = true;
         _stopButton = true;
@@ -46,7 +46,7 @@ class RangedUnit : CombatUnit
         base.Draw(s);
     }
 
-    private void doattack()
+    public override void doattack()
     {
         bool PlayedAttackSound = false;
         //Console.WriteLine("ENGAGING FIST TO MOUTH COMBAT WITH THE ENEMY");
@@ -58,15 +58,16 @@ class RangedUnit : CombatUnit
             { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
             if (playedAttackSound2 == false && PlayedAttackSound1 == true && PlayedAttackSound == false)
             { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordClashHit"); PlayedAttackSound1 = false; playedAttackSound2 = true; PlayedAttackSound = true; }
-            _attackCooldown = 60;
-            isAttacking = 30;
+            _attackCooldown = 120;
+            isAttacking = 60;
         }
         //isAttacking--;
         if (isAttacking > 0)
         {
-            if (isAttacking == 15)
+            if (isAttacking == 30)
             {
-                (_target as BuildingAndUnit).hurt(_damage);
+                Projectile projectile = new Projectile(_level, _target, this);
+                _level.Projectiles.Add(projectile);
             }
             isAttacking--;
         }
@@ -80,16 +81,20 @@ class RangedUnit : CombatUnit
         {
             if (_target.Size >= 2)
             {
-                if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y + 68)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y + 68)) < data.tSize())
+                if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() * _range ||
+                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y)) < data.tSize() * _range ||
+                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y + 68)) < data.tSize() * _range ||
+                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y + 68)) < data.tSize() * _range)
+                {
+                    StopMove();
                     doattack();
+                }
             }
             else
             //  Console.WriteLine("THE ENEMY IS SIGHTED " + calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) + " UNITS AWAY, AATTTTTTAACCCK!");
-            if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize())
+            if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < (double)(data.tSize() * _range))
             {
+                StopMove();
                 doattack();
             }
         }

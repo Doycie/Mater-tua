@@ -80,7 +80,7 @@ internal class PlayingState : GameState
         (_hud as PlayingHud).update(inputHelper, _selectedEntities, level);
 
 
-        if (!_hud.HUDSize().Contains(inputHelper.realMousePosition))
+        if (!_hud.HUDSize().Contains(inputHelper.realMousePosition) && !(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 365,(int)GameEnvironment.getCamera().getScreenSize().Y - 256,365,256).Contains(inputHelper.realMousePosition)))
         {
             //Make an order on the selected units
             if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)

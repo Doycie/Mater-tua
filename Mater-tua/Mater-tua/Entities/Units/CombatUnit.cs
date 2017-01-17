@@ -24,7 +24,7 @@ internal class CombatUnit : Unit
     {
         //s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), new Color(1.0f, isAttacking/60.0f == 0 ? 1.0f: isAttacking/ 60.0f , isAttacking / 60.0f==0 ? isAttacking /60.0f:1.0f, 1.0f));
         base.Draw(s);
-        s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
+       // s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
     }
 
     //private void dodefend()
@@ -46,7 +46,7 @@ internal class CombatUnit : Unit
     //    }
     //}
 
-    private void doattack()
+    public virtual void doattack()
     {
         bool PlayedAttackSound = false;
         //Console.WriteLine("ENGAGING FIST TO MOUTH COMBAT WITH THE ENEMY");

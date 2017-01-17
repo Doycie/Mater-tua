@@ -13,7 +13,6 @@ internal class PlayingHud : HUD
     private Level _level;
     private Texture2D _minimapBorder;
     protected List<BuildingAndUnit> entityList;
-    private BuildingAndUnit _buildingAndUnit;
     
 
     public PlayingHud(Level level, List<BuildingAndUnit> list)
@@ -26,27 +25,32 @@ internal class PlayingHud : HUD
         _resources = new List<Resources>();
 
         _minimapBorder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/Border");
-        ///* 1 */
-        //_buttons.Add(new Button(new Rectangle(32, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
-        ///* 2 */
-        //_buttons.Add(new Button(new Rectangle(168, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
-        ///* 3 */
-        //_buttons.Add(new Button(new Rectangle(296, 114, 100, 100), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false));
-        ///* 4 */
-        //_buttons.Add(new Button(new Rectangle(432, 114, 40, 40), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDown"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeDownPressed"), false));
-        ///* 5 */
-        //_buttons.Add(new Button(new Rectangle(432, 57, 40, 40), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUp"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/VolumeUpPressed"), false));
+
+
+        /* De volgorde is zo gefuckt omdat ik van links naar rechts tel en daarna naar de volgende rij van 4 buttons ga. Deal with it */
+        /* 0 move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 1 build building button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 2 produce worker unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 3 stop move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 4 mine gold button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 5 produce melee unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 6 attack button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 7 chop wood button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 8 produce ranged unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 9 patrol button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 10 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        /* 11 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
 
         _resources.Add(new Resources(1, _level));
@@ -86,16 +90,43 @@ internal class PlayingHud : HUD
         _minimap.update(level);
         hudUnits = selectedEntities;
 
-        if (hudUnits.Count > 2)
+        /* Ik ben niet trots op hoe ik het hierop volgende stuk code heb opgelost, voel je vrij om het mooi en efficienter te maken. Ik ben er klaar mee */
+        for (int i = 0; i <= _playingButtons.Count - 1; i++)
+            _playingButtons[i]._visible = false;
+
+            foreach (WorkerUnit w in selectedEntities.OfType<WorkerUnit>())
+            {
+                _playingButtons[0]._visible = true;
+                _playingButtons[1]._visible = true;
+                _playingButtons[3]._visible = true;
+                _playingButtons[4]._visible = true;
+                _playingButtons[7]._visible = true;
+            }
+            foreach (CombatUnit c in selectedEntities.OfType<CombatUnit>())
+            {
+                _playingButtons[0]._visible = true;
+                _playingButtons[3]._visible = true;
+                _playingButtons[6]._visible = true;
+                _playingButtons[9]._visible = true;
+            }
+            foreach (Barracks b in selectedEntities.OfType<Barracks>())
         {
-            _playingButtons[0]._visible = true;
+            _playingButtons[5]._visible = true;
+            _playingButtons[8]._visible = true;
         }
+            foreach (Townhall t in selectedEntities.OfType<Townhall>())
+        {
+            _playingButtons[2]._visible = true;
+        }
+        
 
 
-        switch(j)
+
+        switch (j)
         {
             default:
-                
+                break;
+            case 0:
                 break;
         }
 

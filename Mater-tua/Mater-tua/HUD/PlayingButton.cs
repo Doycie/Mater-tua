@@ -20,9 +20,34 @@ class PlayingButton : Button
 
     public override bool update(InputHelper inputHelper)
     {
+        Rectangle r = realButtonPos();
+        bool ret = false;
         if (_visible)
-            return base.update(inputHelper);
-        else return false;
+        {
+            if (r.Contains(inputHelper.realMousePosition))
+            {
+                if (!inputHelper.MouseLeftButtonDown() && _pressed)
+                {
+                    GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/ButtonTap");
+                    ret = true;
+                }
+
+                if (inputHelper.MouseLeftButtonDown())
+                {
+                    _pressed = true;
+                }
+                else
+                {
+                    _pressed = false;
+                }
+            }
+            else
+            {
+                _pressed = false;
+            }
+        }
+        
+        return ret;
     }
 
     public override void draw(SpriteBatch s)

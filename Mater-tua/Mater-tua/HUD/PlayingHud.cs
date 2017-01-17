@@ -30,25 +30,25 @@ internal class PlayingHud : HUD
         /* De volgorde is zo gefuckt omdat ik van links naar rechts tel en daarna naar de volgende rij van 4 buttons ga. Deal with it */
         /* 0 move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 4 build building button*/
+        /* 1 build building button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 8 */
+        /* 2 produce worker unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 1 stop move button*/
+        /* 3 stop move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 5 mine gold button*/
+        /* 4 mine gold button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 9 */
+        /* 5 produce melee unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 2 attack button*/
+        /* 6 attack button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 6 chop wood button*/
+        /* 7 chop wood button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 10 */
+        /* 8 produce ranged unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 3 patrol button*/
+        /* 9 patrol button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 7 */
+        /* 10 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 11 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
@@ -90,14 +90,35 @@ internal class PlayingHud : HUD
         _minimap.update(level);
         hudUnits = selectedEntities;
 
-        foreach (WorkerUnit q in hudUnits.OfType<WorkerUnit>())
+        /* Ik ben niet trots op hoe ik het hierop volgende stuk code heb opgelost, voel je vrij om het mooi en efficienter te maken. Ik ben er klaar mee */
+        for (int i = 0; i <= _playingButtons.Count - 1; i++)
+            _playingButtons[i]._visible = false;
+
+            foreach (WorkerUnit w in selectedEntities.OfType<WorkerUnit>())
+            {
+                _playingButtons[0]._visible = true;
+                _playingButtons[1]._visible = true;
+                _playingButtons[3]._visible = true;
+                _playingButtons[4]._visible = true;
+                _playingButtons[7]._visible = true;
+            }
+            foreach (CombatUnit c in selectedEntities.OfType<CombatUnit>())
+            {
+                _playingButtons[0]._visible = true;
+                _playingButtons[3]._visible = true;
+                _playingButtons[6]._visible = true;
+                _playingButtons[9]._visible = true;
+            }
+            foreach (Barracks b in selectedEntities.OfType<Barracks>())
         {
-            _playingButtons[0]._visible = true;
-            _playingButtons[1]._visible = true;
-            _playingButtons[4]._visible = true;
             _playingButtons[5]._visible = true;
-            _playingButtons[6]._visible = true;
+            _playingButtons[8]._visible = true;
         }
+            foreach (Townhall t in selectedEntities.OfType<Townhall>())
+        {
+            _playingButtons[2]._visible = true;
+        }
+        
 
 
 

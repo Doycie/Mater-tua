@@ -63,6 +63,10 @@ partial class Level
                 }
             }
         }
+        for (int i = Projectiles.Count() - 1; i >= 0; i--)
+        {
+            Projectiles[i].Update();
+        }
 
         Player.Update();
     }

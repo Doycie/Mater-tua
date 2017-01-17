@@ -18,6 +18,8 @@ public partial class Level
 
     public List<Entity> specialFX = new List<Entity>();
 
+    public List<Entity> Projectiles = new List<Entity>();
+
     public Player Player;
 
     public Level()
@@ -75,12 +77,16 @@ public partial class Level
         entities.Add(Worker);
         Peon Worker1 = new Peon(this, new Vector2(192, 704));
         entities.Add(Worker1);
-        Tree Tree1 = new Tree(this,new Vector2(512, 64));
-        entities.Add(Tree1);
-        Tree Tree2 = new Tree(this,new Vector2(64, 512));
-        entities.Add(Tree2);
+        
         TreasureChest Chest1 = new TreasureChest(this, new Vector2(5 * data.tSize(), 2 * data.tSize()));
         entities.Add(Chest1);
+
+        Tree Tree1 = new Tree(this,new Vector2(64, 512));
+        entities.Add(Tree1);
+        Tree Tree2 = new Tree(this,new Vector2(512, 64));
+        entities.Add(Tree2);
+        Projectile projectile = new Projectile(this, Mine, Tree2);
+        Projectiles.Add(projectile);
     }
 
     //Load the map from the text file into the mapdata array

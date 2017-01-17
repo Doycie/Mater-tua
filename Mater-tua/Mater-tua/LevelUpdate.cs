@@ -2,20 +2,26 @@
 
 partial class Level
 {
+    int count = 0;
 
     public void update()
     {
-        foreach (CombatUnit e in entities.OfType<CombatUnit>())
-        {
-            if (e.Faction == CombatUnit.faction.Human)
-            {
-                foreach (CombatUnit g in entities.OfType<CombatUnit>())
+        count++;
+
+        if(count%30 == 0)
+        { 
+            foreach (CombatUnit e in entities.OfType<CombatUnit>())
+             {
+                if (e.Faction == CombatUnit.faction.Human)
                 {
-                    if (g.Faction == CombatUnit.faction.Orc)
+                    foreach (CombatUnit g in entities.OfType<CombatUnit>())
                     {
+                        if (g.Faction == CombatUnit.faction.Orc)
+                        {
+                            (e as CombatUnit).Defend(g);
+                            (g as CombatUnit).Defend(e);
 
-                        (g as CombatUnit).Defend(e);
-
+                        }
                     }
                 }
             }

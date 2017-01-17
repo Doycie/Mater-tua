@@ -106,7 +106,7 @@ internal class CombatUnit : Unit
     {
         agrorange = Math.Sqrt(Math.Pow(_position.X - e.Position.X, 2) * Math.Pow(_position.Y - e.Position.Y, 2));
 
-        if (agrorange < 400)
+        if (agrorange < 300)
         {
             orderAttack(e);
         }

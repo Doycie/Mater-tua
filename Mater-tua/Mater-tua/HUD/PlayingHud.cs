@@ -110,24 +110,63 @@ internal class PlayingHud : HUD
                 _playingButtons[9]._visible = true;
             }
             foreach (Barracks b in selectedEntities.OfType<Barracks>())
-        {
-            _playingButtons[5]._visible = true;
-            _playingButtons[8]._visible = true;
-        }
+            {
+                _playingButtons[5]._visible = true;
+                _playingButtons[8]._visible = true;
+            }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
-        {
-            _playingButtons[2]._visible = true;
-        }
+            {
+                _playingButtons[2]._visible = true;
+            }
         
 
 
 
         switch (j)
         {
+            /* Case number bij een knop is i+1 van de playingbuttons lijst. Om het lekker simpel te houden */
             default:
+                Console.WriteLine("Default");
                 break;
             case 0:
                 break;
+            case 1:
+                Console.WriteLine("case 1");
+                break;
+            case 2:
+                Console.WriteLine("case 2");
+                break;
+            case 3:
+                Console.WriteLine("case 3");
+                break;
+            case 4:
+                Console.WriteLine("case 4");
+                break;
+            case 5:
+                Console.WriteLine("case 5");
+                break;
+            case 6:
+                Console.WriteLine("case 6");
+                break;
+            case 7:
+                Console.WriteLine("case 7");
+                break;
+            case 8:
+                Console.WriteLine("case 8");
+                break;
+            case 9:
+                Console.WriteLine("case 9");
+                break;
+            case 10:
+                Console.WriteLine("case 10");
+                break;
+            case 11:
+                Console.WriteLine("case 11");
+                break;
+            case 12:
+                Console.WriteLine("case 12");
+                break;
+
         }
 
         //switch (j)

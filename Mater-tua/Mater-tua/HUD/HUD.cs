@@ -65,6 +65,17 @@ internal class HUD
         }
 
 
+        //int j = 0;
+        //foreach (PlayingButton p in _playingButtons)
+        //{
+        //    j++;
+        //        if (p.update(inputHelper))
+        //    {
+        //        return j;
+        //    }
+        //}
+
+
 
         return 0;
     }

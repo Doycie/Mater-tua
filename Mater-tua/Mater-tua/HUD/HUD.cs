@@ -54,26 +54,33 @@ internal class HUD
 
     protected int update(InputHelper inputHelper)
     {
-        int i = 0;
-        foreach (Button b in _buttons)
+        if (GameEnvironment.gameStateManager.State != GameStateManager.state.Playing)
         {
-            i++;
-            if (b.update(inputHelper))
+            int i = 0;
+            foreach (Button b in _buttons)
             {
-                return i;
+                i++;
+                if (b.update(inputHelper))
+                {
+                    return i;
+                }
             }
         }
+        
 
-
-        //int j = 0;
-        //foreach (PlayingButton p in _playingButtons)
-        //{
-        //    j++;
-        //        if (p.update(inputHelper))
-        //    {
-        //        return j;
-        //    }
-        //}
+        if (GameEnvironment.gameStateManager.State == GameStateManager.state.Playing)
+        {
+            int j = 0;
+            foreach (PlayingButton p in _playingButtons)
+            {
+                j++;
+                if (p.update(inputHelper))
+                {
+                    return j;
+                }
+            }
+        }
+        
 
 
 

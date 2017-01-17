@@ -24,7 +24,6 @@ class PlayingButton : Button
         bool ret = false;
         if (_visible)
         {
-            Console.WriteLine("button active");
             if (r.Contains(inputHelper.realMousePosition))
             {
                 if (!inputHelper.MouseLeftButtonDown() && _pressed)

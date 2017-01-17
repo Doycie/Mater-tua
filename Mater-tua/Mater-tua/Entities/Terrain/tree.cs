@@ -9,6 +9,7 @@ internal class Tree : BuildingAndUnit
     public Tree(Level level,Vector2 Position)
         : base(level)
     {
+        _resourceType = resourceType.Wood;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/tree");
         _position = Position;
         _maxhp = 2;

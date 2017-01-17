@@ -8,6 +8,7 @@ internal class Mine : StaticBuilding
     public Mine(Level level, Vector2 position, faction faction)
         : base(level)
     {
+        _resourceType = resourceType.Gold;
         _EnemycanWalktrough = false;
         _Friendcanwalktrough = true;
         _size = 2;

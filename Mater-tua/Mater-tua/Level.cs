@@ -62,20 +62,20 @@ public partial class Level
             //entities.Add(e);
         }
         Player = new Player(this);
-        Farm orcFarm = new Farm(this, new Vector2(10 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Orc);
+        Farm orcFarm = new Farm(this, new Vector2(15 * data.tSize(), 17 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcFarm);
-        Farm humanFarm = new Farm(this, new Vector2(8 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
+        Farm humanFarm = new Farm(this, new Vector2(10 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);
 
         Mine Mine = new Mine(this, new Vector2(64, 64), BuildingAndUnit.faction.Neutral);
         entities.Add(Mine);
         Townhall Townhall = new Townhall(this, new Vector2(320, 384), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
-        Barracks barracks = new Barracks(this, new Vector2(704, 384), BuildingAndUnit.faction.Human);
+        Barracks barracks = new Barracks(this, new Vector2(704, 344), BuildingAndUnit.faction.Human);
         entities.Add(barracks);
         Peasant Worker = new Peasant(this, new Vector2(768, 192));
         entities.Add(Worker);
-        Peon Worker1 = new Peon(this, new Vector2(192, 704));
+        Peon Worker1 = new Peon(this, new Vector2(304, 1016));
         entities.Add(Worker1);
         
         TreasureChest Chest1 = new TreasureChest(this, new Vector2(5 * data.tSize(), 2 * data.tSize()));

@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 
 internal class PlayingHud : HUD
 {
@@ -74,10 +73,10 @@ internal class PlayingHud : HUD
             foreach (BuildingAndUnit e in hudUnits.OfType<BuildingAndUnit>())
             {
                
-                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 300 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
-                s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 300 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
+                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
+                s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
                 i++;
-                if (i > 8)
+                if (i > 9)
                     break;
             }
         }
@@ -114,7 +113,6 @@ internal class PlayingHud : HUD
             {
                 _playingButtons[5]._visible = true;
                 _playingButtons[8]._visible = true;
-            
             }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
             {
@@ -126,15 +124,49 @@ internal class PlayingHud : HUD
 
         switch (j)
         {
+            /* Case number bij een knop is i+1 van de playingbuttons lijst. Om het lekker simpel te houden */
             default:
+                Console.WriteLine("Default");
                 break;
             case 0:
                 break;
-            case 5:
-            case 8:
-                foreach (Barracks i in selectedEntities)
-                    i.ProduceUnit(typeof(Footman), level, i.Position);
+            case 1:
+                Console.WriteLine("case 1");
                 break;
+            case 2:
+                Console.WriteLine("case 2");
+                break;
+            case 3:
+                Console.WriteLine("case 3");
+                break;
+            case 4:
+                Console.WriteLine("case 4");
+                break;
+            case 5:
+                Console.WriteLine("case 5");
+                break;
+            case 6:
+                Console.WriteLine("case 6");
+                break;
+            case 7:
+                Console.WriteLine("case 7");
+                break;
+            case 8:
+                Console.WriteLine("case 8");
+                break;
+            case 9:
+                Console.WriteLine("case 9");
+                break;
+            case 10:
+                Console.WriteLine("case 10");
+                break;
+            case 11:
+                Console.WriteLine("case 11");
+                break;
+            case 12:
+                Console.WriteLine("case 12");
+                break;
+
         }
 
         //switch (j)

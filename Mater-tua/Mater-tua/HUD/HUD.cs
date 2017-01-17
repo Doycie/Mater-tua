@@ -66,7 +66,6 @@ internal class HUD
                 }
             }
         }
-        
 
         if (GameEnvironment.gameStateManager.State == GameStateManager.state.Playing)
         {

@@ -31,6 +31,7 @@ internal class WorkerUnit : Unit
         _lumberCost = 0;
         _damage = 10;
         _damageType = damageType.Piercing;
+        _entityType = entityType.Worker;
         _productionTime = 750;
         _range = 1;
         Reset();

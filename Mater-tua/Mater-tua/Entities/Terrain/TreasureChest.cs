@@ -8,6 +8,7 @@ partial class TreasureChest : BuildingAndUnit
     public TreasureChest(Level level, Vector2 Position)
         : base(level)
     {
+        _resourceType = resourceType.Gold;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/Chest");
         _position = Position;
         _maxhp = 1;

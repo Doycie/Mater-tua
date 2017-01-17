@@ -6,6 +6,7 @@ internal class Peon : WorkerUnit
         : base(level)
     {
         _faction = faction.Orc;
+        _entityType = entityType.Worker;
         _position = Position;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Peon");
         _description = "The lowest ranked unit of the Orcish horde. They are used to construct buildings, cut wood and mine gold.";

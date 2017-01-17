@@ -90,7 +90,7 @@ internal class PlayingHud : HUD
 
         foreach (WorkerUnit q in hudUnits.OfType<WorkerUnit>())
         {
-            _playingButtons[1]._visible = true;
+            _playingButtons[0]._visible = true;
         }
 
 
@@ -98,7 +98,8 @@ internal class PlayingHud : HUD
         switch (j)
         {
             default:
-                
+                break;
+            case 0:
                 break;
         }
 

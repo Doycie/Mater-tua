@@ -24,17 +24,24 @@ internal class HUD
 
     public Rectangle HUDSize()
     {
-        return new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
+        Rectangle _HudRectangle1 = new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, (int)GameEnvironment.getCamera().getScreenSize().X, _tex.Height);
+        //Rectangle _HudRectangle2; = new Rectangle()
+        //Rectangle _HudRectangle3;
+
+
+
+
+        return _HudRectangle1;
     }
 
     public virtual void draw(SpriteBatch spriteBatch)
     {
         for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width) // repeats the HUD texture till edge of screen
             spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
-        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
-            spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - 2 * _tex.Height, _tex.Width, _tex.Height), Color.White);
-        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width - 45; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
-            spriteBatch.Draw(_tex, new Rectangle(i, -80, _tex.Width, _tex.Height), Color.White);
+        //for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
+        //    spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - 2 * _tex.Height, _tex.Width, _tex.Height), Color.White);
+        //for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width - 45; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
+        //    spriteBatch.Draw(_tex, new Rectangle(i, -80, _tex.Width, _tex.Height), Color.White);
 
         foreach (Button b in _buttons)
         {
@@ -54,26 +61,33 @@ internal class HUD
 
     protected int update(InputHelper inputHelper)
     {
-        int i = 0;
-        foreach (Button b in _buttons)
+        if (GameEnvironment.gameStateManager.State != GameStateManager.state.Playing)
         {
-            i++;
-            if (b.update(inputHelper))
+            int i = 0;
+            foreach (Button b in _buttons)
             {
-                return i;
+                i++;
+                if (b.update(inputHelper))
+                {
+                    return i;
+                }
             }
         }
+        
 
-
-        //int j = 0;
-        //foreach (PlayingButton p in _playingButtons)
-        //{
-        //    j++;
-        //        if (p.update(inputHelper))
-        //    {
-        //        return j;
-        //    }
-        //}
+        if (GameEnvironment.gameStateManager.State == GameStateManager.state.Playing)
+        {
+            int j = 0;
+            foreach (PlayingButton p in _playingButtons)
+            {
+                j++;
+                if (p.update(inputHelper))
+                {
+                    return j;
+                }
+            }
+        }
+        
 
 
 

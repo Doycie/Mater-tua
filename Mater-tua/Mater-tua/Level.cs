@@ -85,8 +85,11 @@ public partial class Level
         entities.Add(Tree1);
         Tree Tree2 = new Tree(this,new Vector2(512, 64));
         entities.Add(Tree2);
-        Projectile projectile = new Projectile(this, Mine, Tree2);
-        Projectiles.Add(projectile);
+
+        RangedUnit rangeUnit = new RangedUnit(this, new Vector2(5 * data.tSize(), 20 * data.tSize()), BuildingAndUnit.faction.Human);
+        entities.Add(rangeUnit);
+       // Projectile projectile = new Projectile(this, Mine, Tree2);
+       // Projectiles.Add(projectile);
     }
 
     //Load the map from the text file into the mapdata array

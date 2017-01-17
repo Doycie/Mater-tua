@@ -1,4 +1,7 @@
-﻿internal class BasicMeleeUnit : CombatUnit
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+internal class BasicMeleeUnit : CombatUnit
 {//de basis voor de Footman & Grunt
     public BasicMeleeUnit(Level level)
         : base(level)
@@ -40,5 +43,11 @@
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Orc");
             }
         }
+    }
+
+    public override void Draw(SpriteBatch s)
+    {
+        base.Draw(s);
+        s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
     }
 }

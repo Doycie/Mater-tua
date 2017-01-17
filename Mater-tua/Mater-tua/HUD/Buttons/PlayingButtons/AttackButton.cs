@@ -8,8 +8,8 @@ using System.Linq;
 
 class AttackButton : PlayingButton
 {
-    public AttackButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<BuildingAndUnit> list)
-        : base(position, tex, texPressed, relative, list)
+    public AttackButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<BuildingAndUnit> list, bool visible)
+        : base(position, tex, texPressed, relative, list, visible)
     {
 
     }

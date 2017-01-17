@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System;
 
 internal class HUD
 {
     protected List<Button> _buttons;
+    protected List<PlayingButton> _playingButtons;
     protected List<Resources> _resources;
     private Texture2D _tex;
     private Rectangle _hudSize;
@@ -29,14 +31,19 @@ internal class HUD
     {
         for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width) // repeats the HUD texture till edge of screen
             spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
-        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width ; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
+        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
             spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - 2 * _tex.Height, _tex.Width, _tex.Height), Color.White);
         for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width - 45; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
-            spriteBatch.Draw(_tex, new Rectangle(i, - 80, _tex.Width, _tex.Height), Color.White);
+            spriteBatch.Draw(_tex, new Rectangle(i, -80, _tex.Width, _tex.Height), Color.White);
 
         foreach (Button b in _buttons)
         {
             b.draw(spriteBatch);
+        }
+
+        foreach (PlayingButton p in _playingButtons)
+        {
+            p.draw(spriteBatch);
         }
 
         foreach (Resources r in _resources)
@@ -56,6 +63,8 @@ internal class HUD
                 return i;
             }
         }
+
+
 
         return 0;
     }

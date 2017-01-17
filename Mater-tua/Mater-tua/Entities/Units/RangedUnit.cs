@@ -28,7 +28,6 @@ class RangedUnit : CombatUnit
         Reset();
         _level = level;
         _position = Position;
-        _range = 1;
         _attackButton = true;
         _moveButton = true;
         _stopButton = true;
@@ -93,7 +92,7 @@ class RangedUnit : CombatUnit
             }
             else
             //  Console.WriteLine("THE ENEMY IS SIGHTED " + calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) + " UNITS AWAY, AATTTTTTAACCCK!");
-            if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() * _range)
+            if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < (double)(data.tSize() * _range))
             {
                 StopMove();
                 doattack();

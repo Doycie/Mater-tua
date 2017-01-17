@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-internal class Barracks : StaticBuilding
+internal class Barracks : ProductionBuilding
 {
     private int _unitLevel;
 

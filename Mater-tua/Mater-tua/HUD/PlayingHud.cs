@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 internal class PlayingHud : HUD
 {
@@ -110,14 +111,15 @@ internal class PlayingHud : HUD
                 _playingButtons[9]._visible = true;
             }
             foreach (Barracks b in selectedEntities.OfType<Barracks>())
-        {
-            _playingButtons[5]._visible = true;
-            _playingButtons[8]._visible = true;
-        }
+            {
+                _playingButtons[5]._visible = true;
+                _playingButtons[8]._visible = true;
+            
+            }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
-        {
-            _playingButtons[2]._visible = true;
-        }
+            {
+                _playingButtons[2]._visible = true;
+            }
         
 
 
@@ -127,6 +129,11 @@ internal class PlayingHud : HUD
             default:
                 break;
             case 0:
+                break;
+            case 5:
+            case 8:
+                foreach (Barracks i in selectedEntities)
+                    i.ProduceUnit(typeof(Footman), level, i.Position);
                 break;
         }
 

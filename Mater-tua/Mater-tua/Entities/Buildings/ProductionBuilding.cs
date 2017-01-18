@@ -12,10 +12,13 @@ internal class ProductionBuilding : StaticBuilding
 
     public void produceFootman(Level level, Vector2 position)
     {
-        level.Player.AddGold(-400);
-        level.Player.AddFood(-1);
+        
         if (level.Player.Gold >= 400 && level.Player.Food >= 0)
         {
+            level.Player.AddGold(-400);
+            level.Player.AddFood(-1);
+
+            /* INSERT WORKING DELAY THING HERE */
             int unitCreationTimer = 6000;
             while (unitCreationTimer > 0)
             {
@@ -28,12 +31,6 @@ internal class ProductionBuilding : StaticBuilding
                 unitCreationTimer = 600;
             }
         }
-        else
-        {
-            level.Player.AddGold(400);
-            level.Player.AddFood(1);
-        }
-
     }
 
     public void produceRangedUnit(Level level, Vector2 position)

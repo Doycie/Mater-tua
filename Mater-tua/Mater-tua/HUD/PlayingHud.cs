@@ -146,6 +146,8 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 5");
                 break;
             case 6:
+                foreach (Barracks i in selectedEntities)
+                    i.produceFootman(level, i.Position);
                 Console.WriteLine("case 6");
                 break;
             case 7:
@@ -156,7 +158,7 @@ internal class PlayingHud : HUD
                 break;
             case 9:
                 foreach (Barracks i in selectedEntities)
-                    i.ProduceUnit(level, i.Position);
+                    i.produceRangedUnit(level, i.Position);
                 Console.WriteLine("case 9");
                 break;
             case 10:

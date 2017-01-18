@@ -10,9 +10,9 @@ internal class ProductionBuilding : StaticBuilding
     {
     }
 
-    public void ProduceUnit(Type unitType, Level level, Vector2 position)
+    public void ProduceUnit(Level level, Vector2 position)
     {
-        Type type = typeof(BuildingAndUnit).MakeGenericType(unitType);
-        object newUnit = Activator.CreateInstance(type, level, position);
+        Footman e = new Footman(level, new Vector2(position.X, position.Y));
+        level.entities.Add(e);
     }
 }

@@ -155,6 +155,8 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 8");
                 break;
             case 9:
+                foreach (Barracks i in selectedEntities)
+                    i.ProduceUnit(level, i.Position);
                 Console.WriteLine("case 9");
                 break;
             case 10:

@@ -2,33 +2,32 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-
 internal class ProductionBuilding : StaticBuilding
 {
+    int footmanCreationTimer = 600;
+    bool creatingFootman = false;
+
     public ProductionBuilding(Level level) : base(level)
     {
     }
 
     public void produceFootman(Level level, Vector2 position)
     {
-        
+
         if (level.Player.Gold >= 400 && level.Player.Food >= 0)
         {
             level.Player.AddGold(-400);
             level.Player.AddFood(-1);
+            creatingFootman = true;
 
             /* INSERT WORKING DELAY THING HERE */
-            int unitCreationTimer = 6000;
-            while (unitCreationTimer > 0)
-            {
-                unitCreationTimer -= 1;
-            }
-            if (unitCreationTimer == 0)
+            
+            if (footmanCreationTimer <= 0)
             {
                 Footman e = new Footman(level, new Vector2(position.X + 2 * data.tSize(), position.Y + data.tSize()));
                 level.entities.Add(e);
-                unitCreationTimer = 600;
+                footmanCreationTimer = 600;
+                creatingFootman = false;
             }
         }
     }
@@ -38,4 +37,14 @@ internal class ProductionBuilding : StaticBuilding
         RangedUnit e = new RangedUnit(level, new Vector2(position.X + 2 * data.tSize(), position.Y + data.tSize()), faction.Human);
         level.entities.Add(e);
     }
-}
+
+    public override void Update()
+    {
+        base.Update();
+        if (creatingFootman)
+        {
+            footmanCreationTimer--;
+            Console.WriteLine(footmanCreationTimer);
+        }
+    }
+}  

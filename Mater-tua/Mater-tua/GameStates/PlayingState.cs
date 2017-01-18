@@ -80,7 +80,7 @@ internal class PlayingState : GameState
         (_hud as PlayingHud).update(inputHelper, _selectedEntities, level);
 
 
-        if (!_hud.HUDSize().Contains(inputHelper.realMousePosition) && !(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 365,(int)GameEnvironment.getCamera().getScreenSize().Y - 256,365,256).Contains(inputHelper.realMousePosition)))
+        if (!_hud.HUDSize().Contains(inputHelper.realMousePosition) && !(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 365, (int)GameEnvironment.getCamera().getScreenSize().Y - 256, 365, 256).Contains(inputHelper.realMousePosition)) && !(new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - 256, 256, 256).Contains(inputHelper.realMousePosition)))
         {
             //Make an order on the selected units
             if (inputHelper.MouseRightButtonPressed() && _selectedEntities.Count > 0)
@@ -192,7 +192,7 @@ internal class PlayingState : GameState
             //Drag the selection box to include multiple entities
             if (!inputHelper.MouseLeftButtonDown())
             {
-                if (_mouseReleased)
+                if (_mouseReleased )
                 {
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                     foreach (SpriteEntity e in level.entities)
@@ -245,7 +245,18 @@ internal class PlayingState : GameState
                     _selectedEntities.Clear();
                 }
             }
+        }else if((new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - 256, 256, 256).Contains(inputHelper.realMousePosition)))
+        {
+            //Clicked inside minimap
+           
+            if (inputHelper.MouseLeftButtonDown())
+            {
+                
+                GameEnvironment.getCamera().setPos(new Vector2(inputHelper.realMousePosition.X*16 , ( (inputHelper.realMousePosition.Y - GameEnvironment.getCamera().getScreenSize().Y) + 256 ) * 16 ));
+            }
         }
+
+
 
         int x = 0;
         int y = 0;
@@ -272,11 +283,11 @@ internal class PlayingState : GameState
         {
             y--;
         }
-        if (inputHelper.realMousePosition.X <= 0 + 20)
+        if (inputHelper.realMousePosition.X <= 0 + 20 && inputHelper.realMousePosition.Y < GameEnvironment.getCamera().getScreenSize().Y - 256)
         {
             x--;
         }
-        if (inputHelper.realMousePosition.Y >= GameEnvironment.getCamera().getScreenSize().Y - 20)
+        if (inputHelper.realMousePosition.Y >= GameEnvironment.getCamera().getScreenSize().Y - 20 && inputHelper.realMousePosition.X >256)
         {
             y++;
         }

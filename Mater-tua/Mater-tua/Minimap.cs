@@ -73,11 +73,18 @@ internal class Minimap
             }
             int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
 
-            for (int i = 0; i < 4; i++)
+            int d = 4;
+            int f = 2;
+            if(e is StaticBuilding)
+            {
+                d = 16;
+                f = 4;
+            }
+            for (int i = 0; i < d; i++)
             {
                 int b = a;
-                b += i % 2;
-                b += i / 2 * 256;
+                b += i % f;
+                b += i / f * 256;
 
                 if (!(b < 0 || b > 256 * 256 - 1))
 

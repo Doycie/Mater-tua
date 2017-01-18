@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Microsoft.Xna.Framework.Media;
+using System;
 //Interface for all the gamestates with the required methods
 internal interface GameState
 {
@@ -147,5 +148,8 @@ internal class GameStateManager : GameState
         pauseState = new PauseState();
         settingsState = new SettingsState();
         pausesettingsState = new PauseSettingsState();
+
+        Console.WriteLine("SET VOLUME TO 0 FOR DEBUGGING");
+        MediaPlayer.Volume = 0.0f;
     }
 }

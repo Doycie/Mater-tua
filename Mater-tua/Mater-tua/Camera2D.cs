@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-
+using System;
 internal class Camera2D
 {
     //Holds the camera position based on 1.0f zoom
@@ -35,6 +35,7 @@ internal class Camera2D
     //Compute a matrix for the spritebatch based on all the variables
     public Matrix getMatrix()
     {
+        Console.WriteLine(_position);
         return Matrix.CreateTranslation(-_position) * Matrix.CreateTranslation(-_origin) * Matrix.CreateRotationZ(0.0f) * Matrix.CreateScale(_scale, _scale, 1) * Matrix.CreateTranslation(_origin);
     }
 
@@ -61,6 +62,12 @@ internal class Camera2D
         {
             _position.Y += mov.Y;
         }
+    }
+
+    public void setPos(Vector2 pos)
+    {
+        _position = new Vector3(pos, 0.0f);
+        
     }
 
     //Zoom the camera a desired value but limited for performance and game breaking reasons

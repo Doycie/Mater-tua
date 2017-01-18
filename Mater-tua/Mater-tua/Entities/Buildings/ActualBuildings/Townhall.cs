@@ -27,7 +27,7 @@ internal class Townhall : StaticBuilding
         if (_faction == faction.Orc)
         {
             _description = "This is the main building of the Orcish army. Each encampment can only have one town hall, but it can be replaced if it is destroyed in battle.";
-            _sprite = GameEnvironment.getAssetManager().GetSprite("");
+            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcTownHall");
         }
 
     }
@@ -49,7 +49,7 @@ internal class Townhall : StaticBuilding
             }
             if (_faction == faction.Orc)
             {
-                _sprite = GameEnvironment.getAssetManager().GetSprite("");
+                _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcTownHallConstruction");
             }
         }
     }

@@ -137,6 +137,8 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 2");
                 break;
             case 3:
+                foreach (Townhall t in selectedEntities)
+                    t.produceWorkerUnit(t.Position);
                 Console.WriteLine("case 3");
                 break;
             case 4:

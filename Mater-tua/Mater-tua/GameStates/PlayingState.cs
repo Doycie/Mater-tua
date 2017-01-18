@@ -278,6 +278,12 @@ internal class PlayingState : GameState
             y++;
         }
 
+        // TODO: remove cheats
+        if (inputHelper.KeyPressed(Keys.NumPad0))
+            level.Player.AddGold(100);
+        if (inputHelper.KeyPressed(Keys.NumPad1))
+            level.Player.AddWood(100);
+
         // Mouse moves camera, +/- 20 for ease of use
         if (inputHelper.realMousePosition.Y <= 0 + 20)
         {

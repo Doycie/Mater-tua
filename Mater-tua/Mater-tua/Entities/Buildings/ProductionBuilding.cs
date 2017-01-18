@@ -12,8 +12,28 @@ internal class ProductionBuilding : StaticBuilding
 
     public void produceFootman(Level level, Vector2 position)
     {
-        Footman e = new Footman(level, new Vector2(position.X + 2 * data.tSize(), position.Y + data.tSize()));
-        level.entities.Add(e);
+        level.Player.AddGold(-400);
+        level.Player.AddFood(-1);
+        if (level.Player.Gold >= 400 && level.Player.Food >= 0)
+        {
+            int unitCreationTimer = 6000;
+            while (unitCreationTimer > 0)
+            {
+                unitCreationTimer -= 1;
+            }
+            if (unitCreationTimer == 0)
+            {
+                Footman e = new Footman(level, new Vector2(position.X + 2 * data.tSize(), position.Y + data.tSize()));
+                level.entities.Add(e);
+                unitCreationTimer = 600;
+            }
+        }
+        else
+        {
+            level.Player.AddGold(400);
+            level.Player.AddFood(1);
+        }
+
     }
 
     public void produceRangedUnit(Level level, Vector2 position)

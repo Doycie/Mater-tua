@@ -23,7 +23,7 @@ internal class Mine : StaticBuilding
         this.Reset();
         _description = "This is where gold can be mined. Gold is nessecary for the production of units and buildings.";
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/Mine");
-        _MineAmount = 2;
+        _MineAmount = 200;
     }
 
     public override void Reset()

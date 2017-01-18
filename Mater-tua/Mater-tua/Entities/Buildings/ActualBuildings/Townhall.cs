@@ -60,16 +60,16 @@ internal class Townhall : StaticBuilding
         //Healthbar(spriteBatch);
     }
 
-    private void ProduceWorkerUnit(Vector2 TownhallPosition)
+    public void produceWorkerUnit(Vector2 TownhallPosition)
     {
         if (_faction == faction.Orc)
         {
-            Peon peon = new Peon(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y));
+            Peon peon = new Peon(_level, new Vector2(TownhallPosition.X - 1 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
             _level.entities.Add(peon);
         }
         if (_faction == faction.Human)
         {
-            Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X - 64, TownhallPosition.Y));
+            Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X + 3 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
             _level.entities.Add(peasant);
 
         }

@@ -200,7 +200,6 @@ internal class WorkerUnit : Unit
             {
                 orderMove(new Point((int)_TreasurePosition.X / data.tSize(), (int)_TreasurePosition.Y / data.tSize()));
                 _FirstTimeTreasure = 1;
-                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
             }
             if (_position == _TreasurePosition)
             {

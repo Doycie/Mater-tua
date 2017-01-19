@@ -145,8 +145,11 @@ internal class PlayingHud : HUD
                     Console.WriteLine("case 2");
                 break;
             case 3:
-                foreach (Townhall t in selectedEntities)
-                    t.produceWorkerUnit(t.Position);
+                if (selectedEntities.Count == 1)
+                {
+                    foreach (Townhall t in selectedEntities)
+                        t.produceWorkerUnit(level, t.Position);
+                }
                 Console.WriteLine("case 3, produce worker unit");
                 break;
             case 4:
@@ -158,8 +161,11 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 5");
                 break;
             case 6:
-                foreach (Barracks i in selectedEntities)
-                    i.produceFootman(level, i.Position);
+                if (selectedEntities.Count == 1)
+                {
+                    foreach (Barracks i in selectedEntities)
+                        i.produceFootman(level, i.Position);
+                }
                 Console.WriteLine("case 6, produce footman");
                 break;
             case 7:
@@ -169,8 +175,11 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 8");
                 break;
             case 9:
-                foreach (Barracks i in selectedEntities)
-                    i.produceRangedUnit(level, i.Position);
+                if (selectedEntities.Count == 1)
+                {
+                    foreach (Barracks i in selectedEntities)
+                        i.produceRangedUnit(level, i.Position);
+                }
                 Console.WriteLine("case 9, produce ranged unit");
                 break;
             case 10:

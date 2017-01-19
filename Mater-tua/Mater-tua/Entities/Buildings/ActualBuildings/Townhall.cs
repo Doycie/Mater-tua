@@ -8,6 +8,7 @@ internal class Townhall : StaticBuilding
     private bool _workerReady = false;
     private int _workerCreationTimer;
     private Vector2 _workerPosition;
+
     public Townhall(Level level, Vector2 position, faction faction)
         : base(level)
     {
@@ -64,7 +65,7 @@ internal class Townhall : StaticBuilding
             if (_workerCreationTimer >= 750)
             {
                 _workerReady = true;
-                produceWorkerUnit(_workerPosition);
+                produceWorkerUnit(_level, _workerPosition);
             }
         }
     }
@@ -75,8 +76,9 @@ internal class Townhall : StaticBuilding
         //Healthbar(spriteBatch);
     }
 
-    public void produceWorkerUnit(Vector2 TownhallPosition)
+    public void produceWorkerUnit(Level level, Vector2 TownhallPosition)
     {
+        _level = level;
         _workerPosition = TownhallPosition;
         if (_level.Player.Gold >= 400 && _level.Player.AvailableFood >= 1 && _producingWorker == false)
         {
@@ -91,16 +93,8 @@ internal class Townhall : StaticBuilding
             _workerCreationTimer = 0;
             _producingWorker = false;
             _workerReady = false;
-            if (_faction == faction.Orc)
-            {
-                Peon peon = new Peon(_level, new Vector2(TownhallPosition.X - 1 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
-                _level.entities.Add(peon);
-            }
-            if (_faction == faction.Human)
-            {
-                Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X + 3 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
-                _level.entities.Add(peasant);
-            }
+            Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X + 3 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
+            _level.entities.Add(peasant);
         }
     }
 }

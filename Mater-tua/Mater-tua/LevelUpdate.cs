@@ -36,6 +36,8 @@ partial class Level
                 entities[i].Update();
                 if (typeof(Unit).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
                 {
+                    if (entities[i].Faction == BuildingAndUnit.faction.Human)
+                        Player.availableFood(-1);
                     GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/DieSound");
                 }
                 if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)

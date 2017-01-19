@@ -22,11 +22,11 @@ internal class ProductionBuilding : StaticBuilding
     {
         _footmanPosition = position;
         _level = level;
-        if (level.Player.Gold >= 400 && level.Player.Food >= 0 && _producingFootman == false && _producingUnit == false)
+        if (level.Player.Gold >= 400 && level.Player.Food >= 1 && _producingFootman == false && _producingUnit == false)
         {
             Console.WriteLine("Creating Footman");
             level.Player.AddGold(-400);
-            level.Player.AddFood(-1);
+            level.Player.availableFood(1);
 
             _producingFootman = true;
             _producingUnit = true;
@@ -47,12 +47,12 @@ internal class ProductionBuilding : StaticBuilding
     {
         _archerPosition = position;
         _level = level;
-        if (level.Player.Gold >= 400 && level.Player.Food >= 0 && level.Player.Wood >= 50 && _producingArcher == false && _producingUnit == false)
+        if (level.Player.Gold >= 400 && level.Player.Food >= 1 && level.Player.Wood >= 50 && _producingArcher == false && _producingUnit == false)
         {
             Console.WriteLine("Creating ranged unit.");
             level.Player.AddGold(-400);
             level.Player.AddWood(-50);
-            level.Player.AddFood(-1);
+            level.Player.availableFood(1);
 
             _producingArcher = true;
             _producingUnit = true;

@@ -71,6 +71,43 @@ internal class Minimap
             {
                 c = Color.SandyBrown;
             }
+
+            int h, k;
+
+            k = GameEnvironment.getCamera().getView().Y / 16;
+            int o = GameEnvironment.getCamera().getView().X / 16;
+            for ( h = 0 ; h < GameEnvironment.getCamera().getScreenSize().X / 16 ; h++)
+            {
+                int l = o + h + k * 256;
+                if (!(l > 256 * 256 - 1 || l < 0))
+                    data[l] = Color.Red;
+            }
+
+             k = GameEnvironment.getCamera().getView().Height / 16;
+            for (h = 0; h < GameEnvironment.getCamera().getScreenSize().X / 16; h++)
+            {
+                int l = o + h + k * 256;
+                if (!(l > 256 * 256 - 1 || l < 0))
+                    data[l] = Color.Red;
+            }
+
+            k = GameEnvironment.getCamera().getView().X / 16;
+            int p = GameEnvironment.getCamera().getView().Y / 16;
+            for (h = 0; h < GameEnvironment.getCamera().getScreenSize().Y / 16; h++)
+            {
+                int l = p * 256 + k + h * 256;
+                if (!(l > 256 * 256 - 1 || l < 0))
+                    data[l] = Color.Red;
+            }
+
+            k = GameEnvironment.getCamera().getView().Width / 16;
+            for (h = 0; h < GameEnvironment.getCamera().getScreenSize().Y / 16; h++)
+            {
+                int l = p * 256+ k + h * 256;
+                if (!(l > 256 * 256 - 1 || l < 0))
+                    data[l] = Color.Red;
+            }
+
             int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
 
             int d = 4;

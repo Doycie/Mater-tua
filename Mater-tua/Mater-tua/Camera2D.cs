@@ -66,7 +66,13 @@ internal class Camera2D
 
     public void setPos(Vector2 pos)
     {
-        _position = new Vector3(pos, 0.0f);
+        
+        if ((pos.X> 0 && (int)(pos.X + (_origin.X * 2 / _scale)) < _maxBounds.X) && (pos.Y > 0 && (int)(pos.Y + (_origin.Y * 2 / _scale)) < _maxBounds.Y))
+        {
+            _position = new Vector3(pos, 0.0f);
+        }
+
+        // if( _position.Y + mov.Y > 0)
         
     }
 

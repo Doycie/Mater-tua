@@ -52,7 +52,12 @@ partial class Level
                         specialFX.Add(new Explosion("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size));
                         entities.RemoveAt(i);
                     }
-                    else if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
+                    if (typeof(Unit).IsAssignableFrom(entities[i].GetType()))
+                    {
+                        specialFX.Add(new Explosion("Sprites/Misc/BloodSplatter", entities[i].Position, entities[i].Size));
+                        entities.RemoveAt(i);
+                    }
+                    else if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()))
                     {
                         specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
                         entities.RemoveAt(i);

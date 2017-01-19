@@ -111,11 +111,15 @@ internal class PlayingHud : HUD
             }
             foreach (Barracks b in selectedEntities.OfType<Barracks>())
             {
+                _playingButtons[0]._visible = false;
+                _playingButtons[3]._visible = false;
                 _playingButtons[5]._visible = true;
                 _playingButtons[8]._visible = true;
             }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
             {
+                _playingButtons[0]._visible = false;
+                _playingButtons[3]._visible = false;
                 _playingButtons[2]._visible = true;
             }
         
@@ -128,10 +132,12 @@ internal class PlayingHud : HUD
             default:
                 Console.WriteLine("Default");
                 break;
-            case 0:
+            case 0: //leeg laten! Deze doet niks
                 break;
             case 1:
-                Console.WriteLine("case 1");
+                //foreach (Unit u in selectedEntities)
+                //    u.orderMove
+                Console.WriteLine("case 1, order move");
                 break;
             case 2:
                 Console.WriteLine("case 2");
@@ -139,10 +145,12 @@ internal class PlayingHud : HUD
             case 3:
                 foreach (Townhall t in selectedEntities)
                     t.produceWorkerUnit(t.Position);
-                Console.WriteLine("case 3");
+                Console.WriteLine("case 3, produce worker unit");
                 break;
             case 4:
-                Console.WriteLine("case 4");
+                    foreach (Unit u in selectedEntities)
+                        u.Path.Clear();
+                Console.WriteLine("case 4, order stop move.");
                 break;
             case 5:
                 Console.WriteLine("case 5");
@@ -150,7 +158,7 @@ internal class PlayingHud : HUD
             case 6:
                 foreach (Barracks i in selectedEntities)
                     i.produceFootman(level, i.Position);
-                Console.WriteLine("case 6");
+                Console.WriteLine("case 6, produce footman");
                 break;
             case 7:
                 Console.WriteLine("case 7");
@@ -161,7 +169,7 @@ internal class PlayingHud : HUD
             case 9:
                 foreach (Barracks i in selectedEntities)
                     i.produceRangedUnit(level, i.Position);
-                Console.WriteLine("case 9");
+                Console.WriteLine("case 9, produce ranged unit");
                 break;
             case 10:
                 Console.WriteLine("case 10");

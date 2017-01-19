@@ -13,6 +13,7 @@ public partial class Level
     private Texture2D _dirtTex;
     private Texture2D _waterTex;
 
+    public BuildingAndUnit _tempBuilding;
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
 

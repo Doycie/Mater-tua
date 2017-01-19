@@ -133,6 +133,7 @@ internal class PlayingHud : HUD
                 Console.WriteLine("Default");
                 break;
             case 0: //leeg laten! Deze doet niks
+
                 break;
             case 1:
                 //foreach (Unit u in selectedEntities)
@@ -140,7 +141,10 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 1, order move");
                 break;
             case 2:
-                Console.WriteLine("case 2");
+                Console.WriteLine("case 2, Lets build some shit");
+
+                _level.dragBuilding();
+
                 break;
             case 3:
                 foreach (Townhall t in selectedEntities)

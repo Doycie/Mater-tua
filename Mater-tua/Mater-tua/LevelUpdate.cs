@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.Xna.Framework;
 
 partial class Level
 {
@@ -78,5 +79,10 @@ partial class Level
         }
 
         Player.Update();
+    }
+
+    public void dragBuilding()
+    {
+        _tempBuilding = new Barracks(this, Vector2.Zero, BuildingAndUnit.faction.Human);
     }
 }

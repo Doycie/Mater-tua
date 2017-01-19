@@ -5,7 +5,7 @@ using System;
 internal class Townhall : StaticBuilding
 {
     private bool _producingWorker = false;
-    private bool _workerReady = false;
+
     private int _workerCreationTimer;
     private Vector2 _workerPosition;
 
@@ -62,39 +62,47 @@ internal class Townhall : StaticBuilding
         if (_producingWorker)
         {
             _workerCreationTimer += 1;
-            if (_workerCreationTimer >= 750)
+            if (_workerCreationTimer > 600)
             {
-                _workerReady = true;
-                produceWorkerUnit(_level, _workerPosition);
+                _workerCreationTimer = 0;
+                _producingWorker = false;
+                
+                Peasant peasant = new Peasant(_level,_workerPosition);
+                _level.entities.Add(peasant);
             }
         }
+
+       
+        
+           
+        
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
         //Healthbar(spriteBatch);
+
+
     }
 
-    public void produceWorkerUnit(Level level, Vector2 TownhallPosition)
+    public void produceWorkerUnit()
     {
-        _level = level;
-        _workerPosition = TownhallPosition;
+        Console.WriteLine("STARTING PRODUCING");
+        
+
         if (_level.Player.Gold >= 400 && _level.Player.AvailableFood >= 1 && _producingWorker == false)
         {
+
             Console.WriteLine("Creating worker unit.");
+
+            _workerPosition = new Vector2(_position.X + 3 * data.tSize(), _position.Y + 2 * data.tSize());
             _level.Player.AddGold(-400);
             _level.Player.availableFood(1);
 
             _producingWorker = true;
-        }
-        if (_workerReady)
-        {
             _workerCreationTimer = 0;
-            _producingWorker = false;
-            _workerReady = false;
-            Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X + 3 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
-            _level.entities.Add(peasant);
         }
+        
     }
 }

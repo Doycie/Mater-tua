@@ -143,13 +143,13 @@ internal class PlayingHud : HUD
                 break;
             case 2:
                     Console.WriteLine("case 2");
+                level.dragBuilding();
                 break;
             case 3:
-                if (selectedEntities.Count == 1)
-                {
+               
                     foreach (Townhall t in selectedEntities)
-                        t.produceWorkerUnit(level, t.Position);
-                }
+                        t.produceWorkerUnit();
+                
                 Console.WriteLine("case 3, produce worker unit");
                 break;
             case 4:

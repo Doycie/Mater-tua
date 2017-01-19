@@ -29,7 +29,8 @@ public class Player
             }
         }
 
-
+        _Gold = 9999;
+        _availableFood = 9999;
     }
 
     public void Update()

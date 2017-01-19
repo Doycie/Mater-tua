@@ -72,7 +72,16 @@ internal class PlayingHud : HUD
             int i = 0;
             foreach (BuildingAndUnit e in hudUnits.OfType<BuildingAndUnit>())
             {
-               
+                if(e is Townhall)
+                {
+                    if((e as Townhall)._producingWorker)
+                    {
+                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int) GameEnvironment.getCamera().getScreenSize().Y - 60, 400,20),s,Color.Gray,2);
+                        //  Console.WriteLine(((e as Townhall)._workerCreationTimer / (e as Townhall)._workerProductionTime));
+                        Console.WriteLine((e as Townhall)._workerCreationTimer + "  prod time:" + (e as Townhall)._workerProductionTime);
+                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400*(float)((float)(e as Townhall)._workerCreationTimer / (float)(e as Townhall)._workerProductionTime)), 20), s, Color.Green, 2);
+                    }
+                }  
                 e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
                 s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
                 i++;

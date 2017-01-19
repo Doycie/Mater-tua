@@ -2,11 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-internal class Townhall : StaticBuilding
+ class Townhall : StaticBuilding
 {
-    private bool _producingWorker = false;
+    public bool _producingWorker = false;
 
-    private int _workerCreationTimer;
+    public int _workerCreationTimer;
+    public int _workerProductionTime = 400;
     private Vector2 _workerPosition;
 
     public Townhall(Level level, Vector2 position, faction faction)
@@ -62,7 +63,7 @@ internal class Townhall : StaticBuilding
         if (_producingWorker)
         {
             _workerCreationTimer += 1;
-            if (_workerCreationTimer > 600)
+            if (_workerCreationTimer > _workerProductionTime)
             {
                 _workerCreationTimer = 0;
                 _producingWorker = false;

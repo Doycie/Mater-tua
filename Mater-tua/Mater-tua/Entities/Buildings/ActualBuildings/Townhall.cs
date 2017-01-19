@@ -78,11 +78,11 @@ internal class Townhall : StaticBuilding
     public void produceWorkerUnit(Vector2 TownhallPosition)
     {
         _workerPosition = TownhallPosition;
-        if (_level.Player.Gold >= 400 && _level.Player.Food >= 0 && _producingWorker == false)
+        if (_level.Player.Gold >= 400 && _level.Player.AvailableFood >= 1 && _producingWorker == false)
         {
             Console.WriteLine("Creating worker unit.");
             _level.Player.AddGold(-400);
-            _level.Player.AddFood(-1);
+            _level.Player.availableFood(1);
 
             _producingWorker = true;
         }

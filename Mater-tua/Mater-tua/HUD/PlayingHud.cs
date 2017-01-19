@@ -114,7 +114,9 @@ internal class PlayingHud : HUD
                 _playingButtons[0]._visible = false;
                 _playingButtons[3]._visible = false;
                 _playingButtons[5]._visible = true;
+                _playingButtons[6]._visible = false;
                 _playingButtons[8]._visible = true;
+                _playingButtons[9]._visible = false;
             }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
             {
@@ -135,12 +137,12 @@ internal class PlayingHud : HUD
             case 0: //leeg laten! Deze doet niks
                 break;
             case 1:
-                //foreach (Unit u in selectedEntities)
-                //    u.orderMove
-                Console.WriteLine("case 1, order move");
+                    //foreach (Unit u in selectedEntities)
+                    //    u.orderMove
+                    Console.WriteLine("case 1, order move");
                 break;
             case 2:
-                Console.WriteLine("case 2");
+                    Console.WriteLine("case 2");
                 break;
             case 3:
                 foreach (Townhall t in selectedEntities)

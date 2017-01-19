@@ -859,3 +859,15 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Buildings/OrcTownhall.png
 
+#begin Sounds/Soundeffects/what.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/what.wav
+
+#begin Sounds/Soundeffects/Yes Sir.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Soundeffects/Yes Sir.wav
+

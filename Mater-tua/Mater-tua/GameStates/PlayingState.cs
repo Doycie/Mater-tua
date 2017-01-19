@@ -18,6 +18,8 @@ internal class PlayingState : GameState
     private Vector2 _currentMousePos;
     private bool _mouseReleased;
     private Texture2D _selectTex;
+    private bool Hello1 = false;
+    private bool Hello2 = true;
     private bool PlayedBattleCry2 = true;
     private bool PlayedBattleCry1 = false;
     private bool PlayedConfirmation1 = false;
@@ -56,17 +58,19 @@ internal class PlayingState : GameState
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
-
         if (_mouseReleased)
             DrawingHelper.DrawRectangle(new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), spriteBatch, Color.Red);
-
+      
         //spriteBatch.Draw(_selectTex, new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), Color.White);
         if (_selectedEntities.Count > 0)
+        {
             foreach (SpriteEntity e in _selectedEntities)
             {
                 DrawingHelper.DrawRectangle(new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()), spriteBatch, Color.Red);
-                //spriteBatch.Draw(_selectTex, new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), Color.White);
+                    //spriteBatch.Draw(_selectTex, new Rectangle((int)e.Position.X, (int)e.Position.Y, 64, 64), Color.White);
+                
             }
+         }
     }
 
     //Handle the camera movement and the selecting units
@@ -188,12 +192,14 @@ internal class PlayingState : GameState
                     }
                 }
             }
+            
 
+            
             //Drag the selection box to include multiple entities
             if (!inputHelper.MouseLeftButtonDown())
             {
-                if (_mouseReleased )
-                {
+                if (_mouseReleased)
+                {                   
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                     foreach (SpriteEntity e in level.entities)
                         if ((e as BuildingAndUnit).Faction == BuildingAndUnit.faction.Human)
@@ -202,6 +208,7 @@ internal class PlayingState : GameState
                                 _selectedEntities.Add((e as BuildingAndUnit));
                             }
                 }
+   
                 _mouseReleased = false;
             }
 
@@ -214,7 +221,7 @@ internal class PlayingState : GameState
                     _lastMousePos = _customCursor.getMousePos();
                 }
             }
-
+            bool PlayedHello = false;
             //One click on a unit to select/deselect them
             if (inputHelper.MouseLeftButtonPressed())
             {
@@ -225,6 +232,11 @@ internal class PlayingState : GameState
                 {
                     if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()).Contains(pos)))
                     {
+                        //if (PlayedHello == false && Hello1 == false )
+                        //{ GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes Sir"); PlayedHello = true; Hello1 = true; Hello2 = false; }
+                       //if (PlayedHello == false && Hello2 == false )
+                        //{ GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/what"); PlayedHello = true; Hello2 = true; Hello1 = false; }
+
                         clickedOnEntity = true;
                         if (inputHelper.IsKeyDown(Keys.LeftControl))
                         {

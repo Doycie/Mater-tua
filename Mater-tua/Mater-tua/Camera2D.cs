@@ -35,7 +35,7 @@ internal class Camera2D
     //Compute a matrix for the spritebatch based on all the variables
     public Matrix getMatrix()
     {
-        Console.WriteLine(_position);
+        //Console.WriteLine(_position);
         return Matrix.CreateTranslation(-_position) * Matrix.CreateTranslation(-_origin) * Matrix.CreateRotationZ(0.0f) * Matrix.CreateScale(_scale, _scale, 1) * Matrix.CreateTranslation(_origin);
     }
 

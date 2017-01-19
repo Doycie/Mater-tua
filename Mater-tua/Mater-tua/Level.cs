@@ -75,8 +75,8 @@ public partial class Level
         entities.Add(orcTownhall);
         Barracks humanBarracks = new Barracks(this, new Vector2(12 * data.tSize(), 6 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanBarracks);
-        //Barracks orcBarracks = new Barracks(this, new Vector2(18 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
-        //entities.Add(orcBarracks);
+        Barracks orcBarracks = new Barracks(this, new Vector2(18 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
+        entities.Add(orcBarracks);
         Peasant Worker = new Peasant(this, new Vector2(10 * data.tSize(), 7 * data.tSize()));
         entities.Add(Worker);
         Peon Worker1 = new Peon(this, new Vector2(15 * data.tSize(), 15 * data.tSize()));

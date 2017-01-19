@@ -52,7 +52,7 @@ public class Projectile : SpriteEntity
                 }
                  */
 
-        _rotation = (float)Math.Atan2((_target.Position.X - _shooter.Position.X), (_target.Position.Y - _shooter.Position.Y));
+        _rotation = (float)Math.Atan2(((_target.Position.X + ((_target.Size * data.tSize())/2) ) - _shooter.Position.X), ((_target.Position.Y + ((_target.Size * data.tSize()) / 2)) - _shooter.Position.Y));
 
         _velocity = new Vector2((float)Math.Sin(_rotation) * 64, (float)Math.Cos(_rotation) * 64) * 20f ;
 
@@ -76,7 +76,7 @@ public class Projectile : SpriteEntity
     private void Move()
     {
 
-        if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y))  < 5)
+        if (calculateH(new Point((int)_position.X, (int)_position.Y), new Point((int)(_target.Position.X + ((_target.Size * data.tSize()) / 2)), (int)(_target.Position.Y + ((_target.Size * data.tSize()) / 2))))  < 5)
         {
             _level.Projectiles.Remove(this);
             DamageEnemey();
@@ -87,7 +87,7 @@ public class Projectile : SpriteEntity
             _position = _position + _velocity * 5f;
         }
     }
-
+    
     private void DamageEnemey()
     {
         _target.hurt(10);

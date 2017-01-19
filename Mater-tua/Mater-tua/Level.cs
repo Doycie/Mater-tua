@@ -62,32 +62,32 @@ public partial class Level
             //entities.Add(e);
         }
         Player = new Player(this);
-        Farm orcFarm = new Farm(this, new Vector2(15 * data.tSize(), 17 * data.tSize()), BuildingAndUnit.faction.Orc);
+        Farm orcFarm = new Farm(this, new Vector2(16 * data.tSize(), 17 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcFarm);
-        Farm humanFarm = new Farm(this, new Vector2(10 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
+        Farm humanFarm = new Farm(this, new Vector2(5 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);
 
-        Mine Mine = new Mine(this, new Vector2(64, 64), BuildingAndUnit.faction.Neutral);
+        Mine Mine = new Mine(this, new Vector2(1 * data.tSize(), 1 * data.tSize()), BuildingAndUnit.faction.Neutral);
         entities.Add(Mine);
-        Townhall Townhall = new Townhall(this, new Vector2(320, 384), BuildingAndUnit.faction.Human);
+        Townhall Townhall = new Townhall(this, new Vector2(7 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
-        Townhall orcTownhall = new Townhall(this, new Vector2(14 * data.tSize(), 14 * data.tSize()), BuildingAndUnit.faction.Orc);
+        Townhall orcTownhall = new Townhall(this, new Vector2(20 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcTownhall);
-        Barracks humanBarracks = new Barracks(this, new Vector2(704, 344), BuildingAndUnit.faction.Human);
+        Barracks humanBarracks = new Barracks(this, new Vector2(12 * data.tSize(), 6 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanBarracks);
         //Barracks orcBarracks = new Barracks(this, new Vector2(18 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
         //entities.Add(orcBarracks);
-        Peasant Worker = new Peasant(this, new Vector2(768, 192));
+        Peasant Worker = new Peasant(this, new Vector2(10 * data.tSize(), 7 * data.tSize()));
         entities.Add(Worker);
-        Peon Worker1 = new Peon(this, new Vector2(304, 1016));
+        Peon Worker1 = new Peon(this, new Vector2(15 * data.tSize(), 15 * data.tSize()));
         entities.Add(Worker1);
         
         TreasureChest Chest1 = new TreasureChest(this, new Vector2(5 * data.tSize(), 2 * data.tSize()));
         entities.Add(Chest1);
 
-        Tree Tree1 = new Tree(this,new Vector2(64, 512));
+        Tree Tree1 = new Tree(this,new Vector2(9 * data.tSize(), 1 * data.tSize()));
         entities.Add(Tree1);
-        Tree Tree2 = new Tree(this,new Vector2(512, 64));
+        Tree Tree2 = new Tree(this,new Vector2(2 * data.tSize(), 5 * data.tSize()));
         entities.Add(Tree2);
 
         RangedUnit rangeUnit = new RangedUnit(this, new Vector2(5 * data.tSize(), 10 * data.tSize()), BuildingAndUnit.faction.Human);

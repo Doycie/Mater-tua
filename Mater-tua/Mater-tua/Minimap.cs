@@ -14,8 +14,6 @@ internal class Minimap
         _minimap = new Texture2D(GameEnvironment.graphics.GraphicsDevice, size, size);
         Color[] data = new Color[_size * _size];
 
-        for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
-
         //  _mapborder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/placeholderborder"); ?????
         _minimap.SetData(data);
     }

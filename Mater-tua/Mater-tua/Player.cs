@@ -10,8 +10,10 @@ public class Player
     private int _Wood;
     private int _Gold;
     private int _Food;
+    private int _availableFood;
     static private int _AmountFarms;
     static private int _TempFarms;
+    
 
     private Level _level;
 
@@ -27,13 +29,14 @@ public class Player
             }
         }
 
-
+        _Gold = 9999;
+        _availableFood = 9999;
     }
 
     public void Update()
     {
         FoodUpdate();
-        _Food = _AmountFarms * 6 + 10;
+        _Food = (_AmountFarms * 6 + 10) - _availableFood;
     }
 
      public int Wood
@@ -49,6 +52,16 @@ public class Player
      public int Food
     {
         get { return _Food; }
+    }
+
+    public int AvailableFood
+    {
+        get { return _availableFood; }
+    }
+
+    public void availableFood(int Amount)
+    {
+        _availableFood = _availableFood + Amount;
     }
 
     public void AddWood(int Amount)

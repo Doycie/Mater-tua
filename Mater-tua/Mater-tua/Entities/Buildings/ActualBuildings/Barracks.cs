@@ -6,7 +6,6 @@ internal class Barracks : ProductionBuilding
 {
     private int _unitLevel;
 
-
     public Barracks(Level level, Vector2 position, faction faction)
         : base(level)
     {
@@ -32,7 +31,7 @@ internal class Barracks : ProductionBuilding
         if (_faction == faction.Orc)
         {
             _description = "This is where the units are produced to fight";
-            _sprite = GameEnvironment.getAssetManager().GetSprite("");
+            _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcBarracks");
         }
     }
 
@@ -60,8 +59,11 @@ internal class Barracks : ProductionBuilding
 
             if (_faction == faction.Orc)
             {
-                _sprite = GameEnvironment.getAssetManager().GetSprite("");
+                _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcBarracksConstruction");
             }
         }
+
+       
     }
+
 }

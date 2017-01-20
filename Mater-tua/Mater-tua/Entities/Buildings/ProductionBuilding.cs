@@ -4,95 +4,49 @@ using Microsoft.Xna.Framework.Graphics;
 
 internal class ProductionBuilding : StaticBuilding
 {
-    private bool _producingArcher = false;
-    private bool _archerReady = false;
-    private bool _producingFootman = false;
-    private bool _footmanReady = false;
-    private bool _producingUnit = false;
-    private int _footmanCreationTimer;
-    private int _archerCreationTimer;
-    private Vector2 _footmanPosition;
-    private Vector2 _archerPosition;
+    public bool _producingUnit;
+    private Unit _tempUnit;
+    public int _unitProductionTime;
+    public int _unitProductionTimer;
 
     public ProductionBuilding(Level level) : base(level)
     {
     }
 
-    public void produceFootman(Level level, Vector2 position)
+    public void produceUnit(Unit e)
     {
-        _footmanPosition = position;
-        _level = level;
-        if (level.Player.Gold >= 400 && level.Player.Food >= 0 && _producingFootman == false && _producingUnit == false)
-        {
-            Console.WriteLine("Creating Footman");
-            level.Player.AddGold(-400);
-            level.Player.AddFood(-1);
-
-            _producingFootman = true;
-            _producingUnit = true;
-        }
-
-        if (_footmanReady)
-        {
-            _footmanCreationTimer = 0;
-            _producingFootman = false;
-            _footmanReady = false;
-            _producingUnit = false;
-            Footman e = new Footman(level, new Vector2(position.X + 2 * data.tSize(), position.Y + data.tSize()));
-            level.entities.Add(e);
-        }
-    }
-
-    public void produceRangedUnit(Level level, Vector2 position)
-    {
-        _archerPosition = position;
-        _level = level;
-        if (level.Player.Gold >= 400 && level.Player.Food >= 0 && level.Player.Wood >= 50 && _producingArcher == false && _producingUnit == false)
-        {
-            Console.WriteLine("Creating ranged unit.");
-            level.Player.AddGold(-400);
-            level.Player.AddWood(-50);
-            level.Player.AddFood(-1);
-
-            _producingArcher = true;
-            _producingUnit = true;
-        }
-
-        if (_archerReady)
-        {
-            _archerCreationTimer = 0;
-            _producingArcher = false;
-            _archerReady = false;
-            _producingUnit = false;
-            RangedUnit e = new RangedUnit(level, new Vector2(position.X + 2 * data.tSize(), position.Y + data.tSize()), faction.Human);
-            level.entities.Add(e);
-        }
         
+        if (_level.Player.Gold > e.GoldCost && _level.Player.AvailableFood > 1 && _producingUnit == false)
+        {
+            _tempUnit = e;
+            _level.Player.AddGold(-e.GoldCost);
+            _level.Player.availableFood(1);
+
+            _producingUnit = true;
+            _unitProductionTime = e.ProductionTime;
+            _unitProductionTimer = 0;
+        }
+
+
     }
+
+ 
 
     public override void Update()
     {
         base.Update();
-        if (_producingFootman)
+
+        if (_producingUnit)
         {
-            _footmanCreationTimer += 1;
-            if (_footmanCreationTimer >= 600)
+            _unitProductionTimer++;
+            if(_unitProductionTimer > _unitProductionTime)
             {
-                _producingFootman = false;
-                _footmanReady = true;
-                produceFootman(_level, _footmanPosition);
+                _level.entities.Add(_tempUnit);
+                _producingUnit = false;
             }
         }
 
-        if (_producingArcher)
-        {
-            _archerCreationTimer += 1;
-            if (_archerCreationTimer >= 750)
-            {
-                _producingArcher = false;
-                _archerReady = true;
-                produceRangedUnit(_level, _archerPosition);
-            }
-        }
+
+
     }
 }  

@@ -2,12 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-internal class Townhall : StaticBuilding
+ class Townhall : ProductionBuilding
 {
-    private bool _producingWorker = false;
-    private bool _workerReady = false;
-    private int _workerCreationTimer;
-    private Vector2 _workerPosition;
+
+
     public Townhall(Level level, Vector2 position, faction faction)
         : base(level)
     {
@@ -57,50 +55,15 @@ internal class Townhall : StaticBuilding
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcTownHallConstruction");
             }
         }
-
-        if (_producingWorker)
-        {
-            _workerCreationTimer += 1;
-            if (_workerCreationTimer >= 750)
-            {
-                _workerReady = true;
-                produceWorkerUnit(_workerPosition);
-            }
-        }
+        
     }
 
     public override void Draw(SpriteBatch spriteBatch)
     {
         base.Draw(spriteBatch);
         //Healthbar(spriteBatch);
+
+
     }
 
-    public void produceWorkerUnit(Vector2 TownhallPosition)
-    {
-        _workerPosition = TownhallPosition;
-        if (_level.Player.Gold >= 400 && _level.Player.Food >= 0 && _producingWorker == false)
-        {
-            Console.WriteLine("Creating worker unit.");
-            _level.Player.AddGold(-400);
-            _level.Player.AddFood(-1);
-
-            _producingWorker = true;
-        }
-        if (_workerReady)
-        {
-            _workerCreationTimer = 0;
-            _producingWorker = false;
-            _workerReady = false;
-            if (_faction == faction.Orc)
-            {
-                Peon peon = new Peon(_level, new Vector2(TownhallPosition.X - 1 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
-                _level.entities.Add(peon);
-            }
-            if (_faction == faction.Human)
-            {
-                Peasant peasant = new Peasant(_level, new Vector2(TownhallPosition.X + 3 * data.tSize(), TownhallPosition.Y + 2 * data.tSize()));
-                _level.entities.Add(peasant);
-            }
-        }
-    }
 }

@@ -53,6 +53,11 @@ partial class Level
         {
             e.Draw(s);
         }
+
+
+
+
+
     }
 
     //Method for colloring a perlin map based on height of a byte NOT USED CODE

@@ -72,7 +72,15 @@ internal class PlayingHud : HUD
             int i = 0;
             foreach (BuildingAndUnit e in hudUnits.OfType<BuildingAndUnit>())
             {
-               
+                if(e is ProductionBuilding)
+                {
+                    if((e as ProductionBuilding)._producingUnit)
+                    {
+                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int) GameEnvironment.getCamera().getScreenSize().Y - 60, 400,20),s,Color.Gray,2);
+                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400*(float)((float)(e as ProductionBuilding)._unitProductionTimer / (float)(e as ProductionBuilding)._unitProductionTime)), 20), s, Color.Green, 2);
+                    }
+                }
+              
                 e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
                 s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
                 i++;
@@ -114,7 +122,9 @@ internal class PlayingHud : HUD
                 _playingButtons[0]._visible = false;
                 _playingButtons[3]._visible = false;
                 _playingButtons[5]._visible = true;
+                _playingButtons[6]._visible = false;
                 _playingButtons[8]._visible = true;
+                _playingButtons[9]._visible = false;
             }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
             {
@@ -135,16 +145,19 @@ internal class PlayingHud : HUD
             case 0: //leeg laten! Deze doet niks
                 break;
             case 1:
-                //foreach (Unit u in selectedEntities)
-                //    u.orderMove
-                Console.WriteLine("case 1, order move");
+                    //foreach (Unit u in selectedEntities)
+                    //    u.orderMove
+                    Console.WriteLine("case 1, order move");
                 break;
             case 2:
-                Console.WriteLine("case 2");
+                    Console.WriteLine("case 2");
+                level.dragBuilding();
                 break;
             case 3:
+
                 foreach (Townhall t in selectedEntities)
-                    t.produceWorkerUnit(t.Position);
+                    t.produceUnit(new Peasant(_level, new Vector2(t.Position.X + 3 * data.tSize(), t.Position.Y + 2 * data.tSize())));
+                
                 Console.WriteLine("case 3, produce worker unit");
                 break;
             case 4:
@@ -156,8 +169,11 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 5");
                 break;
             case 6:
-                foreach (Barracks i in selectedEntities)
-                    i.produceFootman(level, i.Position);
+                if (selectedEntities.Count == 1)
+                {
+                    foreach (Barracks i in selectedEntities)
+                        i.produceUnit(new Footman(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
+                }
                 Console.WriteLine("case 6, produce footman");
                 break;
             case 7:
@@ -167,8 +183,11 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 8");
                 break;
             case 9:
-                foreach (Barracks i in selectedEntities)
-                    i.produceRangedUnit(level, i.Position);
+                if (selectedEntities.Count == 1)
+                {
+                    foreach (Barracks i in selectedEntities)
+                        i.produceUnit(new Peasant(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
+                }
                 Console.WriteLine("case 9, produce ranged unit");
                 break;
             case 10:

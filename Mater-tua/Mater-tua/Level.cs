@@ -13,6 +13,7 @@ public partial class Level
     private Texture2D _dirtTex;
     private Texture2D _waterTex;
 
+    public BuildingAndUnit _tempBuilding;
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
 
@@ -52,11 +53,11 @@ public partial class Level
                 Footman e = new Footman(this, new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);
             }
-            /*if (i >= 10)
-            {
-                Grunt e = new Grunt(this, new Vector2((GameEnvironment.getRandom().Next(10) + 10) * data.tSize(), (GameEnvironment.getRandom().Next(10) + 10) * data.tSize()));
-                entities.Add(e);
-            }*/
+            //if (i >= 10)
+            //{
+            //    Grunt e = new Grunt(this, new Vector2((GameEnvironment.getRandom().Next(10) + 10) * data.tSize(), (GameEnvironment.getRandom().Next(10) + 10) * data.tSize()));
+            //    entities.Add(e);
+            //}
             //Unit e = new Unit();
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);
@@ -75,8 +76,8 @@ public partial class Level
         entities.Add(orcTownhall);
         Barracks humanBarracks = new Barracks(this, new Vector2(12 * data.tSize(), 6 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanBarracks);
-        //Barracks orcBarracks = new Barracks(this, new Vector2(18 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
-        //entities.Add(orcBarracks);
+        Barracks orcBarracks = new Barracks(this, new Vector2(18 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
+        entities.Add(orcBarracks);
         Peasant Worker = new Peasant(this, new Vector2(10 * data.tSize(), 7 * data.tSize()));
         entities.Add(Worker);
         Peon Worker1 = new Peon(this, new Vector2(15 * data.tSize(), 15 * data.tSize()));

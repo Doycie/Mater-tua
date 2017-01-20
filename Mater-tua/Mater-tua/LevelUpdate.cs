@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.Xna.Framework;
 
 partial class Level
 {
@@ -35,6 +36,8 @@ partial class Level
                 entities[i].Update();
                 if (typeof(Unit).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
                 {
+                    if (entities[i].Faction == BuildingAndUnit.faction.Human)
+                        Player.availableFood(-1);
                     GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/DieSound");
                 }
                 if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
@@ -49,7 +52,12 @@ partial class Level
                         specialFX.Add(new Explosion("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size));
                         entities.RemoveAt(i);
                     }
-                    else if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
+                    if (typeof(Unit).IsAssignableFrom(entities[i].GetType()))
+                    {
+                        specialFX.Add(new Explosion("Sprites/Misc/BloodSplatter", entities[i].Position, entities[i].Size));
+                        entities.RemoveAt(i);
+                    }
+                    else if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()))
                     {
                         specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
                         entities.RemoveAt(i);
@@ -78,5 +86,10 @@ partial class Level
         }
 
         Player.Update();
+    }
+
+    public void dragBuilding()
+    {
+        _tempBuilding = new Barracks(this, Vector2.Zero, BuildingAndUnit.faction.Human);
     }
 }

@@ -25,6 +25,9 @@ internal class PlayingState : GameState
     private bool PlayedConfirmation1 = false;
     private bool PlayedConfirmation2 = true;
 
+    
+
+
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
@@ -71,6 +74,11 @@ internal class PlayingState : GameState
                 
             }
          }
+
+        if(level._tempBuilding != null)
+        {
+            level._tempBuilding.Draw(spriteBatch);
+        }
     }
 
     //Handle the camera movement and the selecting units
@@ -144,7 +152,7 @@ internal class PlayingState : GameState
                                 if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                                 {
                                     q.OrderReset();
-                                    q.MineOrder(w, w.Position, r.Position);
+                                    q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
                                     break;
                                 }
                             }
@@ -201,11 +209,11 @@ internal class PlayingState : GameState
                 if (_mouseReleased)
                 {                   
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
-                    foreach (SpriteEntity e in level.entities)
-                        if ((e as BuildingAndUnit).Faction == BuildingAndUnit.faction.Human)
+                    foreach (Unit e in level.entities.OfType<Unit>())
+                        if (e.Faction == BuildingAndUnit.faction.Human)
                             if ((r.Contains(e.Center)))
                             {
-                                _selectedEntities.Add((e as BuildingAndUnit));
+                                _selectedEntities.Add((e as Unit));
                             }
                 }
    
@@ -268,7 +276,16 @@ internal class PlayingState : GameState
             }
         }
 
-
+        if (level._tempBuilding != null)
+        {
+            (level._tempBuilding as StaticBuilding).setPos(_currentMousePos);
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                level.entities.Add(level._tempBuilding);
+                level._tempBuilding = null;
+            }
+          
+        }
 
         int x = 0;
         int y = 0;

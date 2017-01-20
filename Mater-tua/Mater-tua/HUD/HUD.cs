@@ -73,7 +73,7 @@ internal class HUD
             foreach (PlayingButton p in _playingButtons)
             {
                 j++;
-                if (p.update(inputHelper))
+                if (p.update(inputHelper) && p._visible)
                 {
                     return j;
                 }

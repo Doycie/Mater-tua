@@ -72,16 +72,15 @@ internal class PlayingHud : HUD
             int i = 0;
             foreach (BuildingAndUnit e in hudUnits.OfType<BuildingAndUnit>())
             {
-                if(e is Townhall)
+                if(e is ProductionBuilding)
                 {
-                    if((e as Townhall)._producingWorker)
+                    if((e as ProductionBuilding)._producingUnit)
                     {
                         DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int) GameEnvironment.getCamera().getScreenSize().Y - 60, 400,20),s,Color.Gray,2);
-                        //  Console.WriteLine(((e as Townhall)._workerCreationTimer / (e as Townhall)._workerProductionTime));
-                        Console.WriteLine((e as Townhall)._workerCreationTimer + "  prod time:" + (e as Townhall)._workerProductionTime);
-                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400*(float)((float)(e as Townhall)._workerCreationTimer / (float)(e as Townhall)._workerProductionTime)), 20), s, Color.Green, 2);
+                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400*(float)((float)(e as ProductionBuilding)._unitProductionTimer / (float)(e as ProductionBuilding)._unitProductionTime)), 20), s, Color.Green, 2);
                     }
-                }  
+                }
+              
                 e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
                 s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
                 i++;
@@ -155,9 +154,9 @@ internal class PlayingHud : HUD
                 level.dragBuilding();
                 break;
             case 3:
-               
-                    foreach (Townhall t in selectedEntities)
-                        t.produceWorkerUnit();
+
+                foreach (Townhall t in selectedEntities)
+                    t.produceUnit(new Peasant(_level, new Vector2(t.Position.X + 3 * data.tSize(), t.Position.Y + 2 * data.tSize())));
                 
                 Console.WriteLine("case 3, produce worker unit");
                 break;
@@ -173,7 +172,7 @@ internal class PlayingHud : HUD
                 if (selectedEntities.Count == 1)
                 {
                     foreach (Barracks i in selectedEntities)
-                        i.produceFootman(level, i.Position);
+                        i.produceUnit(new Footman(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
                 }
                 Console.WriteLine("case 6, produce footman");
                 break;
@@ -187,7 +186,7 @@ internal class PlayingHud : HUD
                 if (selectedEntities.Count == 1)
                 {
                     foreach (Barracks i in selectedEntities)
-                        i.produceRangedUnit(level, i.Position);
+                        i.produceUnit(new Peasant(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
                 }
                 Console.WriteLine("case 9, produce ranged unit");
                 break;

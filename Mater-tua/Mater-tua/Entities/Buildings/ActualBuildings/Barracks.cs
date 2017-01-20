@@ -6,7 +6,6 @@ internal class Barracks : ProductionBuilding
 {
     private int _unitLevel;
 
-
     public Barracks(Level level, Vector2 position, faction faction)
         : base(level)
     {
@@ -63,5 +62,8 @@ internal class Barracks : ProductionBuilding
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcBarracksConstruction");
             }
         }
+
+       
     }
+
 }

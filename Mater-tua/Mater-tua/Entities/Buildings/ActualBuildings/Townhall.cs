@@ -2,13 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
- class Townhall : StaticBuilding
+ class Townhall : ProductionBuilding
 {
-    public bool _producingWorker = false;
 
-    public int _workerCreationTimer;
-    public int _workerProductionTime = 400;
-    private Vector2 _workerPosition;
 
     public Townhall(Level level, Vector2 position, faction faction)
         : base(level)
@@ -59,23 +55,6 @@ using System;
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcTownHallConstruction");
             }
         }
-
-        if (_producingWorker)
-        {
-            _workerCreationTimer += 1;
-            if (_workerCreationTimer > _workerProductionTime)
-            {
-                _workerCreationTimer = 0;
-                _producingWorker = false;
-                
-                Peasant peasant = new Peasant(_level,_workerPosition);
-                _level.entities.Add(peasant);
-            }
-        }
-
-       
-        
-           
         
     }
 
@@ -87,23 +66,4 @@ using System;
 
     }
 
-    public void produceWorkerUnit()
-    {
-        Console.WriteLine("STARTING PRODUCING");
-        
-
-        if (_level.Player.Gold >= 400 && _level.Player.AvailableFood >= 1 && _producingWorker == false)
-        {
-
-            Console.WriteLine("Creating worker unit.");
-
-            _workerPosition = new Vector2(_position.X + 3 * data.tSize(), _position.Y + 2 * data.tSize());
-            _level.Player.AddGold(-400);
-            _level.Player.availableFood(1);
-
-            _producingWorker = true;
-            _workerCreationTimer = 0;
-        }
-        
-    }
 }

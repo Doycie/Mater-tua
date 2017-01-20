@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Unit : BuildingAndUnit
 {
-    protected float _productionTime;
+    protected int _productionTime = 400;
     protected float _moveSpeed = 2.0f;
 
 
@@ -37,7 +37,7 @@ public class Unit : BuildingAndUnit
         this.UpdatePath();
     }
 
-    public float ProductionTime
+    public int ProductionTime
     {
         get { return _productionTime; }
         set { _productionTime = value; }

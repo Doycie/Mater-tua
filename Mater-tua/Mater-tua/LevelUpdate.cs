@@ -18,7 +18,7 @@ partial class Level
                     {
                         if (g.Faction == CombatUnit.faction.Orc)
                         {
-                            (e as CombatUnit).Defend(g);
+                            //(e as CombatUnit).Defend(g);
                             (g as CombatUnit).Defend(e);
 
                         }

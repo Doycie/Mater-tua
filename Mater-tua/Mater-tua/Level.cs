@@ -91,8 +91,8 @@ public partial class Level
         Tree Tree2 = new Tree(this,new Vector2(2 * data.tSize(), 5 * data.tSize()));
         entities.Add(Tree2);
 
-        RangedUnit rangeUnit = new RangedUnit(this, new Vector2(5 * data.tSize(), 10 * data.tSize()), BuildingAndUnit.faction.Human);
-        entities.Add(rangeUnit);
+        Archer archer = new Archer(this, new Vector2(5 * data.tSize(), 10 * data.tSize()));
+        entities.Add(archer);
        // Projectile projectile = new Projectile(this, Mine, Tree2);
        // Projectiles.Add(projectile);
     }

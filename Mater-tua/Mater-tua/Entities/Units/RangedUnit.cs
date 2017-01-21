@@ -11,11 +11,9 @@ class RangedUnit : CombatUnit
     private bool PlayedAttackSound1 = false;
     private bool playedAttackSound2 = true;
 
-    public RangedUnit(Level level, Vector2 Position, faction faction)
+    public RangedUnit(Level level)
         : base(level)
     {
-        _faction = faction;
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Birb2");
         _maxhp = 40;
         _armor = 0;
         _armorType = armorType.Light;

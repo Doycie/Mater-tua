@@ -13,11 +13,11 @@ internal class MenuHud : HUD
         //TODO: Fix position of the buttons
         _buttons = new List<Button>();
         /* 1 play*/
-        _buttons.Add(new Button(new Rectangle(96, -40, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(550, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButtonPressed"), false));
         /* 2 settings*/
-        _buttons.Add(new Button(new Rectangle(96, -104, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(170, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButtonPressed"), false));
         /* 3 exit*/
-        _buttons.Add(new Button(new Rectangle(96, -168, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(930, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButtonPressed"), false));
     }
 
     public new bool update(InputHelper inputHelper)

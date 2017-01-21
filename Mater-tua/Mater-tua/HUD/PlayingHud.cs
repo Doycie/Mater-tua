@@ -76,8 +76,9 @@ internal class PlayingHud : HUD
                 {
                     if((e as ProductionBuilding)._producingUnit)
                     {
-                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int) GameEnvironment.getCamera().getScreenSize().Y - 60, 400,20),s,Color.Gray,2);
-                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400*(float)((float)(e as ProductionBuilding)._unitProductionTimer / (float)(e as ProductionBuilding)._unitProductionTime)), 20), s, Color.Green, 2);
+                        DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int) GameEnvironment.getCamera().getScreenSize().Y - 60, 400,20),s,Color.SaddleBrown,2);
+                        s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/Healthbar"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400 * (float)((float)(e as ProductionBuilding)._unitProductionTimer / (float)(e as ProductionBuilding)._unitProductionTime)), 20), Color.White);
+                        //DrawingHelper.DrawRectangle(new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 60, (int)(400*(float)((float)(e as ProductionBuilding)._unitProductionTimer / (float)(e as ProductionBuilding)._unitProductionTime)), 20), s, Color.Green, 2);
                     }
                 }
               

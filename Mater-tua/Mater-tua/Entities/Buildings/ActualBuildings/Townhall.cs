@@ -45,7 +45,6 @@ using System;
         //FoodCreate();
         if ((float)_hp / (float)_maxhp < 1.0f / 3.0f)
         {
-
             if (_faction == faction.Human)
             {
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanTownHallConstruction");
@@ -55,7 +54,6 @@ using System;
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcTownHallConstruction");
             }
         }
-        
     }
 
     public override void Draw(SpriteBatch spriteBatch)

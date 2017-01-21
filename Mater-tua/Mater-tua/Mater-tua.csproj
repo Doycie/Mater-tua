@@ -96,11 +96,14 @@
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="GameSettingsManager.cs" />
     <Compile Include="GameStateManager.cs" />
+    <Compile Include="GameStates\DefeatState.cs" />
     <Compile Include="GameStates\PauseSettingsState.cs" />
     <Compile Include="GameStates\PauseState.cs" />
     <Compile Include="GameStates\SettingsState.cs" />
+    <Compile Include="GameStates\VictoryState.cs" />
     <Compile Include="HUD\Button.cs" />
     <Compile Include="HUD\Buttons\PlayingButtons\AttackButton.cs" />
+    <Compile Include="HUD\DefeatHud.cs" />
     <Compile Include="HUD\PlayingButton.cs" />
     <Compile Include="HUD\HUD.cs" />
     <Compile Include="HUD\MenuHud.cs" />
@@ -109,6 +112,7 @@
     <Compile Include="HUD\PlayingHud.cs" />
     <Compile Include="HUD\Resources.cs" />
     <Compile Include="HUD\SettingsHud.cs" />
+    <Compile Include="HUD\VictoryHud.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelDraw.cs" />

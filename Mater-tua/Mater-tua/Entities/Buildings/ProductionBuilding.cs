@@ -16,10 +16,11 @@ internal class ProductionBuilding : StaticBuilding
     public void produceUnit(Unit e)
     {
         
-        if (_level.Player.Gold > e.GoldCost && _level.Player.AvailableFood > 1 && _producingUnit == false)
+        if (_level.Player.Gold >= e.GoldCost && _level.Player.Food >= 1  && _level.Player.Wood >= e.LumberCost && _producingUnit == false)
         {
             _tempUnit = e;
             _level.Player.AddGold(-e.GoldCost);
+            _level.Player.AddWood(-e.LumberCost);
             _level.Player.availableFood(1);
 
             _producingUnit = true;

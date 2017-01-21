@@ -17,7 +17,7 @@ internal interface GameState
 internal class GameStateManager : GameState
 {
     //Hold the current gamestate object
-    public enum state { Playing, Menu, Pause, Settings, PauseSettings }
+    public enum state { Playing, Menu, Pause, Settings, PauseSettings, Victory, Defeat }
 
     public state State;
     public PlayingState playingState;
@@ -25,6 +25,8 @@ internal class GameStateManager : GameState
     public PauseState pauseState;
     public SettingsState settingsState;
     public PauseSettingsState pausesettingsState;
+    public VictoryState victoryState;
+    public DefeatState defeatState;
 
     public GameStateManager()
     {
@@ -61,6 +63,15 @@ internal class GameStateManager : GameState
             case state.PauseSettings:
                 playingState.draw(gameTime, spriteBatch);
                 break;
+
+            case state.Victory:
+                victoryState.draw(gameTime, spriteBatch);
+                break;
+
+            case state.Defeat:
+                defeatState.draw(gameTime, spriteBatch);
+                break;
+
         }
     }
 
@@ -88,6 +99,14 @@ internal class GameStateManager : GameState
             case state.PauseSettings:
                 pausesettingsState.handleInput(inputHelper);
                 break;
+
+            case state.Victory:
+                victoryState.handleInput(inputHelper);
+                break;
+
+            case state.Defeat:
+                defeatState.handleInput(inputHelper);
+                break;
         }
     }
 
@@ -111,6 +130,12 @@ internal class GameStateManager : GameState
                 break;
 
             case state.PauseSettings:
+                break;
+
+            case state.Victory:
+                break;
+
+            case state.Defeat:
                 break;
         }
     }
@@ -138,6 +163,14 @@ internal class GameStateManager : GameState
             case state.PauseSettings:
                 pausesettingsState.drawHUD(spriteBatch);
                 break;
+
+            case state.Victory:
+                victoryState.drawHUD(spriteBatch);
+                break;
+
+            case state.Defeat:
+                defeatState.drawHUD(spriteBatch);
+                break;
         }
     }
 
@@ -148,6 +181,8 @@ internal class GameStateManager : GameState
         pauseState = new PauseState();
         settingsState = new SettingsState();
         pausesettingsState = new PauseSettingsState();
+        victoryState = new VictoryState();
+        defeatState = new DefeatState();
 
         Console.WriteLine("SET VOLUME TO 0 FOR DEBUGGING");
         MediaPlayer.Volume = 0.0f;

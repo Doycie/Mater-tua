@@ -189,7 +189,7 @@ internal class PlayingHud : HUD
                 {
                     foreach (Barracks i in selectedEntities)
                         if (i.Faction == BuildingAndUnit.faction.Human)
-                            i.produceUnit(new Peasant(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
+                            i.produceUnit(new Archer(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
                 }
                 Console.WriteLine("case 9, produce ranged unit");
                 break;
@@ -205,51 +205,5 @@ internal class PlayingHud : HUD
 
         }
 
-        //switch (j)
-        //{
-        //    case 0:
-        //        break;
-
-        //    case 1:
-        //        foreach (BasicMeleeUnit i in selectedEntities)
-        //            i.setFaction(Unit.faction.Human);
-        //        break;
-
-        //    case 2:
-        //        foreach (BasicMeleeUnit i in selectedEntities)
-        //            i.setFaction(Unit.faction.Orc);
-        //        break;
-
-        //    case 3:
-        //        foreach (BasicMeleeUnit i in selectedEntities)
-        //            i.setFaction(Unit.faction.Neutral);
-        //        break;
-
-        //    case 4:
-        //        MediaPlayer.Volume -= (float)0.1;
-        //        try
-        //        {
-        //            SoundEffect.MasterVolume -= (float)0.1;
-        //        }
-        //        catch
-        //        {
-        //            SoundEffect.MasterVolume = 0;
-        //        }
-        //        Console.WriteLine(SoundEffect.MasterVolume);
-        //        break;
-
-        //    case 5:
-        //        MediaPlayer.Volume += (float)0.1;
-        //        try
-        //        {
-        //            SoundEffect.MasterVolume += (float)0.1;
-        //        }
-        //        catch
-        //        {
-        //            SoundEffect.MasterVolume = 1;
-        //        }
-        //        Console.WriteLine(SoundEffect.MasterVolume);
-        //        break;
-        //}
     }
 }

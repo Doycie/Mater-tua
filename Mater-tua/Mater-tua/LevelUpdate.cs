@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.Xna.Framework;
+using System;
 
 partial class Level
 {
@@ -50,6 +51,14 @@ partial class Level
                 if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
                 {
                     GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/BuildingDemolitionSound");
+                    if (entities[i].Faction == BuildingAndUnit.faction.Human && typeof(Townhall).IsAssignableFrom(entities[i].GetType()))
+                    {
+                        GameEnvironment.gameStateManager.State = GameStateManager.state.Defeat;
+                    }
+                    else if (entities[i].Faction == BuildingAndUnit.faction.Orc && typeof(Townhall).IsAssignableFrom(entities[i].GetType()))
+                    {
+                        GameEnvironment.gameStateManager.State = GameStateManager.state.Victory;
+                    }
                 }
                 if ((entities[i] as BuildingAndUnit).HitPoints < 1)
                 {

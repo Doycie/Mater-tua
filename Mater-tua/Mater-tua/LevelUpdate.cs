@@ -27,7 +27,8 @@ partial class Level
                 }
             }
         }
-     
+       
+
         //Update all the entities in the level list
         for (int i = entities.Count() - 1; i >= 0; i--)
         {
@@ -49,17 +50,17 @@ partial class Level
                     if (typeof(Tree).IsAssignableFrom(entities[i].GetType()) || typeof(TreasureChest).IsAssignableFrom(entities[i].GetType()))
                     {
                         GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
-                        specialFX.Add(new Explosion("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size));
+                        specialFX.Add(new Spritesheet("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size , 8,32,32,60));
                         entities.RemoveAt(i);
                     }
                     if (typeof(Unit).IsAssignableFrom(entities[i].GetType()))
                     {
-                        specialFX.Add(new Explosion("Sprites/Misc/BloodSplatter", entities[i].Position, entities[i].Size));
+                        specialFX.Add(new Spritesheet("Sprites/Misc/BloodSplatter", entities[i].Position, entities[i].Size, 4, 128,16,180));
                         entities.RemoveAt(i);
                     }
                     else if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()))
                     {
-                        specialFX.Add(new Explosion("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size));
+                        specialFX.Add(new Spritesheet("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size,5,96,15,180));
                         entities.RemoveAt(i);
                     }
 
@@ -70,9 +71,9 @@ partial class Level
         for (int i = specialFX.Count() - 1; i >= 0; i--)
         {
             specialFX[i].Update();
-            if (specialFX[i] is Explosion)
+            if (specialFX[i] is Spritesheet)
             {
-                if ((specialFX[i] as Explosion).remove())
+                if ((specialFX[i] as Spritesheet).remove())
                 {
                     {
                         specialFX.RemoveAt(i);

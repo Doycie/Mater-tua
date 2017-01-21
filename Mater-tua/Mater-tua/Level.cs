@@ -72,7 +72,7 @@ public partial class Level
         entities.Add(Mine);
         Townhall Townhall = new Townhall(this, new Vector2(7 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(Townhall);
-        Townhall orcTownhall = new Townhall(this, new Vector2(20 * data.tSize(), 18 * data.tSize()), BuildingAndUnit.faction.Orc);
+        Townhall orcTownhall = new Townhall(this, new Vector2(20 * data.tSize(), 22 * data.tSize()), BuildingAndUnit.faction.Orc);
         entities.Add(orcTownhall);
         Barracks humanBarracks = new Barracks(this, new Vector2(12 * data.tSize(), 6 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanBarracks);

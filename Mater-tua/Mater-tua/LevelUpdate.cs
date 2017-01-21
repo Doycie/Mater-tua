@@ -27,6 +27,8 @@ partial class Level
                 }
             }
         }
+
+        
        
 
         //Update all the entities in the level list
@@ -35,6 +37,10 @@ partial class Level
             if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
             {
                 entities[i].Update();
+                if(count%60==0 && entities[i] is Barracks && entities[i].Faction == BuildingAndUnit.faction.Orc)
+                {
+                    (entities[i] as Barracks).produceUnit(new Grunt(this, new Vector2(entities[i].Position.X + 2* data.tSize(), entities[i].Position.Y + 1 * data.tSize())));
+                }
                 if (typeof(Unit).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
                 {
                     if (entities[i].Faction == BuildingAndUnit.faction.Human)

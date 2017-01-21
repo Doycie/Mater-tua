@@ -156,7 +156,8 @@ internal class PlayingHud : HUD
             case 3:
 
                 foreach (Townhall t in selectedEntities)
-                    t.produceUnit(new Peasant(_level, new Vector2(t.Position.X + 3 * data.tSize(), t.Position.Y + 2 * data.tSize())));
+                    if (t.Faction == BuildingAndUnit.faction.Human)
+                        t.produceUnit(new Peasant(_level, new Vector2(t.Position.X + 3 * data.tSize(), t.Position.Y + 2 * data.tSize())));
                 
                 Console.WriteLine("case 3, produce worker unit");
                 break;
@@ -172,6 +173,7 @@ internal class PlayingHud : HUD
                 if (selectedEntities.Count == 1)
                 {
                     foreach (Barracks i in selectedEntities)
+                        if(i.Faction == BuildingAndUnit.faction.Human)
                         i.produceUnit(new Footman(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
                 }
                 Console.WriteLine("case 6, produce footman");
@@ -186,7 +188,8 @@ internal class PlayingHud : HUD
                 if (selectedEntities.Count == 1)
                 {
                     foreach (Barracks i in selectedEntities)
-                        i.produceUnit(new Peasant(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
+                        if (i.Faction == BuildingAndUnit.faction.Human)
+                            i.produceUnit(new Peasant(_level, new Vector2(i.Position.X + 2 * data.tSize(), i.Position.Y + 1 * data.tSize())));
                 }
                 Console.WriteLine("case 9, produce ranged unit");
                 break;

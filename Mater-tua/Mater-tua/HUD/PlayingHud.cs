@@ -30,7 +30,7 @@ internal class PlayingHud : HUD
         /* De volgorde is zo gefuckt omdat ik van links naar rechts tel en daarna naar de volgende rij van 4 buttons ga. Deal with it */
         /* 0 move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 1 build building button*/
+        /* 1 build farm button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 2 produce worker unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
@@ -48,7 +48,7 @@ internal class PlayingHud : HUD
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 9 patrol button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
-        /* 10 */
+        /* 10 build barracks button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 11 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
@@ -109,6 +109,7 @@ internal class PlayingHud : HUD
                 _playingButtons[3]._visible = true;
                 _playingButtons[4]._visible = true;
                 _playingButtons[7]._visible = true;
+                _playingButtons[10]._visible = true;
             }
             foreach (CombatUnit c in selectedEntities.OfType<CombatUnit>())
             {
@@ -151,7 +152,7 @@ internal class PlayingHud : HUD
                 break;
             case 2:
                     Console.WriteLine("case 2");
-                level.dragBuilding();
+                level.dragBuilding(1);
                 break;
             case 3:
 
@@ -197,6 +198,7 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 10");
                 break;
             case 11:
+                level.dragBuilding(2);
                 Console.WriteLine("case 11");
                 break;
             case 12:

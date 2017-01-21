@@ -5,6 +5,7 @@ using System;
 partial class Level
 {
     int count = 0;
+    private int _buildingID;
 
     public void update()
     {
@@ -104,8 +105,18 @@ partial class Level
         Player.Update();
     }
 
-    public void dragBuilding()
+    public void dragBuilding(int buildingID)
     {
-        _tempBuilding = new Barracks(this, Vector2.Zero, BuildingAndUnit.faction.Human);
+        _buildingID = buildingID;
+        if (_buildingID == 1)
+        {
+            Console.WriteLine("Building ID == 1");
+
+            _tempBuilding = new Farm(this, Vector2.Zero, BuildingAndUnit.faction.Human);
+        }
+        else if (_buildingID == 2)
+        {
+            _tempBuilding = new Barracks(this, Vector2.Zero, BuildingAndUnit.faction.Human);
+        }
     }
 }

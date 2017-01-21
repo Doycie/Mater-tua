@@ -76,6 +76,10 @@ public class AssetManager
                 this.PlayMusic("Sounds/Music/MaterTua_BGM_2", false);
                 break;
 
+            case 2:
+                this.PlayMusic("Sounds/Music/MaterTua_BGM_3", false);
+                break;
+
         }
     }
 

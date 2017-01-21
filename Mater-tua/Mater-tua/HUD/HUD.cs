@@ -8,12 +8,14 @@ internal class HUD
     protected List<Button> _buttons;
     protected List<PlayingButton> _playingButtons;
     protected List<Resources> _resources;
-    private Texture2D _tex;
+    private Texture2D _tex, _texHudDown, _texHudUp;
     private Rectangle _hudSize;
 
     public HUD()
     {
         _tex = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/WoodTextureTest");
+        _texHudDown = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/hudWoodDown");
+        _texHudUp = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/hudWoodUp");
         resizeHUD();
     }
 
@@ -29,10 +31,9 @@ internal class HUD
 
     public virtual void draw(SpriteBatch spriteBatch)
     {
-        for (int i = 0; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width) // repeats the HUD texture till edge of screen
-            spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - _tex.Height, _tex.Width, _tex.Height), Color.White);
-        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
-            spriteBatch.Draw(_tex, new Rectangle(i, (int)GameEnvironment.getCamera().getScreenSize().Y - 2 * _tex.Height, _tex.Width, _tex.Height), Color.White);
+        spriteBatch.Draw(_texHudDown, new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _texHudDown.Height, _texHudDown.Width, _texHudDown.Height), Color.White);
+        spriteBatch.Draw(_texHudUp, new Rectangle(_texHudDown.Width - _texHudUp.Width, (int)GameEnvironment.getCamera().getScreenSize().Y - _texHudDown.Height - _texHudUp.Height, _texHudUp.Width, _texHudUp.Height), Color.White);
+        
         for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 3 * _tex.Width - 45; i + _tex.Width <= GameEnvironment.getCamera().getScreenSize().X + _tex.Width; i += _tex.Width)
             spriteBatch.Draw(_tex, new Rectangle(i, -80, _tex.Width, _tex.Height), Color.White);
 

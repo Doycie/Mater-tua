@@ -110,13 +110,21 @@ partial class Level
         _buildingID = buildingID;
         if (_buildingID == 1)
         {
-            Console.WriteLine("Building ID == 1");
-
             _tempBuilding = new Farm(this, Vector2.Zero, BuildingAndUnit.faction.Human);
         }
         else if (_buildingID == 2)
         {
             _tempBuilding = new Barracks(this, Vector2.Zero, BuildingAndUnit.faction.Human);
+        }
+
+        if (Player.Gold >= _tempBuilding.GoldCost && Player.Wood >= _tempBuilding.LumberCost)
+        {
+            Player.AddGold(-_tempBuilding.GoldCost);
+            Player.AddWood(-_tempBuilding.LumberCost);
+        }
+        else
+        {
+            _tempBuilding = null;
         }
     }
 }

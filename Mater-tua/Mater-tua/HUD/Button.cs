@@ -8,7 +8,7 @@ using System.Linq;
 
 internal class Button
 {
-    private Rectangle _position;
+    public Rectangle _position;
     private Texture2D _tex;
     private Texture2D _texPressed;
     protected bool _relative;

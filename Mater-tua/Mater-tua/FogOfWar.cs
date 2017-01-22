@@ -39,6 +39,8 @@ class FogOfWar
         //Adjust the view slightly to see everything
         bounds.X -= data.tSize();
         bounds.Y -= data.tSize();
+        bounds.Width += data.tSize();
+        bounds.Height += data.tSize();
         // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
 
         //Draw all the tiles

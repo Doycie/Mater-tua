@@ -69,9 +69,9 @@ internal class PlayingHud : HUD
 
         if (MousePosInButton == true)
         {
-            s.Begin();
+            
             s.DrawString(font, "ToolTip" , ButtonMousePos, Color.Black);
-            s.End();
+           
         }
         
         _minimap.draw(s);

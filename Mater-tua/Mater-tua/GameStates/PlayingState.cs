@@ -240,9 +240,9 @@ internal class PlayingState : GameState
                 Vector2 pos = _customCursor.getMousePos();
 
                 bool clickedOnEntity = false;
-                foreach (SpriteEntity e in level.entities)
+                foreach (BuildingAndUnit e in level.entities)
                 {
-                    if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()).Contains(pos)))
+                    if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()).Contains(pos)) && e.Faction != BuildingAndUnit.faction.Orc)
                     {
                         //if (PlayedHello == false && Hello1 == false )
                         //{ GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes Sir"); PlayedHello = true; Hello1 = true; Hello2 = false; }

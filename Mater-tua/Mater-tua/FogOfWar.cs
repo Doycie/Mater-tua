@@ -49,9 +49,9 @@ class FogOfWar
                 if (bounds.Contains(x * data.tSize(), y * data.tSize()))
 
                 {
-                    if (_fog[x, y] == 0)
+                    if (_fog[x, y] == 0)  //if this tile has never been explored
                         s.Draw(_fogFull, new Vector2(x * data.tSize(), y * data.tSize()), Color.White);
-                    else if (_fog[x, y] == 1)
+                    else if (_fog[x, y] == 1) //if this tile has been explored but is no longer in vision
                         s.Draw(_fogHalf, new Vector2(x * data.tSize(), y * data.tSize()), Color.White);
                     //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
 
@@ -68,11 +68,11 @@ class FogOfWar
             {
                 foreach (BuildingAndUnit e in level.entities)
                 {
-                    if (e.Faction == BuildingAndUnit.faction.Human && _fog[x, y] != 3)
+                    if (e.Faction == BuildingAndUnit.faction.Human && _fog[x, y] != 3) 
                     {
-                        if (Distance(new Point((int)(x * data.tSize()), (int)(y * data.tSize())), new Point((int)e.Position.X, (int)e.Position.Y)) < 5 * data.tSize())
-                        {
-                            _fog[x, y] = 3;
+                        if (Distance(new Point((int)(x * data.tSize()), (int)(y * data.tSize())), new Point((int)e.Position.X, (int)e.Position.Y)) < 5 * data.tSize()) 
+                        {// if the distance between the entity and the tile looked at is less than 5
+                            _fog[x, y] = 3; //fog 3 = fully visible since this frame, fog 2 = fully visible, fog 1 = half visible (explored but no vision currently), fog 0 = no vision (unexplored)
                             continue;
                         }
                         else
@@ -96,7 +96,7 @@ class FogOfWar
         {
             for (int y = 0; y < _fog.GetLength(1); y++)
             {
-                if (_fog[x,y] == 3)
+                if (_fog[x,y] == 3) //set all the tiles that are visible this frame but weren't on the last one to visible.
                 {
                     _fog[x, y] = 2;
                 }
@@ -104,7 +104,7 @@ class FogOfWar
         }
 
         foreach(Unit f in level.entities.OfType<Unit>())
-        {
+        { //make sure not to draw enemy units that are in the fog of war
             if (f.Faction != BuildingAndUnit.faction.Human)
             {
                 if (_fog[((int)f.Position.X / data.tSize()), ((int)f.Position.Y / data.tSize())] <= 1)

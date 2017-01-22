@@ -79,20 +79,21 @@ internal class PlayingHud : HUD
                         break;
                     case 1:
                         Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        { s.DrawString(font, "Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
+                        { s.DrawString(font, "Produce Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
                         break;
                     case 2:
                         WorkerUnit w = new WorkerUnit(null);
                         { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.MonoGameOrange); }
                         break;
                     case 3:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "Stop", ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 4:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                     case 5:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        BasicMeleeUnit b = new Footman(null, new Vector2(0, 0));
+                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost , ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 6:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
@@ -101,13 +102,15 @@ internal class PlayingHud : HUD
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                     case 8:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        Archer a = new Archer(null, new Vector2(0, 0));
+                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 9:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                     case 10:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
+                        s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 11:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
@@ -153,7 +156,8 @@ internal class PlayingHud : HUD
     {
         int j = base.update(inputHelper);
 
-        ButtonMousePos = inputHelper.realMousePosition;
+        ButtonMousePos.X = inputHelper.realMousePosition.X - 50;
+        ButtonMousePos.Y = inputHelper.realMousePosition.Y - 30;
         _minimap.update(level);
         hudUnits = selectedEntities;
 

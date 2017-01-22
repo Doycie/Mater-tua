@@ -16,6 +16,8 @@ public partial class BuildingAndUnit : AnimatedEntity
     protected Texture2D _healthbar;
     protected Level _level;
 
+    protected bool _visible = true;
+
     public enum armorType { Light, Heavy, Fortified }
 
     protected armorType _armorType;
@@ -41,6 +43,12 @@ public partial class BuildingAndUnit : AnimatedEntity
     {
         _level = level;
         //_healthbar = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
+    }
+
+    public bool Visible
+    {
+        get { return _visible; }
+        set { _visible = value; }
     }
 
     public int Damage

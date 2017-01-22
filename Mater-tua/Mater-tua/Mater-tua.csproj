@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="FogOfWar.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Barracks.cs" />
     <Compile Include="Entities\Buildings\ActualBuildings\Gate.cs" />

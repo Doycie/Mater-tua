@@ -11,6 +11,7 @@ internal class PlayingState : GameState
     private int _previousScrollValue;
     private MouseState _mouseState;
     private Level level;
+    private FogOfWar fog;
     private List<BuildingAndUnit> _selectedEntities = new List<BuildingAndUnit>();
     private CustomCursor _customCursor;
     private HUD _hud;
@@ -37,6 +38,7 @@ internal class PlayingState : GameState
         level = new Level();
         _hud = new PlayingHud(level,_selectedEntities);
         level.init("lvl.txt");
+        fog = new FogOfWar(level);
         _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
     }
 
@@ -46,6 +48,7 @@ internal class PlayingState : GameState
         // GameEnvironment.getCamera().getScreenSize();
         // Console.WriteLine(mousePos);
         level.update();
+        fog.Update();
     }
                     
                     
@@ -61,6 +64,7 @@ internal class PlayingState : GameState
     public void draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         level.draw(spriteBatch);
+        fog.Draw(spriteBatch);
         if (_mouseReleased)
             DrawingHelper.DrawRectangle(new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y)), spriteBatch, Color.Red);
       

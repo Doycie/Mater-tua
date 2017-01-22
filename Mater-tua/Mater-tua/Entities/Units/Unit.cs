@@ -92,17 +92,20 @@ public class Unit : BuildingAndUnit
 
     public override void Draw(SpriteBatch s)
     {
-        base.Draw(s);
-        //Healthbar(s);
+        if (_visible)
+        {
+            base.Draw(s);
+            //Healthbar(s);
 
-        pathfinder.draw(s);
+            pathfinder.draw(s);
 
-       //foreach (Point p in _path)
-       // {
-       //     s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Yellow);
-       // }
+            //foreach (Point p in _path)
+            // {
+            //     s.Draw(_sprite, new Rectangle((int)p.X * 64, (int)p.Y * 64, data.tSize(), data.tSize()), Color.Yellow);
+            // }
 
-        // Console.WriteLine("SAD");
-       // s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);*/
+            // Console.WriteLine("SAD");
+            // s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), Color.White);*/
+        }
     }
 }

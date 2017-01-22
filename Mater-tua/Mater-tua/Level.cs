@@ -7,6 +7,8 @@ public partial class Level
     //Hold information about the current level
     private int _mapWidth, _mapHeight;
 
+    public FogOfWar _fog;
+
     public byte[,] _mapData;
 
     //Hold the dirt texture
@@ -23,7 +25,7 @@ public partial class Level
 
     public Player Player;
 
-
+    
     public Level()
     {
     }
@@ -49,7 +51,7 @@ public partial class Level
 
         for (int i = 0; i < 20; i++)
         {
-            if (i < 40)
+            if (i < 10)
             {
                 Footman e = new Footman(this, new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);
@@ -151,5 +153,9 @@ public partial class Level
             }
         }
         //_tex.SetData(data);
+    }
+    public void setFog(FogOfWar fog)
+    {
+        _fog = fog;
     }
 }

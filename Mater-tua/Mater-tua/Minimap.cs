@@ -7,10 +7,12 @@ internal class Minimap
     // private Texture2D _mapborder; ??
 
     private int _size;
+    private Level _level;
 
-    public Minimap(int size)
+    public Minimap(int size, Level level)
     {
         _size = size;
+        _level = level;
         _minimap = new Texture2D(GameEnvironment.graphics.GraphicsDevice, size, size);
         Color[] data = new Color[_size * _size];
 
@@ -28,10 +30,68 @@ internal class Minimap
     {
         Color[] data = new Color[_size * _size];
 
-        for (int i = 0; i < data.Length; ++i) data[i] = Color.Peru;
+        for (int i = 0; i < data.Length; ++i)
+        {
+            int m = _level._fog.Fog[i / 4 % 64, i / 1024];
+            if (m == 0)
+            {
+                data[i] = Color.Black;
+            }
+            else if (m == 1)
+            {
+                data[i] = Color.Gray;
+            }
+            else
+            {
+                data[i] = Color.Peru;
+            }
+            
+       
+        }
+
+
+        int h, k;
+
+        k = GameEnvironment.getCamera().getView().Y / 16;
+        int o = GameEnvironment.getCamera().getView().X / 16;
+        for (h = 0; h < GameEnvironment.getCamera().getScreenSize().X / 16; h++)
+        {
+            int l = o + h + k * 256;
+            if (!(l > 256 * 256 - 1 || l < 0))
+                data[l] = Color.Red;
+        }
+
+        k = GameEnvironment.getCamera().getView().Height / 16;
+        for (h = 0; h < GameEnvironment.getCamera().getScreenSize().X / 16; h++)
+        {
+            int l = o + h + k * 256;
+            if (!(l > 256 * 256 - 1 || l < 0))
+                data[l] = Color.Red;
+        }
+
+        k = GameEnvironment.getCamera().getView().X / 16;
+        int p = GameEnvironment.getCamera().getView().Y / 16;
+        for (h = 0; h < GameEnvironment.getCamera().getScreenSize().Y / 16; h++)
+        {
+            int l = p * 256 + k + h * 256;
+            if (!(l > 256 * 256 - 1 || l < 0))
+                data[l] = Color.Red;
+        }
+
+        k = GameEnvironment.getCamera().getView().Width / 16;
+        for (h = 0; h < GameEnvironment.getCamera().getScreenSize().Y / 16; h++)
+        {
+            int l = p * 256 + k + h * 256;
+            if (!(l > 256 * 256 - 1 || l < 0))
+                data[l] = Color.Red;
+        }
 
         foreach (BuildingAndUnit e in level.entities)
         {
+
+            int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
+            if (data[a] == Color.Black)
+                continue;
             Color c = Color.White;
             if (e.Faction == BuildingAndUnit.faction.Human &&(e.EntityType == BuildingAndUnit.entityType.Combat))
             {
@@ -70,43 +130,8 @@ internal class Minimap
                 c = Color.SandyBrown;
             }
 
-            int h, k;
 
-            k = GameEnvironment.getCamera().getView().Y / 16;
-            int o = GameEnvironment.getCamera().getView().X / 16;
-            for ( h = 0 ; h < GameEnvironment.getCamera().getScreenSize().X / 16 ; h++)
-            {
-                int l = o + h + k * 256;
-                if (!(l > 256 * 256 - 1 || l < 0))
-                    data[l] = Color.Red;
-            }
-
-             k = GameEnvironment.getCamera().getView().Height / 16;
-            for (h = 0; h < GameEnvironment.getCamera().getScreenSize().X / 16; h++)
-            {
-                int l = o + h + k * 256;
-                if (!(l > 256 * 256 - 1 || l < 0))
-                    data[l] = Color.Red;
-            }
-
-            k = GameEnvironment.getCamera().getView().X / 16;
-            int p = GameEnvironment.getCamera().getView().Y / 16;
-            for (h = 0; h < GameEnvironment.getCamera().getScreenSize().Y / 16; h++)
-            {
-                int l = p * 256 + k + h * 256;
-                if (!(l > 256 * 256 - 1 || l < 0))
-                    data[l] = Color.Red;
-            }
-
-            k = GameEnvironment.getCamera().getView().Width / 16;
-            for (h = 0; h < GameEnvironment.getCamera().getScreenSize().Y / 16; h++)
-            {
-                int l = p * 256+ k + h * 256;
-                if (!(l > 256 * 256 - 1 || l < 0))
-                    data[l] = Color.Red;
-            }
-
-            int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
+            
 
             int d = 4;
             int f = 2;

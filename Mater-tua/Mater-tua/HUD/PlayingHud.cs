@@ -19,7 +19,7 @@ internal class PlayingHud : HUD
     {
         entityList = list;
         _level = level;
-        _minimap = new Minimap(256);
+        _minimap = new Minimap(256,level);
         _buttons = new List<Button>();
         _playingButtons = new List<PlayingButton>();
         _resources = new List<Resources>();

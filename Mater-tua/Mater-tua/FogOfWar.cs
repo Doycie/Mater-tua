@@ -4,10 +4,10 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-class FogOfWar
+public class FogOfWar
 {
     protected Level level;
-    protected int[,] _fog;
+    public int[,] _fog;
     protected Texture2D _fogFull, _fogHalf;
 
     public FogOfWar(Level lvl)

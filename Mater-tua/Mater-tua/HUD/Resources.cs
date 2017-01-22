@@ -5,9 +5,7 @@ internal class Resources
 {
     private int _resourceNumber;
     protected Level _level;
-    private int wood;
-    private int gold;
-    private int food;
+
 
     public int getNumber()
     {

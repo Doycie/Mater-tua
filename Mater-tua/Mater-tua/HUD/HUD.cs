@@ -34,7 +34,7 @@ internal class HUD
         spriteBatch.Draw(_texHudDown, new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - _texHudDown.Height, _texHudDown.Width, _texHudDown.Height), Color.White);
         spriteBatch.Draw(_texHudUp, new Rectangle(_texHudDown.Width - _texHudUp.Width, (int)GameEnvironment.getCamera().getScreenSize().Y - _texHudDown.Height - _texHudUp.Height, _texHudUp.Width, _texHudUp.Height), Color.White);
         
-        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 4 * _tex.Width ; i + _texHudUp.Width <= GameEnvironment.getCamera().getScreenSize().X + _texHudUp.Width; i += _texHudUp.Width)
+        for (int i = (int)GameEnvironment.getCamera().getScreenSize().X - 4 * _tex.Width + 60; i + _texHudUp.Width <= GameEnvironment.getCamera().getScreenSize().X + _texHudUp.Width; i += _texHudUp.Width)
             spriteBatch.Draw(_texHudUp, new Rectangle(i, -80, _texHudUp.Width, _tex.Height), Color.White);
 
         foreach (Button b in _buttons)

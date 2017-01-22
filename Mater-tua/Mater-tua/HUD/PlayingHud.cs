@@ -67,13 +67,15 @@ internal class PlayingHud : HUD
         base.draw(s);
         font = GameEnvironment.getAssetManager().getFont("Warcraft Font");
 
-        if (MousePosInButton == true)
-        {
-            
-            s.DrawString(font, "ToolTip" , ButtonMousePos, Color.Black);
-           
+        for (int i = 0; i < _playingButtons.Count - 1; i++)
+        { if (_playingButtons[i]._drawTooltip == true)
+            {
+
+                s.DrawString(font, "ToolTip", ButtonMousePos, Color.Black);
+
+            }
         }
-        
+
         _minimap.draw(s);
         s.Draw(_minimapBorder, new Vector2(0, GameEnvironment.getCamera().getScreenSize().Y - 300), Color.White);
         //foreach (BasicMeleeUnit q in hudUnits.OfType<BasicMeleeUnit>())
@@ -100,14 +102,12 @@ internal class PlayingHud : HUD
                     break;
             }
         }
-
     }
 
     public void update(InputHelper inputHelper, List<BuildingAndUnit> selectedEntities, Level level)
     {
         int j = base.update(inputHelper);
 
-        ButtonMousePos = inputHelper.realMousePosition;
         _minimap.update(level);
         hudUnits = selectedEntities;
 
@@ -115,11 +115,6 @@ internal class PlayingHud : HUD
         for (int i = 0; i < _playingButtons.Count - 1; i++)
         { _playingButtons[i]._visible = false;
 
-            if (new Rectangle(_playingButtons[i]._position.X,(int)GameEnvironment.getCamera().getScreenSize().Y -  _playingButtons[i]._position.Y, 70 , 70).Contains(inputHelper.realMousePosition))
-            {
-                MousePosInButton = true;
-            }
- 
             foreach (WorkerUnit w in selectedEntities.OfType<WorkerUnit>())
                 {
                     _playingButtons[0]._visible = true;
@@ -130,28 +125,27 @@ internal class PlayingHud : HUD
                     _playingButtons[10]._visible = true;
                 }
             foreach (CombatUnit c in selectedEntities.OfType<CombatUnit>())
-            {
+                {
                 _playingButtons[0]._visible = true;
                 _playingButtons[3]._visible = true;
                 _playingButtons[6]._visible = true;
                 _playingButtons[9]._visible = true;
-            }
+                }
             foreach (Barracks b in selectedEntities.OfType<Barracks>())
-            {
+                {
                 _playingButtons[0]._visible = false;
                 _playingButtons[3]._visible = false;
                 _playingButtons[5]._visible = true;
                 _playingButtons[6]._visible = false;
                 _playingButtons[8]._visible = true;
                 _playingButtons[9]._visible = false;
-            }
+                }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
-            {
+                {
                 _playingButtons[0]._visible = false;
                 _playingButtons[3]._visible = false;
                 _playingButtons[2]._visible = true;
-            }
-
+                }
 
 
 
@@ -226,7 +220,10 @@ internal class PlayingHud : HUD
                 case 12:
                     Console.WriteLine("case 12");
                     break;
+
+
             }
+            
         }
 
     }

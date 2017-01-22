@@ -10,6 +10,7 @@ class PlayingButton : Button
 {
     protected List<BuildingAndUnit> entityList;
     public bool _visible = false;
+    public bool _drawTooltip = false;
 
     public PlayingButton(Rectangle position, Texture2D tex, Texture2D texPressed, bool relative, List<BuildingAndUnit> list, bool visible)
         : base (position,tex,texPressed,relative)
@@ -26,6 +27,8 @@ class PlayingButton : Button
         {
             if (r.Contains(inputHelper.realMousePosition))
             {
+                _drawTooltip = true;
+
                 if (!inputHelper.MouseLeftButtonDown() && _pressed)
                 {
                     GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/ButtonTap");
@@ -43,6 +46,7 @@ class PlayingButton : Button
             }
             else
             {
+                _drawTooltip = false;
                 _pressed = false;
             }
         }

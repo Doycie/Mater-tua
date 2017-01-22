@@ -9,7 +9,7 @@ internal class DefeatHud : HUD
 
     public DefeatHud()
     {
-        _BGTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/MenuBG");
+        _BGTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/Defeat");
         //TODO: Fix position of the buttons
         _buttons = new List<Button>();
 

@@ -34,25 +34,25 @@ internal class PlayingHud : HUD
         /* 0 move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Move"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/MovePressed"), false, entityList, false));
         /* 1 build farm button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Farm"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/FarmPressed"), false, entityList, false));
         /* 2 produce worker unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Peasant"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/PeasantPressed"), false, entityList, false));
         /* 3 stop move button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/StopMove"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/StopMovePressed"), false, entityList, false));
         /* 4 mine gold button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Gold"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/GoldPressed"), false, entityList, false));
         /* 5 produce melee unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Footman"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/FootmanPressed"), false, entityList, false));
         /* 6 attack button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 7 chop wood button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/wood"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/woodPressed"), false, entityList, false));
         /* 8 produce ranged unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Archer"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ArcherPressed"), false, entityList, false));
         /* 9 patrol button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 10 build barracks button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Barracks"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/BarracksPressed"), false, entityList, false));
         /* 11 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
 
@@ -67,55 +67,12 @@ internal class PlayingHud : HUD
         base.draw(s);
         font = GameEnvironment.getAssetManager().getFont("Warcraft Font");
 
-
         for (int i = 0; i < _playingButtons.Count - 1; i++)
-        { if (_playingButtons[i]._drawTooltip == true)
+        {
+            if (_playingButtons[i]._drawTooltip == true)
             {
-                switch (i)
-                {
-                    default:
-                        break;
-                    case 0:
-                        break;
-                    case 1:
-                        Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        { s.DrawString(font, "Farm, Gold:" + e.GoldCost +"+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
-                        break;
-                    case 2:
-                        WorkerUnit w = new WorkerUnit(null);
-                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.MonoGameOrange); }
-                        break;
-                    case 3:
-                        s.DrawString(font,"", ButtonMousePos, Color.Black);
-                        break;
-                    case 4:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                    case 5:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                    case 6:
-                        s.DrawString(font,"", ButtonMousePos, Color.Black);
-                        break;
-                    case 7:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                    case 8:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                    case 9:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                    case 10:
-                        s.DrawString(font,"", ButtonMousePos, Color.Black);
-                        break;
-                    case 11:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                    case 12:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
-                        break;
-                }
+
+                s.DrawString(font, "ToolTip", ButtonMousePos, Color.Black);
 
             }
         }
@@ -158,8 +115,8 @@ internal class PlayingHud : HUD
         hudUnits = selectedEntities;
 
         /* Ik ben niet trots op hoe ik het hierop volgende stuk code heb opgelost, voel je vrij om het mooi en efficienter te maken. Ik ben er klaar mee */
-        for (int i = 0; i <= _playingButtons.Count - 1; i++)
-        { _playingButtons[i]._visible = false;
+        for (int i = 0; i < _playingButtons.Count - 1; i++)
+          _playingButtons[i]._visible = false;
 
             foreach (WorkerUnit w in selectedEntities.OfType<WorkerUnit>())
                 {
@@ -218,9 +175,8 @@ internal class PlayingHud : HUD
                     _buttonDescriprion = "Worker: Gold: 100";
                     foreach (Townhall t in selectedEntities)
                         if (t.Faction == BuildingAndUnit.faction.Human)
-                        {
                             t.produceUnit(new Peasant(_level, new Vector2(t.Position.X + 3 * data.tSize(), t.Position.Y + 2 * data.tSize())));
-                        }
+
                     Console.WriteLine("case 3, produce worker unit");
                     break;
                 case 4:
@@ -274,4 +230,3 @@ internal class PlayingHud : HUD
         }
 
     }
-}

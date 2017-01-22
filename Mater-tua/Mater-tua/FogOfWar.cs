@@ -40,22 +40,24 @@ public class FogOfWar
         //Adjust the view slightly to see everything
         bounds.X = bounds.X / data.tSize() ;
         bounds.Y = bounds.Y / data.tSize() ;
-        bounds.Width = bounds.Width / data.tSize() + 1;
-        bounds.Height = bounds.Height / data.tSize() + 1;
+        bounds.Width = bounds.Width / data.tSize() +1;
+        bounds.Height = bounds.Height / data.tSize() +1 ;
         // Console.WriteLine("X: " + bounds.X + " Y: "  + bounds.Y + " Z: " + bounds.Width + " W: " + bounds.Height);
 
         //Draw all the tiles
-        for (int x = bounds.X; x < bounds.Width; x++)
+        for (int x = bounds.X; x < bounds.Width ; x++)
         {
             for (int y = bounds.Y; y < bounds.Height; y++)
             {
+                if (x < _fog.GetLength(0) && y < _fog.GetLength(1))
+                {
+                    if (_fog[x, y] == 0)  //if this tile has never been explored
+                        s.Draw(_fogFull, new Vector2(x * data.tSize(), y * data.tSize()), Color.White);
+                    else if (_fog[x, y] == 1) //if this tile has been explored but is no longer in vision
+                        s.Draw(_fogHalf, new Vector2(x * data.tSize(), y * data.tSize()), Color.White);
+                    //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
 
-                if (_fog[x, y] == 0)  //if this tile has never been explored
-                    s.Draw(_fogFull, new Vector2(x * data.tSize(), y * data.tSize()), Color.White);
-                else if (_fog[x, y] == 1) //if this tile has been explored but is no longer in vision
-                    s.Draw(_fogHalf, new Vector2(x * data.tSize(), y * data.tSize()), Color.White);
-                //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
-
+                }
             }
         }
     }
@@ -139,7 +141,7 @@ public class FogOfWar
                     {
                         if (Distance(new Point(x+pos.X,y+pos.Y),pos) <= _visionRange)
                         {
-                            if (x + pos.X >= 0 && y + pos.Y >= 0)
+                            if (x + pos.X >= 0 && x + pos.X < newFog.GetLength(0) && y + pos.Y >= 0 && y + pos.Y < newFog.GetLength(1))
                             {
                                 newFog[x + pos.X, y + pos.Y] = 2;
                             }

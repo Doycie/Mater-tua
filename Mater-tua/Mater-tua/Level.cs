@@ -49,7 +49,7 @@ public partial class Level
 
         for (int i = 0; i < 20; i++)
         {
-            if (i < 10)
+            if (i < 40)
             {
                 Footman e = new Footman(this, new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);

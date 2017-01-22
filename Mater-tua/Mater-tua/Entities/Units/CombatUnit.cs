@@ -78,20 +78,26 @@ internal class CombatUnit : Unit
         _attackCooldown--;
         if (_target != null && (_target as BuildingAndUnit).HitPoints > 0)
         {
-            if (_target.Size >= 2)
-            {
-                if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y + 68)) < data.tSize() ||
-                    calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y + 68)) < data.tSize())
-                    doattack();
-            }
-            else
-            //  Console.WriteLine("THE ENEMY IS SIGHTED " + calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) + " UNITS AWAY, AATTTTTTAACCCK!");
-            if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize())
+            //if (_target.Size >= 2)
+            //{
+            //    if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize() ||
+            //        calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y)) < data.tSize() ||
+            //        calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y + 68)) < data.tSize() ||
+            //        calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X + 68, (int)_target.Position.Y + 68)) < data.tSize())
+            //        doattack();
+            //}
+            //else
+            ////  Console.WriteLine("THE ENEMY IS SIGHTED " + calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) + " UNITS AWAY, AATTTTTTAACCCK!");
+            //if (calculateH(new Point((int)Position.X, (int)Position.Y), new Point((int)_target.Position.X, (int)_target.Position.Y)) < data.tSize())
+            //{
+            //    doattack();
+            //}
+
+
+            if (calculateH(new Point((int)Position.X + (int)(data.tSize() * Size / 2), (int)Position.Y + (int)(data.tSize() * Size / 2)), new Point((int)_target.Position.X + (data.tSize() * _target.Size / 2), (int)_target.Position.Y + (data.tSize() * _target.Size/ 2))) < data.tSize() * _target.Size - data.tSize()/4)
             {
                 doattack();
-            }
+            } 
         }
         else
         {

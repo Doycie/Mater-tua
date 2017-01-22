@@ -12,16 +12,16 @@ public class Projectile : SpriteEntity
     private float _rotation;
     private Level _level;
     private BuildingAndUnit _target;
-    private BuildingAndUnit _shooter;
 
-    public Projectile(Level level, BuildingAndUnit target, BuildingAndUnit shooter, int layer = 0)
+
+    public Projectile(Level level, BuildingAndUnit target, Vector2 pos, int layer = 0)
         : base("", layer)
     {
         _level = level;
         _target = target;
-        _shooter = shooter;
-        _position = _shooter.Position;
-        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/Birb");
+ 
+        _position = pos;
+        _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Units/rock");
 
         /*
                 if (_shooter.Position.X < _target.Position.X)
@@ -52,7 +52,7 @@ public class Projectile : SpriteEntity
                 }
                  */
 
-        _rotation = (float)Math.Atan2((_target.Position.X  - _shooter.Position.X), (_target.Position.Y  - _shooter.Position.Y));
+        _rotation = (float)Math.Atan2((_target.Position.X  - Position.X), (_target.Position.Y  - Position.Y));
 
         _velocity = new Vector2((float)Math.Sin(_rotation) * 64, (float)Math.Cos(_rotation) * 64) * 20f ;
 
@@ -70,7 +70,7 @@ public class Projectile : SpriteEntity
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch);
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize() / 4, _size * data.tSize() / 4), Color.White);
     }
 
     private void Move()

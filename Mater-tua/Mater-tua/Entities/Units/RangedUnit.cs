@@ -65,7 +65,7 @@ class RangedUnit : CombatUnit
         {
             if (isAttacking == 30)
             {
-                Projectile projectile = new Projectile(_level, _target, this);
+                Projectile projectile = new Projectile(_level, _target, new Vector2(_position.X + data.tSize() * 3 / 4, _position.Y + data.tSize() / 2));
                 _level.Projectiles.Add(projectile);
             }
             isAttacking--;

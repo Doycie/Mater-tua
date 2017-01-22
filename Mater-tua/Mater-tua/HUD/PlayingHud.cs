@@ -71,8 +71,51 @@ internal class PlayingHud : HUD
         {
             if (_playingButtons[i]._drawTooltip == true)
             {
-
-                s.DrawString(font, "ToolTip", ButtonMousePos, Color.Black);
+                switch (i)
+                {
+                    default:
+                        break;
+                    case 0:
+                        break;
+                    case 1:
+                        Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
+                        { s.DrawString(font, "Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
+                        break;
+                    case 2:
+                        WorkerUnit w = new WorkerUnit(null);
+                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.MonoGameOrange); }
+                        break;
+                    case 3:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 4:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 5:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 6:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 7:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 8:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 9:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 10:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 11:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 12:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                }
 
             }
         }

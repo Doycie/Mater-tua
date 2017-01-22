@@ -34,25 +34,25 @@ internal class PlayingHud : HUD
         /* 0 move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Move"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/MovePressed"), false, entityList, false));
         /* 1 build farm button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1000, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Farm"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/FarmPressed"), false, entityList, false));
         /* 2 produce worker unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Peasant"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/PeasantPressed"), false, entityList, false));
         /* 3 stop move button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/StopMove"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/StopMovePressed"), false, entityList, false));
         /* 4 mine gold button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Gold"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/GoldPressed"), false, entityList, false));
         /* 5 produce melee unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Footman"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/FootmanPressed"), false, entityList, false));
         /* 6 attack button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 7 chop wood button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/wood"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/woodPressed"), false, entityList, false));
         /* 8 produce ranged unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Archer"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ArcherPressed"), false, entityList, false));
         /* 9 patrol button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
         /* 10 build barracks button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1270, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Barracks"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/BarracksPressed"), false, entityList, false));
         /* 11 */
         _playingButtons.Add(new PlayingButton(new Rectangle(1270, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
 
@@ -68,7 +68,8 @@ internal class PlayingHud : HUD
         font = GameEnvironment.getAssetManager().getFont("Warcraft Font");
 
         for (int i = 0; i < _playingButtons.Count - 1; i++)
-        { if (_playingButtons[i]._drawTooltip == true)
+        {
+            if (_playingButtons[i]._drawTooltip == true)
             {
 
                 s.DrawString(font, "ToolTip", ButtonMousePos, Color.Black);

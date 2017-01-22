@@ -102,12 +102,14 @@ internal class PlayingHud : HUD
                     break;
             }
         }
+
     }
 
     public void update(InputHelper inputHelper, List<BuildingAndUnit> selectedEntities, Level level)
     {
         int j = base.update(inputHelper);
 
+        ButtonMousePos = inputHelper.realMousePosition;
         _minimap.update(level);
         hudUnits = selectedEntities;
 

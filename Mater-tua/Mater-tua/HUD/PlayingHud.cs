@@ -116,7 +116,7 @@ internal class PlayingHud : HUD
 
         /* Ik ben niet trots op hoe ik het hierop volgende stuk code heb opgelost, voel je vrij om het mooi en efficienter te maken. Ik ben er klaar mee */
         for (int i = 0; i < _playingButtons.Count - 1; i++)
-        { _playingButtons[i]._visible = false;
+          _playingButtons[i]._visible = false;
 
             foreach (WorkerUnit w in selectedEntities.OfType<WorkerUnit>())
                 {
@@ -230,4 +230,3 @@ internal class PlayingHud : HUD
         }
 
     }
-}

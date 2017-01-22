@@ -35,7 +35,7 @@ internal class Resources
 
             case 1: /* gold */
                 s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/gold"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 420, 10, 30, 30), Color.White);
-                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Gold: " + _level.Player.Gold, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X - 390, 10), Color.Orange);
+                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Gold: " + _level.Player.Gold, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X - 390, 10), Color.DarkOrange);
                 break;
 
             case 2: /* wood */
@@ -45,7 +45,7 @@ internal class Resources
 
             case 3: /* food */
                 s.Draw(GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/foodSprite"), new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X - 130, 10, 30, 30), Color.White);
-                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Food: " + _level.Player.Food, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X - 100, 10), Color.Brown);
+                s.DrawString(GameEnvironment.getAssetManager().getFont("Warcraft Font"), "Food: " + _level.Player.Food, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X - 100, 10), Color.DarkOrange);
                 break;
         }
     }

@@ -115,7 +115,7 @@ internal class PlayingHud : HUD
         for (int i = 0; i < _playingButtons.Count - 1; i++)
         { _playingButtons[i]._visible = false;
 
-            if (new Rectangle(_playingButtons[i]._position.X, _playingButtons[i]._position.Y, 70 , 70).Contains(inputHelper.realMousePosition))
+            if (new Rectangle(_playingButtons[i]._position.X,(int)GameEnvironment.getCamera().getScreenSize().Y -  _playingButtons[i]._position.Y, 70 , 70).Contains(inputHelper.realMousePosition))
             {
                 MousePosInButton = true;
             }

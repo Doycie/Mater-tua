@@ -104,9 +104,9 @@ internal class CombatUnit : Unit
 
     public void Defend(BuildingAndUnit e)
     {
-        agrorange = Math.Sqrt(Math.Pow(_position.X - e.Position.X, 2) * Math.Pow(_position.Y - e.Position.Y, 2));
+        agrorange = Math.Sqrt(Math.Pow(_position.X - e.Position.X, 2) + Math.Pow(_position.Y - e.Position.Y, 2));
 
-        if (agrorange < 128)
+        if (agrorange < (data.tSize() * 3))
         {
             orderAttack(e);
         }

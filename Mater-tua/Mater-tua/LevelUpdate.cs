@@ -21,8 +21,13 @@ partial class Level
                     {
                         if (g.Faction == CombatUnit.faction.Orc)
                         {
-                            //(e as CombatUnit).Defend(g);
-                            (g as CombatUnit).Defend(e);
+                            g.Defend(e);
+                            if (Math.Sqrt(Math.Pow(e.Position.X - g.Position.X, 2) + Math.Pow(e.Position.Y - g.Position.Y, 2)) < data.tSize())
+                            {
+                                (e as CombatUnit).orderAttack(g);
+                            }
+                            
+                            
 
                         }
                     }

@@ -54,11 +54,11 @@ public partial class Level
                 Footman e = new Footman(this, new Vector2(GameEnvironment.getRandom().Next(10) * data.tSize(), GameEnvironment.getRandom().Next(10) * data.tSize()));
                 entities.Add(e);
             }
-            //if (i >= 10)
-            //{
-            //    Grunt e = new Grunt(this, new Vector2((GameEnvironment.getRandom().Next(10) + 10) * data.tSize(), (GameEnvironment.getRandom().Next(10) + 10) * data.tSize()));
-            //    entities.Add(e);
-            //}
+            if (i >= 10)
+            {
+                Grunt e = new Grunt(this, new Vector2((GameEnvironment.getRandom().Next(10) + 10) * data.tSize(), (GameEnvironment.getRandom().Next(10) + 10) * data.tSize()));
+               entities.Add(e);
+            }
             //Unit e = new Unit();
             //e.init(new Vector2(GameEnvironment.getRandom().Next(18) * data.tSize(), GameEnvironment.getRandom().Next(18) * data.tSize()), "birb");
             //entities.Add(e);

@@ -68,7 +68,7 @@ class FogOfWar
             {
                 foreach (BuildingAndUnit e in level.entities)
                 {
-                    if (e.Faction == BuildingAndUnit.faction.Human && _fog[x, y] != 3) 
+                    if (e.Faction == BuildingAndUnit.faction.Human && _fog[x, y] != 3 && Math.Abs(e.Position.X / 64 - x) <= 5 && Math.Abs(e.Position.Y / 64 - y) <= 5) 
                     {
                         if (Distance(new Point((int)(x * data.tSize()), (int)(y * data.tSize())), new Point((int)e.Position.X, (int)e.Position.Y)) < 5 * data.tSize()) 
                         {// if the distance between the entity and the tile looked at is less than 5

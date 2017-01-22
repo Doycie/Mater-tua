@@ -16,7 +16,7 @@ internal class DefeatState : GameState
     {
         _customCursor = new CustomCursor();
         _mouseState = Mouse.GetState();
-        _hud = new VictoryHud();
+        _hud = new DefeatHud();
     }
 
     public void update(GameTime gameTime)
@@ -40,7 +40,7 @@ internal class DefeatState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
-        if ((_hud as VictoryHud).update(inputHelper))
+        if ((_hud as DefeatHud).update(inputHelper))
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
 
         if (inputHelper.MouseLeftButtonDown())

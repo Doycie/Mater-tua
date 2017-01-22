@@ -14,9 +14,9 @@ internal class DefeatHud : HUD
         _buttons = new List<Button>();
 
         /* 1 quit to menu*/
-        _buttons.Add(new Button(new Rectangle(550, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButtonPressed"), false));
+        _buttons.Add(new Button(new Rectangle(200, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButtonPressed"), false));
         /* 2 exit game */
-        _buttons.Add(new Button(new Rectangle(930, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButtonPressed"), false));
+        _buttons.Add(new Button(new Rectangle(900, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/exitButtonPressed"), false));
     }
 
     public new bool update(InputHelper inputHelper)

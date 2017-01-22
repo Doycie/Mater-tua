@@ -7,6 +7,8 @@ public partial class Level
     //Hold information about the current level
     private int _mapWidth, _mapHeight;
 
+    public FogOfWar _fog;
+
     public byte[,] _mapData;
 
     //Hold the dirt texture
@@ -23,7 +25,7 @@ public partial class Level
 
     public Player Player;
 
-
+    
     public Level()
     {
     }
@@ -151,5 +153,9 @@ public partial class Level
             }
         }
         //_tex.SetData(data);
+    }
+    public void setFog(FogOfWar fog)
+    {
+        _fog = fog;
     }
 }

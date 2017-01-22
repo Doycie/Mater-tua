@@ -31,6 +31,7 @@ public class Player
 
         _Gold = 9999;
         _availableFood = -99;
+        _Wood = 100;
     }
 
     public void Update()

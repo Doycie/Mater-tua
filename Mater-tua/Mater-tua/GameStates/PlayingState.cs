@@ -18,9 +18,8 @@ internal class PlayingState : GameState
     private Vector2 _lastMousePos;
     private Vector2 _currentMousePos;
     private bool _mouseReleased;
-    private Texture2D _selectTex;
-    private bool Hello1 = false;
-    private bool Hello2 = true;
+
+
     private bool PlayedBattleCry2 = true;
     private bool PlayedBattleCry1 = false;
     private bool PlayedConfirmation1 = false;
@@ -39,7 +38,7 @@ internal class PlayingState : GameState
         _hud = new PlayingHud(level,_selectedEntities);
         level.init("lvl.txt");
         fog = new FogOfWar(level);
-        _selectTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/selectbox");
+        level.setFog(fog);
     }
 
     //Update the level

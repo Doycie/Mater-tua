@@ -67,11 +67,55 @@ internal class PlayingHud : HUD
         base.draw(s);
         font = GameEnvironment.getAssetManager().getFont("Warcraft Font");
 
+
         for (int i = 0; i < _playingButtons.Count - 1; i++)
         { if (_playingButtons[i]._drawTooltip == true)
             {
-
-                s.DrawString(font, "ToolTip", ButtonMousePos, Color.Black);
+                switch (i)
+                {
+                    default:
+                        break;
+                    case 0:
+                        break;
+                    case 1:
+                        Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
+                        { s.DrawString(font, "Farm, Gold:" + e.GoldCost +"+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
+                        break;
+                    case 2:
+                        WorkerUnit w = new WorkerUnit(null);
+                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.MonoGameOrange); }
+                        break;
+                    case 3:
+                        s.DrawString(font,"", ButtonMousePos, Color.Black);
+                        break;
+                    case 4:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 5:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 6:
+                        s.DrawString(font,"", ButtonMousePos, Color.Black);
+                        break;
+                    case 7:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 8:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 9:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 10:
+                        s.DrawString(font,"", ButtonMousePos, Color.Black);
+                        break;
+                    case 11:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                    case 12:
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        break;
+                }
 
             }
         }
@@ -114,7 +158,7 @@ internal class PlayingHud : HUD
         hudUnits = selectedEntities;
 
         /* Ik ben niet trots op hoe ik het hierop volgende stuk code heb opgelost, voel je vrij om het mooi en efficienter te maken. Ik ben er klaar mee */
-        for (int i = 0; i < _playingButtons.Count - 1; i++)
+        for (int i = 0; i <= _playingButtons.Count - 1; i++)
         { _playingButtons[i]._visible = false;
 
             foreach (WorkerUnit w in selectedEntities.OfType<WorkerUnit>())
@@ -174,8 +218,9 @@ internal class PlayingHud : HUD
                     _buttonDescriprion = "Worker: Gold: 100";
                     foreach (Townhall t in selectedEntities)
                         if (t.Faction == BuildingAndUnit.faction.Human)
+                        {
                             t.produceUnit(new Peasant(_level, new Vector2(t.Position.X + 3 * data.tSize(), t.Position.Y + 2 * data.tSize())));
-
+                        }
                     Console.WriteLine("case 3, produce worker unit");
                     break;
                 case 4:

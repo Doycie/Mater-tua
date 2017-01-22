@@ -8,8 +8,8 @@ public partial class BuildingAndUnit : AnimatedEntity
     protected int _hp;
     protected int _armor;
     protected int _damage;
-    protected int _lumberCost;
-    protected int _goldCost = 400;
+    public int _lumberCost;
+    public int _goldCost = 400;
     protected int _range;
     protected string _description;
     protected BuildingAndUnit _target;

@@ -39,7 +39,9 @@ internal class Minimap
             }
             else if (m == 1)
             {
-                data[i] = Color.Gray;
+                if (_level._mapData[i / 4 % 64, i / 1024] == 1) { data[i] = Color.DarkBlue; }
+                else
+                    data[i] = Color.RosyBrown;
             }
             else
             {
@@ -48,8 +50,8 @@ internal class Minimap
                 else if (_level._mapData[i / 4 % 64, i / 1024] == 1) { data[i] = Color.Blue; }
                 else if (_level._mapData[i / 4 % 64, i / 1024] == 2) { data[i] = Color.LightGray; }
             }
-            
-       
+
+
         }
 
 
@@ -97,7 +99,7 @@ internal class Minimap
                 continue;
             Color c = Color.White;
 
-            if (e.Faction == BuildingAndUnit.faction.Human &&(e.EntityType == BuildingAndUnit.entityType.Combat))
+            if (e.Faction == BuildingAndUnit.faction.Human && (e.EntityType == BuildingAndUnit.entityType.Combat))
             {
                 c = Color.Blue;
             }
@@ -109,9 +111,12 @@ internal class Minimap
             {
                 c = Color.CadetBlue;
             }
-            else if (e.Faction == BuildingAndUnit.faction.Orc &&(e.EntityType == BuildingAndUnit.entityType.Combat))
+            else if (e.Faction == BuildingAndUnit.faction.Orc && (e.EntityType == BuildingAndUnit.entityType.Combat))
             {
-                c = Color.Red;
+                if (e.Visible)
+                    c = Color.Red;
+                else
+                    c = Color.RosyBrown;
             }
             else if (e.Faction == BuildingAndUnit.faction.Orc && (e.EntityType == BuildingAndUnit.entityType.Building))
             {
@@ -121,7 +126,7 @@ internal class Minimap
             {
                 c = Color.MediumVioletRed;
             }
-            else if(e.ResourceType == BuildingAndUnit.resourceType.Gold)
+            else if (e.ResourceType == BuildingAndUnit.resourceType.Gold)
             {
                 c = Color.Gold;
             }
@@ -135,11 +140,11 @@ internal class Minimap
             }
 
 
-            
+
 
             int d = 4;
             int f = 2;
-            if(e is StaticBuilding)
+            if (e is StaticBuilding)
             {
                 d = 16;
                 f = 4;

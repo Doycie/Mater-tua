@@ -284,46 +284,46 @@ internal class PlayingState : GameState
                     _selectedEntities.Clear();
                 }
             }
-            else if ((new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - 256, 256, 256).Contains(inputHelper.realMousePosition)))
-            {
-                //Clicked inside minimap
+        }
+        else if ((new Rectangle(0, (int)GameEnvironment.getCamera().getScreenSize().Y - 256, 256, 256).Contains(inputHelper.realMousePosition)))
+        {
+            //Clicked inside minimap
 
             if (inputHelper.MouseLeftButtonDown())
             {
-
                 GameEnvironment.getCamera().setPos(new Vector2(inputHelper.realMousePosition.X * 16 - GameEnvironment.getCamera().getScreenSize().X / 2, ((inputHelper.realMousePosition.Y - GameEnvironment.getCamera().getScreenSize().Y) + 256) * 16 - GameEnvironment.getCamera().getScreenSize().Y / 2));
             }
         }
 
-            if (level.movingUnits)
+        if (level.movingUnits)
+        {
+
+            if (inputHelper.MouseLeftButtonPressed())
             {
-                
-                if (inputHelper.MouseLeftButtonPressed())
+
+                foreach (Unit e in _selectedEntities)
                 {
-                    
-                    foreach (Unit e in _selectedEntities)
-                    {
-                        e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
-                    }
-                    level.movingUnits = false;
+                    e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                 }
-            }
-            if (level._tempBuilding != null)
-            {
-                (level._tempBuilding as StaticBuilding).setPos(_currentMousePos);
-                if (inputHelper.MouseLeftButtonPressed())
-                {
-                    level.entities.Add(level._tempBuilding);
-                    level._tempBuilding = null;
-                }
-                else if (inputHelper.MouseRightButtonPressed())
-                {
-                    level.Player.AddGold(level._tempBuilding.GoldCost);
-                    level.Player.AddWood(level._tempBuilding.LumberCost);
-                    level._tempBuilding = null;
-                }
+                level.movingUnits = false;
             }
         }
+        if (level._tempBuilding != null)
+        {
+            (level._tempBuilding as StaticBuilding).setPos(_currentMousePos);
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                level.entities.Add(level._tempBuilding);
+                level._tempBuilding = null;
+            }
+            else if (inputHelper.MouseRightButtonPressed())
+            {
+                level.Player.AddGold(level._tempBuilding.GoldCost);
+                level.Player.AddWood(level._tempBuilding.LumberCost);
+                level._tempBuilding = null;
+            }
+        }
+
         int x = 0;
         int y = 0;
 

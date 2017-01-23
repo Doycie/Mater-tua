@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System;
 
 public partial class Level
 {
@@ -18,6 +19,8 @@ public partial class Level
 
     public BuildingAndUnit _tempBuilding;
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
+    public bool movingUnits = false;
+
     public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
 
     public List<Entity> specialFX = new List<Entity>();
@@ -42,7 +45,7 @@ public partial class Level
     //Init the level based on a level text file
     public void init(string mapPath)
     {
-        _mountainTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/Mountain");
+        _mountainTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/Mountain1");
         _waterTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/water");
         _dirtTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/dirt");
         _mapWidth = data.tSize();
@@ -160,4 +163,6 @@ public partial class Level
     {
         _fog = fog;
     }
+
+   
 }

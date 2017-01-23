@@ -19,8 +19,13 @@ internal class PlayingHud : HUD
     private SpriteFont font;
     private Vector2 ButtonMousePos, ToolTipPos;
 
-    public PlayingHud(Level level, List<BuildingAndUnit> list)
+
+
+    private PlayingState _playingState;
+
+    public PlayingHud(Level level, List<BuildingAndUnit> list, PlayingState playingState)
     {
+        _playingState = playingState;
         entityList = list;
         _level = level;
         _minimap = new Minimap(256,level);
@@ -209,9 +214,9 @@ internal class PlayingHud : HUD
                 case 0: //leeg laten! Deze doet niks
                     break;
                 case 1:
-                    //foreach (Unit u in selectedEntities)
-                    //    u.orderMove
+                    _level.moveUnits();
                     Console.WriteLine("case 1, order move");
+                    
                     break;
                 case 2:
                     _buttonDescriprion = "Farm: Gold: 400, Lumber:400, produces food";
@@ -230,10 +235,13 @@ internal class PlayingHud : HUD
                     foreach (Unit u in selectedEntities)
                     if(u.Path.Count > 1)
                         u.Path.RemoveRange(0, u .Path.Count - 1);
-                    Console.WriteLine("case 4, order stop move.");
+                _playingState.Mine = false;
+                _playingState.Chop = false;
+                Console.WriteLine("case 4, order stop move.");
                     break;
                 case 5:
                     Console.WriteLine("case 5");
+                _playingState.Mine = true;
                     break;
                 case 6:
                     _buttonDescriprion = "Footman: Gold: 400, Lumber:100";
@@ -250,6 +258,7 @@ internal class PlayingHud : HUD
                     break;
                 case 8:
                     Console.WriteLine("case 8");
+                _playingState.Chop = true;
                     break;
                 case 9:
                     _buttonDescriprion = "Archer: Gold: 400, Lumber:150";

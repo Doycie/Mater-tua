@@ -51,6 +51,11 @@ internal class MenuState : GameState
             }
         }
 
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            GameEnvironment.exit();
+        }
+
         if (inputHelper.KeyPressed(Keys.Enter))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;

@@ -106,7 +106,7 @@ internal class Node
             {
                 for (int k = -1; k < 2; k++)
                 {
-                    if (!(loc.X + i < 0 || loc.Y + k < 0 || loc.X + i > 64 || loc.Y +k >64))
+                    if (!(loc.X + i < 0 || loc.Y + k < 0 || loc.X + i > map.GetLength(0) || loc.Y +k > map.GetLength(1)))
                     {
                         if (!(i == 0 && k == 0))
                         {

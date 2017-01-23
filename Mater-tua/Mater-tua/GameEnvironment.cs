@@ -137,10 +137,7 @@ internal class GameEnvironment : Game
     private void HandleInput()
     {
         inputHelper.Update();
-        if (inputHelper.KeyPressed(Keys.Escape))
-        {
-            Exit();
-        }
+
         if (inputHelper.KeyPressed(Keys.F5))
         {
             GameEnvironment.graphics.ToggleFullScreen();

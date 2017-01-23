@@ -83,6 +83,12 @@ internal class PlayingState : GameState
 
         if(level._tempBuilding != null)
         {
+            //if (gebouw kan geplaatst worden)
+            //    level._tempBuilding.DrawGreen(spriteBatch);
+
+            //if (gebouw kan niet geplaatst worden)
+            //    level._tempBuilding.DrawRed(spriteBatch);
+
             level._tempBuilding.Draw(spriteBatch);
         }
     }
@@ -217,17 +223,29 @@ internal class PlayingState : GameState
             //Drag the selection box to include multiple entities
             if (!inputHelper.MouseLeftButtonDown())
             {
+                
                 if (_mouseReleased)
-                {                   
+                {
+                    
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                     foreach (Unit e in level.entities.OfType<Unit>())
                         if (e.Faction == BuildingAndUnit.faction.Human)
-                            if ((r.Contains(e.Center)))
+                            if ((r.Contains(e.Center)) /*&& _selectedEntities[0] != e*/)
                             {
                                 _selectedEntities.Add((e as Unit));
                             }
+                    
                 }
-   
+                if (_selectedEntities.Count > 1)
+                {
+                    for (int i = 1; i < _selectedEntities.Count; i++)
+                    {
+                        if (_selectedEntities[0] == _selectedEntities[i])
+                        {
+                            _selectedEntities.Remove(_selectedEntities[i]);
+                        }
+                    }
+                }
                 _mouseReleased = false;
             }
 
@@ -377,6 +395,13 @@ internal class PlayingState : GameState
             _selectedEntities.Clear();
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
+
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            _selectedEntities.Clear();
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
+        }
+
         if (inputHelper.KeyPressed(Keys.F1))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;

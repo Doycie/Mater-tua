@@ -51,6 +51,11 @@ internal class PauseSettingsState : GameState
             }
         }
 
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
+        }
+
         if (inputHelper.KeyPressed(Keys.Back))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;

@@ -51,6 +51,11 @@ internal class SettingsState : GameState
             }
         }
 
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
+        }
+
         if (inputHelper.KeyPressed(Keys.Back))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;

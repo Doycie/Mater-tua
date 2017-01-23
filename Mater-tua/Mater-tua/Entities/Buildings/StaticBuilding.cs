@@ -11,6 +11,7 @@ internal class StaticBuilding : BuildingAndUnit
     public StaticBuilding(Level level) : base(level)
     {
         _entityType = entityType.Building;
+        _visionRange = 6;
     }
 
     public bool AbleToProduce

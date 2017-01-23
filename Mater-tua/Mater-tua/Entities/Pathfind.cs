@@ -106,14 +106,14 @@ internal class Node
             {
                 for (int k = -1; k < 2; k++)
                 {
-                    if (!(loc.X + i < 0 || loc.Y + k < 0 || loc.X + i > 64 || loc.Y +k >64))
+                    if (!(loc.X + i < 0 || loc.Y + k < 0 || loc.X + i > map.GetLength(0) || loc.Y +k > map.GetLength(1)))
                     {
                         if (!(i == 0 && k == 0))
                         {
                             if (map[loc.X + i, loc.Y + k] == 0)
                             {
                                 bool skip = false;
-                                foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
+                                foreach (BuildingAndUnit e in level.entities.OfType<BuildingAndUnit>())
                                 {
                                     int x = (int)e.Position.X / 64;
                                     int y = (int)e.Position.Y / 64;

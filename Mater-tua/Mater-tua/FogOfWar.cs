@@ -8,7 +8,6 @@ public class FogOfWar
 {
     protected Level level;
     public int[,] _fog;
-    protected int _visionRange = 4;
     protected Texture2D _fogFull, _fogHalf;
 
     public FogOfWar(Level lvl)
@@ -135,11 +134,11 @@ public class FogOfWar
             if (e.Faction == BuildingAndUnit.faction.Human)
             {
                 Point pos = new Point((int)e.Position.X / data.tSize(), (int)e.Position.Y / data.tSize());
-                for(int x = -_visionRange; x <= _visionRange; x++)
+                for(int x = -e.VisionRange; x <= e.VisionRange; x++)
                 {
-                    for (int y = -_visionRange; y <= _visionRange; y++)
+                    for (int y = -e.VisionRange; y <= e.VisionRange; y++)
                     {
-                        if (Distance(new Point(x+pos.X,y+pos.Y),pos) <= _visionRange)
+                        if (Distance(new Point(x+pos.X,y+pos.Y),pos) <= e.VisionRange)
                         {
                             if (x + pos.X >= 0 && x + pos.X < newFog.GetLength(0) && y + pos.Y >= 0 && y + pos.Y < newFog.GetLength(1))
                             {

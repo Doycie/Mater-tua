@@ -75,7 +75,10 @@ public partial class Level
         entities.Add(orcFarm);
         Farm humanFarm = new Farm(this, new Vector2(5 * data.tSize(), 8 * data.tSize()), BuildingAndUnit.faction.Human);
         entities.Add(humanFarm);
-
+        Tree Tree1 = new Tree(this,new Vector2(9 * data.tSize(), 1 * data.tSize()));
+        entities.Add(Tree1);
+        Tree Tree2 = new Tree(this,new Vector2(2 * data.tSize(), 5 * data.tSize()));
+        entities.Add(Tree2);
         Mine Mine = new Mine(this, new Vector2(1 * data.tSize(), 1 * data.tSize()), BuildingAndUnit.faction.Neutral);
         entities.Add(Mine);
         Townhall Townhall = new Townhall(this, new Vector2(7 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Human);
@@ -94,10 +97,7 @@ public partial class Level
         TreasureChest Chest1 = new TreasureChest(this, new Vector2(5 * data.tSize(), 2 * data.tSize()));
         entities.Add(Chest1);
 
-        Tree Tree1 = new Tree(this,new Vector2(9 * data.tSize(), 1 * data.tSize()));
-        entities.Add(Tree1);
-        Tree Tree2 = new Tree(this,new Vector2(2 * data.tSize(), 5 * data.tSize()));
-        entities.Add(Tree2);
+  
 
         Archer archer = new Archer(this, new Vector2(5 * data.tSize(), 10 * data.tSize()));
         entities.Add(archer);

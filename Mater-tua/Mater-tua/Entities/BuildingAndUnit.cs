@@ -16,6 +16,8 @@ public partial class BuildingAndUnit : AnimatedEntity
     protected Texture2D _healthbar;
     protected Level _level;
 
+    protected int _visionRange = 4;
+
     protected bool _visible = true;
 
     public enum armorType { Light, Heavy, Fortified }
@@ -43,6 +45,11 @@ public partial class BuildingAndUnit : AnimatedEntity
     {
         _level = level;
         //_healthbar = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
+    }
+
+    public int VisionRange
+    {
+        get { return _visionRange; }
     }
 
     public bool Visible
@@ -189,5 +196,15 @@ public partial class BuildingAndUnit : AnimatedEntity
     {
         spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
         Healthbar(spriteBatch);
+    }
+
+    public void DrawGreen(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.Green);
+    }
+
+    public void DrawRed(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.Red);
     }
 }

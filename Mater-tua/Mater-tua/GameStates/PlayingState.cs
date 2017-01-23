@@ -371,6 +371,13 @@ internal class PlayingState : GameState
             _selectedEntities.Clear();
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
+
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            _selectedEntities.Clear();
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
+        }
+
         if (inputHelper.KeyPressed(Keys.F1))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;

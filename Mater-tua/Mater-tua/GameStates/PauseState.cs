@@ -51,13 +51,18 @@ internal class PauseState : GameState
             }
         }
 
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
+        }
+
         if (inputHelper.KeyPressed(Keys.Enter))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
         }
         if (inputHelper.KeyPressed(Keys.Back))
         {
-            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
         }
     }
 }

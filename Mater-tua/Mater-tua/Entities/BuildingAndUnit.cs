@@ -162,7 +162,7 @@ public partial class BuildingAndUnit : AnimatedEntity
         }
     }
 
-    public void Healthbar(SpriteBatch spriteBatch, Vector2 pos)
+    public void Healthbar(SpriteBatch spriteBatch, Vector2 pos, int size)
     {
 
         if (((float)_hp / (float)_maxhp) < (2.0f / 3.0f))
@@ -180,8 +180,8 @@ public partial class BuildingAndUnit : AnimatedEntity
         {
             _healthbar = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
         }
-        DrawingHelper.DrawRectangle(new Rectangle((int)pos.X - 1, (int)pos.Y - 8, (int)_size * data.tSize() + 1, (int)data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
-        spriteBatch.Draw(_healthbar, new Rectangle((int)pos.X, (int)pos.Y - 7, (int)((float)(_size * data.tSize()) * ((float)_hp / (float)_maxhp)), data.tSize() / 10), Color.White);
+        DrawingHelper.DrawRectangle(new Rectangle((int)pos.X - 1, (int)pos.Y - 8, (int)size * data.tSize() + 1, (int)data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
+        spriteBatch.Draw(_healthbar, new Rectangle((int)pos.X, (int)pos.Y - 7, (int)((float)(size * data.tSize()) * ((float)_hp / (float)_maxhp)), data.tSize() / 10), Color.White);
 
     }
 

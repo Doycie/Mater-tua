@@ -18,9 +18,11 @@ internal class PlayingHud : HUD
     private string _buttonDescriprion;
     private SpriteFont font;
     private Vector2 ButtonMousePos;
+    private PlayingState _playingState;
 
-    public PlayingHud(Level level, List<BuildingAndUnit> list)
+    public PlayingHud(Level level, List<BuildingAndUnit> list, PlayingState playingState)
     {
+        _playingState = playingState;
         entityList = list;
         _level = level;
         _minimap = new Minimap(256,level);
@@ -79,21 +81,21 @@ internal class PlayingHud : HUD
                         break;
                     case 1:
                         Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        { s.DrawString(font, "Produce Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
+                        { s.DrawString(font, "Produce Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.WhiteSmoke); }
                         break;
                     case 2:
                         WorkerUnit w = new WorkerUnit(null);
-                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.MonoGameOrange); }
+                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.WhiteSmoke); }
                         break;
                     case 3:
-                        s.DrawString(font, "Stop", ButtonMousePos, Color.MonoGameOrange);
+                        s.DrawString(font, "Stop", ButtonMousePos, Color.WhiteSmoke);
                         break;
                     case 4:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                     case 5:
                         BasicMeleeUnit b = new Footman(null, new Vector2(0, 0));
-                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost , ButtonMousePos, Color.MonoGameOrange);
+                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost , ButtonMousePos, Color.WhiteSmoke);
                         break;
                     case 6:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
@@ -103,20 +105,20 @@ internal class PlayingHud : HUD
                         break;
                     case 8:
                         Archer a = new Archer(null, new Vector2(0, 0));
-                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ButtonMousePos, Color.MonoGameOrange);
+                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ButtonMousePos, Color.WhiteSmoke);
                         break;
                     case 9:
                         s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                     case 10:
                         Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ButtonMousePos, Color.MonoGameOrange);
+                        s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ButtonMousePos, Color.WhiteSmoke);
                         break;
                     case 11:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "", ButtonMousePos, Color.WhiteSmoke);
                         break;
                     case 12:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "", ButtonMousePos, Color.WhiteSmoke);
                         break;
                 }
 
@@ -212,6 +214,7 @@ internal class PlayingHud : HUD
                     //foreach (Unit u in selectedEntities)
                     //    u.orderMove
                     Console.WriteLine("case 1, order move");
+                    _playingState.Move = true;
                     break;
                 case 2:
                     _buttonDescriprion = "Farm: Gold: 400, Lumber:400, produces food";
@@ -228,7 +231,9 @@ internal class PlayingHud : HUD
                     break;
                 case 4:
                     foreach (Unit u in selectedEntities)
-                        u.Path.Clear();
+                    {
+                    u.Path.Clear();
+                    }    
                     Console.WriteLine("case 4, order stop move.");
                     break;
                 case 5:

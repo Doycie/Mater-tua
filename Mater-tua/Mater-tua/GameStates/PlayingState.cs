@@ -19,6 +19,8 @@ internal class PlayingState : GameState
     private Vector2 _currentMousePos;
     private bool _mouseReleased;
 
+    private bool _move;
+
 
     private bool PlayedBattleCry2 = true;
     private bool PlayedBattleCry1 = false;
@@ -35,10 +37,11 @@ internal class PlayingState : GameState
         
         _mouseState = Mouse.GetState();
         level = new Level();
-        _hud = new PlayingHud(level,_selectedEntities);
+        _hud = new PlayingHud(level,_selectedEntities, this);
         level.init("lvl.txt");
         fog = new FogOfWar(level);
         level.setFog(fog);
+        _move = false;
     }
 
     //Update the level
@@ -137,10 +140,15 @@ internal class PlayingState : GameState
                         if (!attack)
                         {
                             e.removeTarget();
-                            e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                            if (_move == true)
+                            {
+                                e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                            }
                         }
                     }
+                    
                 }
+                _move = false;
                 //make an order to a WorkerUnit
                 foreach (WorkerUnit q in _selectedEntities.OfType<WorkerUnit>())
                 {
@@ -373,5 +381,11 @@ internal class PlayingState : GameState
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
         }
+    }
+
+    public bool Move
+    {
+        get { return _move; }
+        set { _move = value; }
     }
 }

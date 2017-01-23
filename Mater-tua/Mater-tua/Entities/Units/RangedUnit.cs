@@ -23,7 +23,7 @@ class RangedUnit : CombatUnit
         _damage = 10;
         _damageType = damageType.Piercing;
         _productionTime = 750;
-        _range = 3;
+        _range = 4;
         Reset();
         _level = level;
         _position = Position;
@@ -32,6 +32,7 @@ class RangedUnit : CombatUnit
         _stopButton = true;
         _patrolButton = true;
         _holdPositionButton = true;
+        _visionRange = 5;
 
     }
 
@@ -72,7 +73,7 @@ class RangedUnit : CombatUnit
         }
     }
 
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
         _defendCooldown--;
         _attackCooldown--;
@@ -103,7 +104,7 @@ class RangedUnit : CombatUnit
             isAttacking = 0;
         }
 
-        base.Update();
+        base.Update(gameTime);
     }
 
 

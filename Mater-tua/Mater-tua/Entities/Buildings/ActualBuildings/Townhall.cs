@@ -39,9 +39,9 @@ using System;
     {
         _hp = _maxhp;
     }
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
-        base.Update();
+        base.Update(gameTime);
         //FoodCreate();
         if ((float)_hp / (float)_maxhp < 1.0f / 3.0f)
         {

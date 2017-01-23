@@ -7,7 +7,7 @@ partial class Level
     int count = 0;
     private int _buildingID;
 
-    public void update()
+    public void update(GameTime gameTime)
     {
         count++;
 
@@ -56,7 +56,7 @@ partial class Level
         {
             if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
             {
-                entities[i].Update();
+                entities[i].Update(gameTime);
                 if(count%60==0 && entities[i] is Barracks && entities[i].Faction == BuildingAndUnit.faction.Orc)
                 {
                     (entities[i] as Barracks).produceUnit(new Grunt(this, new Vector2(entities[i].Position.X + 2* data.tSize(), entities[i].Position.Y + 1 * data.tSize())));
@@ -104,7 +104,7 @@ partial class Level
 
         for (int i = specialFX.Count() - 1; i >= 0; i--)
         {
-            specialFX[i].Update();
+            specialFX[i].Update(gameTime);
             if (specialFX[i] is Spritesheet)
             {
                 if ((specialFX[i] as Spritesheet).remove())
@@ -117,7 +117,7 @@ partial class Level
         }
         for (int i = Projectiles.Count() - 1; i >= 0; i--)
         {
-            Projectiles[i].Update();
+            Projectiles[i].Update(gameTime);
         }
 
         Player.Update();

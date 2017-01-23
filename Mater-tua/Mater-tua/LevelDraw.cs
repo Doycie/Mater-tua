@@ -22,6 +22,19 @@ partial class Level
                 if (bounds.Contains(i * data.tSize(), j * data.tSize()))
 
                 {
+                    
+                    switch (_mapData[i, j])
+                    {
+                        case 0: //dirt
+                            s.Draw(_dirtTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
+                            break;
+                        case 1: //water
+                            s.Draw(_waterTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
+                            break;
+                        case 2: //mountain
+                            s.Draw(_mountainTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
+                            break;
+                    }
                     if (_mapData[i, j] == 0)
                         s.Draw(_dirtTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
                     else if (_mapData[i, j] == 1)

@@ -149,52 +149,61 @@ internal class PlayingState : GameState
                     if (q.Faction == BuildingAndUnit.faction.Human)
                     {
                         Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
-                        if (_mine == true)
-                        {
+                        //if (_mine == true)
+                       // {
                             foreach (Mine w in level.entities.OfType<Mine>())
                             {
                                 foreach (Townhall r in level.entities.OfType<Townhall>())
                                 {
-                                    if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+                                    if (r.Faction == BuildingAndUnit.faction.Human)
                                     {
-                                        q.OrderReset();
-                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
-                                        break;
+                                        if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+                                        {
+                                            q.OrderReset();
+                                            q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
+                                            break;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if (_chop == true)
-                        {
+                        //}
+                        //if (_chop == true)
+                        //{
                             foreach (Tree n in level.entities.OfType<Tree>())
                             {
                                 foreach (Townhall r in level.entities.OfType<Townhall>())
                                 {
-                                    if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                    if (r.Faction == BuildingAndUnit.faction.Human)
                                     {
-                                        q.OrderReset();
-                                        q.CutWoodOrder(n, n.Position, r.Position);
-                                        break;
+                                        if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                        {
+                                            q.OrderReset();
+                                            q.CutWoodOrder(n, n.Position, r.Position);
+                                            break;
+                                        }
                                     }
                                 }
                             }
-                        }
+                        //}
                         foreach (TreasureChest n in level.entities.OfType<TreasureChest>())
                         {
                             foreach (Townhall r in level.entities.OfType<Townhall>())
                             {
-                                if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                if (r.Faction == BuildingAndUnit.faction.Human)
                                 {
-                                    q.OrderReset();
-                                    q.TreasureOrder(n, n.Position, r.Position);
-                                    break;
+                                    if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                    {
+                                        q.OrderReset();
+                                        q.TreasureOrder(n, n.Position, r.Position);
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                _chop = false;
-                _mine = false;
+                //_chop = false;
+                //_mine = false;
             }
 
             //Order a stop on the selected entities

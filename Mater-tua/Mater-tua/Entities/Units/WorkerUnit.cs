@@ -54,9 +54,9 @@ internal class WorkerUnit : Unit
         _hp = _maxhp;
     }
 
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
-        base.Update();
+        base.Update(gameTime);
 
         if (_OrderLevel == 0)
         {

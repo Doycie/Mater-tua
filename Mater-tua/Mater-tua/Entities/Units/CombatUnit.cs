@@ -72,7 +72,7 @@ internal class CombatUnit : Unit
         }
     }
 
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
         _defendCooldown--;
         _attackCooldown--;
@@ -105,7 +105,7 @@ internal class CombatUnit : Unit
             isAttacking = 0;
         }
 
-        base.Update();
+        base.Update(gameTime);
     }
 
     public void Defend(BuildingAndUnit e)

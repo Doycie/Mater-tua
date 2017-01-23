@@ -32,7 +32,7 @@ public class Unit : BuildingAndUnit
         _sprite = GameEnvironment.getAssetManager().GetSprite(tex);
     }
 
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
         this.UpdatePath();
     }

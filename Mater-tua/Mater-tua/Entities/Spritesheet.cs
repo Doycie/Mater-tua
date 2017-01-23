@@ -21,7 +21,7 @@ internal class Spritesheet : SpriteEntity
         _amountOfTex = amountOfTex;
     }
 
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
         _alivefor++;
     }

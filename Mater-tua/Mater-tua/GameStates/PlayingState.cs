@@ -44,7 +44,7 @@ internal class PlayingState : GameState
     {
         // GameEnvironment.getCamera().getScreenSize();
         // Console.WriteLine(mousePos);
-        level.update();
+        level.update(gameTime);
         fog.Update();
     }
 

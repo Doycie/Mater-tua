@@ -33,6 +33,19 @@ partial class Level
                     }
                 }
             }
+            foreach (Unit e in entities.OfType<Unit>())
+            {
+                if (e.Faction == Unit.faction.Human)
+                {
+                    foreach (CombatUnit g in entities.OfType<CombatUnit>())
+                    {
+                        if (g.Faction == CombatUnit.faction.Orc)
+                        {
+                            g.Defend(e);
+                        }
+                    }
+                }
+            }
         }
 
         

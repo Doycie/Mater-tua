@@ -311,7 +311,7 @@ internal class PlayingState : GameState
             if (inputHelper.MouseLeftButtonDown())
             {
 
-                GameEnvironment.getCamera().setPos(new Vector2(inputHelper.realMousePosition.X * 16, ((inputHelper.realMousePosition.Y - GameEnvironment.getCamera().getScreenSize().Y) + 256) * 16));
+                GameEnvironment.getCamera().setPos(new Vector2(inputHelper.realMousePosition.X * 16 - GameEnvironment.getCamera().getScreenSize().X / 2, ((inputHelper.realMousePosition.Y - GameEnvironment.getCamera().getScreenSize().Y) + 256) * 16 - GameEnvironment.getCamera().getScreenSize().Y / 2));
             }
         }
 

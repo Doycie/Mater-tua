@@ -13,11 +13,11 @@ internal class PauseHud : HUD
 
         _buttons = new List<Button>();
         /* 1 resume game*/
-        _buttons.Add(new Button(new Rectangle(96, +160, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/resumeGameButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/resumeGameButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(96, 230, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/resumeGameButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/resumeGameButtonPressed"), true));
         /* 2 settings*/
-        _buttons.Add(new Button(new Rectangle(96, +96, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(96, 90, 240, 110), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/settingsButtonPressed"), true));
         /* 3 quit to menu */
-        _buttons.Add(new Button(new Rectangle(96, +32, 192, 64), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButtonPressed"), true));
+        _buttons.Add(new Button(new Rectangle(96, -40, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/quitToMenuButtonPressed"), true));
     }
 
     public new bool update(InputHelper inputHelper)

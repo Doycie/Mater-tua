@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Unit : BuildingAndUnit
 {
@@ -89,11 +90,35 @@ public class Unit : BuildingAndUnit
     {
         if (_level._mapData[target.X, target.Y] == 0)
         {
-            if(this is WorkerUnit)
+            if (this is WorkerUnit)
+            {
                 _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target, _level._mapData, _level);
-            else if (_level._entitiesData[target.X, target.Y] != (int)'t')
-                _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target, _level._mapData, _level);
+                if (_path.Count == 0)
+                {
 
+                }
+            }
+            else if (_level._entitiesData[target.X, target.Y] != (int)'t')
+            {
+                bool buildingInTheWay = false;
+                foreach (StaticBuilding e in _level.entities.OfType<StaticBuilding>())
+                {
+                  
+                    for (int j = 0; j < e.Size * e.Size; j++)
+                    {
+                        if (target == new Point((int)e.Position.X / 64 + (int)j / e.Size, (int)e.Position.Y / 64 + (int)j % e.Size))
+                        {
+                            buildingInTheWay = true;
+                        }
+                    }
+                }
+
+                if (!buildingInTheWay)
+
+
+                    _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target, _level._mapData, _level);
+
+            }
         }
     }
 

@@ -41,7 +41,7 @@ internal class CustomCursor
     {
         if(_level != null && _moveTex != null && _level.movingUnits)
         {
-            s.Draw(_moveTex, _mousePosScreen, new Rectangle(0, 0, _moveTex.Width / 2, _moveTex.Height / 2), Color.White, 0.0f, new Vector2(_moveTex.Width , _moveTex.Height ), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
+            s.Draw(_moveTex,new Vector2(_mousePosScreen.X  + _moveTex.Width / 2, _mousePosScreen.Y + _moveTex.Height / 2), new Rectangle(0, 0, _moveTex.Width / 2, _moveTex.Height / 2), Color.White, 0.0f, new Vector2(_moveTex.Width , _moveTex.Height ), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
 
         }else
         {

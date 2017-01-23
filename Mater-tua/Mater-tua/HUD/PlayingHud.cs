@@ -216,7 +216,7 @@ internal class PlayingHud : HUD
                 case 1:
                     _level.moveUnits();
                     Console.WriteLine("case 1, order move");
-                    _playingState.Move = true;
+                    
                     break;
                 case 2:
                     _buttonDescriprion = "Farm: Gold: 400, Lumber:400, produces food";

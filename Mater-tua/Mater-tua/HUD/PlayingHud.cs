@@ -236,10 +236,13 @@ internal class PlayingHud : HUD
                     foreach (Unit u in selectedEntities)
                     if(u.Path.Count > 1)
                         u.Path.RemoveRange(0, u .Path.Count - 1);
-                    Console.WriteLine("case 4, order stop move.");
+                _playingState.Mine = false;
+                _playingState.Chop = false;
+                Console.WriteLine("case 4, order stop move.");
                     break;
                 case 5:
                     Console.WriteLine("case 5");
+                _playingState.Mine = true;
                     break;
                 case 6:
                     _buttonDescriprion = "Footman: Gold: 400, Lumber:100";
@@ -256,6 +259,7 @@ internal class PlayingHud : HUD
                     break;
                 case 8:
                     Console.WriteLine("case 8");
+                _playingState.Chop = true;
                     break;
                 case 9:
                     _buttonDescriprion = "Archer: Gold: 400, Lumber:150";

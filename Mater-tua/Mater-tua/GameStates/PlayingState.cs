@@ -20,6 +20,8 @@ internal class PlayingState : GameState
     private bool _mouseReleased;
 
     private bool _move;
+    private bool _mine;
+    private bool _chop;
 
 
     private bool PlayedBattleCry2 = true;
@@ -155,34 +157,40 @@ internal class PlayingState : GameState
                     
                 }
                 _move = false;
-                //make an order to a WorkerUnit
+                //make an order to a WorkerUnit             
                 foreach (WorkerUnit q in _selectedEntities.OfType<WorkerUnit>())
                 {
                     if (q.Faction == BuildingAndUnit.faction.Human)
                     {
                         Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
-                        foreach (Mine w in level.entities.OfType<Mine>())
+                        if (_mine == true)
                         {
-                            
-                            foreach (Townhall r in level.entities.OfType<Townhall>())
+                            foreach (Mine w in level.entities.OfType<Mine>())
                             {
-                                if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+
+                                foreach (Townhall r in level.entities.OfType<Townhall>())
                                 {
-                                    q.OrderReset();
-                                    q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
-                                    break;
+                                    if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
+                                    {
+                                        q.OrderReset();
+                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
+                                        break;
+                                    }
                                 }
                             }
                         }
-                        foreach (Tree n in level.entities.OfType<Tree>())
+                        if (_chop == true)
                         {
-                            foreach (Townhall r in level.entities.OfType<Townhall>())
+                            foreach (Tree n in level.entities.OfType<Tree>())
                             {
-                                if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                foreach (Townhall r in level.entities.OfType<Townhall>())
                                 {
-                                    q.OrderReset();
-                                    q.CutWoodOrder(n, n.Position, r.Position);
-                                    break;
+                                    if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
+                                    {
+                                        q.OrderReset();
+                                        q.CutWoodOrder(n, n.Position, r.Position);
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -200,6 +208,8 @@ internal class PlayingState : GameState
                         }
                     }
                 }
+                _chop = false;
+                _mine = false;
             }
 
             //Order a stop on the selected entities
@@ -412,5 +422,17 @@ internal class PlayingState : GameState
     {
         get { return _move; }
         set { _move = value; }
+    }
+
+    public bool Mine
+    {
+        get { return _mine; }
+        set { _mine = value; }
+    }
+
+    public bool Chop
+    {
+        get { return _chop; }
+        set { _chop = value; }
     }
 }

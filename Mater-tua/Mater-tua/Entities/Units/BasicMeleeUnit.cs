@@ -52,6 +52,9 @@ internal class BasicMeleeUnit : CombatUnit
     public override void Draw(SpriteBatch s)
     {
         base.Draw(s);
-        s.Draw(_weapon, new Rectangle((int)_position.X + data.tSize() / 4 * 3, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 1.0f), (float)isAttacking / 25, new Vector2(_weapon.Width/2,_weapon.Height/2), SpriteEffects.None, 0.0f);
+        if (_visible)
+        {
+            s.Draw(_weapon, new Rectangle((int)_position.X + data.tSize() / 4 * 3, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 1.0f), (float)isAttacking / 25, new Vector2(_weapon.Width / 2, _weapon.Height / 2), SpriteEffects.None, 0.0f);
+        }
     }
 }

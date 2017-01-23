@@ -209,19 +209,29 @@ internal class PlayingState : GameState
             //Drag the selection box to include multiple entities
             if (!inputHelper.MouseLeftButtonDown())
             {
+                
                 if (_mouseReleased)
                 {
                     
                     Rectangle r = new Rectangle((int)_lastMousePos.X, (int)_lastMousePos.Y, (int)(_currentMousePos.X - _lastMousePos.X), (int)(_currentMousePos.Y - _lastMousePos.Y));
                     foreach (Unit e in level.entities.OfType<Unit>())
                         if (e.Faction == BuildingAndUnit.faction.Human)
-                            if ((r.Contains(e.Center)) && _selectedEntities[0] != e)
+                            if ((r.Contains(e.Center)) /*&& _selectedEntities[0] != e*/)
                             {
                                 _selectedEntities.Add((e as Unit));
                             }
                     
                 }
-   
+                if (_selectedEntities.Count > 1)
+                {
+                    for (int i = 1; i < _selectedEntities.Count; i++)
+                    {
+                        if (_selectedEntities[0] == _selectedEntities[i])
+                        {
+                            _selectedEntities.Remove(_selectedEntities[i]);
+                        }
+                    }
+                }
                 _mouseReleased = false;
             }
 

@@ -124,7 +124,10 @@ internal class Minimap
             }
             else if (e.Faction == BuildingAndUnit.faction.Orc && (e.EntityType == BuildingAndUnit.entityType.Worker))
             {
-                c = Color.MediumVioletRed;
+                if (e.Visible)
+                    c = Color.MediumVioletRed;
+                else
+                    c = Color.RosyBrown;
             }
             else if (e.ResourceType == BuildingAndUnit.resourceType.Gold)
             {

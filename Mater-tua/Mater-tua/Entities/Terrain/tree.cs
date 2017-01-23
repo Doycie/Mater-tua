@@ -12,10 +12,10 @@ internal class Tree : BuildingAndUnit
         _resourceType = resourceType.Wood;
         _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/tree");
         _position = Position;
-        _maxhp = 2;
+        _maxhp = 10;
         this.Reset();
         _faction = BuildingAndUnit.faction.Neutral;
-        _TreeAmount = 2;
+        _TreeAmount = _maxhp;
     }
 
     public override void Reset()

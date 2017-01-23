@@ -36,9 +36,9 @@ internal class WorkerUnit : Unit
         _range = 1;
         Reset();
         _FirstTime = 0;
-        _Timer = 60;
+        _Timer = 300;
         _FirstTimeTree = 0;
-        _TimerTree = 60;
+        _TimerTree = 480;
         _OrderLevel = -1;
         _level = level;
         _moveButton = true;
@@ -132,7 +132,7 @@ internal class WorkerUnit : Unit
                 if (_Timer == 0)
                 {
                     orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                    _Timer = 60;
+                    _Timer = 300;
                     _mine.MineUseage();
                 }
                 _Timer--;
@@ -169,14 +169,14 @@ internal class WorkerUnit : Unit
                 if (_TimerTree == 0)
                 {
                     orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                    _TimerTree = 60;
+                    _TimerTree = 480;
                     _tree.TreeUseage();
                 }
                 _TimerTree--;
             }
             if (_position == _TownhallPosition)
             {
-                _level.Player.AddWood(10);
+                _level.Player.AddWood(100);
                 orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
                 Console.WriteLine("Wood:" + _level.Player.Wood);
             }

@@ -190,4 +190,14 @@ public partial class BuildingAndUnit : AnimatedEntity
         spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
         Healthbar(spriteBatch);
     }
+
+    public void DrawGreen(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.Green);
+    }
+
+    public void DrawRed(SpriteBatch spriteBatch)
+    {
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.Red);
+    }
 }

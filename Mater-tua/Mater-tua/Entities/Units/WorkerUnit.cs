@@ -114,7 +114,10 @@ internal class WorkerUnit : Unit
     {
         _FirstTime = 0;
         _FirstTimeTree = 0;
+        _FirstTime = 0;
+        _FirstTimeTreasure = 0;
         _OrderLevel = -1;
+
     }
 
     private void Mining()

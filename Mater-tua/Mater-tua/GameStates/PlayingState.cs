@@ -287,6 +287,12 @@ internal class PlayingState : GameState
                 level.entities.Add(level._tempBuilding);
                 level._tempBuilding = null;
             }
+            else if (inputHelper.MouseRightButtonPressed())
+            {
+                level.Player.AddGold(level._tempBuilding.GoldCost);
+                level.Player.AddWood(level._tempBuilding.LumberCost);
+                level._tempBuilding = null;
+            }
           
         }
 

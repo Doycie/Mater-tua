@@ -39,6 +39,11 @@ internal class VictoryState : GameState
 
         _currentMousePos = _customCursor.getMousePos();
 
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
+        }
+
         if ((_hud as VictoryHud).update(inputHelper))
             GameEnvironment.gameStateManager.State = GameStateManager.state.Playing;
 

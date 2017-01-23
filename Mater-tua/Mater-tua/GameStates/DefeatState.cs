@@ -52,6 +52,12 @@ internal class DefeatState : GameState
             }
         }
 
+
+        if (inputHelper.KeyPressed(Keys.Escape))
+        {
+            GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;
+        }
+
         if (inputHelper.KeyPressed(Keys.Enter))
         {
             GameEnvironment.gameStateManager.State = GameStateManager.state.Menu;

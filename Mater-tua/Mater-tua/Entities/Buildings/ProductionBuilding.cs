@@ -19,9 +19,14 @@ internal class ProductionBuilding : StaticBuilding
         if (_level.Player.Gold >= e.GoldCost && _level.Player.Food >= 1  && _level.Player.Wood >= e.LumberCost && _producingUnit == false)
         {
             _tempUnit = e;
-            _level.Player.AddGold(-e.GoldCost);
-            _level.Player.AddWood(-e.LumberCost);
-            _level.Player.availableFood(1);
+            if (e.Faction == faction.Human)
+            {
+                _level.Player.AddGold(-e.GoldCost);
+                _level.Player.AddWood(-e.LumberCost);
+                _level.Player.availableFood(1);
+            }
+            
+            
 
             _producingUnit = true;
             _unitProductionTime = e.ProductionTime;

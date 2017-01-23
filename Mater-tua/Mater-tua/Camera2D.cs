@@ -48,6 +48,7 @@ internal class Camera2D
     //Move the camera a desired vector
     public void move(Vector2 mov)
     {
+
         int x = (int)(_position.X - (_origin.X / _scale - _origin.X));
         int y = (int)(_position.Y - (_origin.Y / _scale - _origin.Y));
 

@@ -34,6 +34,7 @@ internal class PlayingHud : HUD
         _resources = new List<Resources>();
         ToolTipPos = new Vector2(975, 490);
         _minimapBorder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/Border");
+        font = GameEnvironment.getAssetManager().getFont("Warcraft Font");
 
         /* De volgorde is zo gefuckt omdat ik van links naar rechts tel en daarna naar de volgende rij van 4 buttons ga. Deal with it */
         /* 0 move button*/
@@ -70,7 +71,7 @@ internal class PlayingHud : HUD
     public override void draw(SpriteBatch s)
     {
         base.draw(s);
-        font = GameEnvironment.getAssetManager().getFont("Warcraft Font");
+     
 
         for (int i = 0; i < _playingButtons.Count - 1; i++)
         {
@@ -81,6 +82,7 @@ internal class PlayingHud : HUD
                     default:
                         break;
                     case 0:
+                        s.DrawString(font, "Move units", ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 1:
                         Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
@@ -91,37 +93,37 @@ internal class PlayingHud : HUD
                         { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ToolTipPos, Color.MonoGameOrange); }
                         break;
                     case 3:
-                        s.DrawString(font, "Stop", ToolTipPos, Color.MonoGameOrange);
+                        s.DrawString(font, "Stop selected units", ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 4:
-                        s.DrawString(font, "", ToolTipPos, Color.Black);
+                        s.DrawString(font, "Mine for gold", ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 5:
                         BasicMeleeUnit b = new Footman(null, new Vector2(0, 0));
                         s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost ,ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 6:
-                        s.DrawString(font, "", ToolTipPos, Color.Black);
+                        s.DrawString(font, "Attack", ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 7:
-                        s.DrawString(font, "", ToolTipPos, Color.Black);
+                        s.DrawString(font, "Chop trees", ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 8:
                         Archer a = new Archer(null, new Vector2(0, 0));
                         s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 9:
-                        s.DrawString(font, "", ToolTipPos, Color.Black);
+                        s.DrawString(font, " - ", ToolTipPos, Color.Black);
                         break;
                     case 10:
                         Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
                         s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ToolTipPos, Color.MonoGameOrange);
                         break;
                     case 11:
-                        s.DrawString(font, "", ToolTipPos, Color.Black);
+                        s.DrawString(font, "- ", ToolTipPos, Color.Black);
                         break;
                     case 12:
-                        s.DrawString(font, "", ToolTipPos, Color.Black);
+                        s.DrawString(font, " - ", ToolTipPos, Color.Black);
                         break;
                 }
 

@@ -313,8 +313,37 @@ internal class PlayingState : GameState
             (level._tempBuilding as StaticBuilding).setPos(_currentMousePos);
             if (inputHelper.MouseLeftButtonPressed())
             {
-                level.entities.Add(level._tempBuilding);
-                level._tempBuilding = null;
+                bool canBuild = true;
+                for (int j = 0;j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
+                {
+                    if(level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j/level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
+                    {
+                        canBuild = false;
+                        break;
+                    }
+                   
+                }
+                if(canBuild)
+                    foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
+                    {
+                        for (int k = 0; k < e.Size * e.Size; k++)
+                        {
+                            for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
+                            {
+                                if((int)e.Position.X/64 + (k/ e.Size) == level._tempBuilding.Position.X / 64 + (j/level._tempBuilding.Size)  && (int)e.Position.Y / 64 + (k % e.Size) == level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
+                                {
+                                    canBuild = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                if (canBuild)
+                {
+                    level.entities.Add(level._tempBuilding);
+                    level._tempBuilding = null;
+                }
+               
             }
             else if (inputHelper.MouseRightButtonPressed())
             {
@@ -396,12 +425,14 @@ internal class PlayingState : GameState
         if (inputHelper.KeyPressed(Keys.Back))
         {
             _selectedEntities.Clear();
+            GameEnvironment.gameStateManager.pauseState._playingHud = this._hud;
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
 
         if (inputHelper.KeyPressed(Keys.Escape))
         {
             _selectedEntities.Clear();
+            GameEnvironment.gameStateManager.pauseState._playingHud = this._hud;
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
 

@@ -43,7 +43,10 @@ internal class Minimap
             }
             else
             {
-                data[i] = Color.Peru;
+                if (_level._mapData[i / 4 % 64, i / 1024] == 0)
+                    data[i] = Color.Peru;
+                else if (_level._mapData[i / 4 % 64, i / 1024] == 1) { data[i] = Color.Blue; }
+                else if (_level._mapData[i / 4 % 64, i / 1024] == 2) { data[i] = Color.LightGray; }
             }
             
        
@@ -93,6 +96,7 @@ internal class Minimap
             if (data[a] == Color.Black)
                 continue;
             Color c = Color.White;
+
             if (e.Faction == BuildingAndUnit.faction.Human &&(e.EntityType == BuildingAndUnit.entityType.Combat))
             {
                 c = Color.Blue;

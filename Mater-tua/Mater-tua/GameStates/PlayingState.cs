@@ -396,12 +396,14 @@ internal class PlayingState : GameState
         if (inputHelper.KeyPressed(Keys.Back))
         {
             _selectedEntities.Clear();
+            GameEnvironment.gameStateManager.pauseState._playingHud = this._hud;
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
 
         if (inputHelper.KeyPressed(Keys.Escape))
         {
             _selectedEntities.Clear();
+            GameEnvironment.gameStateManager.pauseState._playingHud = this._hud;
             GameEnvironment.gameStateManager.State = GameStateManager.state.Pause;
         }
 

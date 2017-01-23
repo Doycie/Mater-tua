@@ -10,6 +10,7 @@ internal class PauseState : GameState
     private Vector2 _currentMousePos;
     private bool _mouseReleased;
     private HUD _hud;
+    public HUD _playingHud;
 
     public PauseState()
     {
@@ -25,6 +26,10 @@ internal class PauseState : GameState
     public void drawHUD(SpriteBatch spriteBatch)
     {
         _hud.draw(spriteBatch);
+        if(_playingHud != null)
+        {
+            _playingHud.draw(spriteBatch);
+        }
         _customCursor.draw(spriteBatch);
     }
 

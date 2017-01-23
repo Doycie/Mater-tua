@@ -18,6 +18,8 @@ internal class Camera2D
     //Initialize the camera on its proper position and set the origin
     public void initCamera(float scale, Vector2 position, Vector2 screenSize)
     {
+        position.X = 2700;
+        position.Y = 700;
         _position = new Vector3(position, 0.0f);
         _scale = 1;
         //Console.WriteLine(scale);
@@ -72,8 +74,6 @@ internal class Camera2D
         {
             _position = new Vector3(pos, 0.0f);
         }
-
-        // if( _position.Y + mov.Y > 0)
         
     }
 

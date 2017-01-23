@@ -33,7 +33,7 @@ internal class PlayingState : GameState
         _mouseState = Mouse.GetState();
         level = new Level();
         _hud = new PlayingHud(level, _selectedEntities, this);
-        level.init("lvl.txt");
+        level.init("lvl2.txt","lvlentities.txt");
         fog = new FogOfWar(level);
         level.setFog(fog);
         _customCursor = new CustomCursor(level);

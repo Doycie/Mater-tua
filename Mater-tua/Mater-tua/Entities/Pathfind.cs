@@ -115,19 +115,21 @@ internal class Node
                                 bool skip = false;
                                 foreach (BuildingAndUnit e in level.entities.OfType<BuildingAndUnit>())
                                 {
-                                    int x = (int)e.Position.X / 64;
-                                    int y = (int)e.Position.Y / 64;
-                                    for (int xx = 0; xx < e.Size; xx++)
+                                    if (!(e is WorkerUnit))
                                     {
-                                        for (int yy = 0; yy < e.Size; yy++)
+                                        int x = (int)e.Position.X / 64;
+                                        int y = (int)e.Position.Y / 64;
+                                        for (int xx = 0; xx < e.Size; xx++)
                                         {
-                                            if ((x + xx == loc.X + i && y + yy == loc.Y + k) && !(loc.X + i == end.X && loc.Y + k == end.Y))
+                                            for (int yy = 0; yy < e.Size; yy++)
                                             {
-                                                skip = true;
+                                                if ((x + xx == loc.X + i && y + yy == loc.Y + k) && !(loc.X + i == end.X && loc.Y + k == end.Y))
+                                                {
+                                                    skip = true;
+                                                }
                                             }
                                         }
                                     }
-
                                 }
                                 if (skip)
                                 {

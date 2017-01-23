@@ -126,7 +126,7 @@ internal class WorkerUnit : Unit
         {
             if (_position != _MinePosition && _position != _TownhallPosition && _FirstTime == 0)
             {
-                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize())) ;
                 _FirstTime = 1;
             }
 

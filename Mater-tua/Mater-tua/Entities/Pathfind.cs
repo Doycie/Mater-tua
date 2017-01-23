@@ -113,7 +113,7 @@ internal class Node
                             if (map[loc.X + i, loc.Y + k] == 0)
                             {
                                 bool skip = false;
-                                foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
+                                foreach (BuildingAndUnit e in level.entities.OfType<BuildingAndUnit>())
                                 {
                                     int x = (int)e.Position.X / 64;
                                     int y = (int)e.Position.Y / 64;

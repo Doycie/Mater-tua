@@ -80,6 +80,12 @@ internal class PlayingState : GameState
 
         if(level._tempBuilding != null)
         {
+            //if (gebouw kan geplaatst worden)
+            //    level._tempBuilding.DrawGreen(spriteBatch);
+
+            //if (gebouw kan niet geplaatst worden)
+            //    level._tempBuilding.DrawRed(spriteBatch);
+
             level._tempBuilding.Draw(spriteBatch);
         }
     }

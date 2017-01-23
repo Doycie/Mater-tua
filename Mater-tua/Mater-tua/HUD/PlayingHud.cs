@@ -228,7 +228,8 @@ internal class PlayingHud : HUD
                     break;
                 case 4:
                     foreach (Unit u in selectedEntities)
-                        u.Path.Clear();
+                    if(u.Path.Count > 1)
+                        u.Path.RemoveRange(0, u .Path.Count - 1);
                     Console.WriteLine("case 4, order stop move.");
                     break;
                 case 5:

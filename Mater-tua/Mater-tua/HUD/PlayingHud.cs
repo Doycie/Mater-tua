@@ -209,8 +209,7 @@ internal class PlayingHud : HUD
                 case 0: //leeg laten! Deze doet niks
                     break;
                 case 1:
-                    //foreach (Unit u in selectedEntities)
-                    //    u.orderMove
+                    _level.moveUnits();
                     Console.WriteLine("case 1, order move");
                     break;
                 case 2:

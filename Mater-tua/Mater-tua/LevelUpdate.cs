@@ -144,5 +144,14 @@ partial class Level
         {
             _tempBuilding = null;
         }
+
+
+    }
+
+
+    public void moveUnits()
+    {
+        movingUnits = true;
+        
     }
 }

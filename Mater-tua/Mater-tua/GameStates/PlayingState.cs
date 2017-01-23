@@ -31,7 +31,7 @@ internal class PlayingState : GameState
     //Construct a new state and set the level and all the needed variables
     public PlayingState()
     {
-        _customCursor = new CustomCursor();
+        
         
         _mouseState = Mouse.GetState();
         level = new Level();
@@ -39,6 +39,7 @@ internal class PlayingState : GameState
         level.init("lvl.txt");
         fog = new FogOfWar(level);
         level.setFog(fog);
+        _customCursor = new CustomCursor(level);
     }
 
     //Update the level

@@ -14,6 +14,7 @@ public partial class Level
     //Hold the dirt texture
     private Texture2D _dirtTex;
     private Texture2D _waterTex;
+    private Texture2D _mountainTex;
 
     public BuildingAndUnit _tempBuilding;
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
@@ -41,6 +42,7 @@ public partial class Level
     //Init the level based on a level text file
     public void init(string mapPath)
     {
+        _mountainTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/Mountain");
         _waterTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/water");
         _dirtTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/dirt");
         _mapWidth = data.tSize();

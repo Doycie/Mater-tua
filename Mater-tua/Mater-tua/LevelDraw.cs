@@ -22,10 +22,12 @@ partial class Level
                 if (bounds.Contains(i * data.tSize(), j * data.tSize()))
 
                 {
-                    if(_mapData[i,j ] == 0)
-                    s.Draw(_dirtTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
-                    else
+                    if (_mapData[i, j] == 0)
+                        s.Draw(_dirtTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
+                    else if (_mapData[i, j] == 1)
                         s.Draw(_waterTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
+                    else if (_mapData[i, j] == 2)
+                        s.Draw(_mountainTex, new Vector2(i * data.tSize(), j * data.tSize()), Color.White);
                     //s.Draw(_tex, new Rectangle(i * 64, j * 64, i * 64 + 64, j * 64 + 64), getColor(_mapData[i, j]));
 
                 }

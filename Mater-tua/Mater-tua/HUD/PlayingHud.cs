@@ -18,6 +18,9 @@ internal class PlayingHud : HUD
     private string _buttonDescriprion;
     private SpriteFont font;
     private Vector2 ButtonMousePos;
+
+
+
     private PlayingState _playingState;
 
     public PlayingHud(Level level, List<BuildingAndUnit> list, PlayingState playingState)
@@ -29,7 +32,7 @@ internal class PlayingHud : HUD
         _buttons = new List<Button>();
         _playingButtons = new List<PlayingButton>();
         _resources = new List<Resources>();
-
+        ToolTipPos = new Vector2(975, 490);
         _minimapBorder = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/Border");
 
         /* De volgorde is zo gefuckt omdat ik van links naar rechts tel en daarna naar de volgende rij van 4 buttons ga. Deal with it */
@@ -81,44 +84,44 @@ internal class PlayingHud : HUD
                         break;
                     case 1:
                         Farm e = new Farm(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        { s.DrawString(font, "Produce Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.WhiteSmoke); }
+                        { s.DrawString(font, "Produce Farm, Gold:" + e.GoldCost + "+ Lumber:" + e.LumberCost, ButtonMousePos, Color.MonoGameOrange); }
                         break;
                     case 2:
                         WorkerUnit w = new WorkerUnit(null);
-                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.WhiteSmoke); }
+                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ButtonMousePos, Color.MonoGameOrange); }
                         break;
                     case 3:
-                        s.DrawString(font, "Stop", ButtonMousePos, Color.WhiteSmoke);
+                        s.DrawString(font, "Stop", ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 4:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "", ToolTipPos, Color.Black);
                         break;
                     case 5:
                         BasicMeleeUnit b = new Footman(null, new Vector2(0, 0));
-                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost , ButtonMousePos, Color.WhiteSmoke);
+                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost , ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 6:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "", ToolTipPos, Color.Black);
                         break;
                     case 7:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "", ToolTipPos, Color.Black);
                         break;
                     case 8:
                         Archer a = new Archer(null, new Vector2(0, 0));
-                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ButtonMousePos, Color.WhiteSmoke);
+                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 9:
-                        s.DrawString(font, "", ButtonMousePos, Color.Black);
+                        s.DrawString(font, "", ToolTipPos, Color.Black);
                         break;
                     case 10:
                         Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ButtonMousePos, Color.WhiteSmoke);
+                        s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ButtonMousePos, Color.MonoGameOrange);
                         break;
                     case 11:
-                        s.DrawString(font, "", ButtonMousePos, Color.WhiteSmoke);
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                     case 12:
-                        s.DrawString(font, "", ButtonMousePos, Color.WhiteSmoke);
+                        s.DrawString(font, "", ButtonMousePos, Color.Black);
                         break;
                 }
 
@@ -144,7 +147,7 @@ internal class PlayingHud : HUD
                     }
                 }
               
-                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120));
+                e.Healthbar(s, new Vector2((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i * 64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120), 1);
                 s.Draw(e.Sprite, new Rectangle((int)GameEnvironment.getCamera().getScreenSize().X / 2 - 350 + i*64, (int)GameEnvironment.getCamera().getScreenSize().Y - 120, 64, 64), Color.White);
                 i++;
                 if (i > 9)
@@ -231,9 +234,7 @@ internal class PlayingHud : HUD
                     break;
                 case 4:
                     foreach (Unit u in selectedEntities)
-                    {
-                    u.Path.Clear();
-                    }    
+                        u.Path.Clear();
                     Console.WriteLine("case 4, order stop move.");
                     break;
                 case 5:

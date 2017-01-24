@@ -378,30 +378,31 @@ internal class PlayingState : GameState
                         }
                     }
                 }
-                if (canBuild)
+            if (canBuild)
+            {
+                if (inputHelper.MouseLeftButtonPressed())
                 {
-                    if (inputHelper.MouseLeftButtonPressed())
+                    if (level.Player.Gold >= level._tempBuilding.GoldCost && level.Player.Wood >= level._tempBuilding.LumberCost)
                     {
-                        if (level.Player.Gold >= level._tempBuilding.GoldCost && level.Player.Wood >= level._tempBuilding.LumberCost)
-                        {
-                            level.Player.AddGold(-level._tempBuilding.GoldCost);
-                            level.Player.AddWood(-level._tempBuilding.LumberCost);
-                            level.entities.Add(level._tempBuilding);
-                            level._tempBuilding = null;
-                        }
-                                          
-                    }
-                    else if (inputHelper.MouseRightButtonPressed())
-                    {
-                        
+                        level.Player.AddGold(-level._tempBuilding.GoldCost);
+                        level.Player.AddWood(-level._tempBuilding.LumberCost);
+                        level.entities.Add(level._tempBuilding);
                         level._tempBuilding = null;
-                        canBuild = true;
                     }
 
+                }
+                else if (inputHelper.MouseRightButtonPressed())
+                {
 
+                    level._tempBuilding = null;
+                    canBuild = true;
+                }
             }
-            
-           
+            else if (!canBuild && inputHelper.MouseRightButtonPressed())
+                level._tempBuilding = null;
+
+
+
         }
 
         int x = 0;

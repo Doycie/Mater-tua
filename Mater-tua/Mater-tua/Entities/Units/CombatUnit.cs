@@ -119,7 +119,7 @@ internal class CombatUnit : Unit
     {
         if (Agrorange(_position, e.Position) < data.tSize() * 5)
         {
-            if (_target == null)
+            if (_target == null || _target.HitPoints <= 0)
             {
                 orderAttack(e);
             }

@@ -33,7 +33,7 @@ internal class PlayingState : GameState
         _mouseState = Mouse.GetState();
         level = new Level();
         _hud = new PlayingHud(level, _selectedEntities, this);
-        level.init("lvl2.txt","lvlentities.txt");
+        level.init("lvl2.txt", "lvlentities.txt");
         fog = new FogOfWar(level);
         level.setFog(fog);
         _customCursor = new CustomCursor(level);
@@ -144,40 +144,40 @@ internal class PlayingState : GameState
                     {
                         Point pos1 = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         //if (_mine == true)
-                       // {
-                            foreach (Mine w in level.entities.OfType<Mine>())
+                        // {
+                        foreach (Mine w in level.entities.OfType<Mine>())
+                        {
+                            foreach (Townhall r in level.entities.OfType<Townhall>())
                             {
-                                foreach (Townhall r in level.entities.OfType<Townhall>())
+                                if (r.Faction == BuildingAndUnit.faction.Human)
                                 {
-                                    if (r.Faction == BuildingAndUnit.faction.Human)
+                                    if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                                     {
-                                        if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
-                                        {
-                                            q.OrderReset();
-                                            q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
-                                            break;
-                                        }
+                                        q.OrderReset();
+                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
+                                        break;
                                     }
                                 }
                             }
+                        }
                         //}
                         //if (_chop == true)
                         //{
-                            foreach (Tree n in level.entities.OfType<Tree>())
+                        foreach (Tree n in level.entities.OfType<Tree>())
+                        {
+                            foreach (Townhall r in level.entities.OfType<Townhall>())
                             {
-                                foreach (Townhall r in level.entities.OfType<Townhall>())
+                                if (r.Faction == BuildingAndUnit.faction.Human)
                                 {
-                                    if (r.Faction == BuildingAndUnit.faction.Human)
+                                    if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
                                     {
-                                        if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
-                                        {
-                                            q.OrderReset();
-                                            q.CutWoodOrder(n, n.Position, r.Position);
-                                            break;
-                                        }
+                                        q.OrderReset();
+                                        q.CutWoodOrder(n, n.Position, r.Position);
+                                        break;
                                     }
                                 }
                             }
+                        }
                         //}
                         foreach (TreasureChest n in level.entities.OfType<TreasureChest>())
                         {
@@ -300,10 +300,8 @@ internal class PlayingState : GameState
 
         if (level.movingUnits)
         {
-
             if (inputHelper.MouseLeftButtonPressed())
             {
-
                 foreach (Unit e in _selectedEntities)
                 {
                     e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
@@ -329,23 +327,23 @@ internal class PlayingState : GameState
             if (inputHelper.MouseLeftButtonPressed())
             {
                 bool canBuild = true;
-                for (int j = 0;j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
+                for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
                 {
-                    if(level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j/level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
+                    if (level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j / level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
                     {
                         canBuild = false;
                         break;
                     }
-                   
                 }
-                if(canBuild)
+                if (canBuild)
+                {
                     foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
                     {
                         for (int k = 0; k < e.Size * e.Size; k++)
                         {
                             for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
                             {
-                                if((int)e.Position.X/64 + (k/ e.Size) == level._tempBuilding.Position.X / 64 + (j/level._tempBuilding.Size)  && (int)e.Position.Y / 64 + (k % e.Size) == level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
+                                if ((int)e.Position.X / 64 + (k / e.Size) == level._tempBuilding.Position.X / 64 + (j / level._tempBuilding.Size) && (int)e.Position.Y / 64 + (k % e.Size) == level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
                                 {
                                     canBuild = false;
                                     break;
@@ -353,12 +351,23 @@ internal class PlayingState : GameState
                             }
                         }
                     }
+                    foreach (Tree e in level.entities.OfType<Tree>())
+                    {
+                        for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
+                        {
+                            if ((int)(e.Position.X / 64) == (int)level._tempBuilding.Position.X / 64 + ( j/level._tempBuilding.Size) && (int)e.Position.Y / 64 == (int)level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
+                            {
+                                canBuild = false;
+                                break;
+                            }
+                        }
+                    }
+                }
                 if (canBuild)
                 {
                     level.entities.Add(level._tempBuilding);
                     level._tempBuilding = null;
                 }
-               
             }
             else if (inputHelper.MouseRightButtonPressed())
             {

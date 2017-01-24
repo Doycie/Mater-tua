@@ -11,48 +11,39 @@ partial class Level
     {
         count++;
 
-        if(count%30 == 0)
-        { 
+        if (count % 60 == 0)
+        {
             foreach (CombatUnit e in entities.OfType<CombatUnit>())
-             {
-                if (e.Faction == CombatUnit.faction.Human)
-                {
-                    foreach (CombatUnit g in entities.OfType<CombatUnit>())
-                    {
-                        if (g.Faction == CombatUnit.faction.Orc)
-                        {
-                            g.Defend(e);
-                            if (Math.Sqrt(Math.Pow(e.Position.X - g.Position.X, 2) + Math.Pow(e.Position.Y - g.Position.Y, 2)) < data.tSize())
-                            {
-                                (e as CombatUnit).orderAttack(g);
-                            }
-                            
-                            
-
-                        }
-                    }
-                }
-            }
-            foreach (Unit e in entities.OfType<Unit>())
             {
-                if (e.Faction == Unit.faction.Human)
+                foreach (BuildingAndUnit g in entities)
                 {
-                    foreach (CombatUnit g in entities.OfType<CombatUnit>())
+                    if (g.Faction != e.Faction && g.Faction != BuildingAndUnit.faction.Neutral)
                     {
-                        if (g.Faction == CombatUnit.faction.Orc)
-                        {
-                            g.Defend(e);
-                        }
+                        e.Defend(g);
                     }
                 }
             }
         }
+        //  foreach (Unit e in entities.OfType<Unit>())
+        //  {
+        //      if (e.Faction == Unit.faction.Human)
+        //      {
+        //         foreach (CombatUnit g in entities.OfType<CombatUnit>())
+        //          {
+        //              if (g.Faction == CombatUnit.faction.Orc)
+        //              {
+        //                  g.Defend(e);
+        //              }
+        //          }
+        //      }
+
+        //}
 
         if (count % 5400 == 0 && count > 0)
         {
             foreach (Barracks b in entities.OfType<Barracks>())
             {
-                if(b.Faction == BuildingAndUnit.faction.Orc)
+                if (b.Faction == BuildingAndUnit.faction.Orc)
                 {
                     b.produceUnit(new Grunt(this, new Vector2(b.Position.X + 2 * data.tSize(), b.Position.Y + 1 * data.tSize())));
                 }
@@ -76,7 +67,7 @@ partial class Level
                 }
             }
         }
-       
+
 
         //Update all the entities in the level list
         for (int i = entities.Count() - 1; i >= 0; i--)
@@ -111,21 +102,21 @@ partial class Level
                     if (typeof(Tree).IsAssignableFrom(entities[i].GetType()) || typeof(TreasureChest).IsAssignableFrom(entities[i].GetType()))
                     {
                         GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/OpenChest");
-                        specialFX.Add(new Spritesheet("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size , 8,32,32,60));
+                        specialFX.Add(new Spritesheet("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size, 8, 32, 32, 60));
                         entities.RemoveAt(i);
                     }
                     else if (typeof(Unit).IsAssignableFrom(entities[i].GetType()))
                     {
-                        specialFX.Add(new Spritesheet("Sprites/Misc/BloodSplatter", entities[i].Position, entities[i].Size, 4, 128,16,180));
+                        specialFX.Add(new Spritesheet("Sprites/Misc/BloodSplatter", entities[i].Position, entities[i].Size, 4, 128, 16, 180));
                         entities.RemoveAt(i);
                     }
                     else if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()))
                     {
-                        specialFX.Add(new Spritesheet("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size,5,96,15,180));
+                        specialFX.Add(new Spritesheet("Sprites/Misc/explosionSpriteSheet", entities[i].Position, entities[i].Size, 5, 96, 15, 180));
                         entities.RemoveAt(i);
                     }
 
-                } 
+                }
             }
         }
 
@@ -179,7 +170,7 @@ partial class Level
     public void moveUnits()
     {
         movingUnits = true;
-        
+
     }
 
     public void attackMoveUnits()

@@ -390,11 +390,18 @@ internal class PlayingState : GameState
             {
                 if (inputHelper.MouseLeftButtonPressed())
                 {
+                    
+                        
+                    
                     if (level.Player.Gold >= level._tempBuilding.GoldCost && level.Player.Wood >= level._tempBuilding.LumberCost)
                     {
                         level.Player.AddGold(-level._tempBuilding.GoldCost);
                         level.Player.AddWood(-level._tempBuilding.LumberCost);
-                        level.entities.Add(level._tempBuilding);
+                        level._tempBuildings.Add(level._tempBuilding as StaticBuilding);
+                        foreach (WorkerUnit e in _selectedEntities.OfType<WorkerUnit>())
+                        {
+                            (e as WorkerUnit).BuildOrder(level._tempBuilding.Position, level._tempBuildings.Count - 1);
+                        }
                         level._tempBuilding = null;
                     }
 

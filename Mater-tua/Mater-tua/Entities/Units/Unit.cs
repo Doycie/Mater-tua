@@ -132,7 +132,7 @@ public class Unit : BuildingAndUnit
 
                 if (!buildingInTheWay)
                 {
-                    if (!soundEffectCooldown)
+                    if (!soundEffectCooldown && this._faction != BuildingAndUnit.faction.Orc)
                     {
                         soundEffectCooldownTimer = 300;
                         soundEffectCooldown = true;

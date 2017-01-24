@@ -89,7 +89,7 @@ public partial class Level
             entities.Add(Tree1);
             Tree Tree2 = new Tree(this, new Vector2(2 * data.tSize(), 5 * data.tSize()));
             entities.Add(Tree2);
-            Mine Mine = new Mine(this, new Vector2(1 * data.tSize(), 1 * data.tSize()), BuildingAndUnit.faction.Neutral);
+            Mine Mine = new Mine(this, new Vector2(1 * data.tSize(), 1 * data.tSize()));
             entities.Add(Mine);
             Townhall Townhall = new Townhall(this, new Vector2(7 * data.tSize(), 3 * data.tSize()), BuildingAndUnit.faction.Human);
             entities.Add(Townhall);
@@ -177,7 +177,7 @@ public partial class Level
                         entities.Add(tree);
                         break;
                     case 'm': //mine
-                        Mine mine = new Mine(this, new Vector2(i * data.tSize(), j * data.tSize()), BuildingAndUnit.faction.Neutral);
+                        Mine mine = new Mine(this, new Vector2(i * data.tSize(), j * data.tSize()));
                         entities.Add(mine);
                         break;
                     case 's': //human stronghold/townhall

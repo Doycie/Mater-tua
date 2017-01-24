@@ -118,7 +118,7 @@ public class Unit : BuildingAndUnit
                 bool buildingInTheWay = false;
                 foreach (StaticBuilding e in _level.entities.OfType<StaticBuilding>())
                 {
-                    if (_faction == e.Faction || _faction == BuildingAndUnit.faction.Neutral)
+                    if (_faction == e.Faction || e.Faction == BuildingAndUnit.faction.Neutral)
                     {
                         for (int j = 0; j < e.Size * e.Size; j++)
                         {

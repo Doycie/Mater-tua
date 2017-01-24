@@ -5,7 +5,7 @@ internal class Mine : StaticBuilding
 {
     private int _MineAmount;
 
-    public Mine(Level level, Vector2 position, faction faction)
+    public Mine(Level level, Vector2 position)
         : base(level)
     {
         _resourceType = resourceType.Gold;
@@ -13,7 +13,7 @@ internal class Mine : StaticBuilding
         _Friendcanwalktrough = true;
         _size = 2;
         _position = position;
-        _faction = faction;
+        _faction = BuildingAndUnit.faction.Neutral;
         _maxhp = 2;
         _lumberCost = 400;
         _goldCost = 400;

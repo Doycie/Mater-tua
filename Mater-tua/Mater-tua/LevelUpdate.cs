@@ -158,11 +158,7 @@ partial class Level
             _tempBuilding = new Barracks(this, Vector2.Zero, BuildingAndUnit.faction.Human);
         }
 
-        if (Player.Gold >= _tempBuilding.GoldCost && Player.Wood >= _tempBuilding.LumberCost)
-        {
-            Player.AddGold(-_tempBuilding.GoldCost);
-            Player.AddWood(-_tempBuilding.LumberCost);
-        }
+        
         else
         {
             _tempBuilding = null;

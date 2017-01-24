@@ -46,6 +46,14 @@ internal class PlayingState : GameState
         // Console.WriteLine(mousePos);
         level.update(gameTime);
         fog.Update();
+
+        if (level._tempBuilding != null)
+        {
+            if (level.Player.Gold < level._tempBuilding.GoldCost && level.Player.Wood < level._tempBuilding.LumberCost)
+            {
+                canBuild = false;
+            }
+        }
     }
 
     //Special function to draw the HUD
@@ -258,7 +266,7 @@ internal class PlayingState : GameState
                     _lastMousePos = _customCursor.getMousePos();
                 }
             }
-            bool PlayedHello = false;
+            
             //One click on a unit to select/deselect them
             if (inputHelper.MouseLeftButtonPressed() && !level.movingUnits && !level._attackMoveUnits)
             {
@@ -374,8 +382,14 @@ internal class PlayingState : GameState
                 {
                     if (inputHelper.MouseLeftButtonPressed())
                     {
-                        level.entities.Add(level._tempBuilding);
-                        level._tempBuilding = null;
+                        if (level.Player.Gold >= level._tempBuilding.GoldCost && level.Player.Wood >= level._tempBuilding.LumberCost)
+                        {
+                            level.Player.AddGold(-level._tempBuilding.GoldCost);
+                            level.Player.AddWood(-level._tempBuilding.LumberCost);
+                            level.entities.Add(level._tempBuilding);
+                            level._tempBuilding = null;
+                        }
+                                          
                     }
                     
                         
@@ -410,7 +424,6 @@ internal class PlayingState : GameState
             y++;
         }
 
-        // TODO: remove cheats
         if (inputHelper.KeyPressed(Keys.NumPad0))
             level.Player.AddGold(100);
         if (inputHelper.KeyPressed(Keys.NumPad1))

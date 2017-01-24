@@ -90,7 +90,7 @@ internal class PlayingHud : HUD
                         break;
                     case 2:
                         WorkerUnit w = new WorkerUnit(null);
-                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost, ToolTipPos, Color.DarkOrange); }
+                        { s.DrawString(font, "Produce Worker, Gold:" + w.GoldCost + "+ Food:" + w._foodCost, ToolTipPos, Color.DarkOrange); }
                         break;
                     case 3:
                         s.DrawString(font, "Stop selected units", ToolTipPos, Color.DarkOrange);
@@ -101,7 +101,7 @@ internal class PlayingHud : HUD
                         break;
                     case 5:
                         BasicMeleeUnit b = new Footman(null, new Vector2(0, 0));
-                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost ,ToolTipPos, Color.DarkOrange);
+                        s.DrawString(font, "Produce Footman, Gold:" +b.GoldCost +"Lumber:"+ b.LumberCost + "Food:"+ b._foodCost,ToolTipPos, Color.DarkOrange);
                         break;
                     case 6:
                         s.DrawString(font, "Attack", ToolTipPos, Color.DarkOrange);
@@ -111,7 +111,7 @@ internal class PlayingHud : HUD
                         break;
                     case 8:
                         Archer a = new Archer(null, new Vector2(0, 0));
-                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost , ToolTipPos, Color.DarkOrange);
+                        s.DrawString(font, "Produce Archer, Gold:"+ a.GoldCost + "Lumber:" + a.LumberCost + "Food:" + a._foodCost , ToolTipPos, Color.DarkOrange);
                         break;
                     case 9:
                         s.DrawString(font, " - ", ToolTipPos, Color.Black);

@@ -10,7 +10,6 @@ internal class VictoryHud : HUD
     public VictoryHud()
     {
         _BGTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/Victory");
-        //TODO: Fix position of the buttons
         _buttons = new List<Button>();
         
         /* 1 quit to menu*/

@@ -154,4 +154,9 @@ partial class Level
         movingUnits = true;
         
     }
+
+    public void attackMoveUnits()
+    {
+        _attackMoveUnits = true;
+    }
 }

@@ -76,12 +76,6 @@ internal class PlayingState : GameState
 
         if (level._tempBuilding != null)
         {
-            //if (gebouw kan geplaatst worden)
-            //    level._tempBuilding.DrawGreen(spriteBatch);
-
-            //if (gebouw kan niet geplaatst worden)
-            //    level._tempBuilding.DrawRed(spriteBatch);
-
             level._tempBuilding.Draw(spriteBatch);
         }
     }
@@ -223,7 +217,7 @@ internal class PlayingState : GameState
             }
 
             //Drag the selection box to include multiple entities
-            if (!inputHelper.MouseLeftButtonDown() && !level.movingUnits)
+            if (!inputHelper.MouseLeftButtonDown() && !level.movingUnits && !level._attackMoveUnits)
             {
                 if (_mouseReleased)
                 {
@@ -249,7 +243,7 @@ internal class PlayingState : GameState
             }
 
             //Check if the mouse is pressed for the selection
-            if (inputHelper.MouseLeftButtonDown() && !level.movingUnits)
+            if (inputHelper.MouseLeftButtonDown() && !level.movingUnits && !level._attackMoveUnits)
             {
                 if (_mouseReleased == false)
                 {
@@ -259,7 +253,7 @@ internal class PlayingState : GameState
             }
             bool PlayedHello = false;
             //One click on a unit to select/deselect them
-            if (inputHelper.MouseLeftButtonPressed() && !level.movingUnits)
+            if (inputHelper.MouseLeftButtonPressed() && !level.movingUnits && !level._attackMoveUnits)
             {
                 Vector2 pos = _customCursor.getMousePos();
 
@@ -315,6 +309,18 @@ internal class PlayingState : GameState
                     e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
                 }
                 level.movingUnits = false;
+            }
+        }
+
+        if (level._attackMoveUnits)
+        {
+            if (inputHelper.MouseLeftButtonPressed())
+            {
+                foreach (CombatUnit e in _selectedEntities)
+                {
+                    e.orderMove(new Point((int)_currentMousePos.X / data.tSize(), (int)_currentMousePos.Y / data.tSize()));
+                }
+                level._attackMoveUnits = false;
             }
         }
         if (level._tempBuilding != null)

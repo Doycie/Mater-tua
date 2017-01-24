@@ -64,7 +64,7 @@ public class AssetManager
     // Randomly selects one of the BGM tracks and plays it.
     public void RandomiseBGM()
     {
-        int trackNO = GameEnvironment.getRandom().Next(0, 2);
+        int trackNO = GameEnvironment.getRandom().Next(0, 3);
 
         switch (trackNO)
         {

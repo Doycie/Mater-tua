@@ -420,7 +420,7 @@ internal class PlayingState : GameState
             GameEnvironment.getCamera().move(Vector2.Normalize(mov) * _camSpeed * camspeedmultiplier);
         }
 
-        //Zoomon scroll wheel
+        //Zoomon scroll wheel disabled in the real game
         if (_mouseState.ScrollWheelValue < _previousScrollValue)
         {
             GameEnvironment.getCamera().zoom(-.04f);

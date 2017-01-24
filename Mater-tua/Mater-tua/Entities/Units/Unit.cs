@@ -95,7 +95,7 @@ public class Unit : BuildingAndUnit
                 _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target, _level._mapData, _level);
                 if (_path.Count == 0)
                 {
-
+                    (this as WorkerUnit).OrderReset();
                 }
             }
             else if (_level._entitiesData[target.X, target.Y] != (int)'t')

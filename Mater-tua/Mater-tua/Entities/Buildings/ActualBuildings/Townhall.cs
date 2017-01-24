@@ -14,7 +14,7 @@ using System;
         _size = 3;
         _position = position;
         _faction = faction;
-        _maxhp = 5000;
+        _maxhp = 2000;
         _lumberCost = 400;
         _goldCost = 400;
         _buildTime = 1000;

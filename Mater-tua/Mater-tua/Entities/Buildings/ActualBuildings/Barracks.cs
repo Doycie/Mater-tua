@@ -14,7 +14,7 @@ internal class Barracks : ProductionBuilding
         _size = 2;
         _position = position;
         _faction = faction;
-        _maxhp = 2500;
+        _maxhp = 100;
         _lumberCost = 400;
         _goldCost = 400;
         _buildTime = 1000;

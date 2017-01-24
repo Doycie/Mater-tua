@@ -154,7 +154,7 @@ internal class PlayingState : GameState
                                     if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                                     {
                                         q.OrderReset();
-                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position);
+                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position + new Vector2(r.Size * data.tSize() - data.tSize(),r.Size * data.tSize() - data.tSize()));
                                         break;
                                     }
                                 }
@@ -172,7 +172,7 @@ internal class PlayingState : GameState
                                     if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
                                     {
                                         q.OrderReset();
-                                        q.CutWoodOrder(n, n.Position, r.Position);
+                                        q.CutWoodOrder(n, n.Position, r.Position + new Vector2(r.Size * data.tSize() - data.tSize(), r.Size * data.tSize() - data.tSize()));
                                         break;
                                     }
                                 }
@@ -188,7 +188,7 @@ internal class PlayingState : GameState
                                     if ((new Rectangle((int)n.Position.X, (int)n.Position.Y, n.Size * data.tSize(), n.Size * data.tSize()).Contains(pos1)))
                                     {
                                         q.OrderReset();
-                                        q.TreasureOrder(n, n.Position, r.Position);
+                                        q.TreasureOrder(n, n.Position, r.Position + new Vector2(r.Size * data.tSize() - data.tSize(), r.Size * data.tSize() - data.tSize()));
                                         break;
                                     }
                                 }

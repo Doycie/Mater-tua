@@ -134,7 +134,7 @@ internal class WorkerUnit : Unit
             {
                 if (_Timer == 0)
                 {
-                    orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
+                    orderMove(new Point((int)_TownhallPosition.X / data.tSize() , (int)_TownhallPosition.Y / data.tSize()));
                     _Timer = 300;
                     _mine.MineUseage();
                 }

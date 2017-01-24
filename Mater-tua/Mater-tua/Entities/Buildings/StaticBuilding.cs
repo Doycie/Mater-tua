@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-internal class StaticBuilding : BuildingAndUnit
+public class StaticBuilding : BuildingAndUnit
 {
     protected float _buildTime;
     protected bool _ableToProduce;

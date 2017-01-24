@@ -78,6 +78,10 @@ internal class PlayingState : GameState
         {
             level._tempBuilding.Draw(spriteBatch);
         }
+        foreach( StaticBuilding e in level._tempBuildings)
+        {
+            e.Draw(spriteBatch);
+        }
     }
 
     //Handle the camera movement and the selecting units

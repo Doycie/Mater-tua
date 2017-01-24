@@ -45,8 +45,8 @@ internal class PlayingHud : HUD
         _playingButtons.Add(new PlayingButton(new Rectangle(1000, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Peasant"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/PeasantPressed"), false, entityList, false));
         /* 3 stop move button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/StopMove"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/StopMovePressed"), false, entityList, false));
-        /* 4 mine gold button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Gold"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/GoldPressed"), false, entityList, false));
+        /* 4 build barracks*/
+        _playingButtons.Add(new PlayingButton(new Rectangle(1090, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Barracks"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/BarracksPressed"), false, entityList, false));
         /* 5 produce melee unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Footman"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/FootmanPressed"), false, entityList, false));
         /* 6 attack button*/
@@ -96,7 +96,8 @@ internal class PlayingHud : HUD
                         s.DrawString(font, "Stop selected units", ToolTipPos, Color.DarkOrange);
                         break;
                     case 4:
-                        s.DrawString(font, "Mine for gold", ToolTipPos, Color.DarkOrange);
+                        Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
+                        s.DrawString(font, "Barracks, Gold:" + B.GoldCost + "Lumber:" + B.LumberCost, ToolTipPos, Color.DarkOrange);
                         break;
                     case 5:
                         BasicMeleeUnit b = new Footman(null, new Vector2(0, 0));
@@ -116,8 +117,8 @@ internal class PlayingHud : HUD
                         s.DrawString(font, " - ", ToolTipPos, Color.Black);
                         break;
                     case 10:
-                        Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
-                        s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ToolTipPos, Color.DarkOrange);
+                        //Barracks B = new Barracks(null, new Vector2(0, 0), BuildingAndUnit.faction.Human);
+                        //s.DrawString(font, "Barracks, Gold:"+ B.GoldCost + "Lumber:" + B.LumberCost , ToolTipPos, Color.DarkOrange);
                         break;
                     case 11:
                         s.DrawString(font, "- ", ToolTipPos, Color.Black);
@@ -178,15 +179,15 @@ internal class PlayingHud : HUD
                     _playingButtons[1]._visible = true;
                     _playingButtons[3]._visible = true;
                     _playingButtons[4]._visible = true;
-                    _playingButtons[7]._visible = true;
-                    _playingButtons[10]._visible = true;
+                    //_playingButtons[7]._visible = true;
+                    //_playingButtons[10]._visible = true;
                 }
             foreach (CombatUnit c in selectedEntities.OfType<CombatUnit>())
                 {
                 _playingButtons[0]._visible = true;
                 _playingButtons[3]._visible = true;
                 _playingButtons[6]._visible = true;
-                _playingButtons[9]._visible = true;
+                //_playingButtons[9]._visible = true;
                 }
             foreach (Barracks b in selectedEntities.OfType<Barracks>())
                 {
@@ -195,7 +196,7 @@ internal class PlayingHud : HUD
                 _playingButtons[5]._visible = true;
                 _playingButtons[6]._visible = false;
                 _playingButtons[8]._visible = true;
-                _playingButtons[9]._visible = false;
+                //_playingButtons[9]._visible = false;
                 }
             foreach (Townhall t in selectedEntities.OfType<Townhall>())
                 {
@@ -242,7 +243,8 @@ internal class PlayingHud : HUD
                 Console.WriteLine("case 4, order stop move.");
                     break;
                 case 5:
-                    Console.WriteLine("case 5");
+                level.dragBuilding(2);
+                Console.WriteLine("case 5");
                 _playingState.Mine = true;
                     break;
                 case 6:

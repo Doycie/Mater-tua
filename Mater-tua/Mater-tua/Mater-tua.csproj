@@ -51,13 +51,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>txt bestanden\Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Managers\AssetManager.cs" />
+    <Compile Include="AssetManager.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="FogOfWar.cs" />
     <Compile Include="Entities\AnimatedEntity.cs" />
@@ -89,14 +89,14 @@
     <Compile Include="Entities\SpriteEntity.cs" />
     <Compile Include="CustomCursor.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="Helpers\DrawingHelper.cs" />
+    <Compile Include="DrawingHelper.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityTemp.cs" />
     <Compile Include="Entities\Pathfind.cs" />
     <Compile Include="Entities\Units\WorkerUnit.cs" />
     <Compile Include="GameEnvironment.cs" />
-    <Compile Include="Managers\GameSettingsManager.cs" />
-    <Compile Include="Managers\GameStateManager.cs" />
+    <Compile Include="GameSettingsManager.cs" />
+    <Compile Include="GameStateManager.cs" />
     <Compile Include="GameStates\DefeatState.cs" />
     <Compile Include="GameStates\PauseSettingsState.cs" />
     <Compile Include="GameStates\PauseState.cs" />
@@ -114,10 +114,10 @@
     <Compile Include="HUD\Resources.cs" />
     <Compile Include="HUD\SettingsHud.cs" />
     <Compile Include="HUD\VictoryHud.cs" />
-    <Compile Include="Helpers\InputHelper.cs" />
-    <Compile Include="Level\Level.cs" />
-    <Compile Include="Level\LevelDraw.cs" />
-    <Compile Include="Level\LevelUpdate.cs" />
+    <Compile Include="InputHelper.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="LevelDraw.cs" />
+    <Compile Include="LevelUpdate.cs" />
     <Compile Include="Mater-tua.cs" />
     <Compile Include="GameStates\MenuState.cs" />
     <Compile Include="Minimap.cs" />
@@ -143,14 +143,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="txt bestanden\lvl.txt">
+    <Content Include="lvl.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="txt bestanden\Icon.ico" />
-    <Content Include="txt bestanden\lvl2.txt">
+    <Content Include="Icon.ico" />
+    <Content Include="lvl2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="txt bestanden\lvlentities.txt">
+    <Content Include="lvlentities.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

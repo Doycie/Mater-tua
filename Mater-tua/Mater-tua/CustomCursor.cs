@@ -6,6 +6,7 @@ internal class CustomCursor
     //Holds the position and the current texture
     private Texture2D _tex;
     private Texture2D _moveTex;
+    private Texture2D _attackTex;
 
     private Vector2 _mousePosWorld;
     private Vector2 _mousePosScreen;
@@ -18,6 +19,7 @@ internal class CustomCursor
         _level = level;
         _tex = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/CursorTest");
         _moveTex = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/moveCursor");
+        _attackTex = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/attackCursor");
     }
 
     public CustomCursor()
@@ -39,13 +41,17 @@ internal class CustomCursor
     //Draw the cursor
     public void draw(SpriteBatch s)
     {
-        if(_level != null && _moveTex != null && _level.movingUnits)
+        if (_level != null && _moveTex != null && _level.movingUnits && !_level._attackMoveUnits)
         {
-            s.Draw(_moveTex,new Vector2(_mousePosScreen.X  + _moveTex.Width / 2, _mousePosScreen.Y + _moveTex.Height / 2), new Rectangle(0, 0, _moveTex.Width / 2, _moveTex.Height / 2), Color.White, 0.0f, new Vector2(_moveTex.Width , _moveTex.Height ), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
+            s.Draw(_moveTex, new Vector2(_mousePosScreen.X + _moveTex.Width / 2, _mousePosScreen.Y + _moveTex.Height / 2), new Rectangle(0, 0, _moveTex.Width / 2, _moveTex.Height / 2), Color.White, 0.0f, new Vector2(_moveTex.Width, _moveTex.Height), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
 
-        }else
+        }
+        else if(_level != null && _moveTex != null && !_level.movingUnits && _level._attackMoveUnits)
         {
-        s.Draw(_tex, _mousePosScreen, new Rectangle(0, 0, _tex.Width, _tex.Height), Color.White, 0.0f, new Vector2(_tex.Width / 5, _tex.Height / 5), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
+            s.Draw(_attackTex, new Vector2(_mousePosScreen.X + _moveTex.Width / 2, _mousePosScreen.Y + _attackTex.Height / 2), new Rectangle(0, 0, _attackTex.Width, _attackTex.Height), Color.White, 0.0f, new Vector2(_attackTex.Width, _attackTex.Height), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
+        } else
+        {
+            s.Draw(_tex, _mousePosScreen, new Rectangle(0, 0, _tex.Width, _tex.Height), Color.White, 0.0f, new Vector2(_tex.Width / 5, _tex.Height / 5), 1 / GameEnvironment.getCamera().getZoom(), SpriteEffects.None, 0.0f);
 
         }
 

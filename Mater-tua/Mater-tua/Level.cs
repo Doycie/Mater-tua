@@ -21,6 +21,7 @@ public partial class Level
     public BuildingAndUnit _tempBuilding;
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public bool movingUnits = false;
+    public bool _attackMoveUnits = false;
 
     public List<BuildingAndUnit> entities = new List<BuildingAndUnit>();
 

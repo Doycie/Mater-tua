@@ -50,7 +50,7 @@ internal class PlayingHud : HUD
         /* 5 produce melee unit*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1090, 85, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Footman"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/FootmanPressed"), false, entityList, false));
         /* 6 attack button*/
-        _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Button"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/ButtonPressed"), false, entityList, false));
+        _playingButtons.Add(new PlayingButton(new Rectangle(1180, 245, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/Attack"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/AttackPressed"), false, entityList, false));
         /* 7 chop wood button*/
         _playingButtons.Add(new PlayingButton(new Rectangle(1180, 165, 70, 70), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/wood"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/woodPressed"), false, entityList, false));
         /* 8 produce ranged unit*/
@@ -256,6 +256,7 @@ internal class PlayingHud : HUD
                     Console.WriteLine("case 6, produce footman");
                     break;
                 case 7:
+                    _level.attackMoveUnits();
                     Console.WriteLine("case 7");
                     break;
                 case 8:

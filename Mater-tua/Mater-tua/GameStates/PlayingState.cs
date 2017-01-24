@@ -391,17 +391,17 @@ internal class PlayingState : GameState
                         }
                                           
                     }
-                    
+                    else if (inputHelper.MouseRightButtonPressed())
+                    {
                         
-                }
-            
-            else if (inputHelper.MouseRightButtonPressed())
-            {
-                level.Player.AddGold(level._tempBuilding.GoldCost);
-                level.Player.AddWood(level._tempBuilding.LumberCost);
-                level._tempBuilding = null;
-                canBuild = true;
+                        level._tempBuilding = null;
+                        canBuild = true;
+                    }
+
+
             }
+            
+           
         }
 
         int x = 0;

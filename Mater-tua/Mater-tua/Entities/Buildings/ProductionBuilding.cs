@@ -16,14 +16,14 @@ internal class ProductionBuilding : StaticBuilding
     public void produceUnit(Unit e)
     {
         
-        if (_level.Player.Gold >= e.GoldCost && _level.Player.Food >= 1  && _level.Player.Wood >= e.LumberCost && _producingUnit == false)
+        if (_level.Player.Gold >= e.GoldCost && _level.Player.UsedFood + e.FoodCost <= _level.Player.Food  && _level.Player.Wood >= e.LumberCost && _producingUnit == false)
         {
             _tempUnit = e;
             if (e.Faction == faction.Human)
             {
                 _level.Player.AddGold(-e.GoldCost);
                 _level.Player.AddWood(-e.LumberCost);
-                _level.Player.availableFood(1);
+                _level.Player.UseFood(e.FoodCost);
             }
             
             

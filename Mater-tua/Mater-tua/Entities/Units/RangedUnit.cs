@@ -20,6 +20,7 @@ class RangedUnit : CombatUnit
         _entityType = entityType.Combat;
         _goldCost = 400;
         _lumberCost = 50;
+        _foodCost = 2;
         _damage = 10;
         _damageType = damageType.Piercing;
         _productionTime = 750;

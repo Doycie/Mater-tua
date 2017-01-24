@@ -29,6 +29,7 @@ internal class WorkerUnit : Unit
         _armorType = armorType.Light;
         _goldCost = 400;
         _lumberCost = 0;
+        _foodCost = 1;
         _damage = 10;
         _damageType = damageType.Piercing;
         _entityType = entityType.Worker;

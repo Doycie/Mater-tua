@@ -15,6 +15,7 @@ internal class BasicMeleeUnit : CombatUnit
         _entityType = entityType.Combat;
         _goldCost = 400;
         _lumberCost = 0;
+        _foodCost = 3;
         _damage = 10;
         _damageType = damageType.Piercing;
         _productionTime = 600;

@@ -56,7 +56,7 @@ public partial class Level
         _dirtTex = GameEnvironment.getAssetManager().GetSprite("Sprites/Tiles/dirt");
         _mapWidth = data.tSize();
         _mapHeight = data.tSize();
-        GameEnvironment.getCamera().SetMaxBounds(data.tSize() * data.tSize() , data.tSize() * data.tSize() );
+        GameEnvironment.getCamera().SetMaxBounds(data.tSize() * data.tSize(), data.tSize() * data.tSize());
         _mapData = new byte[_mapWidth, _mapHeight];
         _entitiesData = new char[_mapWidth, _mapHeight];
         loadMap(mapPath);
@@ -204,6 +204,21 @@ public partial class Level
                         Barracks oBarracks = new Barracks(this, new Vector2(i * data.tSize(), j * data.tSize()), BuildingAndUnit.faction.Orc);
                         entities.Add(oBarracks);
                         break;
+
+                    default:
+                        break;
+
+                }
+
+            }
+
+        }
+        for (int i = 0; i < _mapWidth; i++)
+        {
+            for (int j = 0; j < _mapHeight; j++)
+            {
+                switch (_entitiesData[i, j])
+                {
                     case 'g': //footman
                         Footman footman = new Footman(this, new Vector2(i * data.tSize(), j * data.tSize()));
                         entities.Add(footman);
@@ -230,11 +245,8 @@ public partial class Level
                         break;
                     default:
                         break;
-
                 }
-
             }
-
         }
     }
 

@@ -117,7 +117,7 @@ internal class CombatUnit : Unit
 
     public void Defend(BuildingAndUnit e)
     {
-        if (Agrorange(_position, e.Position) < data.tSize() * 4)
+        if (Agrorange(_position, e.Position) < data.tSize() * 5)
         {
             if (_target == null)
             {

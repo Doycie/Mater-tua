@@ -6,6 +6,7 @@ public class StaticBuilding : BuildingAndUnit
     protected bool _ableToProduce;
     protected bool _Friendcanwalktrough;
     protected bool _EnemycanWalktrough;
+    protected Texture2D _constructionSprite;
 
 
     public StaticBuilding(Level level) : base(level)
@@ -17,6 +18,11 @@ public class StaticBuilding : BuildingAndUnit
     public bool AbleToProduce
     {
         get { return _ableToProduce; }
+    }
+
+    public Texture2D ConstructionSprite
+    {
+        get { return _constructionSprite; }
     }
 
     public float BuildTime

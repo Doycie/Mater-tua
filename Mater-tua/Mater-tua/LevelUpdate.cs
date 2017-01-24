@@ -49,7 +49,7 @@ partial class Level
                 }
             }
         }
-        if (count > 0 && count % 10800 == 0)
+        if (count > 0 && count % 8100 == 0)
         {
             Vector2 attackLocation = Vector2.Zero;
             foreach (Townhall t in entities.OfType<Townhall>())

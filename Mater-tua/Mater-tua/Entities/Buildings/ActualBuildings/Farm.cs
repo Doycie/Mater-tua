@@ -26,12 +26,14 @@ internal class Farm : StaticBuilding
         {
             _description = "This is where food for the army is produced. You must produce enough food for all Units otherwise they will die off.";
             _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanFarm");
+            _constructionSprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanFarmConstruction");
         }
 
         if (_faction == faction.Orc)
         {
             _description = "Farms produce the grain and animals needed to keep the army well fed. You must produce enough food to supply all Orcs you control.";
             _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcFarm");
+            _constructionSprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcFarmConstruction");
         }
 
         //FoodCreate();
@@ -57,6 +59,7 @@ internal class Farm : StaticBuilding
             if (_faction == faction.Orc)
             {
                 _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcFarmConstruction");
+
             }
             if (_faction == faction.Human)
             {

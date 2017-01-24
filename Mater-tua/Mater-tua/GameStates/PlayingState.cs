@@ -91,7 +91,7 @@ internal class PlayingState : GameState
         }
         foreach (StaticBuilding e in level._tempBuildings)
         {
-            e.DrawGreen(spriteBatch);
+            spriteBatch.Draw(e.ConstructionSprite, new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()), Color.White); ;
         }
     }
 

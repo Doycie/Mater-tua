@@ -26,12 +26,14 @@ internal class Barracks : ProductionBuilding
         {
             _description = "This is where units that can fight be produced.";
             _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanBarracks");
+            _constructionSprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/HumanBarracksConstruction");
         }
 
         if (_faction == faction.Orc)
         {
             _description = "This is where the units are produced to fight";
             _sprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcBarracks");
+            _constructionSprite = GameEnvironment.getAssetManager().GetSprite("Sprites/Buildings/OrcBarracksConstruction");
         }
     }
 

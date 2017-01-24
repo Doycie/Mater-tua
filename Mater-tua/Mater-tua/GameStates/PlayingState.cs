@@ -18,7 +18,7 @@ internal class PlayingState : GameState
     private Vector2 _lastMousePos;
     private Vector2 _currentMousePos;
     private bool _mouseReleased;
-
+    private bool canBuild = true;
     private bool _mine;
     private bool _chop;
 
@@ -76,7 +76,10 @@ internal class PlayingState : GameState
 
         if (level._tempBuilding != null)
         {
-            level._tempBuilding.Draw(spriteBatch);
+            if (canBuild)
+                level._tempBuilding.DrawGreen(spriteBatch);
+            else
+                level._tempBuilding.DrawRed(spriteBatch);
         }
     }
 
@@ -324,9 +327,9 @@ internal class PlayingState : GameState
         if (level._tempBuilding != null)
         {
             (level._tempBuilding as StaticBuilding).setPos(_currentMousePos);
-            if (inputHelper.MouseLeftButtonPressed())
-            {
-                bool canBuild = true;
+            //if (inputHelper.MouseLeftButtonPressed())
+            
+                canBuild = true;
                 for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
                 {
                     if (level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j / level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
@@ -365,15 +368,21 @@ internal class PlayingState : GameState
                 }
                 if (canBuild)
                 {
-                    level.entities.Add(level._tempBuilding);
-                    level._tempBuilding = null;
+                    if (inputHelper.MouseLeftButtonPressed())
+                    {
+                        level.entities.Add(level._tempBuilding);
+                        level._tempBuilding = null;
+                    }
+                    
+                        
                 }
-            }
+            
             else if (inputHelper.MouseRightButtonPressed())
             {
                 level.Player.AddGold(level._tempBuilding.GoldCost);
                 level.Player.AddWood(level._tempBuilding.LumberCost);
                 level._tempBuilding = null;
+                canBuild = true;
             }
         }
 

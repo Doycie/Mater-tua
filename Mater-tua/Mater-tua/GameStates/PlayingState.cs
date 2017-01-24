@@ -260,7 +260,7 @@ internal class PlayingState : GameState
                 bool clickedOnEntity = false;
                 foreach (BuildingAndUnit e in level.entities)
                 {
-                    if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()).Contains(pos)) && e.Faction != BuildingAndUnit.faction.Orc)
+                    if ((new Rectangle((int)e.Position.X, (int)e.Position.Y, e.Size * data.tSize(), e.Size * data.tSize()).Contains(pos)) && e.Faction == BuildingAndUnit.faction.Human)
                     {
                         //if (PlayedHello == false && Hello1 == false )
                         //{ GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes Sir"); PlayedHello = true; Hello1 = true; Hello2 = false; }

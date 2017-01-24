@@ -25,7 +25,7 @@ internal class Tree : BuildingAndUnit
 
     public override void Draw(SpriteBatch spriteBatch)
     {
-        base.Draw(spriteBatch);
+        spriteBatch.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, _size * data.tSize(), _size * data.tSize()), Color.White);
     }
 
     public int TreeAmount

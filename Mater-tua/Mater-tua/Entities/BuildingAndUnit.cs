@@ -10,6 +10,7 @@ public partial class BuildingAndUnit : AnimatedEntity
     protected int _damage;
     public int _lumberCost;
     public int _goldCost = 400;
+    public int _foodCost;
     protected int _range;
     protected string _description;
     protected BuildingAndUnit _target;
@@ -82,6 +83,11 @@ public partial class BuildingAndUnit : AnimatedEntity
     public int LumberCost
     {
         get { return _lumberCost; }
+    }
+
+    public int FoodCost
+    {
+        get { return _foodCost; }
     }
 
     public int GoldCost

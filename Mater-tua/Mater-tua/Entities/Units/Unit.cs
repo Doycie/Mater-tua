@@ -2,12 +2,15 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class Unit : BuildingAndUnit
 {
     protected int _productionTime = 400;
     protected float _moveSpeed = 2.0f;
     protected int _foodCost = 1;
+    protected bool soundEffectCooldown;
+    protected int soundEffectCooldownTimer;
 
     protected List<Point> _path = new List<Point>();
     private Pathfind pathfinder = new Pathfind();
@@ -15,10 +18,10 @@ public class Unit : BuildingAndUnit
     public Unit(Level level)
         : base(level)
     {
-        
+
     }
 
- 
+
 
     public void StopMove()
     {
@@ -38,6 +41,12 @@ public class Unit : BuildingAndUnit
     public override void Update(GameTime gameTime)
     {
         this.UpdatePath();
+        if (soundEffectCooldown)
+        {
+            soundEffectCooldownTimer -= 1;
+            if (soundEffectCooldownTimer <= 0)
+                soundEffectCooldown = false;
+        }
     }
 
     public int ProductionTime
@@ -46,7 +55,7 @@ public class Unit : BuildingAndUnit
         set { _productionTime = value; }
     }
 
-   public int FoodCost
+    public int FoodCost
     {
         get { return _foodCost; }
     }
@@ -109,20 +118,43 @@ public class Unit : BuildingAndUnit
                 bool buildingInTheWay = false;
                 foreach (StaticBuilding e in _level.entities.OfType<StaticBuilding>())
                 {
-                  
-                    for (int j = 0; j < e.Size * e.Size; j++)
+                    if (_faction == e.Faction || _faction == BuildingAndUnit.faction.Neutral)
                     {
-                        if (target == new Point((int)e.Position.X / 64 + (int)j / e.Size, (int)e.Position.Y / 64 + (int)j % e.Size))
+                        for (int j = 0; j < e.Size * e.Size; j++)
                         {
-                            buildingInTheWay = true;
+                            if (target == new Point((int)e.Position.X / 64 + (int)j / e.Size, (int)e.Position.Y / 64 + (int)j % e.Size))
+                            {
+                                buildingInTheWay = true;
+                            }
                         }
                     }
                 }
 
                 if (!buildingInTheWay)
+                {
+                    if (!soundEffectCooldown)
+                    {
+                        soundEffectCooldownTimer = 300;
+                        soundEffectCooldown = true;
+                        int soundEffectNo = GameEnvironment.getRandom().Next(1, 3);
 
+                        switch (soundEffectNo)
+                        {
+                            default:
+                                    break;
+                            case 1:
+                                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes");
+                                break;
+                            case 2:
+                                GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allright");
+                                break;
+                        }
+
+                    }
 
                     _path = pathfinder.findPathAStar(new Point((int)_position.X / data.tSize(), (int)_position.Y / data.tSize()), target, _level._mapData, _level);
+                }
+
 
             }
         }
@@ -147,3 +179,5 @@ public class Unit : BuildingAndUnit
         }
     }
 }
+
+

@@ -46,6 +46,14 @@ internal class PlayingState : GameState
         // Console.WriteLine(mousePos);
         level.update(gameTime);
         fog.Update();
+
+        if (level._tempBuilding != null)
+        {
+            if (level.Player.Gold < level._tempBuilding.GoldCost && level.Player.Wood < level._tempBuilding.LumberCost)
+            {
+                canBuild = false;
+            }
+        }
     }
 
     //Special function to draw the HUD
@@ -81,7 +89,7 @@ internal class PlayingState : GameState
             else
                 level._tempBuilding.DrawRed(spriteBatch);
         }
-        foreach( StaticBuilding e in level._tempBuildings)
+        foreach (StaticBuilding e in level._tempBuildings)
         {
             e.DrawGreen(spriteBatch);
         }
@@ -107,10 +115,10 @@ internal class PlayingState : GameState
                 {
                     if (e.Faction == BuildingAndUnit.faction.Human)
                     {
-                        if (PlayedConfirmation == false && PlayedConfirmation1 == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes"); PlayedConfirmation = true; PlayedConfirmation1 = true; PlayedConfirmation2 = false; }
-                        if (PlayedConfirmation == false && PlayedConfirmation2 == false)
-                        { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allright"); PlayedConfirmation = true; PlayedConfirmation2 = true; PlayedConfirmation1 = false; }
+                        //if (PlayedConfirmation == false && PlayedConfirmation1 == false)
+                        //{ GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Yes"); PlayedConfirmation = true; PlayedConfirmation1 = true; PlayedConfirmation2 = false; }
+                        //if (PlayedConfirmation == false && PlayedConfirmation2 == false)
+                        //{ GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/Allright"); PlayedConfirmation = true; PlayedConfirmation2 = true; PlayedConfirmation1 = false; }
                         Point pos = new Point((int)_currentMousePos.X, (int)_currentMousePos.Y);
                         bool attack = false;
                         if (e is CombatUnit)
@@ -161,7 +169,7 @@ internal class PlayingState : GameState
                                     if ((new Rectangle((int)w.Position.X, (int)w.Position.Y, w.Size * data.tSize(), w.Size * data.tSize()).Contains(pos1)))
                                     {
                                         q.OrderReset();
-                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position + new Vector2(r.Size * data.tSize() - data.tSize(),r.Size * data.tSize() - data.tSize()));
+                                        q.MineOrder(w, new Vector2(w.Position.X, w.Position.Y + data.tSize()), r.Position + new Vector2(r.Size * data.tSize() - data.tSize(), r.Size * data.tSize() - data.tSize()));
                                         break;
                                     }
                                 }
@@ -266,7 +274,7 @@ internal class PlayingState : GameState
                     _lastMousePos = _customCursor.getMousePos();
                 }
             }
-            bool PlayedHello = false;
+
             //One click on a unit to select/deselect them
             if (inputHelper.MouseLeftButtonPressed() && !level.movingUnits && !level._attackMoveUnits && level._tempBuilding == null)
             {
@@ -340,37 +348,25 @@ internal class PlayingState : GameState
         {
             (level._tempBuilding as StaticBuilding).setPos(_currentMousePos);
             //if (inputHelper.MouseLeftButtonPressed())
-            
-                canBuild = true;
-                for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
+
+            canBuild = true;
+            for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
+            {
+                if (level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j / level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
                 {
-                    if (level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j / level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
-                    {
-                        canBuild = false;
-                        break;
-                    }
+                    canBuild = false;
+                    break;
                 }
-                if (canBuild)
+            }
+            if (canBuild)
+            {
+                foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
                 {
-                    foreach (StaticBuilding e in level.entities.OfType<StaticBuilding>())
-                    {
-                        for (int k = 0; k < e.Size * e.Size; k++)
-                        {
-                            for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
-                            {
-                                if ((int)e.Position.X / 64 + (k / e.Size) == level._tempBuilding.Position.X / 64 + (j / level._tempBuilding.Size) && (int)e.Position.Y / 64 + (k % e.Size) == level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
-                                {
-                                    canBuild = false;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    foreach (Tree e in level.entities.OfType<Tree>())
+                    for (int k = 0; k < e.Size * e.Size; k++)
                     {
                         for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
                         {
-                            if ((int)(e.Position.X / 64) == (int)level._tempBuilding.Position.X / 64 + ( j/level._tempBuilding.Size) && (int)e.Position.Y / 64 == (int)level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
+                            if ((int)e.Position.X / 64 + (k / e.Size) == level._tempBuilding.Position.X / 64 + (j / level._tempBuilding.Size) && (int)e.Position.Y / 64 + (k % e.Size) == level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
                             {
                                 canBuild = false;
                                 break;
@@ -378,28 +374,43 @@ internal class PlayingState : GameState
                         }
                     }
                 }
-                if (canBuild)
+                foreach (Tree e in level.entities.OfType<Tree>())
                 {
-                    if (inputHelper.MouseLeftButtonPressed())
+                    for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
                     {
-                       level._tempBuildings.Add(level._tempBuilding as StaticBuilding);
-                       foreach(WorkerUnit e in _selectedEntities.OfType<WorkerUnit>())
+                        if ((int)(e.Position.X / 64) == (int)level._tempBuilding.Position.X / 64 + (j / level._tempBuilding.Size) && (int)e.Position.Y / 64 == (int)level._tempBuilding.Position.Y / 64 + (j % level._tempBuilding.Size))
                         {
-                             (e as WorkerUnit).BuildOrder(level._tempBuilding.Position, level._tempBuildings.Count - 1);
+                            canBuild = false;
+                            break;
                         }
+                    }
+                }
+            }
+            if (canBuild)
+            {
+                if (inputHelper.MouseLeftButtonPressed())
+                {
+                    if (level.Player.Gold >= level._tempBuilding.GoldCost && level.Player.Wood >= level._tempBuilding.LumberCost)
+                    {
+                        level.Player.AddGold(-level._tempBuilding.GoldCost);
+                        level.Player.AddWood(-level._tempBuilding.LumberCost);
+                        level.entities.Add(level._tempBuilding);
                         level._tempBuilding = null;
                     }
-                    
-                        
+
                 }
-            
-            else if (inputHelper.MouseRightButtonPressed())
-            {
-                level.Player.AddGold(level._tempBuilding.GoldCost);
-                level.Player.AddWood(level._tempBuilding.LumberCost);
-                level._tempBuilding = null;
-                canBuild = true;
+                else if (inputHelper.MouseRightButtonPressed())
+                {
+
+                    level._tempBuilding = null;
+                    canBuild = true;
+                }
             }
+            else if (!canBuild && inputHelper.MouseRightButtonPressed())
+                level._tempBuilding = null;
+
+
+
         }
 
         int x = 0;
@@ -422,7 +433,6 @@ internal class PlayingState : GameState
             y++;
         }
 
-        // TODO: remove cheats
         if (inputHelper.KeyPressed(Keys.NumPad0))
             level.Player.AddGold(100);
         if (inputHelper.KeyPressed(Keys.NumPad1))

@@ -85,10 +85,6 @@ internal class Camera2D
     {
         int x = (int)(_position.X - (_origin.X / (_scale + v) - _origin.X));
         int y = (int)(_position.Y - (_origin.Y / (_scale + v) - _origin.Y));
-
-        //TODO Only zoom when the camera is in bounds
-        //if (_scale + v > 0.1f)
-        //    _scale = _scale + v;
     }
 
     //Returns a rectangle properly calculated from the positon and the zoom

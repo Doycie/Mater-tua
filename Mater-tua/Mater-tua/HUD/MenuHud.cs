@@ -10,7 +10,6 @@ internal class MenuHud : HUD
     public MenuHud()
     {
         _BGTex = GameEnvironment.getAssetManager().GetSprite("Sprites/UI/MenuBG");
-        //TODO: Fix position of the buttons
         _buttons = new List<Button>();
         /* 1 play*/
         _buttons.Add(new Button(new Rectangle(550, 170, 250, 130), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButton"), GameEnvironment.getAssetManager().GetSprite("Sprites/Buttons/playButtonPressed"), false));

@@ -95,7 +95,7 @@ internal class Minimap
         {
 
             int a = (int)(e.Position.X / 64) * 4 + (((int)e.Position.Y / 64) * 64 * 4) * 4;
-            if (data[a] == Color.Black)
+            if (data[a] == Color.Black || data[a] == Color.Red)
                 continue;
             Color c = Color.White;
 

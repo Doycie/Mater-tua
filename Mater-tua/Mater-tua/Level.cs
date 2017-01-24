@@ -19,6 +19,10 @@ public partial class Level
     private Texture2D _mountainTex;
 
     public BuildingAndUnit _tempBuilding;
+
+
+    public List<StaticBuilding> _tempBuildings = new List<StaticBuilding>();
+
     //List of entities kept inside the level, like units and buildings. DO NOT PUT THE HUD ELEMENTS, PARTICLES OR PROJECTILES IN HERE
     public bool movingUnits = false;
     public bool _attackMoveUnits = false;

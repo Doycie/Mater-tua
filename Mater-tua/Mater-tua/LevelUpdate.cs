@@ -114,7 +114,7 @@ partial class Level
                         specialFX.Add(new Spritesheet("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size , 8,32,32,60));
                         entities.RemoveAt(i);
                     }
-                    else if(typeof(TreasureChest).IsAssignableFrom(entities[i].GetType())
+                    else if(typeof(TreasureChest).IsAssignableFrom(entities[i].GetType()))
                     {
                         specialFX.Add(new Spritesheet("Sprites/Misc/sparkle", entities[i].Position, entities[i].Size, 8, 32, 32, 60));
                         entities.RemoveAt(i);

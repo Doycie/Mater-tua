@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 internal class WorkerUnit : Unit
 {
@@ -10,12 +11,13 @@ internal class WorkerUnit : Unit
     private Vector2 _TargetPosition;
     private int _FirstTime;
     private int _FirstTimeTree;
-    private int _TimerTree;
-    private int _Timer;
+
+    private int _MaxTimer =1;
+    private int _Timer = 0;
     private int _OrderLevel;
 
     private int _FirstTimeTreasure;
-    private int _TimerTreasure;
+
     private Tree _tree;
     private Mine _mine;
     private TreasureChest _treasure;
@@ -39,15 +41,16 @@ internal class WorkerUnit : Unit
         _range = 1;
         Reset();
         _FirstTime = 0;
-        _Timer = 300;
+        _Timer = 0;
         _FirstTimeTree = 0;
-        _TimerTree = 480;
+
         _OrderLevel = -1;
         _level = level;
         _moveButton = true;
         _stopButton = true;
         _mineGoldButton = true;
         _cutWoodButton = true;
+        _healthbar = GameEnvironment.getAssetManager().GetSprite("Sprites/HUD/healthbar");
         _buildBuildingButton = true;
        
     }
@@ -86,6 +89,8 @@ internal class WorkerUnit : Unit
         _OrderLevel = 0;
         _MinePosition = PositionTarget;
         _TownhallPosition = PositionTownhall;
+        _MaxTimer = 300;
+        _Timer = 300;
         _mine = m;
     }
 
@@ -95,6 +100,8 @@ internal class WorkerUnit : Unit
         _TreePosition = PositionTarget;
         _tree = t;
         _TownhallPosition = PositionTownhall;
+        _Timer = 480;
+        _MaxTimer = 480;
     }
 
     public void BuildOrder(Vector2 PositionTarget, int b)
@@ -102,7 +109,8 @@ internal class WorkerUnit : Unit
         _OrderLevel = 2;
         _TargetPosition = PositionTarget;
         _buildingIndex = b;
-        
+        _Timer = 300;
+        _MaxTimer = 300;
         _building = false;
         _moveToBulding = false;
     }
@@ -113,6 +121,8 @@ internal class WorkerUnit : Unit
         _OrderLevel = 3;
         _TreasurePosition = PositionTarget;
         _TownhallPosition = PositionTownhall;
+        _Timer = 60;
+        _MaxTimer = 60;
     }
 
     public void OrderReset()
@@ -121,6 +131,7 @@ internal class WorkerUnit : Unit
         _FirstTimeTree = 0;
         _FirstTime = 0;
         _FirstTimeTreasure = 0;
+        _Timer = 0;
         _OrderLevel = -1;
         _building = false;
         _moveToBulding = false;
@@ -176,13 +187,13 @@ internal class WorkerUnit : Unit
 
             if (_position == _TreePosition)
             {
-                if (_TimerTree == 0)
+                if (_Timer == 0)
                 {
                     orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                    _TimerTree = 480;
+                    _Timer= 480;
                     _tree.TreeUseage();
                 }
-                _TimerTree--;
+                _Timer--;
             }
             if (_position == _TownhallPosition)
             {
@@ -212,13 +223,13 @@ internal class WorkerUnit : Unit
             }
             if (_position == _TreasurePosition)
             {
-                if (_TimerTreasure == 0)
+                if (_Timer == 0)
                 {
                     orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
-                    _TimerTreasure = 60;
+                    _Timer = 60;
                     _treasure.TreasureUseage();
                 }
-                _TimerTreasure--;
+                _Timer--;
             }
             if (_position == _TownhallPosition)
             {
@@ -271,4 +282,22 @@ internal class WorkerUnit : Unit
             }
         }
     }
+
+    public void Progressbar(SpriteBatch spriteBatch)
+    {
+        Vector2 pos = this.Position;
+        int size = 1;
+
+
+        DrawingHelper.DrawRectangle(new Rectangle((int)pos.X - 1, (int)pos.Y -8, (int)size * data.tSize() + 1, (int)data.tSize() / 10 + 1), spriteBatch, Color.White, 1);
+        spriteBatch.Draw(_healthbar, new Rectangle((int)pos.X, (int)pos.Y - 7, (int)((float)(size * data.tSize()) * (1-((float)_Timer / (float)_MaxTimer))), data.tSize() / 10), Color.Red);
+
+    }
+    public override void Draw(SpriteBatch s)
+    {
+        base.Draw(s);
+        if(_OrderLevel >= 0)
+        this.Progressbar(s);
+    }
+
 }

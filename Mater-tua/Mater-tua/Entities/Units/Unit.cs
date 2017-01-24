@@ -106,15 +106,17 @@ public class Unit : BuildingAndUnit
             }
             else if (_level._entitiesData[target.X, target.Y] != (int)'t')
             {
-                bool buildingInTheWay = false;
+                bool buildingInTheWay = false; 
                 foreach (StaticBuilding e in _level.entities.OfType<StaticBuilding>())
                 {
-                  
-                    for (int j = 0; j < e.Size * e.Size; j++)
+                    if (_faction == e.Faction || _faction == BuildingAndUnit.faction.Neutral)
                     {
-                        if (target == new Point((int)e.Position.X / 64 + (int)j / e.Size, (int)e.Position.Y / 64 + (int)j % e.Size))
+                        for (int j = 0; j < e.Size * e.Size; j++)
                         {
-                            buildingInTheWay = true;
+                            if (target == new Point((int)e.Position.X / 64 + (int)j / e.Size, (int)e.Position.Y / 64 + (int)j % e.Size))
+                            {
+                                buildingInTheWay = true;
+                            }
                         }
                     }
                 }

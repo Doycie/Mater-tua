@@ -352,7 +352,14 @@ internal class PlayingState : GameState
             canBuild = true;
             for (int j = 0; j < level._tempBuilding.Size * level._tempBuilding.Size; j++)
             {
-                if (level._mapData[(int)(level._tempBuilding.Position.X / 64 + (int)(j / level._tempBuilding.Size)), (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size))] != 0)
+                int xxx = (int)(level._tempBuilding.Position.X / 64 + (int)(j / level._tempBuilding.Size));
+                int yyy = (int)(level._tempBuilding.Position.Y / 64 + (int)(j % level._tempBuilding.Size));
+                if (xxx >= 63) xxx = 63;
+                if (xxx < 0) xxx = 0;
+                if (yyy >= 63) yyy= 63;
+                if (yyy < 0) yyy = 0;
+                
+                if (level._mapData[xxx,yyy] != 0)
                 {
                     canBuild = false;
                     break;

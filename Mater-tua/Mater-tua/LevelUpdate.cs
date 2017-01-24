@@ -48,7 +48,34 @@ partial class Level
             }
         }
 
-        
+        if (count % 5400 == 0 && count > 0)
+        {
+            foreach (Barracks b in entities.OfType<Barracks>())
+            {
+                if(b.Faction == BuildingAndUnit.faction.Orc)
+                {
+                    b.produceUnit(new Grunt(this, new Vector2(b.Position.X + 2 * data.tSize(), b.Position.Y + 1 * data.tSize())));
+                }
+            }
+        }
+        if (count > 0 && count % 10800 == 0)
+        {
+            Vector2 attackLocation = Vector2.Zero;
+            foreach (Townhall t in entities.OfType<Townhall>())
+            {
+                if (t.Faction == BuildingAndUnit.faction.Human)
+                {
+                    attackLocation = t.Position - new Vector2(data.tSize(), -3 * data.tSize());
+                }
+            }
+            foreach (CombatUnit c in entities.OfType<CombatUnit>())
+            {
+                if (c.Faction == BuildingAndUnit.faction.Orc)
+                {
+                    c.orderMove(new Point((int)attackLocation.X / data.tSize(), (int)attackLocation.Y / data.tSize()));
+                }
+            }
+        }
        
 
         //Update all the entities in the level list
@@ -57,10 +84,10 @@ partial class Level
             if (typeof(BuildingAndUnit).IsAssignableFrom(entities[i].GetType()))
             {
                 entities[i].Update(gameTime);
-                if(count%60==0 && entities[i] is Barracks && entities[i].Faction == BuildingAndUnit.faction.Orc)
-                {
-                    (entities[i] as Barracks).produceUnit(new Grunt(this, new Vector2(entities[i].Position.X + 2* data.tSize(), entities[i].Position.Y + 1 * data.tSize())));
-                }
+                //if(count%60==0 && entities[i] is Barracks && entities[i].Faction == BuildingAndUnit.faction.Orc)
+                //{
+                //    (entities[i] as Barracks).produceUnit(new Grunt(this, new Vector2(entities[i].Position.X + 2* data.tSize(), entities[i].Position.Y + 1 * data.tSize())));
+                //}
                 if (typeof(Unit).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
                 {
                     if (entities[i].Faction == BuildingAndUnit.faction.Human)

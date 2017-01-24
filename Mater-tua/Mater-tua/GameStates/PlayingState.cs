@@ -83,7 +83,7 @@ internal class PlayingState : GameState
         }
         foreach( StaticBuilding e in level._tempBuildings)
         {
-            e.Draw(spriteBatch);
+            e.DrawGreen(spriteBatch);
         }
     }
 
@@ -201,6 +201,14 @@ internal class PlayingState : GameState
                                 }
                             }
                         }
+                        for(int i = level._tempBuildings.Count - 1; i >= 0; i--) 
+                        {
+                            if(new Rectangle((int)level._tempBuildings[i].Position.X,(int)level._tempBuildings[i].Position.Y, (int)level._tempBuildings[i].Size * data.tSize(), (int)level._tempBuildings[i].Size * data.tSize()).Contains(pos1))
+                            {
+                                q.OrderReset();
+                                q.BuildOrder(level._tempBuildings[i].Position,i);
+                            }
+                        }
                     }
                 }
                 //_chop = false;
@@ -260,7 +268,7 @@ internal class PlayingState : GameState
             }
             bool PlayedHello = false;
             //One click on a unit to select/deselect them
-            if (inputHelper.MouseLeftButtonPressed() && !level.movingUnits && !level._attackMoveUnits)
+            if (inputHelper.MouseLeftButtonPressed() && !level.movingUnits && !level._attackMoveUnits && level._tempBuilding == null)
             {
                 Vector2 pos = _customCursor.getMousePos();
 
@@ -374,7 +382,11 @@ internal class PlayingState : GameState
                 {
                     if (inputHelper.MouseLeftButtonPressed())
                     {
-                        level.entities.Add(level._tempBuilding);
+                       level._tempBuildings.Add(level._tempBuilding as StaticBuilding);
+                       foreach(WorkerUnit e in _selectedEntities.OfType<WorkerUnit>())
+                        {
+                             (e as WorkerUnit).BuildOrder(level._tempBuilding.Position, level._tempBuildings.Count - 1);
+                        }
                         level._tempBuilding = null;
                     }
                     

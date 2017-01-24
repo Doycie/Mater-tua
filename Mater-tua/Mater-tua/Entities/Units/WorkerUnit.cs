@@ -13,13 +13,15 @@ internal class WorkerUnit : Unit
     private int _TimerTree;
     private int _Timer;
     private int _OrderLevel;
-    private int _BuildLevel;
-    private bool _done;
+
     private int _FirstTimeTreasure;
     private int _TimerTreasure;
     private Tree _tree;
     private Mine _mine;
     private TreasureChest _treasure;
+    private bool _moveToBulding = false;
+    private bool _building = false;
+    private int _buildingIndex;
 
     public WorkerUnit(Level level)
         : base(level)
@@ -47,7 +49,7 @@ internal class WorkerUnit : Unit
         _mineGoldButton = true;
         _cutWoodButton = true;
         _buildBuildingButton = true;
- 
+       
     }
 
     public override void Reset()
@@ -69,15 +71,15 @@ internal class WorkerUnit : Unit
         }
         else if (_OrderLevel == 2)
         {
-            Build(_BuildLevel, _TargetPosition, _done);
-        } 
+            Build();
+        }
         else if (_OrderLevel == 3)
         {
             OpenChest();
-        }       
+        }
     }
 
-    
+
 
     public void MineOrder(Mine m, Vector2 PositionTarget, Vector2 PositionTownhall)
     {
@@ -87,7 +89,7 @@ internal class WorkerUnit : Unit
         _mine = m;
     }
 
-    public void CutWoodOrder(Tree t, Vector2 PositionTarget, Vector2 PositionTownhall )
+    public void CutWoodOrder(Tree t, Vector2 PositionTarget, Vector2 PositionTownhall)
     {
         _OrderLevel = 1;
         _TreePosition = PositionTarget;
@@ -95,12 +97,14 @@ internal class WorkerUnit : Unit
         _TownhallPosition = PositionTownhall;
     }
 
-    public void BuildOrder(Vector2 PositionTarget, Vector2 PositionTownhall, int BuildLevel = 0)
+    public void BuildOrder(Vector2 PositionTarget, int b)
     {
         _OrderLevel = 2;
         _TargetPosition = PositionTarget;
-        _BuildLevel = BuildLevel;
-        _done = false;
+        _buildingIndex = b;
+        
+        _building = false;
+        _moveToBulding = false;
     }
 
     public void TreasureOrder(TreasureChest T, Vector2 PositionTarget, Vector2 PositionTownhall)
@@ -118,6 +122,8 @@ internal class WorkerUnit : Unit
         _FirstTime = 0;
         _FirstTimeTreasure = 0;
         _OrderLevel = -1;
+        _building = false;
+        _moveToBulding = false;
 
     }
 
@@ -127,7 +133,7 @@ internal class WorkerUnit : Unit
         {
             if (_position != _MinePosition && _position != _TownhallPosition && _FirstTime == 0)
             {
-                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize())) ;
+                orderMove(new Point((int)_MinePosition.X / data.tSize(), (int)_MinePosition.Y / data.tSize()));
                 _FirstTime = 1;
             }
 
@@ -135,7 +141,7 @@ internal class WorkerUnit : Unit
             {
                 if (_Timer == 0)
                 {
-                    orderMove(new Point((int)_TownhallPosition.X / data.tSize() , (int)_TownhallPosition.Y / data.tSize()));
+                    orderMove(new Point((int)_TownhallPosition.X / data.tSize(), (int)_TownhallPosition.Y / data.tSize()));
                     _Timer = 300;
                     _mine.MineUseage();
                 }
@@ -184,16 +190,16 @@ internal class WorkerUnit : Unit
                 orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
                 Console.WriteLine("Wood:" + _level.Player.Wood);
             }
-            
+
         }
         else if (_tree.TreeAmount == 0)
+        {
+            if (_position == _TownhallPosition)
             {
-                if (_position == _TownhallPosition)
-                {
-                    _level.Player.AddWood(10);
-                    orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
-                }
+                _level.Player.AddWood(10);
+                orderMove(new Point((int)_TreePosition.X / data.tSize(), (int)_TreePosition.Y / data.tSize()));
             }
+        }
     }
     private void OpenChest()
     {
@@ -231,22 +237,37 @@ internal class WorkerUnit : Unit
         }
     }
 
-    private void Build(int BuildLevel, Vector2 TargetPosition, bool done)
+    private void Build()
     {
-        if (done != true)
+        if (_building)
         {
-            orderMove(new Point((int)TargetPosition.X / data.tSize(), (int)TargetPosition.Y / data.tSize()));
-            if (_position == TargetPosition)
+            if(Position == _TargetPosition)
+            _Timer--;
+            if (_Timer <= 0)
             {
-                if (BuildLevel == 0)
+                _building = false;
+                if (_level._tempBuildings.Count > _buildingIndex && _level._tempBuildings[_buildingIndex] != null)
                 {
-                    Farm farm = new Farm(_level, TargetPosition, _faction);
-                    _level.entities.Add(farm);
-                    _done = true;
+                    _level.entities.Add(_level._tempBuildings[_buildingIndex]);
+                    _level._tempBuildings.RemoveAt(_buildingIndex);
+                    _moveToBulding = false;
+                    _building = false;
+                    _OrderLevel = -1;
                 }
-                if (BuildLevel == 1)
-                {
-                }
+            }
+        }
+        else
+        {
+            if (!_moveToBulding)
+            {
+
+                orderMove(new Point((int)_TargetPosition.X / data.tSize(), (int)_TargetPosition.Y / data.tSize()));
+                _moveToBulding = true;
+            }
+            if (_position == _TargetPosition)
+            {
+                _building = true;
+                _Timer = 300;
             }
         }
     }

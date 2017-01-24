@@ -24,7 +24,7 @@ internal class CombatUnit : Unit
     {
         //s.Draw(_sprite, new Rectangle((int)_position.X, (int)_position.Y, data.tSize(), data.tSize()), new Color(1.0f, isAttacking/60.0f == 0 ? 1.0f: isAttacking/ 60.0f , isAttacking / 60.0f==0 ? isAttacking /60.0f:1.0f, 1.0f));
         base.Draw(s);
-       // s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
+        // s.Draw(_sprite, new Rectangle((int)_position.X + data.tSize() / 2, (int)_position.Y + data.tSize() / 2, data.tSize() / 2, data.tSize() / 2), null, new Color(1.0f, 1.0f, 1.0f, 0.1f), (float)isAttacking, Vector2.Zero, SpriteEffects.None, 0.0f);
     }
 
     //private void dodefend()
@@ -55,7 +55,7 @@ internal class CombatUnit : Unit
         {
 
             if (PlayedAttackSound1 == false && playedAttackSound2 == true && PlayedAttackSound == false)
-            {GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
+            { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordDraw"); PlayedAttackSound1 = true; playedAttackSound2 = false; PlayedAttackSound = true; }
             if (playedAttackSound2 == false && PlayedAttackSound1 == true && PlayedAttackSound == false)
             { GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/SwordClashHit"); PlayedAttackSound1 = false; playedAttackSound2 = true; PlayedAttackSound = true; }
             _attackCooldown = 60;
@@ -94,27 +94,43 @@ internal class CombatUnit : Unit
             //}
 
 
-            if (calculateH(new Point((int)Position.X + (int)(data.tSize() * Size / 2), (int)Position.Y + (int)(data.tSize() * Size / 2)), new Point((int)_target.Position.X + (data.tSize() * _target.Size / 2), (int)_target.Position.Y + (data.tSize() * _target.Size/ 2))) < data.tSize() * _target.Size - data.tSize()/4)
+            if (calculateH(new Point((int)Position.X + (int)(data.tSize() * Size / 2), (int)Position.Y + (int)(data.tSize() * Size / 2)), new Point((int)_target.Position.X + (data.tSize() * _target.Size / 2), (int)_target.Position.Y + (data.tSize() * _target.Size / 2))) < data.tSize() * _target.Size - data.tSize() / 4)
             {
                 doattack();
-            } 
+            }
         }
         else
         {
             _attackCooldown = 0;
             isAttacking = 0;
         }
+        if (_target != null && _target.HitPoints <= 0)
+            _target = null;
 
         base.Update(gameTime);
     }
 
+    private double Agrorange(Vector2 a, Vector2 b)
+    {
+        return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
+    }
+
     public void Defend(BuildingAndUnit e)
     {
-        agrorange = Math.Sqrt(Math.Pow(_position.X - e.Position.X, 2) + Math.Pow(_position.Y - e.Position.Y, 2));
-
-        if (agrorange < data.tSize() * 4)
+        if (Agrorange(_position, e.Position) < data.tSize() * 4)
         {
-            orderAttack(e);
+            if (_target == null)
+            {
+                orderAttack(e);
+            }
+            else if (typeof(Unit).IsAssignableFrom(e.GetType()) && typeof(StaticBuilding).IsAssignableFrom(_target.GetType()))
+            {
+                orderAttack(e);
+            }
+            else if (Agrorange(_position, _target.Position) > Agrorange(_position, e.Position))
+            {
+                orderAttack(e);
+            }
         }
     }
 

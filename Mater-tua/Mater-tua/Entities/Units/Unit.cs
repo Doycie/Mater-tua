@@ -7,7 +7,7 @@ public class Unit : BuildingAndUnit
 {
     protected int _productionTime = 400;
     protected float _moveSpeed = 2.0f;
-
+    protected int _foodCost = 1;
 
     protected List<Point> _path = new List<Point>();
     private Pathfind pathfinder = new Pathfind();
@@ -17,6 +17,8 @@ public class Unit : BuildingAndUnit
     {
         
     }
+
+ 
 
     public void StopMove()
     {
@@ -44,6 +46,10 @@ public class Unit : BuildingAndUnit
         set { _productionTime = value; }
     }
 
+   public int FoodCost
+    {
+        get { return _foodCost; }
+    }
     public float MoveSpeed
     {
         get { return _moveSpeed; }

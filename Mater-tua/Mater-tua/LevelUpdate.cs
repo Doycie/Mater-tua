@@ -91,7 +91,7 @@ partial class Level
                 if (typeof(Unit).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)
                 {
                     if (entities[i].Faction == BuildingAndUnit.faction.Human)
-                        Player.availableFood(-1);
+                        Player.UseFood(-(entities[i] as Unit).FoodCost);
                     GameEnvironment.getAssetManager().PlaySoundEffect("Sounds/Soundeffects/DieSound");
                 }
                 if (typeof(StaticBuilding).IsAssignableFrom(entities[i].GetType()) && entities[i].HitPoints < 1)

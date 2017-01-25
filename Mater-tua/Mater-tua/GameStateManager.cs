@@ -184,7 +184,7 @@ internal class GameStateManager : GameState
         victoryState = new VictoryState();
         defeatState = new DefeatState();
 
-        Console.WriteLine("SET VOLUME TO 0 FOR DEBUGGING");
-        MediaPlayer.Volume = 0.0f;
+        //Console.WriteLine("SET VOLUME TO 0 FOR DEBUGGING");
+        //MediaPlayer.Volume = 0.0f;
     }
 }
